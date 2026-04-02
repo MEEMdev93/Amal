@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول - نظام جاهزية الأقسام الحيوية</title>
+<style>
+  @font-face {
+    font-family: 'Cairo';
+    src: local('Cairo'), local('Tahoma');
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary:   #1B4F8A;
+    --primary-dark: #154360;
+    --accent:    #2E86C1;
+    --success:   #1E8449;
+    --danger:    #C0392B;
+    --light:     #EBF5FB;
+    --text:      #1a1a1a;
+    --border:    #ccc;
+    --radius:    10px;
+  }
+  body {
+    font-family: 'Cairo', 'Tahoma', Arial, sans-serif;
+    background: linear-gradient(135deg, #0D2137 0%, #1B4F8A 50%, #2980B9 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    direction: rtl;
+  }
+  .login-wrapper {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    width: 420px;
+    overflow: hidden;
+  }
+  .login-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent) 100%);
+    padding: 32px 24px;
+    text-align: center;
+    color: #fff;
+  }
+  .logo-circle {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 3px solid rgba(255,255,255,0.4);
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .logo-circle img { width: 100%; height: 100%; object-fit: contain; }
+  .logo-circle .logo-icon { font-size: 42px; }
+  .login-header h1 { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
+  .login-header p  { font-size: 11px; opacity: 0.85; line-height: 1.5; }
+  .system-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .login-body { padding: 28px 32px 32px; }
+  .form-group { margin-bottom: 18px; }
+  label {
+    display: block; margin-bottom: 6px;
+    font-size: 13px; font-weight: bold; color: var(--primary-dark);
+  }
+  .input-wrap {
+    position: relative;
+  }
+  .input-icon {
+    position: absolute; right: 12px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px; color: #888; pointer-events: none;
+  }
+  input[type="text"], input[type="password"] {
+    width: 100%; padding: 11px 42px 11px 14px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: 'Cairo', 'Tahoma', Arial, sans-serif;
+    direction: rtl;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(46,134,193,0.15);
+  }
+  .toggle-pw {
+    position: absolute; left: 12px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; color: #888;
+    padding: 0;
+  }
+  .toggle-pw:hover { color: var(--accent); }
+  .btn-login {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    border: none; border-radius: var(--radius);
+    font-size: 15px; font-weight: bold;
+    font-family: 'Cairo', 'Tahoma', Arial, sans-serif;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+    margin-top: 6px;
+  }
+  .btn-login:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(27,79,138,0.4);
+  }
+  .btn-login:active { transform: translateY(0); }
+  .btn-login:disabled { opacity: 0.7; cursor: not-allowed; }
+  .btn-login .spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle; margin-left: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .alert {
+    padding: 10px 14px; border-radius: 8px;
+    font-size: 13px; margin-bottom: 16px;
+    display: none;
+    align-items: center; gap: 8px;
+  }
+  .alert.error   { background:#FADBD8; color:#C0392B; border: 1px solid #F1948A; display:flex; }
+  .alert.success { background:#D5F5E3; color:#1E8449; border: 1px solid #82E0AA; display:flex; }
+  .login-footer {
+    text-align: center;
+    padding: 12px;
+    background: #F8F9FA;
+    border-top: 1px solid #eee;
+    font-size: 11px;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+<div class="login-wrapper">
+  <div class="login-header">
+    <div class="logo-circle">
+      <span id="logoImg" class="logo-icon">🏥</span>
+    </div>
+    <h1>مستشفى الولادة والأطفال بالمدينة المنورة</h1>
+    <p>إدارة التأهب للطوارئ والكوارث<br>مدينة الملك سلمان الطبية</p>
+    <div class="system-badge">نظام قياس جاهزية الأقسام الحيوية اليومية</div>
+  </div>
+
+  <div class="login-body">
+    <div class="alert" id="alertBox">
+      <span id="alertIcon">⚠️</span>
+      <span id="alertMsg"></span>
+    </div>
+
+    <form id="loginForm" onsubmit="doLogin(event)">
+      <div class="form-group">
+        <label for="username">اسم المستخدم</label>
+        <div class="input-wrap">
+          <span class="input-icon">👤</span>
+          <input type="text" id="username" placeholder="أدخل اسم المستخدم"
+                 autocomplete="username" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">كلمة المرور</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="password" placeholder="أدخل كلمة المرور"
+                 autocomplete="current-password" required>
+          <button type="button" class="toggle-pw" onclick="togglePw()" title="إظهار/إخفاء">
+            <span id="eyeIcon">👁️</span>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn-login" id="loginBtn">
+        <span id="btnText">دخول</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="login-footer">
+    نظام جاهزية الأقسام الحيوية اليومية &nbsp;|&nbsp; الإصدار 1.0
+  </div>
+</div>
+
+<script>
+  // تحميل شعار المستشفى إذا وُجد
+  fetch('/api/settings', {headers:{Authorization:'Bearer dummy'}})
+    .catch(() => {})
+    .then(async r => {
+      if (!r || !r.ok) return;
+      const s = await r.json().catch(() => {});
+      if (s && s.hospital_logo_url) {
+        const img = document.createElement('img');
+        img.src = s.hospital_logo_url;
+        img.onerror = () => {};
+        document.getElementById('logoImg').replaceWith(img);
+      }
+      if (s && s.hospital_name) {
+        document.querySelector('.login-header h1').textContent = s.hospital_name;
+      }
+    });
+
+  // إذا كان المستخدم مسجلاً بالفعل، انتقل للداش بورد
+  const existingToken = localStorage.getItem('token');
+  if (existingToken) {
+    fetch('/api/auth/me', {
+      headers: { Authorization: 'Bearer ' + existingToken }
+    }).then(r => {
+      if (r.ok) window.location.href = '/dashboard';
+    }).catch(() => {});
+  }
+
+  function showAlert(msg, type = 'error') {
+    const box = document.getElementById('alertBox');
+    box.className = 'alert ' + type;
+    document.getElementById('alertMsg').textContent = msg;
+    document.getElementById('alertIcon').textContent = type === 'error' ? '⚠️' : '✅';
+  }
+
+  function hideAlert() {
+    document.getElementById('alertBox').style.display = 'none';
+    document.getElementById('alertBox').className = 'alert';
+  }
+
+  function togglePw() {
+    const pw = document.getElementById('password');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+    document.getElementById('eyeIcon').textContent =
+      pw.type === 'password' ? '👁️' : '🙈';
+  }
+
+  async function doLogin(e) {
+    e.preventDefault();
+    hideAlert();
+    const btn = document.getElementById('loginBtn');
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    if (!username || !password) {
+      showAlert('يرجى إدخال اسم المستخدم وكلمة المرور');
+      return;
+    }
+    btn.disabled = true;
+    document.getElementById('btnText').innerHTML =
+      'جاري التحقق... <span class="spinner"></span>';
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        showAlert(data.detail || 'خطأ في تسجيل الدخول');
+        return;
+      }
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      showAlert('تم تسجيل الدخول بنجاح، جاري التوجيه...', 'success');
+      setTimeout(() => { window.location.href = '/dashboard'; }, 800);
+    } catch (err) {
+      showAlert('لا يمكن الاتصال بالخادم. تأكد من تشغيل النظام.');
+    } finally {
+      btn.disabled = false;
+      document.getElementById('btnText').textContent = 'دخول';
+    }
+  }
+</script>
+</body>
+</html>

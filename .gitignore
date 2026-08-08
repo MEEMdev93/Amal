@@ -1,6 +1,14 @@
+# Database files (will be created at runtime)
 emergency_system/data/*.db
-emergency_system/static/backups/
+
+# Backup files
+emergency_system/static/backups/*.db
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 .env
+
+# Keep .gitkeep files (they ensure dirs exist in zip)
+!.gitkeep

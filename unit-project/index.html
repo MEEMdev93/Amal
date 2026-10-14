@@ -20,7 +20,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#ddd;font-family:"Tajawal",sans-serif;color:var(--ink)}
 .page{width:210mm;height:297mm;margin:0 auto 8mm;background:var(--paper);position:relative;overflow:hidden;
-  padding:16mm 15mm 14mm;page-break-after:always;break-after:page}
+  padding:13mm 14mm 12mm;page-break-after:always;break-after:page}
 @media print{body{background:none}.page{margin:0}}
 
 /* frame */
@@ -72,7 +72,7 @@ body{background:#ddd;font-family:"Tajawal",sans-serif;color:var(--ink)}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
 .card{border:1.5px solid #cfe3b8;border-radius:4mm;padding:4mm 5mm;background:#fff}
 .card h3{font-size:13pt;color:var(--green-d);margin-bottom:2mm}
-.card ul{list-style:none;font-size:11.5pt;line-height:1.9}
+.card ul{list-style:none;font-size:11pt;line-height:1.8}
 .card li::before{content:"◂ ";color:var(--red)}
 table{width:100%;border-collapse:collapse;font-size:11pt}
 th,td{border:1px solid #bcd6a0;padding:2mm 2.5mm;text-align:center}
@@ -80,6 +80,22 @@ th{background:var(--green);color:#fff}
 td:first-child{text-align:right}
 .tick{color:var(--green-d);font-weight:800;font-size:13pt}
 .sign{margin-top:5mm;display:flex;justify-content:space-between;font-size:12pt}
+</style>
+
+<style>
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:4mm;margin-bottom:4mm}
+.hdr .ribbon{background:var(--green);color:#fff;font-weight:800;font-size:20pt;padding:2mm 8mm;border-radius:5mm;box-shadow:0 1.2mm 0 var(--green-d)}
+.hdr .meta{font-size:11pt;line-height:1.7;text-align:left}
+.hdr .meta b{color:var(--green-d);font-size:13pt}
+.head{margin-bottom:3mm}.head h2{font-size:15pt}.step{width:9mm;height:9mm;font-size:12pt}
+.note{font-size:11pt;line-height:1.75;background:var(--green-l);border-right:4px solid var(--green);padding:2.5mm 4mm;border-radius:2mm;margin-bottom:4mm}
+.lead{font-size:19pt;margin-bottom:1mm}
+.fancy .story{font-size:13.2pt;line-height:1.9}
+.grid{width:150mm;margin:0 auto;gap:4mm}
+.panel .cap{font-size:10.5pt;min-height:0;padding:1.6mm 2.5mm;align-items:center}
+.checks{margin-top:4mm;display:flex;flex-wrap:wrap;gap:2mm 3mm;justify-content:center;font-size:9.8pt;font-weight:700}
+.checks span{color:var(--green-d)}
+.footer{bottom:9.5mm}
 </style>
 </head>
 <body>
@@ -192,176 +208,46 @@ td:first-child{text-align:right}
  </defs>
 </svg>
 
-<!-- ============ 1. COVER ============ -->
-<section class="page">
- <div class="cover">
-  <div class="top">المملكة العربية السعودية<br>مادة لغتي – الصف الخامس الابتدائي</div>
-  <div class="ribbon">مَشْرُوعُ الوَحْدَةِ</div>
-  <div class="theme">موضوع الوحدة: <span>الأخلاق والفضائل</span></div>
-  <div class="story-title">الصِّدْقُ مَنْجَاة</div>
-
-  <svg class="art" width="560" height="300" viewBox="0 0 560 300">
-   <defs>
-    <linearGradient id="cs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9b8"/><stop offset="1" stop-color="#fff7e2"/></linearGradient>
-   </defs>
-   <rect x="0" y="0" width="560" height="300" rx="24" fill="url(#cs)"/>
-   <circle cx="440" cy="80" r="42" fill="#ffcf4d"/>
-   <path d="M0 230 Q140 170 280 220 T560 210 L560 300 L0 300 Z" fill="#e8c48a"/>
-   <path d="M0 260 Q160 220 320 255 T560 250 L560 300 L0 300 Z" fill="#d9ad6c"/>
-   <use href="#palm" x="20" y="90" width="80" height="150"/>
-   <use href="#palm" x="470" y="110" width="70" height="130"/>
-   <use href="#camel" x="300" y="170" width="130" height="100"/>
-   <use href="#boy" x="170" y="140" width="70" height="150"/>
-   <g transform="translate(110 70)">
-    <rect x="0" y="0" width="150" height="54" rx="16" fill="#fff" stroke="#4f8a1f" stroke-width="2.5"/>
-    <path d="M90 54 L104 72 L108 54 Z" fill="#fff" stroke="#4f8a1f" stroke-width="2.5"/>
-    <rect x="91" y="50" width="16" height="6" fill="#fff"/>
-    <text x="75" y="35" text-anchor="middle" font-family="Tajawal" font-weight="800" font-size="20" fill="#4f8a1f">لن أكذبَ أبدًا</text>
-   </g>
-  </svg>
-
-  <div class="namecard">
-   إعداد الطالبة: <b>حور ماجد الحربي</b><br>
-   الصف: الخامس الابتدائي
-  </div>
- </div>
- <div class="footer"><span>مشروع الوحدة – الأخلاق والفضائل</span><span>١</span></div>
-</section>
-
-<!-- ============ 2. THE STORY (RESEARCH) ============ -->
-<section class="page">
- <div class="head"><div class="step">١</div><h2>أبحثُ عن قصةٍ قصيرةٍ حولَ الأخلاقِ والفضائل</h2></div>
- <p class="task">بحثتُ عن قصةٍ تدلُّ على خُلُقٍ كريمٍ، فاخترتُ قصةً مشهورةً من تاريخِنا عن <b>الصِّدق</b>.</p>
-
- <div class="box">
-  <h3 style="font-size:17pt;color:var(--red);text-align:center;margin-bottom:3mm">قصةُ الصِّدقِ مَنجاة</h3>
-  <div class="story">
-   <p>عَزَمَ الفتى عبدُ القادرِ الجيلانيُّ على السفرِ إلى مدينةِ بغدادَ ليطلبَ العلمَ. فأعطتْه أمُّه أربعينَ دينارًا، وخاطتْها في ثوبِه تحتَ إبطِه حتى لا تضيعَ، وأخذتْ عليه عهدًا ألّا يكذبَ أبدًا مهما حدث، ثم ودّعتْه قائلةً: «اذهبْ يا ولدي، استودعتُك اللهَ».</p>
-   <p>سار الفتى مع قافلةٍ صغيرةٍ، وفي الطريقِ هجمَ على القافلةِ جماعةٌ من اللصوصِ، فأخذوا أموالَ المسافرين. ومرَّ أحدُهم بالفتى فسأله: «ما معك؟» فقال: «معي أربعونَ دينارًا». فظنَّ اللصُّ أنه يمزحُ وتركه. ثم سأله لصٌّ آخرُ فأجابه بالجوابِ نفسِه.</p>
-   <p>أخذوه إلى زعيمِهم، فسأله: «ما معك؟» قال: «أربعونَ دينارًا مخيطةٌ في ثوبي». ففتّشوا الثوبَ فوجدوها! فتعجّب الزعيمُ وقال: «ما حملك على أن تُخبرَنا؟» قال الفتى: «إنَّ أمي أخذتْ عليَّ عهدًا ألّا أكذب، وأنا لا أخونُ عهدَ أمي».</p>
-   <p>فبكى زعيمُ اللصوصِ وقال: «أنت تخافُ أن تخونَ عهدَ أمِّك، وأنا لا أخافُ أن أخونَ عهدَ ربي!» ثم تاب إلى اللهِ، فقال أصحابُه: «كنتَ زعيمَنا في السرقةِ، وأنت زعيمُنا في التوبةِ»، فتابوا جميعًا، وأعادوا أموالَ القافلةِ إلى أصحابِها.</p>
-  </div>
- </div>
-
- <div class="source"><b>مصدرُ القصة:</b> من قصصِ التراثِ الإسلاميِّ عن العالِمِ عبدِ القادرِ الجيلانيِّ – رحمه الله – وهي من القصصِ المشهورةِ في كتبِ الأخلاقِ وقصصِ الأطفال.</div>
- <div class="why"><b>لماذا اخترتُ هذه القصة؟</b> لأنها تُبيّنُ أنَّ الصِّدقَ يُنجّي صاحبَه، وأنَّ الكلمةَ الصادقةَ قد تُغيّرُ قلوبَ الناسِ وتَهديهم إلى الخيرِ، وفيها بِرُّ الوالدينِ والوفاءُ بالعهد.</div>
- <div class="footer"><span>الطالبة: حور ماجد الحربي</span><span>٢</span></div>
-</section>
-
-<!-- ============ 3. MIND MAP ============ -->
-<section class="page">
- <div class="head"><div class="step">٢</div><h2>الخريطةُ المعرفيةُ للقصة</h2></div>
- <svg viewBox="0 0 720 960" width="100%" style="height:232mm;font-family:Tajawal" direction="rtl">
-  <g stroke-width="4" fill="none" stroke-linecap="round">
-   <path d="M360 470 C360 380 200 300 180 190" stroke="#e0a526"/>
-   <path d="M360 470 C380 380 520 300 540 190" stroke="#1e88e5"/>
-   <path d="M360 470 C300 470 200 470 140 470" stroke="#8e24aa"/>
-   <path d="M360 470 C420 470 520 470 580 470" stroke="#00897b"/>
-   <path d="M360 470 C360 560 200 640 180 760" stroke="#c62828"/>
-   <path d="M360 470 C380 560 520 640 540 760" stroke="#4f8a1f"/>
-  </g>
-
-  <!-- center -->
-  <circle cx="360" cy="470" r="96" fill="#7cb342" stroke="#4f8a1f" stroke-width="6"/>
-  <circle cx="360" cy="470" r="82" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/>
-  <text x="360" y="448" text-anchor="middle" fill="#fff" font-size="20" font-weight="700">قصة</text>
-  <text x="360" y="485" text-anchor="middle" fill="#fff" font-size="30" font-weight="800">الصِّدقُ</text>
-  <text x="360" y="520" text-anchor="middle" fill="#fff" font-size="30" font-weight="800">مَنجاة</text>
-
-  <!-- characters (top-right) -->
-  <g transform="translate(540 120)">
-   <rect x="-150" y="-80" width="300" height="160" rx="20" fill="#e3f0fd" stroke="#1e88e5" stroke-width="3"/>
-   <rect x="-70" y="-100" width="140" height="40" rx="20" fill="#1e88e5"/>
-   <text y="-72" text-anchor="middle" fill="#fff" font-size="21" font-weight="800">الشخصيات</text>
-   <text y="-22" text-anchor="middle" font-size="18" font-weight="700">الفتى عبدُ القادر (البطل)</text>
-   <text y="10" text-anchor="middle" font-size="18">أمُّه الحكيمة</text>
-   <text y="40" text-anchor="middle" font-size="18">زعيمُ اللصوصِ ورجالُه</text>
-   <text y="68" text-anchor="middle" font-size="18">المسافرونَ في القافلة</text>
-  </g>
-
-  <!-- place & time (top-left) -->
-  <g transform="translate(180 120)">
-   <rect x="-150" y="-80" width="300" height="160" rx="20" fill="#fff6dd" stroke="#e0a526" stroke-width="3"/>
-   <rect x="-85" y="-100" width="170" height="40" rx="20" fill="#e0a526"/>
-   <text y="-72" text-anchor="middle" fill="#fff" font-size="21" font-weight="800">الزمانُ والمكان</text>
-   <text y="-20" text-anchor="middle" font-size="18"><tspan font-weight="700">الزمان:</tspan> قديمًا، حين كان</text>
-   <text y="8" text-anchor="middle" font-size="18">عبدُ القادرِ فتًى صغيرًا</text>
-   <text y="44" text-anchor="middle" font-size="18"><tspan font-weight="700">المكان:</tspan> البيت، ثم الطريقُ</text>
-   <text y="70" text-anchor="middle" font-size="18">الصحراويُّ إلى بغداد</text>
-  </g>
-
-  <!-- beginning (right) -->
-  <g transform="translate(600 470)">
-   <rect x="-112" y="-82" width="224" height="164" rx="20" fill="#e0f2f1" stroke="#00897b" stroke-width="3"/>
-   <rect x="-60" y="-102" width="120" height="40" rx="20" fill="#00897b"/>
-   <text y="-74" text-anchor="middle" fill="#fff" font-size="21" font-weight="800">البداية</text>
-   <text y="-26" text-anchor="middle" font-size="17">الأمُّ تخيطُ أربعينَ</text>
-   <text y="2" text-anchor="middle" font-size="17">دينارًا في ثوبِ ابنِها،</text>
-   <text y="30" text-anchor="middle" font-size="17">وتأخذُ عليه عهدًا</text>
-   <text y="58" text-anchor="middle" font-size="17">ألّا يكذب.</text>
-  </g>
-
-  <!-- middle / problem (left) -->
-  <g transform="translate(120 470)">
-   <rect x="-112" y="-82" width="224" height="164" rx="20" fill="#f3e5f5" stroke="#8e24aa" stroke-width="3"/>
-   <rect x="-90" y="-102" width="180" height="40" rx="20" fill="#8e24aa"/>
-   <text y="-74" text-anchor="middle" fill="#fff" font-size="21" font-weight="800">العُقدة (المشكلة)</text>
-   <text y="-26" text-anchor="middle" font-size="17">اللصوصُ يهاجمونَ</text>
-   <text y="2" text-anchor="middle" font-size="17">القافلة، ويسألونَ الفتى:</text>
-   <text y="30" text-anchor="middle" font-size="17">ما معك؟ فيقولُ الصدقَ</text>
-   <text y="58" text-anchor="middle" font-size="17">رغمَ الخطر.</text>
-  </g>
-
-  <!-- ending (bottom-left) -->
-  <g transform="translate(180 800)">
-   <rect x="-150" y="-80" width="300" height="160" rx="20" fill="#fdecea" stroke="#c62828" stroke-width="3"/>
-   <rect x="-70" y="-100" width="140" height="40" rx="20" fill="#c62828"/>
-   <text y="-72" text-anchor="middle" fill="#fff" font-size="21" font-weight="800">الحلُّ والنهاية</text>
-   <text y="-24" text-anchor="middle" font-size="18">يتأثرُ الزعيمُ بصدقِ الفتى</text>
-   <text y="6" text-anchor="middle" font-size="18">فيبكي ويتوبُ هو ورجالُه،</text>
-   <text y="36" text-anchor="middle" font-size="18">ويُعيدونَ الأموالَ</text>
-   <text y="64" text-anchor="middle" font-size="18">إلى أصحابِها.</text>
-  </g>
-
-  <!-- values (bottom-right) -->
-  <g transform="translate(540 800)">
-   <rect x="-150" y="-80" width="300" height="160" rx="20" fill="#eef6e3" stroke="#4f8a1f" stroke-width="3"/>
-   <rect x="-90" y="-100" width="180" height="40" rx="20" fill="#4f8a1f"/>
-   <text y="-72" text-anchor="middle" fill="#fff" font-size="21" font-weight="800">القيمُ والدروس</text>
-   <text y="-24" text-anchor="middle" font-size="18">✔ الصدقُ يُنجّي صاحبَه</text>
-   <text y="6" text-anchor="middle" font-size="18">✔ بِرُّ الوالدينِ وطاعتُهما</text>
-   <text y="36" text-anchor="middle" font-size="18">✔ الوفاءُ بالعهد</text>
-   <text y="64" text-anchor="middle" font-size="18">✔ بابُ التوبةِ مفتوح</text>
-  </g>
-
-  <text x="360" y="945" text-anchor="middle" font-size="19" fill="#c62828" font-weight="700">الفكرةُ الرئيسة: الصدقُ خُلُقٌ عظيمٌ يحمي صاحبَه ويؤثّرُ في الآخرين</text>
- </svg>
- <div class="footer"><span>الطالبة: حور ماجد الحربي</span><span>٣</span></div>
-</section>
-
-<!-- ============ 4. REWRITTEN ============ -->
 <section class="page fancy">
+ <div class="hdr">
+  <div><div class="ribbon">مَشْرُوعُ الوَحْدَةِ</div></div>
+  <div style="text-align:center;font-size:12.5pt;font-weight:700">موضوع الوحدة: <span style="color:var(--red)">الأخلاق والفضائل</span></div>
+  <div class="meta">الطالبة: <b>حور ماجد الحربي</b><br>لغتي – الصف الخامس الابتدائي</div>
+ </div>
+
+ <div class="head"><div class="step">١</div><h2>القصةُ التي بحثتُ عنها</h2></div>
+ <div class="note"><b>«الصِّدقُ مَنجاة»</b> قصةٌ من التراثِ الإسلاميِّ عن العالِمِ عبدِ القادرِ الجيلانيِّ حين كان فتًى صغيرًا. اخترتُها لأنها تُبيّنُ أنَّ الصدقَ يُنجّي صاحبَه، وأنَّ الكلمةَ الصادقةَ تُغيّرُ القلوب.</div>
+
  <div class="head"><div class="step">٣</div><h2>أُعيدُ كتابةَ القصةِ بأسلوبٍ مُشوِّق</h2></div>
  <div class="lead">أربعونَ دينارًا… وكلمةُ صدق!</div>
  <div class="story">
-  <p>في ليلةٍ هادئةٍ، كان ضوءُ السِّراجِ يرقصُ على جدرانِ البيتِ الصغيرِ، وكانت الأمُّ تجلسُ بجوارِ ابنِها عبدِ القادرِ، تُمسكُ الإبرةَ بيدٍ، وتُخفي الدموعَ بالأخرى. لقد قرّر ابنُها أن يسافرَ غدًا إلى بغدادَ ليطلبَ العلم.</p>
-  <p>خاطتْ أربعينَ دينارًا ذهبيًّا داخلَ ثوبِه، ثم رفعتْ عينيها إليه وقالت: <span class="dlg">«يا بُنيَّ، عِدْني بشيءٍ واحد… ألّا تكذبَ أبدًا، مهما حدث!»</span> فأمسكَ الفتى يدَها وقال: <span class="dlg">«أَعِدُكِ يا أمي».</span></p>
-  <div class="sep">✦ ✦ ✦</div>
-  <p>في الصباحِ انطلقتِ القافلةُ، والجِمالُ تمشي على الرمالِ الذهبيةِ بهدوء… وفجأةً! ارتفعَ الغبارُ في الأُفُق، ودوّى صهيلُ الخيولِ: <span class="dlg">«قِفوا مكانَكم!»</span> إنهم اللصوص! صرخَ المسافرون، وأسرعَ كلٌّ منهم يُخفي مالَه.</p>
-  <p>اقتربَ لصٌّ ضخمٌ من الفتى وصاح: <span class="dlg">«وأنت يا صغير، ماذا معك؟»</span> خفقَ قلبُ عبدِ القادرِ بشدّة… تذكّرَ وجهَ أمِّه، ثم قال بثبات: <span class="dlg">«معي أربعونَ دينارًا».</span> ضحكَ اللصُّ ساخرًا وابتعد، فمن يصدّقُ أنَّ أحدًا يعترفُ بمالِه للصوص؟!</p>
-  <p>لكنَّ الخبرَ وصلَ إلى الزعيم، فأحضروا الفتى إليه. نظرَ إليه الزعيمُ بعينينِ حادّتين: <span class="dlg">«أين الدنانير؟»</span> قال الفتى: <span class="dlg">«هنا، مخيطةٌ تحتَ إبطي».</span> شقّوا الثوبَ… فلمعَ الذهب!</p>
-  <p>سكتَ الجميع. سألَ الزعيمُ في دهشة: <span class="dlg">«لماذا لم تَكذِبْ فتنجوَ بمالك؟»</span> أجابَ الفتى: <span class="dlg">«وعدتُ أمي ألّا أكذب، ولن أخونَ وعدَها».</span></p>
-  <p>عندها حدثَ ما لم يتوقّعْه أحد! انحنى رأسُ الزعيمِ، وسالتْ دموعُه: <span class="dlg">«أنتَ تخافُ أن تخونَ عهدَ أمِّك، وأنا لا أخافُ أن أخونَ عهدَ ربي؟!»</span> ثم أعلنَ توبتَه، وتبعه رجالُه، وأعادوا كلَّ ما سرقوه. وهكذا… أنقذتْ كلمةُ صدقٍ واحدةٌ قافلةً كاملة!</p>
+  <p>في ليلةٍ هادئةٍ، كان ضوءُ السِّراجِ يرقصُ على جدرانِ البيتِ الصغيرِ، والأمُّ تخيطُ أربعينَ دينارًا ذهبيًّا داخلَ ثوبِ ابنِها عبدِ القادرِ، فهو مسافرٌ غدًا إلى بغدادَ ليطلبَ العلم. رفعتْ عينيها إليه وقالت: <span class="dlg">«يا بُنيَّ، عِدْني ألّا تكذبَ أبدًا، مهما حدث!»</span> فقال: <span class="dlg">«أَعِدُكِ يا أمي».</span></p>
+  <p>في الصباحِ انطلقتِ القافلةُ فوقَ الرمالِ الذهبية… وفجأةً! ارتفعَ الغبارُ، ودوّى صهيلُ الخيول: <span class="dlg">«قِفوا مكانَكم!»</span> إنهم اللصوص! اقتربَ لصٌّ ضخمٌ من الفتى وصاح: <span class="dlg">«وأنت يا صغير، ماذا معك؟»</span> خفقَ قلبُه بشدّة… تذكّرَ وجهَ أمِّه، ثم قال بثبات: <span class="dlg">«معي أربعونَ دينارًا».</span> ضحكَ اللصُّ ظانًّا أنه يمزح!</p>
+  <p>أحضروه إلى الزعيم، فشقّوا ثوبَه… فلمعَ الذهب! سألَه الزعيمُ في دهشة: <span class="dlg">«لماذا لم تكذبْ فتنجوَ بمالك؟»</span> أجابَ: <span class="dlg">«وعدتُ أمي ألّا أكذب، ولن أخونَ وعدَها».</span></p>
+  <p>انحنى رأسُ الزعيمِ وسالتْ دموعُه: <span class="dlg">«أنتَ تخافُ أن تخونَ عهدَ أمِّك، وأنا لا أخافُ أن أخونَ عهدَ ربي؟!»</span> ثم تابَ هو ورجالُه، وأعادوا كلَّ ما سرقوه. وهكذا… أنقذتْ كلمةُ صدقٍ واحدةٌ قافلةً كاملة!</p>
  </div>
  <div class="moral">🌿 العبرة: الصدقُ نورٌ يُنجّي صاحبَه، ويَهدي قلوبَ الآخرين 🌿</div>
- <div class="footer"><span>الطالبة: حور ماجد الحربي</span><span>٤</span></div>
+
+ <div class="head" style="margin-top:5mm"><div class="step">٥</div><h2>أُضمِّنُها ملفَّ تعلُّمي</h2></div>
+ <div class="cols">
+  <div class="card"><h3>📖 ماذا تعلّمتُ؟</h3><ul>
+   <li>الصدقُ يُنجّي صاحبَه ولو ظنَّ أنَّ فيه الخطر.</li>
+   <li>طاعةُ الأمِّ والوفاءُ بالوعدِ من البِرّ.</li>
+   <li>القدوةُ الحسنةُ تُغيّرُ الآخرينَ إلى الخير.</li></ul></div>
+  <div class="card"><h3>🌟 كيف أطبّقُ الصدقَ؟</h3><ul>
+   <li>أقولُ الحقيقةَ لوالديَّ ومعلّماتي دائمًا.</li>
+   <li>لا أغشُّ، ولا أنسبُ عملَ غيري إلى نفسي.</li>
+   <li>أفي بوعودي لصديقاتي وأكونُ قدوةً لإخوتي.</li></ul></div>
+ </div>
+ <div class="checks">✅ أنجزتُ خطواتِ المشروع: <span>✔ البحث عن القصة</span><span>✔ الخريطة المعرفية</span><span>✔ إعادة الكتابة</span><span>✔ رسم الأحداث</span><span>✔ ملف تعلّمي</span></div>
+ <div class="footer"><span>الطالبة: حور ماجد الحربي</span><span>١</span></div>
 </section>
-
-<!-- ============ 5. DRAWINGS ============ -->
 <section class="page">
- <div class="head"><div class="step">٤</div><h2>أرسمُ بعضَ أحداثِ القصة</h2></div>
- <div class="grid">
+ <div class="head"><div class="step">٢</div><h2>الخريطةُ المعرفيةُ للقصة</h2></div>
+ <svg viewBox="0 0 720 420" style="font-family:Tajawal;display:block;width:94%;margin:0 auto"><g stroke-width="4" stroke-linecap="round"><path d="M360 215 L605 80" stroke="#1e88e5"/><path d="M360 215 L605 215" stroke="#e0a526"/><path d="M360 215 L605 350" stroke="#00897b"/><path d="M360 215 L115 80" stroke="#8e24aa"/><path d="M360 215 L115 215" stroke="#c62828"/><path d="M360 215 L115 350" stroke="#4f8a1f"/></g><g transform="translate(605 80)"><rect x="-115" y="-52" width="230" height="112" rx="16" fill="#e3f0fd" stroke="#1e88e5" stroke-width="3"/><rect x="-62" y="-68" width="124" height="32" rx="16" fill="#1e88e5"/><text y="-45" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">الشخصيات</text><text y="-8" text-anchor="middle" font-size="16">الفتى عبدُ القادر – أمُّه</text><text y="17" text-anchor="middle" font-size="16">زعيمُ اللصوصِ ورجالُه</text><text y="42" text-anchor="middle" font-size="16">المسافرونَ في القافلة</text></g><g transform="translate(605 215)"><rect x="-115" y="-52" width="230" height="112" rx="16" fill="#fff6dd" stroke="#e0a526" stroke-width="3"/><rect x="-78" y="-68" width="156" height="32" rx="16" fill="#e0a526"/><text y="-45" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">الزمانُ والمكان</text><text y="-8" text-anchor="middle" font-size="16">قديمًا، حين كان البطلُ صغيرًا</text><text y="17" text-anchor="middle" font-size="16">البيت، ثم الطريقُ</text><text y="42" text-anchor="middle" font-size="16">الصحراويُّ إلى بغداد</text></g><g transform="translate(605 350)"><rect x="-115" y="-52" width="230" height="112" rx="16" fill="#e0f2f1" stroke="#00897b" stroke-width="3"/><rect x="-52" y="-68" width="104" height="32" rx="16" fill="#00897b"/><text y="-45" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">البداية</text><text y="-8" text-anchor="middle" font-size="16">الأمُّ تخيطُ الدنانيرَ</text><text y="17" text-anchor="middle" font-size="16">في ثوبِ ابنِها وتأخذُ</text><text y="42" text-anchor="middle" font-size="16">عليه عهدًا ألّا يكذب</text></g><g transform="translate(115 80)"><rect x="-115" y="-52" width="230" height="112" rx="16" fill="#f3e5f5" stroke="#8e24aa" stroke-width="3"/><rect x="-52" y="-68" width="104" height="32" rx="16" fill="#8e24aa"/><text y="-45" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">العُقدة</text><text y="-8" text-anchor="middle" font-size="16">اللصوصُ يهاجمونَ القافلة</text><text y="17" text-anchor="middle" font-size="16">ويسألونَ الفتى: ما معك؟</text><text y="42" text-anchor="middle" font-size="16">فيقولُ الصدقَ رغمَ الخطر</text></g><g transform="translate(115 215)"><rect x="-115" y="-52" width="230" height="112" rx="16" fill="#fdecea" stroke="#c62828" stroke-width="3"/><rect x="-72" y="-68" width="144" height="32" rx="16" fill="#c62828"/><text y="-45" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">الحلُّ والنهاية</text><text y="-8" text-anchor="middle" font-size="16">يتأثرُ الزعيمُ بصدقِ الفتى</text><text y="17" text-anchor="middle" font-size="16">فيتوبُ هو ورجالُه</text><text y="42" text-anchor="middle" font-size="16">ويُعيدونَ الأموال</text></g><g transform="translate(115 350)"><rect x="-115" y="-52" width="230" height="112" rx="16" fill="#eef6e3" stroke="#4f8a1f" stroke-width="3"/><rect x="-72" y="-68" width="144" height="32" rx="16" fill="#4f8a1f"/><text y="-45" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">القيمُ والدروس</text><text y="-8" text-anchor="middle" font-size="16">الصدقُ – بِرُّ الوالدين</text><text y="17" text-anchor="middle" font-size="16">الوفاءُ بالعهد</text><text y="42" text-anchor="middle" font-size="16">التوبةُ إلى الله</text></g><circle cx="360" cy="215" r="82" fill="#7cb342" stroke="#4f8a1f" stroke-width="6"/><circle cx="360" cy="215" r="70" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/><text x="360" y="195" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">قصة</text><text x="360" y="230" text-anchor="middle" fill="#fff" font-size="28" font-weight="800">الصِّدقُ</text><text x="360" y="262" text-anchor="middle" fill="#fff" font-size="28" font-weight="800">مَنجاة</text></svg>
+ <div class="head" style="margin-top:4mm"><div class="step">٤</div><h2>أرسمُ بعضَ أحداثِ القصة</h2></div>
 
+ <div class="grid" id="pgrid">
   <!-- scene 1: mother sewing -->
   <div class="panel">
    <svg viewBox="0 0 400 300">
@@ -390,7 +276,7 @@ td:first-child{text-align:right}
      <text x="100" y="32" text-anchor="middle" font-family="Tajawal" font-weight="700" font-size="17">عِدْني ألّا تكذبَ أبدًا</text>
     </g>
    </svg>
-   <div class="cap"><i>١</i>الأمُّ تخيطُ الدنانيرَ في ثوبِ ابنِها، وتأخذُ عليه عهدًا ألّا يكذب.</div>
+   <div class="cap"><i>١</i>الأمُّ تخيطُ الدنانيرَ وتوصيه بالصدق</div>
   </div>
 
   <!-- scene 2: attack on caravan -->
@@ -418,7 +304,7 @@ td:first-child{text-align:right}
      <text x="75" y="30" text-anchor="middle" font-family="Tajawal" font-weight="800" font-size="18">قِفوا مكانَكم!</text>
     </g>
    </svg>
-   <div class="cap"><i>٢</i>اللصوصُ يهاجمونَ القافلةَ في الصحراءِ ويأخذونَ أموالَ المسافرين.</div>
+   <div class="cap"><i>٢</i>اللصوصُ يهاجمونَ القافلة</div>
   </div>
 
   <!-- scene 3: boy tells the truth -->
@@ -445,7 +331,7 @@ td:first-child{text-align:right}
      <text x="88" y="56" text-anchor="middle" font-family="Tajawal" font-weight="800" font-size="17" fill="#4f8a1f">ولن أكذبَ على أحد</text>
     </g>
    </svg>
-   <div class="cap"><i>٣</i>الفتى يقولُ الصدقَ لزعيمِ اللصوص، ويُخرجُ الدنانيرَ من ثوبِه.</div>
+   <div class="cap"><i>٣</i>الفتى يقولُ الصدقَ لزعيمِ اللصوص</div>
   </div>
 
   <!-- scene 4: repentance -->
@@ -472,67 +358,11 @@ td:first-child{text-align:right}
      <text x="85" y="32" text-anchor="middle" font-family="Tajawal" font-weight="800" font-size="18" fill="#8e2f2f">تُبنا إلى الله</text>
     </g>
    </svg>
-   <div class="cap"><i>٤</i>الزعيمُ يبكي ويتوبُ مع رجالِه، ويُعيدونَ الأموالَ إلى أصحابِها.</div>
+   <div class="cap"><i>٤</i>الزعيمُ يتوبُ ويُعيدُ الأموال</div>
   </div>
  </div>
- <div class="why" style="margin-top:6mm;font-size:12.5pt;line-height:2">
-  <b>🎨 المشهدُ الأحبُّ إليَّ:</b> المشهدُ الثالث، حين قال الفتى الصدقَ أمامَ زعيمِ اللصوص؛ لأنه كان شجاعًا ولم يَخَفْ، وحافظَ على وعدِه لأمِّه، فكان صدقُه سببًا في هدايةِ اللصوصِ وإنقاذِ القافلة.
  </div>
- <div class="footer"><span>الطالبة: حور ماجد الحربي</span><span>٥</span></div>
-</section>
-
-<!-- ============ 6. LEARNING PORTFOLIO ============ -->
-<section class="page">
- <div class="head"><div class="step">٥</div><h2>أُضمِّنُها ملفَّ تعلُّمي</h2></div>
- <p class="task">أضفتُ المشروعَ إلى <b>ملفِّ تعلُّمي</b>، وكتبتُ ما تعلّمتُه منه.</p>
-
- <div class="cols">
-  <div class="card">
-   <h3>📖 ماذا تعلّمتُ من القصة؟</h3>
-   <ul>
-    <li>أنَّ الصدقَ يُنجّي صاحبَه ولو ظنَّ أنَّ فيه الخطر.</li>
-    <li>أنَّ طاعةَ الأمِّ والوفاءَ بوعدِها من البِرّ.</li>
-    <li>أنَّ القدوةَ الحسنةَ تُغيّرُ الآخرينَ إلى الخير.</li>
-    <li>أنَّ اللهَ يقبلُ توبةَ مَن يرجعُ إليه.</li>
-   </ul>
-  </div>
-  <div class="card">
-   <h3>✏️ ماذا تعلّمتُ من المشروع؟</h3>
-   <ul>
-    <li>البحثَ عن قصةٍ مناسبةٍ وتحديدَ مصدرِها.</li>
-    <li>تحليلَ القصةِ: الشخصياتِ والزمانِ والمكانِ والأحداث.</li>
-    <li>رسمَ خريطةٍ معرفيةٍ تُلخّصُ القصة.</li>
-    <li>الكتابةَ بأسلوبٍ مشوّقٍ: الحوارُ والمفاجأةُ والوصف.</li>
-   </ul>
-  </div>
- </div>
-
- <div class="card" style="margin-top:5mm">
-  <h3>🌟 كيف أطبّقُ الصدقَ في حياتي؟</h3>
-  <ul>
-   <li>أقولُ الحقيقةَ لوالديَّ ومعلّماتي حتى لو أخطأت.</li>
-   <li>لا أغشُّ في الاختبارات، ولا أنسبُ عملَ غيري إلى نفسي.</li>
-   <li>أفي بوعودي لصديقاتي، وأكونُ قدوةً حسنةً لإخوتي.</li>
-  </ul>
- </div>
-
- <div class="card" style="margin-top:5mm">
-  <h3>✅ تقييمي الذاتي للمشروع</h3>
-  <table>
-   <tr><th style="width:52%">خطواتُ المشروع</th><th>أنجزتُ</th><th>ممتاز</th><th>جيد جدًّا</th><th>يحتاجُ تحسينًا</th></tr>
-   <tr><td>بحثتُ عن قصةٍ حولَ الأخلاقِ والفضائل</td><td class="tick">✔</td><td></td><td></td><td></td></tr>
-   <tr><td>رسمتُ خريطةً معرفيةً للقصة</td><td class="tick">✔</td><td></td><td></td><td></td></tr>
-   <tr><td>أعدتُ كتابةَ القصةِ بأسلوبٍ مشوّق</td><td class="tick">✔</td><td></td><td></td><td></td></tr>
-   <tr><td>رسمتُ بعضَ أحداثِ القصة</td><td class="tick">✔</td><td></td><td></td><td></td></tr>
-   <tr><td>ضمّنتُ المشروعَ ملفَّ تعلّمي</td><td class="tick">✔</td><td></td><td></td><td></td></tr>
-  </table>
- </div>
-
- <div class="sign">
-  <span>اسمُ الطالبة: <b>حور ماجد الحربي</b></span>
-  <span>التوقيع: ........................</span>
- </div>
- <div class="footer"><span>مشروع الوحدة – الأخلاق والفضائل</span><span>٦</span></div>
+ <div class="footer"><span>الطالبة: حور ماجد الحربي</span><span>٢</span></div>
 </section>
 
 </body>

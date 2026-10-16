@@ -34,7 +34,7 @@ def contacts(color,icolor,size,keys=('web','mail','at','pin')):
     return ''.join(f'<span class="ci">{ico(k,icolor,size)}<span dir="{"rtl" if k=="pin" else "ltr"}">{m[k]}</span></span>' for k in keys)
 
 # ---------- LETTERHEAD (A4, mm) ----------
-def letterhead(with_fields=True, sample=False):
+def letterhead(with_fields=True, sample=False, show_contacts=True, parts=False):
     W,H=210,297
     band_top=271  # footer band top edge (mm)
     band=f'<svg class="band" viewBox="0 0 {W} 32" preserveAspectRatio="none" style="position:absolute;left:0;top:{band_top-3}mm;width:{W}mm;height:32mm">' \
@@ -69,7 +69,8 @@ def letterhead(with_fields=True, sample=False):
 .sign{{align-self:flex-end;margin-top:8mm;display:flex;flex-direction:column;align-items:center;gap:6mm;margin-left:6mm}} .sign b{{color:{GREEN}}} .sign span{{color:#7b8a85;font-size:10pt}}
 '''
     inner=water+f'<div class="logo">{logo("horizontal","full-light","width:100%;height:auto;display:block")}</div>'+fields+divider+body+band+\
-        f'<div class="foot">{contacts(CREAM,GOLD,"3.6mm")}</div><div class="slogan">نوثّق قصص النجاح.. من قلب القصيم</div>'
+        (f'<div class="foot">{contacts(CREAM,GOLD,"3.6mm")}</div>' if show_contacts else '')+f'<div class="slogan" style="{"" if show_contacts else f"top:{band_top+10.5}mm;font-size:11pt"}">نوثّق قصص النجاح.. من قلب القصيم</div>'
+    if parts: return inner,css
     return page(W,H,'mm',inner,css)
 
 # ---------- BUSINESS CARD 90x50mm ----------
@@ -167,8 +168,9 @@ JOBS=[
  ('social/story-1080x1920', story(),1080,1920,1,False),
  ('social/youtube-thumbnail-1280x720', thumb(),1280,720,1,False),
 ]
-os.makedirs('html',exist_ok=True)
-for n,h,w,hh,s,pdf in JOBS:
+if __name__=='__main__':
+  os.makedirs('html',exist_ok=True)
+  for n,h,w,hh,s,pdf in JOBS:
     os.makedirs('out/'+os.path.dirname(n),exist_ok=True)
     f='html/'+n.replace('/','__')+'.html'; open(f,'w').write(h)
     print(f'{f}|out/{n}.png|{w}|{hh}|{s}|{"out/"+n+".pdf" if pdf else ""}')

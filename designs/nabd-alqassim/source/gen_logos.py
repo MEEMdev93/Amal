@@ -9,23 +9,23 @@ SCHEMES={
  'mono-cream': dict(main=CREAM,mic=CREAM,tag=CREAM,bg=None),
  'mono-black': dict(main='#000',mic='#000',tag='#000',bg=None),
 }
-def p(k,c): return f'<path fill="{c}" fill-rule="evenodd" d="{P[k]}"/>'
+def p(k,c): return f'<path fill="{c}" fill-rule="{"nonzero" if k=="word_cream" else "evenodd"}" d="{P[k]}"/>'
 def icon(s): return p('icon_cream',s['main'])+p('icon_gold',s['mic'])
 def word(s): return p('word_cream',s['main'])
 def tag(s): return p('tag_gold',s['tag'])
 # Layouts: (viewBox, body-builder)
-def stacked(s): return '450 641 3100 2743', icon(s)+word(s)+tag(s)
+def stacked(s): return '350 641 3300 2743', icon(s)+word(s)+tag(s)
 def iconly(s):  return '1265 641 1470 1462', icon(s)
-def wordmark(s):return '450 2300 3101 1084', word(s)+tag(s)
+def wordmark(s):return '350 2372 3300 1012', word(s)+tag(s)
 def horizontal(s):
-    # icon (x1365..2635,y741..2003) scaled to sit right of wordmark (x550..3451,y2400..3011)
+    # icon (x1365..2635,y741..2003) scaled to sit right of wordmark (Kufam Bold, x450..3550, baseline bar centred on y2838)
     k=1.0
-    ty=2838-1800*k; tx=3451+110-1365*k
+    ty=2838-1800*k; tx=3550+110-1365*k
     body=word(s)+tag(s)+f'<g transform="translate({tx:.1f} {ty:.1f}) scale({k})">{icon(s)}</g>'
     right=tx+2635*k
     top=min(ty+741*k,2400)
     bottom=max(ty+2003*k,3284)
-    return f'450 {top-100:.0f} {right+100-450:.0f} {bottom+100-(top-100):.0f}', body
+    return f'350 {top-100:.0f} {right+100-350:.0f} {bottom+100-(top-100):.0f}', body
 LAYOUTS=dict(stacked=stacked,icon=iconly,wordmark=wordmark,horizontal=horizontal)
 def svg(layout,scheme):
     s=SCHEMES[scheme]; vb,body=LAYOUTS[layout](s)

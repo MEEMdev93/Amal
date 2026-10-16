@@ -51,9 +51,9 @@ body='''
 <p class="end">ختامًا، نؤمن بأن «نبض القصيم» مشروع يوثّق ذاكرة الإنجاز في المنطقة، ويصنع منصة قريبة من المجتمع تعبّر عن هويته. ونأمل أن يكون هذا المقترح بداية لشراكة مثمرة بيننا، ونتطلع إلى عقد اجتماع لمناقشة التصور التنفيذي والإنتاجي والتسويقي للمشروع.</p>
 <p class="c greet">وتفضلوا بقبول خالص التحية والتقدير،،،</p>
 <div class="sig">
-<div><b>مقدّم المقترح:</b><i></i></div>
-<div><b>رقم التواصل:</b><i></i></div>
-<div><b>البريد الإلكتروني:</b><i></i></div>
+<div><b>مقدّم المقترح:</b><span class="v">فهد الحربي</span></div>
+<div><b>رقم التواصل:</b><span class="v" dir="ltr">0544190899</span></div>
+<div><b>البريد الإلكتروني:</b><span class="v" dir="ltr">fahadtharb@gmail.com</span></div>
 <div><b>التوقيع:</b><i></i></div>
 </div>
 '''
@@ -73,7 +73,7 @@ table.flow{{width:210mm;border-collapse:collapse}} table.flow td{{padding:0}}
 .txt li::marker{{color:{GOLD}}}
 .txt .end{{margin-top:4mm}} .txt .greet{{margin:2.5mm 0 4mm;font-weight:500}}
 .sig{{display:grid;grid-template-columns:1fr 1fr;gap:5mm 12mm;break-inside:avoid}}
-.sig div{{display:flex;align-items:flex-end;gap:2mm}} .sig b{{color:{GREEN};white-space:nowrap}} .sig i{{flex:1;border-bottom:.25mm dotted #8b9a95;height:5mm}}
+.sig div{{display:flex;align-items:baseline;gap:2mm}} .sig b{{color:{GREEN};white-space:nowrap}} .sig .v{{font-weight:500;color:{INK}}} .sig i{{flex:1;border-bottom:.25mm dotted #8b9a95;height:5mm}}
 </style></head><body>
 <div class="txt">{body}</div>
 </body></html>'''

@@ -10,7 +10,10 @@ SCHEMES={
  'mono-black': dict(main='#000',mic='#000',tag='#000',bg=None),
 }
 def p(k,c): return f'<path fill="{c}" fill-rule="{"nonzero" if k=="word_cream" else "evenodd"}" d="{P[k]}"/>'
-def icon(s): return p('icon_cream',s['main'])+p('icon_gold',s['mic'])
+def icon(s):
+    # Buraidah water tower (golf-ball sphere on a tapered shaft) rising from the pulse line
+    return (p('pulse',s['main'])+p('tower_shaft',s['main'])+p('tower_spire',s['main'])
+            +p('tower_sphere',s['mic'])+p('tower_deck',s['main']))
 def word(s): return p('word_cream',s['main'])
 def tag(s): return p('tag_gold',s['tag'])
 # Layouts: (viewBox, body-builder)

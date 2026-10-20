@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 540" width="400" height="540">
+  <title>Noura Accessories mark</title>
+  <g fill="none" stroke="#C9A962" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ن -->
+    <path d="M116 100 C114 84 138 78 138 102 C138 150 166 172 200 172 C234 172 262 150 262 102 C262 78 286 84 284 100"/>
+    <!-- و : pear-cut gem head -->
+    <path d="M200 172 C214 190 246 220 246 252 C246 278 225 296 200 296 C175 296 154 278 154 252 C154 220 186 190 200 172Z"/>
+    <!-- و tail -->
+    <path d="M240 278 C270 304 270 352 232 386"/>
+    <!-- ر -->
+    <path d="M156 300 C128 326 130 358 168 386"/>
+    <!-- ا -->
+    <path d="M200 318 L200 452"/>
+  </g>
+  <!-- gem facets -->
+  <g fill="none" stroke="#C9A962" stroke-width="2.4" stroke-linejoin="round" opacity=".9">
+    <path d="M200 204 C212 218 226 236 226 254 C226 268 214 278 200 278 C186 278 174 268 174 254 C174 236 188 218 200 204Z"/>
+    <path d="M174 254 L226 254 M200 204 L188 254 L200 278 L212 254 Z"/>
+  </g>
+  <g fill="#C9A962">
+    <path d="M200 34 L212 46 L200 58 L188 46Z"/>
+    <path d="M200 470 L213 483 L200 496 L187 483Z"/>
+    <path d="M200 510 L206 516 L200 522 L194 516Z"/>
+  </g>
+</svg>

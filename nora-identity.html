@@ -1,0 +1,652 @@
+<title>Nora Accessories Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: brand book in one committed look — cream paper pages alternating with full-bleed aubergine "box lid" bands, gold foil reserved for the mark */
+:root{
+  --aubergine:#4B2A4E;
+  --plum:#2E1A31;
+  --olive:#343B26;
+  --gold:#B89A64;
+  --gold-hi:#E2CC9A;
+  --cream:#EEEAE5;
+  --cocoa:#8B6F66;
+  --ink:#2A1D2C;
+  --muted:#6E5F6F;
+  --line:#D9D2CC;
+  --paper:#F6F3EF;
+  --f-display:"Italiana","Didot","Bodoni 72",Georgia,serif;
+  --f-script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  --f-ar-display:"Aref Ruqaa","Amiri","Traditional Arabic",serif;
+  --f-ar:"IBM Plex Sans Arabic","Segoe UI","Tahoma",sans-serif;
+  --foil:linear-gradient(115deg,#9C7F4C 0%,#E2CC9A 28%,#B89A64 48%,#F0DFB4 62%,#A88A55 82%,#D2B880 100%);
+  --pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.09)' stroke-width='1.1'%3E%3Cg transform='translate(48 48)'%3E%3Cellipse rx='5' ry='13' cy='-12'/%3E%3Cellipse rx='5' ry='13' cy='12'/%3E%3Cellipse rx='13' ry='5' cx='-12'/%3E%3Cellipse rx='13' ry='5' cx='12'/%3E%3Ccircle r='3'/%3E%3C/g%3E%3Cpath d='M0 0q10 6 0 14M96 0q-10 6 0 14M0 96q10-6 0-14M96 96q-10-6 0-14'/%3E%3Ccircle cx='0' cy='48' r='2'/%3E%3Ccircle cx='96' cy='48' r='2'/%3E%3Ccircle cx='48' cy='0' r='2'/%3E%3Ccircle cx='48' cy='96' r='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-ar);font-size:16px;line-height:1.8;direction:rtl}
+::selection{background:var(--gold);color:var(--plum)}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{padding-block:88px}
+.band{background:var(--aubergine) var(--pattern);color:var(--cream)}
+.band.deep{background-color:var(--plum)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--cocoa);letter-spacing:.02em;margin-bottom:14px}
+.eyebrow b{font-family:var(--f-display);font-weight:400;letter-spacing:.24em;font-size:12px;direction:ltr;color:var(--gold)}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+.band .eyebrow{color:var(--gold-hi)}
+.band .eyebrow::after{background:rgba(238,234,229,.18)}
+.sec-title{font-family:var(--f-ar-display);font-size:clamp(34px,5vw,52px);line-height:1.3;color:var(--aubergine)}
+.band .sec-title{color:var(--cream)}
+.lede{max-width:62ch;color:var(--muted);margin-top:14px}
+.band .lede{color:rgba(238,234,229,.75)}
+.head{margin-bottom:48px}
+
+/* ---------- Logo ---------- */
+.foil{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo{direction:ltr;display:inline-flex;flex-direction:column;align-items:center;line-height:1}
+.logo .wm{font-family:var(--f-display);letter-spacing:.14em;padding-left:.14em;font-size:var(--s,96px)}
+.logo .sc{font-family:var(--f-script);font-size:calc(var(--s,96px)*.36);margin-top:calc(var(--s,96px)*-.2);margin-left:calc(var(--s,96px)*.9);transform:rotate(-4deg)}
+.logo-ar{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
+.logo-ar .wm{font-family:var(--f-ar-display);font-weight:700;font-size:var(--s,80px)}
+.logo-ar .sub{font-family:var(--f-ar);font-weight:300;font-size:calc(var(--s,80px)*.22);letter-spacing:0;margin-top:calc(var(--s,80px)*-.05)}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--aubergine) var(--pattern);color:var(--cream);position:relative;overflow:hidden}
+.hero .wrap{padding-block:96px 120px;display:grid;justify-items:center;text-align:center;gap:22px;position:relative;z-index:2}
+.hero .kicker{font-family:var(--f-display);letter-spacing:.32em;font-size:13px;color:var(--gold-hi);direction:ltr}
+.hero .tag{font-family:var(--f-ar-display);font-size:clamp(22px,3vw,30px);color:var(--cream)}
+.hero .meta{font-size:13px;color:rgba(238,234,229,.6)}
+.hero .logo{--s:clamp(64px,13vw,136px)}
+.ribbon-svg{position:absolute;inset:auto 0 -10px 0;width:100%;height:200px;z-index:1;pointer-events:none}
+
+/* ---------- Essence ---------- */
+.essence{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.essence .story p+p{margin-top:16px}
+.story .big{font-family:var(--f-ar-display);font-size:26px;line-height:1.6;color:var(--aubergine)}
+.traits{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.trait{background:var(--paper);padding:22px}
+.trait h3{font-family:var(--f-ar-display);font-size:24px;color:var(--aubergine)}
+.trait .en{font-family:var(--f-display);letter-spacing:.2em;font-size:11px;color:var(--gold);direction:ltr;display:block;margin-bottom:4px}
+.trait p{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* ---------- Logo system ---------- */
+.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{border-radius:4px;min-height:240px;display:grid;place-items:center;position:relative;padding:28px;overflow:hidden}
+.tile .cap{position:absolute;bottom:12px;inset-inline-start:16px;font-size:12px;opacity:.75}
+.t-main{grid-column:span 4;background:var(--aubergine) var(--pattern);color:var(--cream);min-height:320px}
+.t-main .logo{--s:clamp(56px,8vw,96px)}
+.t-seal{grid-column:span 2;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
+.t-ar{grid-column:span 2;background:var(--paper);border:1px solid var(--line);color:var(--aubergine)}
+.t-ar .logo-ar{--s:72px}
+.t-cream{grid-column:span 2;background:var(--cream);border:1px solid var(--line);color:var(--aubergine)}
+.t-cream .logo{--s:56px}
+.t-olive{grid-column:span 2;background:var(--olive);color:var(--cream)}
+.t-olive .logo{--s:56px}
+.seal{width:min(180px,100%);height:auto;display:block}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.rule{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px}
+.rule h3{font-size:15px;font-weight:600;color:var(--aubergine);margin-bottom:6px}
+.rule p{font-size:14px;color:var(--muted)}
+.clear{margin-top:14px;display:grid;place-items:center;padding:22px;border:1px dashed var(--gold);background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(184,154,100,.08) 6px 7px)}
+.clear .logo{--s:34px;color:var(--aubergine);background:var(--paper);padding:8px 14px}
+
+.donts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.dont{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.dont .demo{height:120px;display:grid;place-items:center;background:var(--cream);position:relative}
+.dont .demo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top left,transparent calc(50% - 1px),#A2453F calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 1px))}
+.dont p{font-size:13px;padding:12px 14px;color:var(--muted)}
+.dont .logo{--s:34px}
+
+/* ---------- Colors ---------- */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sw{border-radius:4px;overflow:hidden;background:var(--paper);border:1px solid rgba(238,234,229,.12);display:flex;flex-direction:column;color:var(--ink)}
+.sw .chip{height:150px;position:relative}
+.sw .chip.foiled{background:var(--foil)}
+.sw .info{padding:14px 16px 16px;display:grid;gap:2px}
+.sw .name{font-family:var(--f-ar-display);font-size:22px;color:var(--aubergine);line-height:1.3}
+.sw .en{font-family:var(--f-display);letter-spacing:.18em;font-size:11px;color:var(--cocoa);direction:ltr;text-align:right}
+.sw dl{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:12px;direction:ltr;font-variant-numeric:tabular-nums}
+.sw dt{color:var(--muted)}
+.sw dd{margin:0;text-align:left}
+.sw .use{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
+.copy{all:unset;cursor:pointer;font-family:var(--f-ar);font-size:12px;margin-top:10px;justify-self:start;border:1px solid var(--line);border-radius:999px;padding:3px 12px;color:var(--aubergine)}
+.copy:hover{border-color:var(--gold);background:rgba(184,154,100,.12)}
+.copy:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.ratio{margin-top:40px}
+.ratio h3{font-size:15px;font-weight:500;margin-bottom:12px;color:var(--gold-hi)}
+.ratio-bar{display:flex;height:56px;border-radius:4px;overflow:hidden;border:1px solid rgba(238,234,229,.15)}
+.ratio-bar span{display:grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums;direction:ltr}
+.combos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.combo{border-radius:4px;padding:20px;min-height:110px;display:flex;flex-direction:column;justify-content:space-between;font-size:13px}
+.combo strong{font-family:var(--f-ar-display);font-size:24px;font-weight:400}
+
+/* ---------- Type ---------- */
+.type-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.spec{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.spec .role{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px}
+.spec .role b{color:var(--aubergine);font-weight:600}
+.spec .sample{color:var(--aubergine);line-height:1.2;overflow-wrap:anywhere}
+.spec .glyphs{font-size:14px;color:var(--muted);overflow-wrap:anywhere}
+.s-display .sample{font-family:var(--f-display);font-size:clamp(44px,6vw,64px);letter-spacing:.12em;direction:ltr;text-align:left}
+.s-script .sample{font-family:var(--f-script);font-size:clamp(44px,6vw,64px);direction:ltr;text-align:left}
+.s-ruqaa .sample{font-family:var(--f-ar-display);font-size:clamp(40px,5.5vw,58px);line-height:1.5}
+.s-plex .sample{font-family:var(--f-ar);font-size:22px;font-weight:300;line-height:1.7}
+.scale{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow-x:auto}
+.scale table{width:100%;border-collapse:collapse;min-width:560px}
+.scale td,.scale th{padding:14px 20px;border-bottom:1px solid var(--line);text-align:right;vertical-align:baseline}
+.scale th{font-size:12px;font-weight:500;color:var(--muted)}
+.scale tr:last-child td{border-bottom:0}
+.scale .m{font-size:12px;color:var(--muted);direction:ltr;text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- Elements ---------- */
+.el-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px}
+.el{border-radius:4px;overflow:hidden;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line)}
+.el .stage{flex:1;min-height:240px;display:grid;place-items:center;position:relative;overflow:hidden}
+.el .txt{padding:16px 18px;border-top:1px solid var(--line)}
+.el h3{font-size:15px;font-weight:600;color:var(--aubergine)}
+.el p{font-size:13px;color:var(--muted)}
+.st-pattern{background:var(--aubergine) var(--pattern)}
+.st-ribbon{background:var(--cream)}
+.st-ribbon svg{width:100%;height:100%;position:absolute;inset:0}
+.st-charm{background:var(--cream)}
+
+/* ---------- Applications ---------- */
+.apps{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.app{border-radius:4px;overflow:hidden;background:#E6E1DB;position:relative;display:flex;flex-direction:column}
+.app .stage{flex:1;min-height:300px;display:grid;place-items:center;padding:32px 20px;position:relative}
+.app .label{padding:14px 18px;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.app .label h3{font-size:15px;font-weight:600;color:var(--aubergine)}
+.app .label span{font-size:12px;color:var(--muted);direction:ltr;font-variant-numeric:tabular-nums}
+.a-box{grid-column:span 4}
+.a-ring{grid-column:span 2}
+.a-bag{grid-column:span 2}
+.a-card{grid-column:span 4}
+.a-tag{grid-column:span 2}
+.a-thanks{grid-column:span 2}
+.a-insta{grid-column:span 2}
+
+/* long box */
+.box{width:min(520px,100%);aspect-ratio:2.6/1;position:relative;max-width:100%}
+.box .lid{position:absolute;inset:0 0 18% 0;background:#55315A var(--pattern);border-radius:3px;box-shadow:0 2px 0 #3E2341,0 30px 40px -18px rgba(46,26,49,.6);display:grid;place-items:center}
+.box .base{position:absolute;inset:auto 2% 0 2%;height:24%;background:linear-gradient(#3E2341,#331C36);border-radius:0 0 3px 3px}
+.box .lid .logo{--s:clamp(30px,6vw,52px)}
+.box .sticker{position:absolute;inset-inline-start:-14px;top:30%;width:64px;height:64px}
+.box .band-r{position:absolute;top:0;bottom:18%;inset-inline-end:16%;width:22px;background:linear-gradient(90deg,#2A3020,#3E4630 50%,#2A3020)}
+/* ring box */
+.ring{width:170px;aspect-ratio:1;position:relative;max-width:100%}
+.ring .top{position:absolute;inset:0 0 24% 0;background:#55315A var(--pattern);border-radius:10px 10px 4px 4px;display:grid;place-items:center;box-shadow:0 22px 30px -16px rgba(46,26,49,.6)}
+.ring .bot{position:absolute;inset:auto 0 0 0;height:28%;background:linear-gradient(#3E2341,#2E1A31);border-radius:4px 4px 10px 10px}
+.ring .top .sealmini{width:84px}
+/* bag */
+.bag{width:190px;max-width:100%;position:relative;padding-top:60px}
+.bag svg.handle{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:80px}
+.bag .body{aspect-ratio:.82;background:var(--aubergine) var(--pattern);border-radius:2px;display:grid;place-items:center;box-shadow:0 26px 30px -18px rgba(46,26,49,.6);position:relative}
+.bag .body::before{content:"";position:absolute;inset:0 0 auto 0;height:12px;background:rgba(0,0,0,.14)}
+.bag .logo{--s:34px}
+/* cards */
+.cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;align-items:center}
+.bc{width:280px;max-width:100%;aspect-ratio:1.75;border-radius:6px;box-shadow:0 18px 28px -16px rgba(46,26,49,.45);position:relative;overflow:hidden}
+.bc.front{background:var(--aubergine) var(--pattern);display:grid;place-items:center}
+.bc.front .logo{--s:40px}
+.bc.back{background:var(--cream);padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;color:var(--aubergine)}
+.bc.back .n{font-family:var(--f-ar-display);font-size:26px;line-height:1.2}
+.bc.back .r{font-size:11px;color:var(--cocoa)}
+.bc.back ul{list-style:none;margin:0;padding:0;font-size:11px;line-height:1.9;color:var(--ink)}
+.bc.back ul li{display:flex;gap:8px;align-items:center}
+.bc.back ul li i{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);display:inline-block;flex:none}
+.bc.back .edge{position:absolute;inset:auto 0 0 0;height:6px;background:var(--olive)}
+/* hang tag */
+.hang{width:150px;max-width:100%;aspect-ratio:.58;background:var(--cream);border-radius:6px;position:relative;box-shadow:0 18px 26px -16px rgba(46,26,49,.45);display:flex;flex-direction:column;align-items:center;padding:16px 12px;gap:10px}
+.hang .hole{width:10px;height:10px;border-radius:50%;background:#E6E1DB;box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
+.hang .logo{--s:22px;color:var(--aubergine)}
+.hang .ear{display:flex;gap:34px;margin-top:8px}
+.hang .ear span{width:8px;height:8px;border-radius:50%;background:#E6E1DB;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);position:relative}
+.hang .ear span::after{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:14px;height:26px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;background:var(--foil);box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.hang .price{margin-top:auto;font-size:11px;color:var(--cocoa);font-variant-numeric:tabular-nums}
+.hang .string{position:absolute;top:-46px;left:50%;width:1px;height:62px;background:var(--olive)}
+/* thank you */
+.ty{width:200px;max-width:100%;aspect-ratio:.72;background:var(--olive);border-radius:4px;color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:20px;box-shadow:0 18px 26px -16px rgba(30,34,20,.6)}
+.ty .script{font-family:var(--f-script);font-size:40px;line-height:1;direction:ltr}
+.ty .ar{font-family:var(--f-ar-display);font-size:20px;color:var(--gold-hi)}
+.ty p{font-size:11px;color:rgba(238,234,229,.75);line-height:1.8}
+/* insta */
+.ig{width:230px;max-width:100%;aspect-ratio:1;background:var(--aubergine) var(--pattern);border-radius:4px;color:var(--cream);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;box-shadow:0 18px 26px -16px rgba(46,26,49,.45)}
+.ig .arc{position:absolute;top:18px;inset-inline-end:18px;width:110px;aspect-ratio:.78;border-radius:999px 999px 4px 4px;background:var(--cocoa);overflow:hidden;display:grid;place-items:center}
+.ig .arc svg{width:70%}
+.ig .k{font-family:var(--f-display);letter-spacing:.24em;font-size:9px;color:var(--gold-hi);direction:ltr;text-align:right}
+.ig h4{font-family:var(--f-ar-display);font-size:26px;font-weight:400;line-height:1.3;margin:2px 0 6px}
+.ig .cta{font-size:10px;border-top:1px solid rgba(238,234,229,.25);padding-top:6px;display:flex;justify-content:space-between}
+
+/* ---------- Voice ---------- */
+.voice{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.v{border-top:1px solid var(--gold);padding-top:18px}
+.v h3{font-family:var(--f-ar-display);font-size:26px;color:var(--cream)}
+.v p{color:rgba(238,234,229,.75);font-size:14px;margin-top:6px}
+.lines{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.line{background:rgba(238,234,229,.06);border:1px solid rgba(238,234,229,.12);border-radius:4px;padding:22px}
+.line .lab{font-size:12px;color:var(--gold-hi);margin-bottom:8px;display:block}
+.line q{font-family:var(--f-ar-display);font-size:22px;line-height:1.6;quotes:"«" "»"}
+.line.no{opacity:.75}
+.line.no .lab{color:#D9A49E}
+.line.no q{text-decoration:line-through;text-decoration-color:rgba(217,164,158,.6);font-family:var(--f-ar);font-size:17px}
+
+footer{background:var(--plum);color:rgba(238,234,229,.6);font-size:13px}
+footer .wrap{padding-block:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .logo{--s:28px}
+
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--plum);color:var(--cream);padding:8px 18px;border-radius:999px;font-size:13px;border:1px solid var(--gold);z-index:20}
+
+@media (max-width:900px){
+  .essence{grid-template-columns:1fr;gap:36px}
+  .logo-grid{grid-template-columns:repeat(2,1fr)}
+  .t-main{grid-column:span 2}
+  .t-seal,.t-ar,.t-cream,.t-olive{grid-column:span 1}
+  .rules{grid-template-columns:1fr}
+  .donts{grid-template-columns:repeat(2,1fr)}
+  .swatches{grid-template-columns:repeat(3,1fr)}
+  .combos{grid-template-columns:repeat(2,1fr)}
+  .type-grid{grid-template-columns:1fr}
+  .el-grid{grid-template-columns:1fr 1fr}
+  .el-grid .el:first-child{grid-column:span 2}
+  .apps{grid-template-columns:repeat(2,1fr)}
+  .a-box,.a-card{grid-column:span 2}
+  .a-ring,.a-bag,.a-tag,.a-thanks,.a-insta{grid-column:span 1}
+  .voice{grid-template-columns:1fr}
+  .lines{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  section{padding-block:64px}
+  .logo-grid,.swatches,.el-grid,.apps,.donts{grid-template-columns:1fr}
+  .t-main,.t-seal,.t-ar,.t-cream,.t-olive,.el-grid .el:first-child,.a-box,.a-card,.a-ring,.a-bag,.a-tag,.a-thanks,.a-insta{grid-column:span 1}
+  .traits{grid-template-columns:1fr}
+  .combos{grid-template-columns:1fr}
+  .swatches .sw .chip{height:96px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero .logo{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}
+  .hero .logo .foil,.t-main .foil{background-size:220% 100%;animation:shine 7s ease-in-out infinite}
+  @keyframes rise{from{transform:translateY(10px)}to{transform:none}}
+  @keyframes shine{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+}
+</style>
+
+<!-- shared SVG defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9C7F4C"/><stop offset=".3" stop-color="#E2CC9A"/><stop offset=".5" stop-color="#B89A64"/><stop offset=".65" stop-color="#F0DFB4"/><stop offset="1" stop-color="#A88A55"/>
+    </linearGradient>
+    <symbol id="seal" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="98" fill="#343B26"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#g-foil)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="58" fill="none" stroke="url(#g-foil)" stroke-width="1"/>
+      <path id="seal-path" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" fill="none"/>
+      <text font-family="Italiana, Didot, Georgia, serif" font-size="15" letter-spacing="5.2" fill="url(#g-foil)"><textPath href="#seal-path" startOffset="0">NORA · ACCESSORIES · نورا اكسسواريز ·</textPath></text>
+      <text x="100" y="122" text-anchor="middle" font-family="Italiana, Didot, Georgia, serif" font-size="68" fill="url(#g-foil)">N</text>
+    </symbol>
+    <symbol id="charm" viewBox="0 0 120 200">
+      <g fill="none" stroke="url(#g-foil)" stroke-width="2.2" stroke-linecap="round">
+        <circle cx="60" cy="14" r="8"/>
+        <path d="M60 22v20"/>
+        <path d="M60 42c-22 0-34 18-34 40 0 30 34 58 34 58s34-28 34-58c0-22-12-40-34-40z"/>
+        <path d="M60 62c-10 8-14 18-14 28M60 62c10 8 14 18 14 28M60 62v58"/>
+        <circle cx="60" cy="160" r="7"/>
+        <path d="M60 167v14"/>
+        <circle cx="60" cy="187" r="4" fill="url(#g-foil)"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">BRAND IDENTITY · 2026</div>
+    <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
+    <p class="tag">تفاصيل صغيرة… تُشبهك</p>
+    <p class="meta">دليل الهوية البصرية لمتجر نورا اكسسواريز</p>
+  </div>
+  <svg class="ribbon-svg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+    <path id="rib" d="M-20,150 C200,40 380,210 620,120 S1000,40 1220,140" fill="none" stroke="#343B26" stroke-width="44"/>
+    <path d="M-20,150 C200,40 380,210 620,120 S1000,40 1220,140" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="44" stroke-dasharray="1 3"/>
+    <text font-family="Italiana, Georgia, serif" font-size="17" letter-spacing="6" fill="#B89A64" dy="6"><textPath href="#rib">NORA ✦ Accessories ✦ نورا ✦ NORA ✦ Accessories ✦ نورا ✦ NORA ✦ Accessories ✦ نورا ✦ NORA ✦ Accessories ✦ نورا ✦ NORA ✦</textPath></text>
+  </svg>
+</header>
+
+<main>
+<!-- Essence -->
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>01 ESSENCE</b> جوهر العلامة</div>
+      <h2 class="sec-title">قطعة واحدة تكمّل الإطلالة</h2>
+    </div>
+    <div class="essence">
+      <div class="story">
+        <p class="big">نورا اكسسواريز متجر لقطع الزينة اليومية والمناسبات: أقراط، قلائد، أساور، خواتم وإكسسوارات الشعر، مختارة بعناية ومغلّفة كأنها هدية.</p>
+        <p class="lede">الهوية مأخوذة من عالم علب الحلوى الفاخرة: بنفسجي باذنجاني عميق بملمس نقش بارز، شريط زيتوني يحمل الاسم، وختم ذهبي يُغلق العلبة. الهدف أن تشعر العميلة عند فتح الطلب أنها تفتح هدية، حتى لو اشترتها لنفسها.</p>
+        <p class="lede"><strong style="color:var(--aubergine)">الجمهور:</strong> نساء بين 18 و40 عاماً يبحثن عن قطع أنيقة بسعر معقول، يتسوّقن عبر إنستغرام وتيك توك، ويهتممن بتجربة التغليف بقدر اهتمامهن بالقطعة.</p>
+      </div>
+      <div class="traits">
+        <div class="trait"><span class="en">ELEGANT</span><h3>أنيقة</h3><p>هدوء في التصميم، ذهب بقدر، ولا ازدحام.</p></div>
+        <div class="trait"><span class="en">WARM</span><h3>دافئة</h3><p>تتحدث مع العميلة كصديقة ذات ذوق.</p></div>
+        <div class="trait"><span class="en">GIFTED</span><h3>مُهداة</h3><p>كل طلب يصل بشريط وختم وبطاقة شكر.</p></div>
+        <div class="trait"><span class="en">DETAILED</span><h3>دقيقة</h3><p>العناية بالتفاصيل هي ما يميز القطعة والتغليف.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo -->
+<section style="background:var(--paper)">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>02 LOGO</b> الشعار</div>
+      <h2 class="sec-title">نظام الشعار</h2>
+      <p class="lede">الشعار الرئيسي كلمة NORA بخط عالي التباين مع توقيع Accessories بخط يد متداخل أسفلها، على طريقة شعار الصورة المرجعية. يرافقه شعار عربي بخط الرقعة وختم دائري للاستخدامات الصغيرة.</p>
+    </div>
+    <div class="logo-grid">
+      <div class="tile t-main">
+        <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
+        <span class="cap">الشعار الرئيسي · طباعة ذهبية على البنفسجي</span>
+      </div>
+      <div class="tile t-seal">
+        <svg class="seal" viewBox="0 0 200 200" role="img" aria-label="ختم نورا"><use href="#seal"/></svg>
+        <span class="cap">الختم · لاصق العلب والأيقونة</span>
+      </div>
+      <div class="tile t-ar">
+        <div class="logo-ar"><span class="wm">نورا</span><span class="sub">اكسسواريز</span></div>
+        <span class="cap">الشعار العربي</span>
+      </div>
+      <div class="tile t-cream">
+        <div class="logo"><span class="wm">NORA</span><span class="sc" style="color:var(--gold)">Accessories</span></div>
+        <span class="cap">على الكريمي</span>
+      </div>
+      <div class="tile t-olive">
+        <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
+        <span class="cap">على الزيتوني</span>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="rule">
+        <h3>المساحة الآمنة</h3>
+        <p>اترك حول الشعار مسافة تساوي ارتفاع حرف O على الأقل من كل الجهات.</p>
+        <div class="clear"><div class="logo"><span class="wm">NORA</span><span class="sc" style="color:var(--gold)">Accessories</span></div></div>
+      </div>
+      <div class="rule">
+        <h3>أصغر مقاس</h3>
+        <p>الشعار الكامل: عرض 30 مم في الطباعة و120 بكسل على الشاشة. أصغر من ذلك استخدم الختم (12 مم / 48 بكسل).</p>
+      </div>
+      <div class="rule">
+        <h3>الطباعة</h3>
+        <p>على العلب والأكياس: ختم ذهبي ساخن (Hot foil) للشعار، ونقش بارز بلا لون (Blind emboss) للزخرفة الخلفية.</p>
+      </div>
+    </div>
+
+    <div class="donts">
+      <div class="dont"><div class="demo"><div class="logo" style="transform:scaleX(1.5);color:var(--aubergine)"><span class="wm">NORA</span></div></div><p>لا تمطّ الشعار أو تضغطه.</p></div>
+      <div class="dont"><div class="demo" style="background:#E25A8F"><div class="logo" style="color:#fff"><span class="wm">NORA</span></div></div><p>لا تضعه على ألوان خارج اللوحة.</p></div>
+      <div class="dont"><div class="demo"><div class="logo" style="color:var(--aubergine);transform:rotate(-14deg)"><span class="wm">NORA</span></div></div><p>لا تُدِر الشعار.</p></div>
+      <div class="dont"><div class="demo"><div class="logo" style="color:var(--aubergine);text-shadow:3px 3px 0 #9fd"><span class="wm">NORA</span></div></div><p>لا تضف ظلالاً أو تأثيرات.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Colors -->
+<section class="band deep">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>03 COLOUR</b> الألوان</div>
+      <h2 class="sec-title">لوحة الألوان</h2>
+      <p class="lede">ستة ألوان مأخوذة مباشرة من الصورة المرجعية: العلبة، الشريط، الطباعة الذهبية، الخلفية، والشوكولاتة. اضغطي على «نسخ» لنسخ رمز اللون.</p>
+    </div>
+    <div class="swatches" id="swatches"></div>
+
+    <div class="ratio">
+      <h3>نسب الاستخدام في أي تصميم</h3>
+      <div class="ratio-bar" aria-label="نسب الألوان">
+        <span style="flex:50;background:var(--aubergine);color:var(--cream)">50%</span>
+        <span style="flex:25;background:var(--cream);color:var(--aubergine)">25%</span>
+        <span style="flex:12;background:var(--olive);color:var(--cream)">12%</span>
+        <span style="flex:8;background:var(--foil);color:var(--plum)">8%</span>
+        <span style="flex:5;background:var(--cocoa);color:var(--cream)">5%</span>
+      </div>
+    </div>
+
+    <div class="combos">
+      <div class="combo" style="background:var(--aubergine);color:var(--gold-hi)"><strong>نورا</strong><span>ذهبي على بنفسجي · الأساسي</span></div>
+      <div class="combo" style="background:var(--olive);color:var(--gold-hi)"><strong>نورا</strong><span>ذهبي على زيتوني · الشريط والختم</span></div>
+      <div class="combo" style="background:var(--cream);color:var(--aubergine)"><strong>نورا</strong><span>بنفسجي على كريمي · النصوص</span></div>
+      <div class="combo" style="background:var(--cocoa);color:var(--cream)"><strong>نورا</strong><span>كريمي على كاكاو · خلفيات المنتجات</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Type -->
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>04 TYPE</b> الخطوط</div>
+      <h2 class="sec-title">الخطوط</h2>
+      <p class="lede">أربعة خطوط مجانية من Google Fonts: خطان لاتينيان للشعار والعناوين الإنجليزية، وخطان عربيان للعناوين والنصوص.</p>
+    </div>
+    <div class="type-grid">
+      <div class="spec s-display">
+        <div class="role"><b>Italiana</b><span>الشعار والعناوين الإنجليزية</span></div>
+        <div class="sample">NORA</div>
+        <div class="glyphs" dir="ltr">ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789</div>
+      </div>
+      <div class="spec s-script">
+        <div class="role"><b>Pinyon Script</b><span>التوقيع واللمسات</span></div>
+        <div class="sample">Accessories</div>
+        <div class="glyphs" dir="ltr">Thank you · With love · New collection</div>
+      </div>
+      <div class="spec s-ruqaa">
+        <div class="role"><b>Aref Ruqaa</b><span>العناوين العربية</span></div>
+        <div class="sample">لمسة تكمّل أناقتك</div>
+        <div class="glyphs">أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن هـ و ي</div>
+      </div>
+      <div class="spec s-plex">
+        <div class="role"><b>IBM Plex Sans Arabic</b><span>النصوص والأسعار والواجهات</span></div>
+        <div class="sample">أقراط ذهبية مطلية بعيار 18، مقاومة للتغيّر ومناسبة للاستخدام اليومي.</div>
+        <div class="glyphs">خفيف 300 · عادي 400 · متوسط 500 · ٠١٢٣٤٥٦٧٨٩</div>
+      </div>
+    </div>
+    <div class="scale">
+      <table>
+        <thead><tr><th>المستوى</th><th>مثال</th><th class="m">Font / Size / Line</th></tr></thead>
+        <tbody>
+          <tr><td>عنوان رئيسي</td><td style="font-family:var(--f-ar-display);font-size:40px;color:var(--aubergine);line-height:1.3">مجموعة الخريف</td><td class="m">Aref Ruqaa 700 · 40 / 52</td></tr>
+          <tr><td>عنوان فرعي</td><td style="font-family:var(--f-ar-display);font-size:26px;color:var(--aubergine)">قلائد الطبقات</td><td class="m">Aref Ruqaa 400 · 26 / 36</td></tr>
+          <tr><td>نص</td><td style="font-size:16px">سلسلة رفيعة بطول 45 سم مع قفل قابل للتعديل.</td><td class="m">Plex Arabic 400 · 16 / 28</td></tr>
+          <tr><td>تسمية</td><td style="font-family:var(--f-display);letter-spacing:.24em;font-size:12px;color:var(--gold);direction:ltr;text-align:right">NEW ARRIVAL</td><td class="m">Italiana · 12 · +24%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Elements -->
+<section style="background:var(--paper)">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>05 ELEMENTS</b> العناصر البصرية</div>
+      <h2 class="sec-title">النقش والشريط والتعويذة</h2>
+    </div>
+    <div class="el-grid">
+      <div class="el">
+        <div class="stage st-pattern"></div>
+        <div class="txt"><h3>نقش الزهرة الرباعية</h3><p>يُطبع نقشاً بارزاً بلا لون على أغطية العلب والأكياس، وبشفافية 8–10% في التصاميم الرقمية.</p></div>
+      </div>
+      <div class="el">
+        <div class="stage st-ribbon">
+          <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path id="rib2" d="M-20,60 C80,10 120,200 200,150 S300,40 330,90" fill="none" stroke="#343B26" stroke-width="34"/>
+            <text font-family="Italiana, Georgia, serif" font-size="13" letter-spacing="4" fill="#B89A64" dy="5"><textPath href="#rib2">NORA ✦ Accessories ✦ NORA ✦ Accessories ✦</textPath></text>
+          </svg>
+        </div>
+        <div class="txt"><h3>شريط الساتان</h3><p>زيتوني بعرض 25 مم، مطبوع بالذهبي. يلف كل علبة.</p></div>
+      </div>
+      <div class="el">
+        <div class="stage st-charm"><svg viewBox="0 0 120 200" style="width:90px;height:150px" aria-hidden="true"><use href="#charm"/></svg></div>
+        <div class="txt"><h3>رمز القلادة</h3><p>رسم خطي ذهبي يحل محل الأرنب في المرجع: للبطاقات وصفحات التواصل.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Applications -->
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>06 APPLICATIONS</b> التطبيقات</div>
+      <h2 class="sec-title">الهوية على أرض الواقع</h2>
+      <p class="lede">تصورات أولية للتغليف والمطبوعات والمحتوى الرقمي. المقاسات المذكورة مقترحة ويمكن تعديلها مع المطبعة.</p>
+    </div>
+    <div class="apps">
+      <div class="app a-box">
+        <div class="stage">
+          <div class="box">
+            <div class="base"></div>
+            <div class="lid">
+              <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
+              <div class="band-r"></div>
+            </div>
+            <svg class="sticker" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+          </div>
+        </div>
+        <div class="label"><h3>علبة القلائد والأساور</h3><span>220 × 85 × 35 mm</span></div>
+      </div>
+      <div class="app a-ring">
+        <div class="stage">
+          <div class="ring"><div class="bot"></div><div class="top"><svg class="sealmini" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg></div></div>
+        </div>
+        <div class="label"><h3>علبة الخواتم</h3><span>70 × 70 mm</span></div>
+      </div>
+      <div class="app a-bag">
+        <div class="stage">
+          <div class="bag">
+            <svg class="handle" viewBox="0 0 120 80" aria-hidden="true"><path d="M25 80 C25 10 95 10 95 80" fill="none" stroke="#343B26" stroke-width="5" stroke-linecap="round"/></svg>
+            <div class="body"><div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div></div>
+          </div>
+        </div>
+        <div class="label"><h3>كيس التسوق</h3><span>240 × 290 mm</span></div>
+      </div>
+      <div class="app a-card">
+        <div class="stage">
+          <div class="cards">
+            <div class="bc front"><div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div></div>
+            <div class="bc back">
+              <div><div class="n">نورا اكسسواريز</div><div class="r">قطع زينة مختارة بعناية</div></div>
+              <ul>
+                <li><i></i><span dir="ltr">@nora.accessories</span></li>
+                <li><i></i>واتساب: رقم المتجر</li>
+                <li><i></i>رابط المتجر الإلكتروني</li>
+              </ul>
+              <div class="edge"></div>
+            </div>
+          </div>
+        </div>
+        <div class="label"><h3>بطاقة العمل</h3><span>90 × 50 mm</span></div>
+      </div>
+      <div class="app a-tag">
+        <div class="stage">
+          <div class="hang">
+            <div class="string"></div>
+            <div class="hole"></div>
+            <div class="logo"><span class="wm">NORA</span><span class="sc" style="color:var(--gold)">Accessories</span></div>
+            <div class="ear"><span></span><span></span></div>
+            <div class="price">قرط «لؤلؤة» · 89 ر.س</div>
+          </div>
+        </div>
+        <div class="label"><h3>بطاقة الأقراط</h3><span>50 × 85 mm</span></div>
+      </div>
+      <div class="app a-thanks">
+        <div class="stage">
+          <div class="ty">
+            <svg viewBox="0 0 120 200" style="width:34px;height:56px" aria-hidden="true"><use href="#charm"/></svg>
+            <div class="script">Thank you</div>
+            <div class="ar">شكراً لأنك اخترتِنا</div>
+            <p>نتمنى أن تكون هذه القطعة<br>جزءاً من أجمل لحظاتك.</p>
+          </div>
+        </div>
+        <div class="label"><h3>بطاقة الشكر</h3><span>A6</span></div>
+      </div>
+      <div class="app a-insta">
+        <div class="stage">
+          <div class="ig">
+            <div class="arc"><svg viewBox="0 0 120 200" aria-hidden="true"><use href="#charm"/></svg></div>
+            <div class="k">NEW COLLECTION</div>
+            <h4>مجموعة الخريف<br>وصلت</h4>
+            <div class="cta"><span>اطلبيها الآن</span><span dir="ltr">@nora.accessories</span></div>
+          </div>
+        </div>
+        <div class="label"><h3>منشور إنستغرام</h3><span>1080 × 1080</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Voice -->
+<section class="band">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow"><b>07 VOICE</b> نبرة الصوت</div>
+      <h2 class="sec-title">كيف تتكلم نورا</h2>
+    </div>
+    <div class="voice">
+      <div class="v"><h3>قريبة</h3><p>نخاطب العميلة بصيغة المؤنث وبلغة دافئة وبسيطة، كما تتكلم صديقة ذات ذوق.</p></div>
+      <div class="v"><h3>واضحة</h3><p>نذكر الخامة والمقاس والسعر دائماً. الأناقة لا تعني الغموض.</p></div>
+      <div class="v"><h3>هادئة</h3><p>بدون مبالغة أو كثرة رموز تعبيرية. رمز ✦ واحد يكفي.</p></div>
+    </div>
+    <div class="lines">
+      <div class="line"><span class="lab">نقول</span><q>قلادة بطبقتين من الفضة المطلية بالذهب، تناسب إطلالتك اليومية وسهرتك معاً.</q></div>
+      <div class="line no"><span class="lab">لا نقول</span><q>🔥🔥 عرض ناااار لا يفوتك!!! الحقي قبل ما يخلص 😍😍</q></div>
+      <div class="line"><span class="lab">رسالة الشحن</span><q>طلبك في الطريق إليك، ملفوف بشريطنا الأخضر ومختوم باسمك.</q></div>
+      <div class="line"><span class="lab">الوصف المختصر (Bio)</span><q>نورا اكسسواريز ✦ قطع زينة مختارة بعناية، تصلك كهدية.</q></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
+    <span>دليل الهوية البصرية · الإصدار الأول · أكتوبر 2026</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const colors=[
+  {ar:"باذنجاني",en:"NORA AUBERGINE",hex:"#4B2A4E",rgb:"75 42 78",cmyk:"4 46 0 69",use:"اللون الأساسي: العلب، الأكياس، خلفيات المنشورات."},
+  {ar:"برقوقي داكن",en:"DEEP PLUM",hex:"#2E1A31",rgb:"46 26 49",cmyk:"6 47 0 81",use:"قاعدة العلب، النصوص الداكنة، التذييل."},
+  {ar:"زيتوني",en:"RIBBON OLIVE",hex:"#343B26",rgb:"52 59 38",cmyk:"12 0 36 77",use:"الشريط والختم وبطاقة الشكر."},
+  {ar:"ذهبي",en:"FOIL GOLD",hex:"#B89A64",rgb:"184 154 100",cmyk:"0 16 46 28",use:"الشعار والتفاصيل فقط. يُطبع ختماً ذهبياً.",foil:true},
+  {ar:"كريمي",en:"SILK CREAM",hex:"#EEEAE5",rgb:"238 234 229",cmyk:"0 2 4 7",use:"الخلفيات، البطاقات، ورق التغليف الداخلي."},
+  {ar:"كاكاو",en:"COCOA",hex:"#8B6F66",rgb:"139 111 102",cmyk:"0 20 27 45",use:"خلفيات تصوير المنتجات والإسفنج الداخلي للعلب."}
+];
+const wrap=document.getElementById("swatches");
+colors.forEach(c=>{
+  const el=document.createElement("div");el.className="sw";
+  el.innerHTML=`<div class="chip${c.foil?" foiled":""}" style="background-color:${c.hex}"></div>
+  <div class="info"><span class="name">${c.ar}</span><span class="en">${c.en}</span>
+  <dl><dt>HEX</dt><dd>${c.hex}</dd><dt>RGB</dt><dd>${c.rgb}</dd><dt>CMYK</dt><dd>${c.cmyk}</dd></dl>
+  <p class="use">${c.use}</p>
+  <button class="copy" type="button" id="copy-${c.hex.slice(1)}" data-hex="${c.hex}">نسخ ${c.hex}</button></div>`;
+  wrap.appendChild(el);
+});
+const toast=document.getElementById("toast");let tt;
+function show(msg){toast.textContent=msg;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,1600)}
+wrap.addEventListener("click",e=>{
+  const b=e.target.closest(".copy");if(!b)return;
+  const hex=b.dataset.hex;
+  navigator.clipboard.writeText(hex).then(()=>show("تم نسخ "+hex)).catch(()=>{
+    const r=document.createRange();r.selectNodeContents(b);const s=getSelection();s.removeAllRanges();s.addRange(r);show("حدّدي الرمز وانسخيه");
+  });
+});
+</script>

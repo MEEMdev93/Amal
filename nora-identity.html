@@ -2,651 +2,607 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Italiana&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
 <style>
-/* Layout: brand book in one committed look — cream paper pages alternating with full-bleed aubergine "box lid" bands, gold foil reserved for the mark */
+/* Layout: a moodboard of rounded tiles on cream paper (the identity at a glance), followed by a quieter brand book; the hand-drawn Arabic logotype is the one loud element */
 :root{
   --aubergine:#4B2A4E;
   --plum:#2E1A31;
   --olive:#343B26;
+  --olive-deep:#262C1B;
   --gold:#B89A64;
   --gold-hi:#E2CC9A;
   --cream:#EEEAE5;
+  --paper:#F7F4F0;
   --cocoa:#8B6F66;
-  --ink:#2A1D2C;
-  --muted:#6E5F6F;
-  --line:#D9D2CC;
-  --paper:#F6F3EF;
-  --f-display:"Italiana","Didot","Bodoni 72",Georgia,serif;
-  --f-script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
-  --f-ar-display:"Aref Ruqaa","Amiri","Traditional Arabic",serif;
-  --f-ar:"IBM Plex Sans Arabic","Segoe UI","Tahoma",sans-serif;
-  --foil:linear-gradient(115deg,#9C7F4C 0%,#E2CC9A 28%,#B89A64 48%,#F0DFB4 62%,#A88A55 82%,#D2B880 100%);
-  --pattern:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.09)' stroke-width='1.1'%3E%3Cg transform='translate(48 48)'%3E%3Cellipse rx='5' ry='13' cy='-12'/%3E%3Cellipse rx='5' ry='13' cy='12'/%3E%3Cellipse rx='13' ry='5' cx='-12'/%3E%3Cellipse rx='13' ry='5' cx='12'/%3E%3Ccircle r='3'/%3E%3C/g%3E%3Cpath d='M0 0q10 6 0 14M96 0q-10 6 0 14M0 96q10-6 0-14M96 96q-10-6 0-14'/%3E%3Ccircle cx='0' cy='48' r='2'/%3E%3Ccircle cx='96' cy='48' r='2'/%3E%3Ccircle cx='48' cy='0' r='2'/%3E%3Ccircle cx='48' cy='96' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  --ink:#24182A;
+  --muted:#76687A;
+  --line:#DDD5CE;
+  --f-latin:"Gilda Display","Didot","Bodoni 72",Georgia,serif;
+  --f-poster:"Italiana","Didot",Georgia,serif;
+  --f-ar-head:"Amiri","Traditional Arabic",serif;
+  --f-ar:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  --r:28px;
+  color-scheme:light;
 }
 *{box-sizing:border-box}
-body{background:var(--cream);color:var(--ink);font-family:var(--f-ar);font-size:16px;line-height:1.8;direction:rtl}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-ar);font-size:16px;line-height:1.8;direction:rtl;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--gold);color:var(--plum)}
-h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
 p{margin:0}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-section{padding-block:88px}
-.band{background:var(--aubergine) var(--pattern);color:var(--cream)}
-.band.deep{background-color:var(--plum)}
-.eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--cocoa);letter-spacing:.02em;margin-bottom:14px}
-.eyebrow b{font-family:var(--f-display);font-weight:400;letter-spacing:.24em;font-size:12px;direction:ltr;color:var(--gold)}
-.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
-.band .eyebrow{color:var(--gold-hi)}
-.band .eyebrow::after{background:rgba(238,234,229,.18)}
-.sec-title{font-family:var(--f-ar-display);font-size:clamp(34px,5vw,52px);line-height:1.3;color:var(--aubergine)}
-.band .sec-title{color:var(--cream)}
-.lede{max-width:62ch;color:var(--muted);margin-top:14px}
-.band .lede{color:rgba(238,234,229,.75)}
-.head{margin-bottom:48px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+svg.ico{display:block}
+.latin{font-family:var(--f-latin);direction:ltr;letter-spacing:.32em;text-transform:uppercase}
+.gold{fill:url(#foil);stroke:url(#foil)}
+use{stroke-width:.4;stroke-linejoin:round}
 
-/* ---------- Logo ---------- */
-.foil{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo{direction:ltr;display:inline-flex;flex-direction:column;align-items:center;line-height:1}
-.logo .wm{font-family:var(--f-display);letter-spacing:.14em;padding-left:.14em;font-size:var(--s,96px)}
-.logo .sc{font-family:var(--f-script);font-size:calc(var(--s,96px)*.36);margin-top:calc(var(--s,96px)*-.2);margin-left:calc(var(--s,96px)*.9);transform:rotate(-4deg)}
-.logo-ar{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
-.logo-ar .wm{font-family:var(--f-ar-display);font-weight:700;font-size:var(--s,80px)}
-.logo-ar .sub{font-family:var(--f-ar);font-weight:300;font-size:calc(var(--s,80px)*.22);letter-spacing:0;margin-top:calc(var(--s,80px)*-.05)}
+/* top bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:16px}
+.topbar .brand{display:flex;align-items:center;gap:12px;color:var(--aubergine)}
+.topbar .brand svg{width:30px;height:30px;fill:var(--aubergine);stroke:var(--aubergine)}
+.topbar .brand span{font-size:11px}
+.topbar .ed{font-size:12px;color:var(--muted)}
 
-/* ---------- Hero ---------- */
-.hero{background:var(--aubergine) var(--pattern);color:var(--cream);position:relative;overflow:hidden}
-.hero .wrap{padding-block:96px 120px;display:grid;justify-items:center;text-align:center;gap:22px;position:relative;z-index:2}
-.hero .kicker{font-family:var(--f-display);letter-spacing:.32em;font-size:13px;color:var(--gold-hi);direction:ltr}
-.hero .tag{font-family:var(--f-ar-display);font-size:clamp(22px,3vw,30px);color:var(--cream)}
-.hero .meta{font-size:13px;color:rgba(238,234,229,.6)}
-.hero .logo{--s:clamp(64px,13vw,136px)}
-.ribbon-svg{position:absolute;inset:auto 0 -10px 0;width:100%;height:200px;z-index:1;pointer-events:none}
+/* ================= MOODBOARD ================= */
+.board{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;position:relative;padding-bottom:40px}
+.tile{border-radius:var(--r);overflow:hidden;position:relative;min-width:0}
+.t-logo{grid-column:span 7;background:var(--aubergine);min-height:380px;display:grid;place-items:center;color:var(--cream)}
+.t-mark{grid-column:span 5;background:var(--olive);min-height:380px;display:grid;place-items:center}
+.bigwm{position:absolute;inset:-20%;opacity:.05;pointer-events:none}
+.bigwm svg{width:100%;height:100%;fill:var(--cream);stroke:var(--cream)}
 
-/* ---------- Essence ---------- */
-.essence{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
-.essence .story p+p{margin-top:16px}
-.story .big{font-family:var(--f-ar-display);font-size:26px;line-height:1.6;color:var(--aubergine)}
-.traits{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.trait{background:var(--paper);padding:22px}
-.trait h3{font-family:var(--f-ar-display);font-size:24px;color:var(--aubergine)}
-.trait .en{font-family:var(--f-display);letter-spacing:.2em;font-size:11px;color:var(--gold);direction:ltr;display:block;margin-bottom:4px}
-.trait p{font-size:14px;color:var(--muted);margin-top:4px}
+.lockup{display:grid;justify-items:center;gap:6px;position:relative;z-index:1;padding:40px 20px}
+.lockup .ar{width:min(400px,72vw);height:auto;aspect-ratio:412/146}
+.lockup .row{display:flex;align-items:center;gap:14px;font-size:10px;color:var(--gold-hi);direction:ltr;letter-spacing:.3em;font-family:var(--f-latin)}
+.lockup .row i{width:34px;height:1px;background:currentColor;opacity:.6}
+.lockup .lat{font-size:clamp(20px,2.4vw,26px);color:var(--cream)}
+.t-mark .m{width:min(190px,48%);aspect-ratio:1;position:relative;z-index:1}
 
-/* ---------- Logo system ---------- */
-.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.tile{border-radius:4px;min-height:240px;display:grid;place-items:center;position:relative;padding:28px;overflow:hidden}
-.tile .cap{position:absolute;bottom:12px;inset-inline-start:16px;font-size:12px;opacity:.75}
-.t-main{grid-column:span 4;background:var(--aubergine) var(--pattern);color:var(--cream);min-height:320px}
-.t-main .logo{--s:clamp(56px,8vw,96px)}
-.t-seal{grid-column:span 2;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
-.t-ar{grid-column:span 2;background:var(--paper);border:1px solid var(--line);color:var(--aubergine)}
-.t-ar .logo-ar{--s:72px}
-.t-cream{grid-column:span 2;background:var(--cream);border:1px solid var(--line);color:var(--aubergine)}
-.t-cream .logo{--s:56px}
-.t-olive{grid-column:span 2;background:var(--olive);color:var(--cream)}
-.t-olive .logo{--s:56px}
-.seal{width:min(180px,100%);height:auto;display:block}
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
-.rule{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px}
-.rule h3{font-size:15px;font-weight:600;color:var(--aubergine);margin-bottom:6px}
-.rule p{font-size:14px;color:var(--muted)}
-.clear{margin-top:14px;display:grid;place-items:center;padding:22px;border:1px dashed var(--gold);background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(184,154,100,.08) 6px 7px)}
-.clear .logo{--s:34px;color:var(--aubergine);background:var(--paper);padding:8px 14px}
+/* poster */
+.t-poster{grid-column:span 5;grid-row:span 2;min-height:640px;background:radial-gradient(120% 80% at 70% 30%,#6A3E6E 0%,#4B2A4E 45%,#2E1A31 100%);color:var(--cream);display:flex;flex-direction:column}
+.t-poster .phead{display:flex;justify-content:space-between;align-items:flex-start;padding:26px 28px 0}
+.t-poster .phead svg{width:96px;aspect-ratio:412/146}
+.t-poster .phead .no{font-family:var(--f-latin);font-size:10px;letter-spacing:.3em;color:var(--gold-hi);direction:ltr}
+.t-poster .stage{position:relative;flex:1;min-height:420px}
+.t-poster .word{position:absolute;top:18%;left:0;right:0;text-align:center;font-family:var(--f-poster);font-size:clamp(64px,8.6vw,112px);line-height:1;color:#F1DEC0;letter-spacing:.02em;direction:ltr}
+.t-poster .word2{position:absolute;top:calc(18% + clamp(64px,8.6vw,112px));right:8%;font-family:var(--f-ar-head);font-weight:700;font-size:clamp(26px,3vw,36px);color:var(--cream)}
+.t-poster .neck{position:absolute;inset:0;width:100%;height:100%}
+.t-poster .pfoot{padding:0 28px 26px;display:grid;gap:18px}
+.t-poster .pfoot p{font-size:14px;max-width:24ch;color:rgba(238,234,229,.85);line-height:1.7}
+.t-poster .pfoot p b{color:#F1DEC0;font-weight:500}
+.t-poster .handle{display:flex;align-items:center;gap:12px;font-size:12px;direction:ltr;color:var(--cream)}
+.t-poster .handle i{flex:1;height:1px;background:rgba(238,234,229,.45)}
 
-.donts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
-.dont{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.dont .demo{height:120px;display:grid;place-items:center;background:var(--cream);position:relative}
-.dont .demo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top left,transparent calc(50% - 1px),#A2453F calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 1px))}
-.dont p{font-size:13px;padding:12px 14px;color:var(--muted)}
-.dont .logo{--s:34px}
+/* flatlay */
+.t-flat{grid-column:span 7;background:#E9E2DA;min-height:300px}
+.t-flat svg.scene{position:absolute;inset:0;width:100%;height:100%}
 
-/* ---------- Colors ---------- */
-.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.sw{border-radius:4px;overflow:hidden;background:var(--paper);border:1px solid rgba(238,234,229,.12);display:flex;flex-direction:column;color:var(--ink)}
-.sw .chip{height:150px;position:relative}
-.sw .chip.foiled{background:var(--foil)}
-.sw .info{padding:14px 16px 16px;display:grid;gap:2px}
-.sw .name{font-family:var(--f-ar-display);font-size:22px;color:var(--aubergine);line-height:1.3}
-.sw .en{font-family:var(--f-display);letter-spacing:.18em;font-size:11px;color:var(--cocoa);direction:ltr;text-align:right}
-.sw dl{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:12px;direction:ltr;font-variant-numeric:tabular-nums}
-.sw dt{color:var(--muted)}
-.sw dd{margin:0;text-align:left}
-.sw .use{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
-.copy{all:unset;cursor:pointer;font-family:var(--f-ar);font-size:12px;margin-top:10px;justify-self:start;border:1px solid var(--line);border-radius:999px;padding:3px 12px;color:var(--aubergine)}
-.copy:hover{border-color:var(--gold);background:rgba(184,154,100,.12)}
-.copy:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.ratio{margin-top:40px}
-.ratio h3{font-size:15px;font-weight:500;margin-bottom:12px;color:var(--gold-hi)}
-.ratio-bar{display:flex;height:56px;border-radius:4px;overflow:hidden;border:1px solid rgba(238,234,229,.15)}
-.ratio-bar span{display:grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums;direction:ltr}
-.combos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
-.combo{border-radius:4px;padding:20px;min-height:110px;display:flex;flex-direction:column;justify-content:space-between;font-size:13px}
-.combo strong{font-family:var(--f-ar-display);font-size:24px;font-weight:400}
+/* palette */
+.t-pal{grid-column:span 7;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:transparent;overflow:visible}
+.chip{border-radius:22px;min-height:136px;padding:16px;display:flex;align-items:flex-end;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;letter-spacing:.04em;direction:ltr;box-shadow:0 0 0 1px rgba(36,24,42,.08);position:relative}
+.chip button{all:unset;cursor:pointer;position:absolute;inset:0;border-radius:inherit}
+.chip button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-/* ---------- Type ---------- */
-.type-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.spec{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.spec .role{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px}
-.spec .role b{color:var(--aubergine);font-weight:600}
-.spec .sample{color:var(--aubergine);line-height:1.2;overflow-wrap:anywhere}
-.spec .glyphs{font-size:14px;color:var(--muted);overflow-wrap:anywhere}
-.s-display .sample{font-family:var(--f-display);font-size:clamp(44px,6vw,64px);letter-spacing:.12em;direction:ltr;text-align:left}
-.s-script .sample{font-family:var(--f-script);font-size:clamp(44px,6vw,64px);direction:ltr;text-align:left}
-.s-ruqaa .sample{font-family:var(--f-ar-display);font-size:clamp(40px,5.5vw,58px);line-height:1.5}
-.s-plex .sample{font-family:var(--f-ar);font-size:22px;font-weight:300;line-height:1.7}
-.scale{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow-x:auto}
-.scale table{width:100%;border-collapse:collapse;min-width:560px}
-.scale td,.scale th{padding:14px 20px;border-bottom:1px solid var(--line);text-align:right;vertical-align:baseline}
-.scale th{font-size:12px;font-weight:500;color:var(--muted)}
-.scale tr:last-child td{border-bottom:0}
-.scale .m{font-size:12px;color:var(--muted);direction:ltr;text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* pattern + tag */
+.t-pattern{grid-column:span 6;min-height:380px;background:var(--olive)}
+.t-pattern svg.pat{position:absolute;inset:0;width:100%;height:100%}
+.hangtag{position:absolute;left:50%;top:50%;width:150px;height:300px;transform:translate(-50%,-50%) rotate(-24deg);background:var(--paper);border-radius:4px;box-shadow:0 30px 40px -18px rgba(0,0,0,.55);display:flex;flex-direction:column;align-items:center;padding:30px 14px 22px;gap:14px;clip-path:polygon(0 8%,8% 0,92% 0,100% 8%,100% 92%,92% 100%,8% 100%,0 92%)}
+.hangtag .hole{width:9px;height:9px;border-radius:50%;background:var(--olive);opacity:.9}
+.hangtag .m{width:44px;aspect-ratio:1;fill:var(--aubergine);stroke:var(--aubergine)}
+.hangtag .ar{width:100px;aspect-ratio:412/146;fill:var(--aubergine);stroke:var(--aubergine);margin-top:auto}
+.hangtag small{font-family:var(--f-latin);font-size:7px;letter-spacing:.4em;color:var(--cocoa);direction:ltr}
 
-/* ---------- Elements ---------- */
-.el-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px}
-.el{border-radius:4px;overflow:hidden;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line)}
-.el .stage{flex:1;min-height:240px;display:grid;place-items:center;position:relative;overflow:hidden}
-.el .txt{padding:16px 18px;border-top:1px solid var(--line)}
-.el h3{font-size:15px;font-weight:600;color:var(--aubergine)}
-.el p{font-size:13px;color:var(--muted)}
-.st-pattern{background:var(--aubergine) var(--pattern)}
-.st-ribbon{background:var(--cream)}
-.st-ribbon svg{width:100%;height:100%;position:absolute;inset:0}
-.st-charm{background:var(--cream)}
+/* bag on door */
+.t-door{grid-column:span 6;min-height:380px;background:linear-gradient(100deg,#1F2416 0%,#343B26 45%,#2A301F 100%)}
+.t-door .panel{position:absolute;border:2px solid rgba(255,255,255,.05);box-shadow:inset 0 0 0 10px rgba(0,0,0,.08),inset 0 0 0 12px rgba(255,255,255,.04);border-radius:3px}
+.t-door .light{position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,240,210,.0) 40%,rgba(255,240,210,.12) 52%,rgba(255,240,210,0) 64%)}
+.t-door .knob{position:absolute;top:14%;left:50%;width:22px;height:22px;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle at 35% 35%,#E8DCC4,#9A8C74 60%,#4C4434)}
+.bag{position:absolute;top:calc(14% + 10px);left:50%;transform:translateX(-50%);width:min(160px,44%);display:flex;flex-direction:column;align-items:center}
+.bag svg.handles{width:58%;height:70px;overflow:visible}
+.bag .body{width:100%;aspect-ratio:.86;background:linear-gradient(90deg,#E5DED6,#F3EEE8 40%,#E2DAD1);border-radius:2px;display:grid;place-items:center;box-shadow:-20px 30px 40px -18px rgba(0,0,0,.6);position:relative}
+.bag .body::before{content:"";position:absolute;inset:0 0 auto;height:10px;background:rgba(0,0,0,.05)}
+.bag .body .in{display:grid;justify-items:center;gap:8px}
+.bag .body .m{width:30px;aspect-ratio:1;fill:var(--olive);stroke:var(--olive)}
+.bag .body .ar{width:110px;aspect-ratio:412/146;fill:var(--olive);stroke:var(--olive)}
 
-/* ---------- Applications ---------- */
-.apps{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.app{border-radius:4px;overflow:hidden;background:#E6E1DB;position:relative;display:flex;flex-direction:column}
-.app .stage{flex:1;min-height:300px;display:grid;place-items:center;padding:32px 20px;position:relative}
-.app .label{padding:14px 18px;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.app .label h3{font-size:15px;font-weight:600;color:var(--aubergine)}
-.app .label span{font-size:12px;color:var(--muted);direction:ltr;font-variant-numeric:tabular-nums}
-.a-box{grid-column:span 4}
-.a-ring{grid-column:span 2}
-.a-bag{grid-column:span 2}
-.a-card{grid-column:span 4}
-.a-tag{grid-column:span 2}
-.a-thanks{grid-column:span 2}
-.a-insta{grid-column:span 2}
+/* seal floating between tiles */
+.seal{position:absolute;width:138px;height:138px;z-index:5;left:calc(41.66% - 69px + 9px);top:calc(380px - 69px + 11px);filter:drop-shadow(0 14px 18px rgba(46,26,49,.35))}
+.seal svg{width:100%;height:100%}
 
-/* long box */
-.box{width:min(520px,100%);aspect-ratio:2.6/1;position:relative;max-width:100%}
-.box .lid{position:absolute;inset:0 0 18% 0;background:#55315A var(--pattern);border-radius:3px;box-shadow:0 2px 0 #3E2341,0 30px 40px -18px rgba(46,26,49,.6);display:grid;place-items:center}
-.box .base{position:absolute;inset:auto 2% 0 2%;height:24%;background:linear-gradient(#3E2341,#331C36);border-radius:0 0 3px 3px}
-.box .lid .logo{--s:clamp(30px,6vw,52px)}
-.box .sticker{position:absolute;inset-inline-start:-14px;top:30%;width:64px;height:64px}
-.box .band-r{position:absolute;top:0;bottom:18%;inset-inline-end:16%;width:22px;background:linear-gradient(90deg,#2A3020,#3E4630 50%,#2A3020)}
-/* ring box */
-.ring{width:170px;aspect-ratio:1;position:relative;max-width:100%}
-.ring .top{position:absolute;inset:0 0 24% 0;background:#55315A var(--pattern);border-radius:10px 10px 4px 4px;display:grid;place-items:center;box-shadow:0 22px 30px -16px rgba(46,26,49,.6)}
-.ring .bot{position:absolute;inset:auto 0 0 0;height:28%;background:linear-gradient(#3E2341,#2E1A31);border-radius:4px 4px 10px 10px}
-.ring .top .sealmini{width:84px}
-/* bag */
-.bag{width:190px;max-width:100%;position:relative;padding-top:60px}
-.bag svg.handle{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:80px}
-.bag .body{aspect-ratio:.82;background:var(--aubergine) var(--pattern);border-radius:2px;display:grid;place-items:center;box-shadow:0 26px 30px -18px rgba(46,26,49,.6);position:relative}
-.bag .body::before{content:"";position:absolute;inset:0 0 auto 0;height:12px;background:rgba(0,0,0,.14)}
-.bag .logo{--s:34px}
-/* cards */
-.cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;align-items:center}
-.bc{width:280px;max-width:100%;aspect-ratio:1.75;border-radius:6px;box-shadow:0 18px 28px -16px rgba(46,26,49,.45);position:relative;overflow:hidden}
-.bc.front{background:var(--aubergine) var(--pattern);display:grid;place-items:center}
-.bc.front .logo{--s:40px}
-.bc.back{background:var(--cream);padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;color:var(--aubergine)}
-.bc.back .n{font-family:var(--f-ar-display);font-size:26px;line-height:1.2}
-.bc.back .r{font-size:11px;color:var(--cocoa)}
-.bc.back ul{list-style:none;margin:0;padding:0;font-size:11px;line-height:1.9;color:var(--ink)}
-.bc.back ul li{display:flex;gap:8px;align-items:center}
-.bc.back ul li i{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);display:inline-block;flex:none}
-.bc.back .edge{position:absolute;inset:auto 0 0 0;height:6px;background:var(--olive)}
-/* hang tag */
-.hang{width:150px;max-width:100%;aspect-ratio:.58;background:var(--cream);border-radius:6px;position:relative;box-shadow:0 18px 26px -16px rgba(46,26,49,.45);display:flex;flex-direction:column;align-items:center;padding:16px 12px;gap:10px}
-.hang .hole{width:10px;height:10px;border-radius:50%;background:#E6E1DB;box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
-.hang .logo{--s:22px;color:var(--aubergine)}
-.hang .ear{display:flex;gap:34px;margin-top:8px}
-.hang .ear span{width:8px;height:8px;border-radius:50%;background:#E6E1DB;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);position:relative}
-.hang .ear span::after{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:14px;height:26px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;background:var(--foil);box-shadow:0 2px 4px rgba(0,0,0,.2)}
-.hang .price{margin-top:auto;font-size:11px;color:var(--cocoa);font-variant-numeric:tabular-nums}
-.hang .string{position:absolute;top:-46px;left:50%;width:1px;height:62px;background:var(--olive)}
-/* thank you */
-.ty{width:200px;max-width:100%;aspect-ratio:.72;background:var(--olive);border-radius:4px;color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:20px;box-shadow:0 18px 26px -16px rgba(30,34,20,.6)}
-.ty .script{font-family:var(--f-script);font-size:40px;line-height:1;direction:ltr}
-.ty .ar{font-family:var(--f-ar-display);font-size:20px;color:var(--gold-hi)}
-.ty p{font-size:11px;color:rgba(238,234,229,.75);line-height:1.8}
-/* insta */
-.ig{width:230px;max-width:100%;aspect-ratio:1;background:var(--aubergine) var(--pattern);border-radius:4px;color:var(--cream);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;box-shadow:0 18px 26px -16px rgba(46,26,49,.45)}
-.ig .arc{position:absolute;top:18px;inset-inline-end:18px;width:110px;aspect-ratio:.78;border-radius:999px 999px 4px 4px;background:var(--cocoa);overflow:hidden;display:grid;place-items:center}
-.ig .arc svg{width:70%}
-.ig .k{font-family:var(--f-display);letter-spacing:.24em;font-size:9px;color:var(--gold-hi);direction:ltr;text-align:right}
-.ig h4{font-family:var(--f-ar-display);font-size:26px;font-weight:400;line-height:1.3;margin:2px 0 6px}
-.ig .cta{font-size:10px;border-top:1px solid rgba(238,234,229,.25);padding-top:6px;display:flex;justify-content:space-between}
+/* ================= BOOK ================= */
+.sec{padding-block:96px;border-top:1px solid var(--line)}
+.sh{display:grid;grid-template-columns:200px 1fr;gap:32px;margin-bottom:48px}
+.sh .k{font-family:var(--f-latin);direction:ltr;text-align:right;font-size:11px;letter-spacing:.32em;color:var(--gold);padding-top:14px}
+.sh h2{font-family:var(--f-ar-head);font-weight:700;font-size:clamp(34px,4.6vw,54px);line-height:1.35;color:var(--aubergine)}
+.sh p{max-width:62ch;color:var(--muted);margin-top:12px}
 
-/* ---------- Voice ---------- */
-.voice{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.v{border-top:1px solid var(--gold);padding-top:18px}
-.v h3{font-family:var(--f-ar-display);font-size:26px;color:var(--cream)}
-.v p{color:rgba(238,234,229,.75);font-size:14px;margin-top:6px}
-.lines{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.line{background:rgba(238,234,229,.06);border:1px solid rgba(238,234,229,.12);border-radius:4px;padding:22px}
-.line .lab{font-size:12px;color:var(--gold-hi);margin-bottom:8px;display:block}
-.line q{font-family:var(--f-ar-display);font-size:22px;line-height:1.6;quotes:"«" "»"}
-.line.no{opacity:.75}
-.line.no .lab{color:#D9A49E}
-.line.no q{text-decoration:line-through;text-decoration-color:rgba(217,164,158,.6);font-family:var(--f-ar);font-size:17px}
+/* concept */
+.concept{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:var(--paper);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.step .fig{aspect-ratio:1.25;border-radius:18px;background:var(--cream);display:grid;place-items:center;position:relative;overflow:hidden}
+.step .fig svg{width:72%;height:72%;overflow:visible}
+.step h3{font-family:var(--f-ar-head);font-weight:700;font-size:24px;color:var(--aubergine)}
+.step p{font-size:14px;color:var(--muted)}
+.step .n{font-family:var(--f-latin);direction:ltr;font-size:11px;letter-spacing:.3em;color:var(--gold)}
+.guide{fill:none;stroke:#B89A64;stroke-width:.6;stroke-dasharray:3 3}
+.big-ar{font-family:var(--f-ar-head);font-size:120px;fill:var(--aubergine)}
 
-footer{background:var(--plum);color:rgba(238,234,229,.6);font-size:13px}
-footer .wrap{padding-block:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-footer .logo{--s:28px}
+/* logo system */
+.lg{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.lg .c{border-radius:var(--r);min-height:260px;display:grid;place-items:center;position:relative;padding:34px 20px;min-width:0}
+.lg .c .cap{position:absolute;bottom:16px;inset-inline-start:20px;font-size:12px;opacity:.7}
+.lg .c1{grid-column:span 4;background:var(--paper);color:var(--aubergine)}
+.lg .c2{grid-column:span 2;background:var(--aubergine);color:var(--cream)}
+.lg .c3{grid-column:span 2;background:var(--olive);color:var(--cream)}
+.lg .c4{grid-column:span 2;background:var(--paper);color:var(--olive)}
+.lg .c5{grid-column:span 2;background:var(--cocoa);color:var(--cream)}
+.horiz{display:flex;align-items:center;gap:22px;direction:ltr}
+.horiz .m{width:64px;aspect-ratio:1}
+.horiz .bar{width:1px;height:64px;background:currentColor;opacity:.3}
+.horiz .t{display:grid;gap:2px}
+.horiz .t .l{font-family:var(--f-latin);font-size:26px;letter-spacing:.34em}
+.horiz .t .s{font-family:var(--f-latin);font-size:9px;letter-spacing:.5em;opacity:.7}
+.horiz .ar{width:150px;aspect-ratio:412/146}
+.fill-cur{fill:currentColor;stroke:currentColor}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.specs div{border-top:1px solid var(--gold);padding-top:14px}
+.specs h3{font-size:15px;font-weight:600;color:var(--aubergine)}
+.specs p{font-size:14px;color:var(--muted);margin-top:4px}
 
-.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--plum);color:var(--cream);padding:8px 18px;border-radius:999px;font-size:13px;border:1px solid var(--gold);z-index:20}
+/* colour */
+.cols{display:grid;grid-template-columns:2.2fr 1.4fr 1.4fr 1fr 1fr;gap:14px;min-height:340px}
+.col{border-radius:var(--r);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-width:0;position:relative}
+.col .nm{font-family:var(--f-ar-head);font-weight:700;font-size:26px;line-height:1.3}
+.col .en{font-family:var(--f-latin);font-size:10px;letter-spacing:.3em;direction:ltr;text-align:right;opacity:.8}
+.col dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0 10px;font-size:12px;direction:ltr;font-variant-numeric:tabular-nums;font-family:ui-monospace,"SF Mono",Menlo,monospace}
+.col dt{opacity:.65}
+.col dd{margin:0}
+.col .cp{all:unset;cursor:pointer;font-size:12px;border:1px solid currentColor;border-radius:999px;padding:3px 12px;align-self:flex-start;opacity:.85}
+.col .cp:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.col .use{font-size:13px;opacity:.85;line-height:1.6}
 
-@media (max-width:900px){
-  .essence{grid-template-columns:1fr;gap:36px}
-  .logo-grid{grid-template-columns:repeat(2,1fr)}
-  .t-main{grid-column:span 2}
-  .t-seal,.t-ar,.t-cream,.t-olive{grid-column:span 1}
-  .rules{grid-template-columns:1fr}
-  .donts{grid-template-columns:repeat(2,1fr)}
-  .swatches{grid-template-columns:repeat(3,1fr)}
-  .combos{grid-template-columns:repeat(2,1fr)}
-  .type-grid{grid-template-columns:1fr}
-  .el-grid{grid-template-columns:1fr 1fr}
-  .el-grid .el:first-child{grid-column:span 2}
+/* type */
+.ty{display:grid;grid-template-columns:1.2fr 1fr;gap:22px}
+.tcard{background:var(--paper);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.tcard .role{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px}
+.tcard .role b{color:var(--aubergine);font-weight:600}
+.tcard .s{color:var(--aubergine);line-height:1.3;overflow-wrap:anywhere}
+.tcard.zun{grid-row:span 2;background:var(--plum);color:var(--cream)}
+.tcard.zun .role{border-color:rgba(238,234,229,.15);color:rgba(238,234,229,.6)}
+.tcard.zun .role b{color:var(--gold-hi)}
+.tcard.zun .s{color:var(--cream);font-family:var(--f-ar-head);font-weight:700;font-size:clamp(52px,7vw,92px);line-height:1.35}
+.tcard.zun p{font-size:14px;color:rgba(238,234,229,.75);max-width:48ch}
+.tcard.zun .note{margin-top:auto;font-size:13px;border:1px solid rgba(226,204,154,.35);border-radius:16px;padding:14px 16px;color:var(--gold-hi)}
+
+/* applications */
+.apps{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.app{border-radius:var(--r);overflow:hidden;position:relative;min-height:340px;display:grid;place-items:center;padding:30px 20px;min-width:0}
+.app .lb{position:absolute;bottom:16px;inset-inline-start:20px;font-size:12px;opacity:.75}
+.a1{grid-column:span 7;background:#E3DBD2}
+.a2{grid-column:span 5;background:var(--aubergine);color:var(--cream)}
+.a3{grid-column:span 4;background:#E3DBD2}
+.a4{grid-column:span 4;background:var(--olive);color:var(--cream)}
+.a5{grid-column:span 4;background:#E3DBD2}
+.cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;align-items:center}
+.bc{width:250px;max-width:100%;aspect-ratio:1.75;border-radius:8px;box-shadow:0 20px 30px -18px rgba(46,26,49,.5);position:relative;overflow:hidden}
+.bc.f{background:var(--aubergine);display:grid;place-items:center;transform:rotate(-4deg)}
+.bc.f .ar{width:150px;aspect-ratio:412/146}
+.bc.b{background:var(--paper);color:var(--aubergine);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(3deg)}
+.bc.b .m{width:26px;aspect-ratio:1;fill:var(--aubergine);stroke:var(--aubergine)}
+.bc.b .nm{font-family:var(--f-ar-head);font-weight:700;font-size:18px}
+.bc.b ul{list-style:none;margin:0;padding:0;font-size:10px;line-height:1.9;color:var(--ink)}
+.bc.b .edge{position:absolute;inset:auto 0 0 0;height:5px;background:var(--olive)}
+.story{width:190px;max-width:100%;aspect-ratio:9/16;border-radius:16px;background:var(--plum);color:var(--cream);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;box-shadow:0 24px 34px -18px rgba(0,0,0,.6)}
+.story .m{width:70px;aspect-ratio:1}
+.story h4{font-family:var(--f-ar-head);font-weight:700;font-size:26px;line-height:1.4}
+.story p{font-size:11px;color:rgba(238,234,229,.7)}
+.story .cta{margin-top:10px;font-size:11px;border:1px solid var(--gold);color:var(--gold-hi);border-radius:999px;padding:4px 14px}
+.boxsq{width:190px;max-width:100%;aspect-ratio:1;position:relative}
+.boxsq .lid{position:absolute;inset:0;border-radius:6px;background:var(--olive);box-shadow:0 30px 36px -18px rgba(38,44,27,.7);display:grid;place-items:center}
+.boxsq .rib1{position:absolute;top:0;bottom:0;left:calc(50% - 11px);width:22px;background:linear-gradient(90deg,#3A2140,#5A3460 50%,#3A2140)}
+.boxsq .rib2{position:absolute;left:0;right:0;top:calc(50% - 11px);height:22px;background:linear-gradient(#3A2140,#5A3460 50%,#3A2140)}
+.boxsq .sl{position:relative;width:70px;height:70px;z-index:2}
+.thanks{width:200px;max-width:100%;aspect-ratio:.72;background:var(--olive);color:var(--cream);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:22px;text-align:center}
+.thanks .ar{width:110px;aspect-ratio:412/146}
+.thanks h4{font-family:var(--f-ar-head);font-weight:700;font-size:20px;color:var(--gold-hi)}
+.thanks p{font-size:11px;line-height:1.9;color:rgba(238,234,229,.8)}
+.thanks.lightv{background:var(--paper);color:var(--aubergine);box-shadow:0 24px 34px -18px rgba(46,26,49,.45)}
+.thanks.lightv h4{color:var(--aubergine)}
+.thanks.lightv p{color:var(--muted)}
+
+/* voice */
+.voice{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.q{background:var(--paper);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:10px}
+.q .lab{font-size:12px;color:var(--gold)}
+.q blockquote{margin:0;font-family:var(--f-ar-head);font-size:24px;line-height:1.7;color:var(--aubergine)}
+.q.no{background:transparent;border:1px dashed var(--line)}
+.q.no .lab{color:#A2453F}
+.q.no blockquote{font-family:var(--f-ar);font-size:16px;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(162,69,63,.5)}
+
+footer{background:var(--plum);color:rgba(238,234,229,.6);font-size:13px;margin-top:40px}
+footer .wrap{padding-block:46px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer svg{width:120px;aspect-ratio:412/146}
+.toast{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--plum);color:var(--cream);padding:8px 18px;border-radius:999px;font-size:13px;border:1px solid var(--gold);z-index:30}
+
+@media (max-width:980px){
+  .board{grid-template-columns:repeat(2,1fr);gap:16px}
+  .t-logo,.t-mark,.t-flat,.t-pal,.t-pattern,.t-door{grid-column:span 2}
+  .t-poster{grid-column:span 2;grid-row:auto}
+  .t-mark{min-height:300px}
+  .seal{display:none}
+  .sh{grid-template-columns:1fr;gap:6px}
+  .sh .k{text-align:right;padding-top:0}
+  .concept{grid-template-columns:1fr}
+  .lg{grid-template-columns:repeat(2,1fr)}
+  .lg .c1{grid-column:span 2}
+  .lg .c2,.lg .c3,.lg .c4,.lg .c5{grid-column:span 1}
+  .specs{grid-template-columns:1fr}
+  .cols{grid-template-columns:repeat(2,1fr)}
+  .cols .col:first-child{grid-column:span 2;min-height:220px}
+  .ty{grid-template-columns:1fr}
+  .tcard.zun{grid-row:auto}
   .apps{grid-template-columns:repeat(2,1fr)}
-  .a-box,.a-card{grid-column:span 2}
-  .a-ring,.a-bag,.a-tag,.a-thanks,.a-insta{grid-column:span 1}
+  .a1,.a2{grid-column:span 2}
+  .a3,.a4,.a5{grid-column:span 1}
   .voice{grid-template-columns:1fr}
-  .lines{grid-template-columns:1fr}
 }
-@media (max-width:560px){
-  section{padding-block:64px}
-  .logo-grid,.swatches,.el-grid,.apps,.donts{grid-template-columns:1fr}
-  .t-main,.t-seal,.t-ar,.t-cream,.t-olive,.el-grid .el:first-child,.a-box,.a-card,.a-ring,.a-bag,.a-tag,.a-thanks,.a-insta{grid-column:span 1}
-  .traits{grid-template-columns:1fr}
-  .combos{grid-template-columns:1fr}
-  .swatches .sw .chip{height:96px}
+@media (max-width:600px){
+  :root{--r:22px}
+  .t-pal{grid-template-columns:repeat(2,1fr)}
+  .lg,.apps{grid-template-columns:1fr}
+  .lg .c1,.lg .c2,.lg .c3,.lg .c4,.lg .c5,.a1,.a2,.a3,.a4,.a5{grid-column:span 1}
+  .horiz{flex-wrap:wrap;justify-content:center}
+  .cols{grid-template-columns:1fr}
+  .cols .col:first-child{grid-column:span 1}
+  .sec{padding-block:72px}
+  .t-poster{min-height:600px}
 }
 @media (prefers-reduced-motion:no-preference){
-  .hero .logo{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}
-  .hero .logo .foil,.t-main .foil{background-size:220% 100%;animation:shine 7s ease-in-out infinite}
-  @keyframes rise{from{transform:translateY(10px)}to{transform:none}}
-  @keyframes shine{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+  .spin{animation:spin 60s linear infinite;transform-origin:center;transform-box:fill-box}
+  @keyframes spin{to{transform:rotate(360deg)}}
 }
 </style>
 
-<!-- shared SVG defs -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="g-foil" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#9C7F4C"/><stop offset=".3" stop-color="#E2CC9A"/><stop offset=".5" stop-color="#B89A64"/><stop offset=".65" stop-color="#F0DFB4"/><stop offset="1" stop-color="#A88A55"/>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9C7F4C"/><stop offset=".28" stop-color="#E9D6A6"/><stop offset=".5" stop-color="#B89A64"/><stop offset=".68" stop-color="#F2E2B8"/><stop offset="1" stop-color="#A88A55"/>
     </linearGradient>
-    <symbol id="seal" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="98" fill="#343B26"/>
-      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#g-foil)" stroke-width="1"/>
-      <circle cx="100" cy="100" r="58" fill="none" stroke="url(#g-foil)" stroke-width="1"/>
-      <path id="seal-path" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" fill="none"/>
-      <text font-family="Italiana, Didot, Georgia, serif" font-size="15" letter-spacing="5.2" fill="url(#g-foil)"><textPath href="#seal-path" startOffset="0">NORA · ACCESSORIES · نورا اكسسواريز ·</textPath></text>
-      <text x="100" y="122" text-anchor="middle" font-family="Italiana, Didot, Georgia, serif" font-size="68" fill="url(#g-foil)">N</text>
+    <radialGradient id="pearl" cx=".36" cy=".32" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#EDE6E0"/><stop offset=".8" stop-color="#BFB2AE"/><stop offset="1" stop-color="#8C7C7E"/>
+    </radialGradient>
+    <symbol id="nora-ar" viewBox="-150 -92 412 146"><path d="M24.21 -119.17L24.35 -119.04L19.69 -116.56L19.79 -116.83ZM24.35 -119.04L24.53 -118.92L19.58 -116.29L19.69 -116.56ZM24.53 -118.92L24.73 -118.83L19.45 -116.01L19.58 -116.29ZM24.73 -118.83L24.96 -118.74L19.30 -115.73L19.45 -116.01ZM24.96 -118.74L25.21 -118.66L19.14 -115.44L19.30 -115.73ZM25.21 -118.66L25.48 -118.59L18.97 -115.13L19.14 -115.44ZM25.48 -118.59L25.76 -118.51L18.79 -114.81L18.97 -115.13ZM25.76 -118.51L26.06 -118.43L18.61 -114.46L18.79 -114.81ZM26.06 -118.43L26.37 -118.33L18.41 -114.10L18.61 -114.46ZM26.37 -118.33L26.69 -118.21L18.21 -113.71L18.41 -114.10ZM26.69 -118.21L27.01 -118.08L18.00 -113.29L18.21 -113.71ZM27.01 -118.08L27.34 -117.91L17.79 -112.84L18.00 -113.29ZM27.34 -117.91L27.66 -117.72L17.58 -112.35L17.79 -112.84ZM27.66 -117.72L27.99 -117.48L17.36 -111.83L17.58 -112.35ZM27.99 -117.48L28.30 -117.21L17.15 -111.28L17.36 -111.83ZM28.30 -117.21L28.62 -116.88L16.94 -110.67L17.15 -111.28ZM28.62 -116.88L28.92 -116.51L16.73 -110.03L16.94 -110.67ZM28.92 -116.51L29.20 -116.07L16.53 -109.33L16.73 -110.03ZM29.20 -116.07L29.47 -115.58L16.34 -108.59L16.53 -109.33ZM29.47 -115.58L29.73 -115.01L16.15 -107.79L16.34 -108.59ZM29.73 -115.01L29.96 -114.38L15.97 -106.94L16.15 -107.79ZM29.96 -114.38L30.17 -113.67L15.80 -106.02L15.97 -106.94ZM30.17 -113.67L30.35 -112.87L15.64 -105.05L15.80 -106.02ZM30.35 -112.87L30.51 -111.99L15.49 -104.01L15.64 -105.05ZM30.51 -111.99L30.63 -111.01L15.36 -102.89L15.49 -104.01ZM30.63 -111.01L30.75 -109.95L15.23 -101.69L15.36 -102.89ZM30.75 -109.95L30.85 -108.79L15.11 -100.42L15.23 -101.69ZM30.85 -108.79L30.93 -107.55L14.99 -99.07L15.11 -100.42ZM30.93 -107.55L31.00 -106.23L14.88 -97.66L14.99 -99.07ZM31.00 -106.23L31.06 -104.85L14.77 -96.18L14.88 -97.66ZM31.06 -104.85L31.11 -103.40L14.66 -94.65L14.77 -96.18ZM31.11 -103.40L31.14 -101.89L14.56 -93.07L14.66 -94.65ZM31.14 -101.89L31.17 -100.33L14.46 -91.45L14.56 -93.07ZM31.17 -100.33L31.18 -98.72L14.37 -89.78L14.46 -91.45ZM31.18 -98.72L31.19 -97.08L14.28 -88.08L14.37 -89.78ZM31.19 -97.08L31.19 -95.39L14.19 -86.36L14.28 -88.08ZM31.19 -95.39L31.18 -93.68L14.10 -84.60L14.19 -86.36ZM31.18 -93.68L31.16 -91.95L14.02 -82.83L14.10 -84.60ZM31.16 -91.95L31.14 -90.20L13.93 -81.05L14.02 -82.83ZM31.14 -90.20L31.11 -88.44L13.85 -79.26L13.93 -81.05ZM31.11 -88.44L31.08 -86.68L13.77 -77.47L13.85 -79.26ZM31.08 -86.68L31.05 -84.91L13.68 -75.68L13.77 -77.47ZM31.05 -84.91L31.02 -83.16L13.60 -73.90L13.68 -75.68ZM31.02 -83.16L30.98 -81.42L13.52 -72.13L13.60 -73.90ZM30.98 -81.42L30.94 -79.69L13.43 -70.38L13.52 -72.13ZM30.94 -79.69L30.90 -77.99L13.35 -68.66L13.43 -70.38ZM30.90 -77.99L30.87 -76.33L13.26 -66.96L13.35 -68.66ZM30.87 -76.33L30.83 -74.69L13.17 -65.31L13.26 -66.96ZM30.83 -74.69L30.79 -73.07L13.08 -63.65L13.17 -65.31ZM30.79 -73.07L30.73 -71.41L12.98 -61.96L13.08 -63.65ZM30.73 -71.41L30.67 -69.72L12.87 -60.25L12.98 -61.96ZM30.67 -69.72L30.59 -68.00L12.76 -58.52L12.87 -60.25ZM30.59 -68.00L30.51 -66.27L12.65 -56.77L12.76 -58.52ZM30.51 -66.27L30.42 -64.52L12.53 -55.01L12.65 -56.77ZM30.42 -64.52L30.32 -62.76L12.42 -53.24L12.53 -55.01ZM30.32 -62.76L30.22 -60.99L12.30 -51.46L12.42 -53.24ZM30.22 -60.99L30.11 -59.21L12.18 -49.68L12.30 -51.46ZM30.11 -59.21L30.00 -57.43L12.07 -47.90L12.18 -49.68ZM30.00 -57.43L29.89 -55.66L11.95 -46.12L12.07 -47.90ZM29.89 -55.66L29.78 -53.89L11.85 -44.36L11.95 -46.12ZM29.78 -53.89L29.67 -52.14L11.74 -42.60L11.85 -44.36ZM29.67 -52.14L29.56 -50.40L11.64 -40.87L11.74 -42.60ZM29.56 -50.40L29.45 -48.68L11.55 -39.16L11.64 -40.87ZM29.45 -48.68L29.35 -46.98L11.46 -37.47L11.55 -39.16ZM29.35 -46.98L29.25 -45.31L11.39 -35.81L11.46 -37.47ZM29.25 -45.31L29.16 -43.67L11.32 -34.18L11.39 -35.81ZM29.16 -43.67L29.08 -42.06L11.26 -32.59L11.32 -34.18ZM29.08 -42.06L29.01 -40.49L11.22 -31.03L11.26 -32.59ZM29.01 -40.49L28.95 -38.97L11.18 -29.53L11.22 -31.03ZM28.95 -38.97L28.89 -37.49L11.17 -28.07L11.18 -29.53ZM28.89 -37.49L28.86 -36.07L11.16 -26.66L11.17 -28.07ZM28.86 -36.07L28.83 -34.69L11.17 -25.31L11.16 -26.66ZM28.83 -34.69L28.81 -33.37L11.19 -23.99L11.17 -25.31ZM28.81 -33.37L28.81 -32.07L11.21 -22.71L11.19 -23.99ZM28.81 -32.07L28.80 -30.80L11.23 -21.45L11.21 -22.71ZM28.80 -30.80L28.81 -29.55L11.26 -20.22L11.23 -21.45ZM28.81 -29.55L28.82 -28.34L11.29 -19.02L11.26 -20.22ZM28.82 -28.34L28.83 -27.15L11.32 -17.85L11.29 -19.02ZM28.83 -27.15L28.85 -26.00L11.37 -16.70L11.32 -17.85ZM28.85 -26.00L28.88 -24.86L11.42 -15.58L11.37 -16.70ZM28.88 -24.86L28.91 -23.76L11.48 -14.49L11.42 -15.58ZM28.91 -23.76L28.95 -22.68L11.54 -13.43L11.48 -14.49ZM28.95 -22.68L28.99 -21.63L11.62 -12.40L11.54 -13.43ZM28.99 -21.63L29.04 -20.61L11.71 -11.39L11.62 -12.40ZM29.04 -20.61L29.09 -19.61L11.81 -10.42L11.71 -11.39ZM29.09 -19.61L29.15 -18.63L11.93 -9.48L11.81 -10.42ZM29.15 -18.63L29.21 -17.68L12.06 -8.57L11.93 -9.48ZM29.21 -17.68L29.28 -16.76L12.21 -7.68L12.06 -8.57ZM29.28 -16.76L29.35 -15.86L12.37 -6.83L12.21 -7.68ZM29.35 -15.86L29.42 -14.99L12.55 -6.01L12.37 -6.83ZM29.42 -14.99L29.50 -14.13L12.75 -5.23L12.55 -6.01ZM29.50 -14.13L29.58 -13.31L12.96 -4.47L12.75 -5.23ZM29.58 -13.31L29.67 -12.50L13.20 -3.75L12.96 -4.47ZM29.67 -12.50L29.76 -11.72L13.46 -3.06L13.20 -3.75ZM29.76 -11.72L29.85 -10.96L13.75 -2.40L13.46 -3.06ZM29.85 -10.96L29.95 -10.23L14.05 -1.77L13.75 -2.40ZM29.95 -10.23L30.05 -9.52L14.40 -1.19L14.05 -1.77ZM30.05 -9.52L30.17 -8.84L14.79 -0.66L14.40 -1.19ZM30.17 -8.84L30.30 -8.19L15.23 -0.17L14.79 -0.66ZM30.30 -8.19L30.44 -7.56L15.71 0.27L15.23 -0.17ZM30.44 -7.56L30.59 -6.97L16.23 0.67L15.71 0.27ZM30.59 -6.97L30.75 -6.40L16.78 1.03L16.23 0.67ZM30.75 -6.40L30.92 -5.86L17.35 1.35L16.78 1.03ZM30.92 -5.86L31.09 -5.35L17.95 1.64L17.35 1.35ZM31.09 -5.35L31.27 -4.86L18.56 1.90L17.95 1.64ZM31.27 -4.86L31.45 -4.39L19.18 2.13L18.56 1.90ZM31.45 -4.39L31.63 -3.94L19.81 2.34L19.18 2.13ZM31.63 -3.94L31.81 -3.52L20.44 2.52L19.81 2.34ZM31.81 -3.52L31.99 -3.12L21.07 2.68L20.44 2.52ZM31.99 -3.12L32.17 -2.74L21.69 2.83L21.07 2.68ZM32.17 -2.74L32.34 -2.38L22.30 2.96L21.69 2.83ZM32.34 -2.38L32.51 -2.04L22.90 3.07L22.30 2.96ZM32.51 -2.04L32.67 -1.71L23.47 3.18L22.90 3.07ZM32.67 -1.71L32.83 -1.41L24.01 3.28L23.47 3.18ZM32.83 -1.41L32.98 -1.12L24.53 3.38L24.01 3.28ZM32.98 -1.12L33.11 -0.84L25.01 3.47L24.53 3.38ZM33.11 -0.84L33.24 -0.58L25.45 3.56L25.01 3.47ZM33.24 -0.58L33.35 -0.33L25.84 3.66L25.45 3.56ZM33.35 -0.33L33.45 -0.10L26.18 3.77L25.84 3.66ZM33.45 -0.10L33.53 0.12L26.47 3.88L26.18 3.77Z"/><path d="M95.41 -36.65L95.44 -36.66L92.47 -31.08L92.59 -31.35ZM95.44 -36.66L95.49 -36.70L92.33 -30.76L92.47 -31.08ZM95.49 -36.70L95.54 -36.75L92.17 -30.41L92.33 -30.76ZM95.54 -36.75L95.61 -36.81L92.00 -30.02L92.17 -30.41ZM95.61 -36.81L95.68 -36.88L91.81 -29.61L92.00 -30.02ZM95.68 -36.88L95.76 -36.97L91.61 -29.16L91.81 -29.61ZM95.76 -36.97L95.85 -37.06L91.40 -28.68L91.61 -29.16ZM95.85 -37.06L95.94 -37.15L91.17 -28.19L91.40 -28.68ZM95.94 -37.15L96.03 -37.24L90.94 -27.67L91.17 -28.19ZM96.03 -37.24L96.12 -37.33L90.70 -27.13L90.94 -27.67ZM96.12 -37.33L96.21 -37.41L90.45 -26.58L90.70 -27.13ZM96.21 -37.41L96.30 -37.49L90.20 -26.01L90.45 -26.58ZM96.30 -37.49L96.39 -37.56L89.94 -25.43L90.20 -26.01ZM96.39 -37.56L96.47 -37.61L89.68 -24.85L89.94 -25.43ZM96.47 -37.61L96.54 -37.65L89.43 -24.26L89.68 -24.85ZM96.54 -37.65L96.61 -37.66L89.17 -23.67L89.43 -24.26ZM96.61 -37.66L96.67 -37.66L88.91 -23.08L89.17 -23.67ZM96.67 -37.66L96.71 -37.64L88.66 -22.49L88.91 -23.08ZM96.71 -37.64L96.75 -37.58L88.41 -21.91L88.66 -22.49ZM96.75 -37.58L96.77 -37.50L88.17 -21.33L88.41 -21.91ZM96.77 -37.50L96.78 -37.39L87.94 -20.77L88.17 -21.33ZM96.78 -37.39L96.77 -37.24L87.72 -20.22L87.94 -20.77ZM96.77 -37.24L96.74 -37.05L87.51 -19.68L87.72 -20.22ZM96.74 -37.05L96.69 -36.83L87.31 -19.17L87.51 -19.68ZM96.69 -36.83L96.63 -36.57L87.12 -18.67L87.31 -19.17ZM96.63 -36.57L96.56 -36.28L86.94 -18.18L87.12 -18.67ZM96.56 -36.28L96.48 -35.95L86.77 -17.70L86.94 -18.18ZM96.48 -35.95L96.38 -35.60L86.61 -17.23L86.77 -17.70ZM96.38 -35.60L96.28 -35.23L86.46 -16.76L86.61 -17.23ZM96.28 -35.23L96.16 -34.83L86.31 -16.30L86.46 -16.76ZM96.16 -34.83L96.04 -34.40L86.17 -15.84L86.31 -16.30ZM96.04 -34.40L95.90 -33.95L86.02 -15.38L86.17 -15.84ZM95.90 -33.95L95.76 -33.49L85.89 -14.92L86.02 -15.38ZM95.76 -33.49L95.61 -33.00L85.75 -14.46L85.89 -14.92ZM95.61 -33.00L95.44 -32.49L85.61 -14.00L85.75 -14.46ZM95.44 -32.49L95.28 -31.97L85.47 -13.53L85.61 -14.00ZM95.28 -31.97L95.10 -31.43L85.33 -13.06L85.47 -13.53ZM95.10 -31.43L94.91 -30.87L85.19 -12.59L85.33 -13.06ZM94.91 -30.87L94.72 -30.30L85.04 -12.10L85.19 -12.59ZM94.72 -30.30L94.52 -29.73L84.89 -11.61L85.04 -12.10ZM94.52 -29.73L94.31 -29.14L84.73 -11.10L84.89 -11.61ZM94.31 -29.14L94.10 -28.54L84.56 -10.59L84.73 -11.10ZM94.10 -28.54L93.88 -27.93L84.38 -10.06L84.56 -10.59ZM93.88 -27.93L93.65 -27.32L84.19 -9.52L84.38 -10.06ZM93.65 -27.32L93.42 -26.70L83.99 -8.96L84.19 -9.52ZM93.42 -26.70L93.18 -26.08L83.77 -8.38L83.99 -8.96ZM93.18 -26.08L92.94 -25.45L83.55 -7.79L83.77 -8.38ZM92.94 -25.45L92.69 -24.83L83.31 -7.17L83.55 -7.79ZM92.69 -24.83L92.45 -24.19L83.06 -6.53L83.31 -7.17ZM92.45 -24.19L92.20 -23.53L82.81 -5.87L83.06 -6.53ZM92.20 -23.53L91.96 -22.86L82.56 -5.19L82.81 -5.87ZM91.96 -22.86L91.71 -22.16L82.32 -4.49L82.56 -5.19ZM91.71 -22.16L91.47 -21.44L82.07 -3.77L82.32 -4.49ZM91.47 -21.44L91.22 -20.71L81.82 -3.04L82.07 -3.77ZM91.22 -20.71L90.96 -19.97L81.56 -2.29L81.82 -3.04ZM90.96 -19.97L90.70 -19.22L81.30 -1.52L81.56 -2.29ZM90.70 -19.22L90.44 -18.45L81.03 -0.75L81.30 -1.52ZM90.44 -18.45L90.16 -17.68L80.75 0.03L81.03 -0.75ZM90.16 -17.68L89.88 -16.89L80.46 0.81L80.75 0.03ZM89.88 -16.89L89.58 -16.11L80.17 1.61L80.46 0.81ZM89.58 -16.11L89.28 -15.32L79.86 2.40L80.17 1.61ZM89.28 -15.32L88.96 -14.52L79.53 3.20L79.86 2.40ZM88.96 -14.52L88.62 -13.73L79.20 3.99L79.53 3.20ZM88.62 -13.73L88.27 -12.94L78.84 4.79L79.20 3.99ZM88.27 -12.94L87.90 -12.15L78.47 5.58L78.84 4.79ZM87.90 -12.15L87.51 -11.36L78.09 6.36L78.47 5.58ZM87.51 -11.36L87.10 -10.58L77.68 7.14L78.09 6.36ZM77.68 7.14L77.25 7.90L86.67 -9.81L87.10 -10.58ZM77.25 7.90L76.80 8.66L86.21 -9.05L86.67 -9.81ZM76.80 8.66L76.33 9.40L85.73 -8.29L86.21 -9.05ZM76.33 9.40L75.83 10.12L85.23 -7.55L85.73 -8.29ZM75.83 10.12L75.31 10.83L84.69 -6.83L85.23 -7.55ZM75.31 10.83L74.77 11.52L84.15 -6.11L84.69 -6.83ZM74.77 11.52L74.23 12.21L83.60 -5.41L84.15 -6.11ZM74.23 12.21L73.69 12.89L83.04 -4.70L83.60 -5.41ZM73.69 12.89L73.14 13.57L82.48 -4.00L83.04 -4.70ZM73.14 13.57L72.58 14.24L81.91 -3.31L82.48 -4.00ZM72.58 14.24L72.01 14.90L81.33 -2.62L81.91 -3.31ZM72.01 14.90L71.43 15.56L80.73 -1.93L81.33 -2.62ZM71.43 15.56L70.84 16.21L80.12 -1.25L80.73 -1.93ZM70.84 16.21L70.23 16.86L79.50 -0.57L80.12 -1.25ZM70.23 16.86L69.60 17.51L78.85 0.11L79.50 -0.57ZM69.60 17.51L68.94 18.15L78.18 0.79L78.85 0.11ZM68.94 18.15L68.27 18.79L77.48 1.46L78.18 0.79ZM68.27 18.79L67.57 19.43L76.76 2.14L77.48 1.46ZM67.57 19.43L66.84 20.06L76.01 2.81L76.76 2.14ZM66.84 20.06L66.08 20.69L75.23 3.48L76.01 2.81ZM66.08 20.69L65.29 21.32L74.42 4.16L75.23 3.48ZM65.29 21.32L64.46 21.96L73.57 4.83L74.42 4.16ZM64.46 21.96L63.60 22.59L72.68 5.51L73.57 4.83ZM63.60 22.59L62.70 23.22L71.76 6.18L72.68 5.51ZM62.70 23.22L61.76 23.85L70.79 6.86L71.76 6.18ZM61.76 23.85L60.77 24.48L69.78 7.55L70.79 6.86ZM60.77 24.48L59.74 25.11L68.72 8.23L69.78 7.55ZM59.74 25.11L58.67 25.75L67.62 8.92L68.72 8.23ZM58.67 25.75L57.54 26.39L66.46 9.61L67.62 8.92ZM57.54 26.39L56.37 27.03L65.26 10.31L66.46 9.61ZM56.37 27.03L55.15 27.69L64.01 11.03L65.26 10.31ZM55.15 27.69L53.90 28.36L62.73 11.75L64.01 11.03ZM53.90 28.36L52.61 29.03L61.41 12.49L62.73 11.75ZM52.61 29.03L51.28 29.71L60.05 13.23L61.41 12.49ZM51.28 29.71L49.92 30.40L58.65 13.98L60.05 13.23ZM49.92 30.40L48.51 31.08L57.21 14.73L58.65 13.98ZM48.51 31.08L47.08 31.77L55.74 15.49L57.21 14.73ZM47.08 31.77L45.61 32.46L54.23 16.24L55.74 15.49ZM45.61 32.46L44.10 33.15L52.69 17.00L54.23 16.24ZM44.10 33.15L42.56 33.83L51.11 17.75L52.69 17.00ZM42.56 33.83L41.00 34.50L49.50 18.50L51.11 17.75ZM41.00 34.50L39.40 35.17L47.87 19.24L49.50 18.50ZM39.40 35.17L37.77 35.83L46.19 19.97L47.87 19.24ZM37.77 35.83L36.11 36.47L44.49 20.70L46.19 19.97ZM36.11 36.47L34.42 37.11L42.77 21.41L44.49 20.70ZM34.42 37.11L32.70 37.73L41.01 22.11L42.77 21.41ZM32.70 37.73L30.96 38.33L39.22 22.80L41.01 22.11ZM30.96 38.33L29.20 38.91L37.41 23.46L39.22 22.80ZM29.20 38.91L27.41 39.48L35.58 24.11L37.41 23.46ZM27.41 39.48L25.59 40.02L33.71 24.74L35.58 24.11ZM25.59 40.02L23.75 40.54L31.83 25.35L33.71 24.74ZM23.75 40.54L21.89 41.04L29.92 25.94L31.83 25.35ZM21.89 41.04L20.01 41.51L27.99 26.49L29.92 25.94ZM20.01 41.51L18.09 41.96L26.02 27.04L27.99 26.49ZM18.09 41.96L16.12 42.41L24.01 27.58L26.02 27.04ZM16.12 42.41L14.11 42.85L21.95 28.11L24.01 27.58ZM14.11 42.85L12.06 43.28L19.84 28.64L21.95 28.11ZM12.06 43.28L9.96 43.71L17.70 29.15L19.84 28.64ZM9.96 43.71L7.83 44.12L15.52 29.66L17.70 29.15ZM7.83 44.12L5.66 44.53L13.30 30.15L15.52 29.66ZM5.66 44.53L3.46 44.92L11.06 30.64L13.30 30.15ZM3.46 44.92L1.24 45.29L8.78 31.11L11.06 30.64ZM1.24 45.29L-1.01 45.65L6.48 31.57L8.78 31.11ZM-1.01 45.65L-3.28 45.99L4.16 32.01L6.48 31.57ZM-3.28 45.99L-5.57 46.32L1.82 32.43L4.16 32.01ZM-5.57 46.32L-7.87 46.62L-0.54 32.84L1.82 32.43ZM-7.87 46.62L-10.18 46.90L-2.91 33.23L-0.54 32.84ZM-10.18 46.90L-12.51 47.16L-5.29 33.60L-2.91 33.23ZM-12.51 47.16L-14.83 47.39L-7.68 33.94L-5.29 33.60ZM-14.83 47.39L-17.17 47.60L-10.08 34.27L-7.68 33.94ZM-17.17 47.60L-19.50 47.77L-12.47 34.57L-10.08 34.27ZM-19.50 47.77L-21.82 47.92L-14.87 34.85L-12.47 34.57ZM-21.82 47.92L-24.14 48.04L-17.26 35.10L-14.87 34.85ZM-24.14 48.04L-26.45 48.13L-19.64 35.32L-17.26 35.10ZM-26.45 48.13L-28.75 48.18L-22.01 35.52L-19.64 35.32ZM-28.75 48.18L-31.03 48.20L-24.37 35.68L-22.01 35.52ZM-31.03 48.20L-33.29 48.18L-26.71 35.82L-24.37 35.68ZM-33.29 48.18L-35.55 48.13L-29.06 35.93L-26.71 35.82ZM-35.55 48.13L-37.84 48.04L-31.44 36.01L-29.06 35.93ZM-37.84 48.04L-40.15 47.92L-33.85 36.06L-31.44 36.01ZM-40.15 47.92L-42.48 47.76L-36.28 36.09L-33.85 36.06ZM-42.48 47.76L-44.83 47.58L-38.72 36.09L-36.28 36.09ZM-44.83 47.58L-47.19 47.37L-41.18 36.07L-38.72 36.09ZM-47.19 47.37L-49.56 47.12L-43.66 36.03L-41.18 36.07ZM-49.56 47.12L-51.93 46.86L-46.14 35.96L-43.66 36.03ZM-51.93 46.86L-54.31 46.56L-48.63 35.87L-46.14 35.96ZM-54.31 46.56L-56.69 46.24L-51.11 35.76L-48.63 35.87ZM-56.69 46.24L-59.06 45.90L-53.60 35.63L-51.11 35.76ZM-59.06 45.90L-61.42 45.53L-56.08 35.47L-53.60 35.63ZM-61.42 45.53L-63.78 45.14L-58.55 35.30L-56.08 35.47ZM-63.78 45.14L-66.11 44.73L-61.00 35.11L-58.55 35.30ZM-66.11 44.73L-68.44 44.30L-63.44 34.90L-61.00 35.11ZM-68.44 44.30L-70.74 43.85L-65.86 34.67L-63.44 34.90ZM-70.74 43.85L-73.01 43.38L-68.25 34.43L-65.86 34.67ZM-73.01 43.38L-75.26 42.90L-70.62 34.17L-68.25 34.43ZM-75.26 42.90L-77.48 42.40L-72.95 33.89L-70.62 34.17ZM-77.48 42.40L-79.66 41.88L-75.25 33.60L-72.95 33.89ZM-79.66 41.88L-81.80 41.36L-77.51 33.29L-75.25 33.60ZM-81.80 41.36L-83.90 40.82L-79.73 32.97L-77.51 33.29ZM-83.90 40.82L-85.96 40.27L-81.90 32.64L-79.73 32.97ZM-85.96 40.27L-87.97 39.71L-84.03 32.29L-81.90 32.64ZM-87.97 39.71L-89.97 39.11L-86.14 31.91L-84.03 32.29ZM-89.97 39.11L-91.98 38.45L-88.27 31.48L-86.14 31.91ZM-91.98 38.45L-94.00 37.74L-90.42 31.00L-88.27 31.48ZM-94.00 37.74L-96.02 36.97L-92.57 30.48L-90.42 31.00ZM-96.02 36.97L-98.05 36.17L-94.73 29.92L-92.57 30.48ZM-98.05 36.17L-100.06 35.32L-96.88 29.33L-94.73 29.92ZM-100.06 35.32L-102.07 34.45L-99.01 28.71L-96.88 29.33ZM-102.07 34.45L-104.05 33.56L-101.14 28.07L-99.01 28.71ZM-104.05 33.56L-106.01 32.64L-103.23 27.42L-101.14 28.07ZM-106.01 32.64L-107.94 31.72L-105.30 26.75L-103.23 27.42ZM-107.94 31.72L-109.83 30.78L-107.33 26.07L-105.30 26.75ZM-109.83 30.78L-111.69 29.85L-109.31 25.40L-107.33 26.07ZM-111.69 29.85L-113.49 28.93L-111.25 24.72L-109.31 25.40ZM-113.49 28.93L-115.24 28.02L-113.13 24.05L-111.25 24.72ZM-115.24 28.02L-116.93 27.13L-114.95 23.40L-113.13 24.05ZM-116.93 27.13L-118.56 26.27L-116.70 22.77L-114.95 23.40ZM-118.56 26.27L-120.12 25.44L-118.37 22.15L-116.70 22.77ZM-120.12 25.44L-121.60 24.65L-119.96 21.57L-118.37 22.15ZM-121.60 24.65L-123.00 23.90L-121.47 21.02L-119.96 21.57ZM-123.00 23.90L-124.31 23.21L-122.87 20.51L-121.47 21.02ZM-124.31 23.21L-125.53 22.57L-124.18 20.04L-122.87 20.51ZM-125.53 22.57L-126.65 21.99L-125.38 19.62L-124.18 20.04ZM-126.65 21.99L-127.66 21.49L-126.47 19.25L-125.38 19.62ZM-127.66 21.49L-128.56 21.06L-127.44 18.94L-126.47 19.25Z"/><path d="M252.41 -46.65L252.48 -46.51L249.53 -40.97L249.59 -41.35ZM252.48 -46.51L252.56 -46.39L249.46 -40.55L249.53 -40.97ZM252.56 -46.39L252.66 -46.27L249.38 -40.10L249.46 -40.55ZM252.66 -46.27L252.78 -46.16L249.29 -39.60L249.38 -40.10ZM252.78 -46.16L252.90 -46.04L249.20 -39.08L249.29 -39.60ZM252.90 -46.04L253.04 -45.92L249.10 -38.51L249.20 -39.08ZM253.04 -45.92L253.18 -45.80L249.00 -37.92L249.10 -38.51ZM253.18 -45.80L253.34 -45.67L248.89 -37.30L249.00 -37.92ZM253.34 -45.67L253.49 -45.52L248.77 -36.64L248.89 -37.30ZM253.49 -45.52L253.65 -45.37L248.65 -35.96L248.77 -36.64ZM253.65 -45.37L253.81 -45.19L248.53 -35.25L248.65 -35.96ZM253.81 -45.19L253.97 -44.99L248.40 -34.51L248.53 -35.25ZM253.97 -44.99L254.13 -44.77L248.27 -33.74L248.40 -34.51ZM254.13 -44.77L254.29 -44.53L248.14 -32.96L248.27 -33.74ZM254.29 -44.53L254.44 -44.25L248.00 -32.15L248.14 -32.96ZM254.44 -44.25L254.58 -43.94L247.87 -31.32L248.00 -32.15ZM254.58 -43.94L254.71 -43.60L247.73 -30.47L247.87 -31.32ZM254.71 -43.60L254.83 -43.21L247.59 -29.60L247.73 -30.47ZM254.83 -43.21L254.94 -42.79L247.45 -28.71L247.59 -29.60ZM254.94 -42.79L255.03 -42.32L247.31 -27.81L247.45 -28.71ZM255.03 -42.32L255.11 -41.81L247.18 -26.89L247.31 -27.81ZM255.11 -41.81L255.17 -41.24L247.04 -25.96L247.18 -26.89ZM255.17 -41.24L255.21 -40.62L246.91 -25.01L247.04 -25.96ZM255.21 -40.62L255.23 -39.95L246.77 -24.05L246.91 -25.01ZM255.23 -39.95L255.23 -39.19L246.65 -23.05L246.77 -24.05ZM255.23 -39.19L255.23 -38.33L246.54 -21.98L246.65 -23.05ZM255.23 -38.33L255.23 -37.39L246.43 -20.84L246.54 -21.98ZM255.23 -37.39L255.22 -36.36L246.33 -19.65L246.43 -20.84ZM255.22 -36.36L255.21 -35.27L246.24 -18.40L246.33 -19.65ZM255.21 -35.27L255.19 -34.11L246.15 -17.11L246.24 -18.40ZM255.19 -34.11L255.16 -32.89L246.07 -15.79L246.15 -17.11ZM255.16 -32.89L255.13 -31.64L245.98 -14.44L246.07 -15.79ZM255.13 -31.64L255.08 -30.34L245.90 -13.07L245.98 -14.44ZM255.08 -30.34L255.03 -29.03L245.81 -11.68L245.90 -13.07ZM255.03 -29.03L254.96 -27.69L245.71 -10.29L245.81 -11.68ZM254.96 -27.69L254.89 -26.34L245.61 -8.91L245.71 -10.29ZM254.89 -26.34L254.80 -25.00L245.51 -7.53L245.61 -8.91ZM254.80 -25.00L254.69 -23.66L245.39 -6.17L245.51 -7.53ZM254.69 -23.66L254.57 -22.35L245.26 -4.83L245.39 -6.17ZM254.57 -22.35L254.44 -21.06L245.12 -3.53L245.26 -4.83ZM254.44 -21.06L254.29 -19.81L244.96 -2.27L245.12 -3.53ZM254.29 -19.81L254.12 -18.60L244.79 -1.05L244.96 -2.27ZM254.12 -18.60L253.93 -17.45L244.60 0.11L244.79 -1.05ZM253.93 -17.45L253.73 -16.36L244.38 1.21L244.60 0.11ZM253.73 -16.36L253.50 -15.35L244.15 2.23L244.38 1.21ZM253.50 -15.35L253.25 -14.41L243.90 3.19L244.15 2.23ZM253.25 -14.41L252.99 -13.57L243.61 4.05L243.90 3.19ZM252.99 -13.57L252.69 -12.83L243.31 4.83L243.61 4.05ZM252.69 -12.83L252.37 -12.17L242.97 5.52L243.31 4.83ZM242.97 5.52L242.60 6.15L252.02 -11.57L252.37 -12.17ZM242.60 6.15L242.20 6.72L251.63 -11.03L252.02 -11.57ZM242.20 6.72L241.78 7.22L251.22 -10.54L251.63 -11.03ZM241.78 7.22L241.33 7.68L250.78 -10.10L251.22 -10.54ZM241.33 7.68L240.86 8.08L250.31 -9.70L250.78 -10.10ZM240.86 8.08L240.37 8.43L249.83 -9.35L250.31 -9.70ZM240.37 8.43L239.86 8.75L249.32 -9.04L249.83 -9.35ZM239.86 8.75L239.34 9.02L248.80 -8.77L249.32 -9.04ZM239.34 9.02L238.81 9.26L248.26 -8.53L248.80 -8.77ZM238.81 9.26L238.27 9.46L247.72 -8.32L248.26 -8.53ZM238.27 9.46L237.71 9.63L247.16 -8.13L247.72 -8.32ZM237.71 9.63L237.16 9.78L246.60 -7.97L247.16 -8.13ZM237.16 9.78L236.60 9.91L246.03 -7.83L246.60 -7.97ZM236.60 9.91L236.03 10.02L245.46 -7.71L246.03 -7.83ZM236.03 10.02L235.47 10.12L244.90 -7.60L245.46 -7.71ZM235.47 10.12L234.92 10.21L244.33 -7.50L244.90 -7.60ZM234.92 10.21L234.36 10.29L243.78 -7.41L244.33 -7.50ZM234.36 10.29L233.82 10.36L243.23 -7.32L243.78 -7.41ZM233.82 10.36L233.29 10.44L242.69 -7.24L243.23 -7.32ZM233.29 10.44L232.77 10.52L242.16 -7.15L242.69 -7.24ZM232.77 10.52L232.26 10.61L241.65 -7.05L242.16 -7.15ZM232.26 10.61L231.77 10.71L241.16 -6.95L241.65 -7.05ZM231.77 10.71L231.31 10.83L240.69 -6.83L241.16 -6.95ZM231.31 10.83L230.87 10.94L240.26 -6.71L240.69 -6.83ZM230.87 10.94L230.48 11.04L239.87 -6.62L240.26 -6.71ZM230.48 11.04L230.14 11.12L239.53 -6.54L239.87 -6.62ZM230.14 11.12L229.82 11.18L239.21 -6.48L239.53 -6.54ZM229.82 11.18L229.54 11.22L238.93 -6.44L239.21 -6.48ZM229.54 11.22L229.27 11.25L238.66 -6.41L238.93 -6.44ZM229.27 11.25L229.03 11.27L238.42 -6.39L238.66 -6.41ZM229.03 11.27L228.79 11.27L238.18 -6.39L238.42 -6.39ZM228.79 11.27L228.55 11.27L237.94 -6.39L238.18 -6.39ZM228.55 11.27L228.31 11.25L237.70 -6.40L237.94 -6.39ZM228.31 11.25L228.07 11.23L237.46 -6.43L237.70 -6.40ZM228.07 11.23L227.81 11.20L237.19 -6.45L237.46 -6.43ZM227.81 11.20L227.52 11.17L236.91 -6.49L237.19 -6.45ZM227.52 11.17L227.21 11.13L236.60 -6.53L236.91 -6.49ZM227.21 11.13L226.87 11.09L236.26 -6.57L236.60 -6.53ZM226.87 11.09L226.49 11.05L235.88 -6.61L236.26 -6.57ZM226.49 11.05L226.06 11.01L235.45 -6.65L235.88 -6.61ZM226.06 11.01L225.59 10.97L234.98 -6.69L235.45 -6.65ZM225.59 10.97L225.05 10.93L234.44 -6.73L234.98 -6.69ZM225.05 10.93L224.45 10.90L233.84 -6.76L234.44 -6.73ZM224.45 10.90L223.79 10.87L233.18 -6.79L233.84 -6.76ZM223.79 10.87L223.04 10.85L232.43 -6.81L233.18 -6.79ZM223.04 10.85L222.22 10.83L231.61 -6.82L232.43 -6.81ZM222.22 10.83L221.31 10.83L230.69 -6.83L231.61 -6.82ZM221.31 10.83L220.30 10.83L229.69 -6.83L230.69 -6.83ZM220.30 10.83L219.21 10.83L228.60 -6.83L229.69 -6.83ZM219.21 10.83L218.04 10.84L227.43 -6.82L228.60 -6.83ZM218.04 10.84L216.79 10.84L226.18 -6.82L227.43 -6.82ZM216.79 10.84L215.47 10.85L224.86 -6.81L226.18 -6.82ZM215.47 10.85L214.09 10.85L223.48 -6.81L224.86 -6.81ZM214.09 10.85L212.65 10.86L222.04 -6.80L223.48 -6.81ZM212.65 10.86L211.16 10.87L220.55 -6.79L222.04 -6.80ZM211.16 10.87L209.62 10.87L219.01 -6.79L220.55 -6.79ZM209.62 10.87L208.05 10.88L217.44 -6.78L219.01 -6.79ZM208.05 10.88L206.44 10.89L215.83 -6.77L217.44 -6.78ZM206.44 10.89L204.81 10.89L214.19 -6.77L215.83 -6.77ZM204.81 10.89L203.15 10.90L212.54 -6.76L214.19 -6.77ZM203.15 10.90L201.48 10.90L210.87 -6.76L212.54 -6.76ZM201.48 10.90L199.80 10.90L209.19 -6.76L210.87 -6.76ZM199.80 10.90L198.12 10.90L207.51 -6.76L209.19 -6.76ZM198.12 10.90L196.44 10.90L205.83 -6.76L207.51 -6.76ZM196.44 10.90L194.77 10.90L204.16 -6.76L205.83 -6.76ZM194.77 10.90L193.12 10.89L202.51 -6.76L204.16 -6.76ZM193.12 10.89L191.49 10.89L200.88 -6.77L202.51 -6.76ZM191.49 10.89L189.89 10.88L199.28 -6.78L200.88 -6.77ZM189.89 10.88L188.32 10.86L197.71 -6.79L199.28 -6.78ZM188.32 10.86L186.79 10.85L196.18 -6.81L197.71 -6.79ZM186.79 10.85L185.31 10.83L194.69 -6.83L196.18 -6.81ZM185.31 10.83L183.84 10.81L193.23 -6.85L194.69 -6.83ZM183.84 10.81L182.35 10.80L191.74 -6.87L193.23 -6.85ZM182.35 10.80L180.85 10.78L190.24 -6.88L191.74 -6.87ZM180.85 10.78L179.33 10.77L188.73 -6.90L190.24 -6.88ZM179.33 10.77L177.81 10.76L187.21 -6.91L188.73 -6.90ZM177.81 10.76L176.28 10.75L185.68 -6.93L187.21 -6.91ZM176.28 10.75L174.75 10.74L184.16 -6.94L185.68 -6.93ZM174.75 10.74L173.22 10.73L182.63 -6.96L184.16 -6.94ZM173.22 10.73L171.70 10.72L181.11 -6.97L182.63 -6.96ZM171.70 10.72L170.17 10.71L179.59 -7.00L181.11 -6.97ZM170.17 10.71L168.66 10.69L178.08 -7.02L179.59 -7.00ZM168.66 10.69L167.17 10.67L176.58 -7.04L178.08 -7.02ZM167.17 10.67L165.68 10.64L175.10 -7.07L176.58 -7.04ZM165.68 10.64L164.22 10.61L173.64 -7.11L175.10 -7.07ZM164.22 10.61L162.78 10.57L172.20 -7.15L173.64 -7.11ZM162.78 10.57L161.36 10.53L170.79 -7.20L172.20 -7.15ZM161.36 10.53L159.97 10.48L169.40 -7.25L170.79 -7.20ZM159.97 10.48L158.62 10.42L168.04 -7.31L169.40 -7.25ZM158.62 10.42L157.29 10.34L166.71 -7.37L168.04 -7.31ZM157.29 10.34L156.01 10.26L165.43 -7.45L166.71 -7.37ZM156.01 10.26L154.76 10.17L164.18 -7.53L165.43 -7.45ZM154.76 10.17L153.56 10.07L162.97 -7.62L164.18 -7.53ZM153.56 10.07L152.41 9.96L161.81 -7.72L162.97 -7.62ZM152.41 9.96L151.31 9.83L160.69 -7.83L161.81 -7.72ZM151.31 9.83L150.25 9.70L159.63 -7.94L160.69 -7.83ZM150.25 9.70L149.23 9.57L158.60 -8.05L159.63 -7.94ZM149.23 9.57L148.25 9.44L157.61 -8.15L158.60 -8.05ZM148.25 9.44L147.31 9.31L156.65 -8.26L157.61 -8.15ZM147.31 9.31L146.41 9.17L155.73 -8.36L156.65 -8.26ZM146.41 9.17L145.53 9.04L154.84 -8.46L155.73 -8.36ZM145.53 9.04L144.69 8.90L153.98 -8.57L154.84 -8.46ZM144.69 8.90L143.88 8.75L153.15 -8.68L153.98 -8.57ZM143.88 8.75L143.10 8.60L152.35 -8.79L153.15 -8.68ZM143.10 8.60L142.35 8.43L151.57 -8.92L152.35 -8.79ZM142.35 8.43L141.62 8.26L150.82 -9.05L151.57 -8.92ZM141.62 8.26L140.91 8.07L150.09 -9.20L150.82 -9.05ZM140.91 8.07L140.22 7.87L149.38 -9.36L150.09 -9.20ZM140.22 7.87L139.55 7.66L148.69 -9.53L149.38 -9.36ZM139.55 7.66L138.90 7.43L148.02 -9.72L148.69 -9.53ZM138.90 7.43L138.27 7.18L147.36 -9.92L148.02 -9.72ZM138.27 7.18L137.65 6.91L146.72 -10.15L147.36 -9.92ZM137.65 6.91L137.04 6.63L146.09 -10.39L146.72 -10.15ZM137.04 6.63L136.44 6.32L145.47 -10.66L146.09 -10.39ZM136.44 6.32L135.85 5.98L144.85 -10.95L145.47 -10.66ZM135.85 5.98L135.27 5.62L144.25 -11.27L144.85 -10.95ZM135.27 5.62L134.69 5.24L143.65 -11.61L144.25 -11.27ZM134.69 5.24L134.11 4.83L143.05 -11.98L143.65 -11.61ZM134.11 4.83L133.54 4.39L142.46 -12.39L143.05 -11.98ZM133.54 4.39L132.97 3.92L141.87 -12.82L142.46 -12.39ZM132.97 3.92L132.39 3.42L141.27 -13.29L141.87 -12.82ZM132.39 3.42L131.81 2.89L140.67 -13.78L141.27 -13.29ZM131.81 2.89L131.24 2.33L140.08 -14.30L140.67 -13.78ZM131.24 2.33L130.67 1.75L139.50 -14.84L140.08 -14.30ZM130.67 1.75L130.11 1.14L138.92 -15.41L139.50 -14.84ZM130.11 1.14L129.56 0.52L138.35 -16.00L138.92 -15.41ZM129.56 0.52L129.03 -0.13L137.79 -16.61L138.35 -16.00ZM129.03 -0.13L128.50 -0.80L137.25 -17.24L137.79 -16.61ZM128.50 -0.80L127.99 -1.48L136.72 -17.89L137.25 -17.24ZM127.99 -1.48L127.50 -2.18L136.21 -18.55L136.72 -17.89ZM127.50 -2.18L127.03 -2.90L135.72 -19.23L136.21 -18.55ZM127.03 -2.90L126.59 -3.62L135.25 -19.92L135.72 -19.23ZM126.59 -3.62L126.16 -4.36L134.81 -20.62L135.25 -19.92ZM126.16 -4.36L125.77 -5.11L134.39 -21.34L134.81 -20.62ZM125.77 -5.11L125.40 -5.87L134.01 -22.06L134.39 -21.34ZM125.40 -5.87L125.06 -6.63L133.65 -22.78L134.01 -22.06ZM125.06 -6.63L124.76 -7.40L133.33 -23.52L133.65 -22.78ZM124.76 -7.40L124.50 -8.18L133.04 -24.26L133.33 -23.52ZM124.50 -8.18L124.27 -8.95L132.80 -24.99L133.04 -24.26ZM124.27 -8.95L124.08 -9.73L132.59 -25.74L132.80 -24.99ZM124.08 -9.73L123.93 -10.51L132.42 -26.47L132.59 -25.74ZM123.93 -10.51L123.83 -11.28L132.30 -27.21L132.42 -26.47ZM123.83 -11.28L123.77 -12.05L132.23 -27.95L132.30 -27.21ZM123.77 -12.05L123.76 -12.85L132.19 -28.70L132.23 -27.95ZM123.76 -12.85L123.79 -13.69L132.20 -29.50L132.19 -28.70ZM123.79 -13.69L123.86 -14.57L132.25 -30.34L132.20 -29.50ZM123.86 -14.57L123.97 -15.49L132.33 -31.22L132.25 -30.34ZM123.97 -15.49L124.12 -16.44L132.45 -32.12L132.33 -31.22ZM124.12 -16.44L124.30 -17.42L132.61 -33.05L132.45 -32.12ZM124.30 -17.42L124.51 -18.41L132.80 -33.99L132.61 -33.05ZM124.51 -18.41L124.76 -19.42L133.02 -34.95L132.80 -33.99ZM124.76 -19.42L125.04 -20.43L133.27 -35.92L133.02 -34.95ZM125.04 -20.43L125.35 -21.45L133.55 -36.88L133.27 -35.92ZM125.35 -21.45L125.68 -22.46L133.86 -37.84L133.55 -36.88ZM125.68 -22.46L126.05 -23.45L134.20 -38.80L133.86 -37.84ZM126.05 -23.45L126.44 -24.44L134.57 -39.73L134.20 -38.80ZM126.44 -24.44L126.85 -25.40L134.96 -40.65L134.57 -39.73ZM126.85 -25.40L127.29 -26.33L135.37 -41.54L134.96 -40.65ZM127.29 -26.33L127.74 -27.23L135.81 -42.40L135.37 -41.54ZM135.81 -42.40L136.27 -43.23L128.22 -28.09L127.74 -27.23ZM136.27 -43.23L136.75 -44.01L128.72 -28.90L128.22 -28.09ZM136.75 -44.01L137.25 -44.74L129.23 -29.66L128.72 -28.90ZM137.25 -44.74L137.77 -45.42L129.76 -30.37L129.23 -29.66ZM137.77 -45.42L138.30 -46.04L130.31 -31.01L129.76 -30.37ZM138.30 -46.04L138.85 -46.60L130.86 -31.58L130.31 -31.01ZM138.85 -46.60L139.41 -47.09L131.43 -32.08L130.86 -31.58ZM139.41 -47.09L139.99 -47.51L132.01 -32.49L131.43 -32.08ZM139.99 -47.51L140.61 -47.86L132.63 -32.85L132.01 -32.49ZM140.61 -47.86L141.29 -48.17L133.30 -33.15L132.63 -32.85ZM141.29 -48.17L142.03 -48.44L134.04 -33.41L133.30 -33.15ZM142.03 -48.44L142.82 -48.67L134.82 -33.63L134.04 -33.41ZM142.82 -48.67L143.66 -48.86L135.65 -33.80L134.82 -33.63ZM143.66 -48.86L144.54 -49.01L136.52 -33.93L135.65 -33.80ZM144.54 -49.01L145.45 -49.12L137.42 -34.01L136.52 -33.93ZM145.45 -49.12L146.40 -49.20L138.35 -34.06L137.42 -34.01ZM146.40 -49.20L147.36 -49.24L139.29 -34.07L138.35 -34.06ZM147.36 -49.24L148.34 -49.24L140.25 -34.03L139.29 -34.07ZM148.34 -49.24L149.32 -49.21L141.22 -33.96L140.25 -34.03ZM149.32 -49.21L150.31 -49.14L142.19 -33.86L141.22 -33.96ZM150.31 -49.14L151.30 -49.04L143.15 -33.71L142.19 -33.86ZM151.30 -49.04L152.28 -48.91L144.11 -33.54L143.15 -33.71ZM152.28 -48.91L153.24 -48.74L145.05 -33.33L144.11 -33.54ZM153.24 -48.74L154.19 -48.55L145.96 -33.08L145.05 -33.33ZM154.19 -48.55L155.10 -48.32L146.85 -32.80L145.96 -33.08ZM155.10 -48.32L155.98 -48.07L147.70 -32.50L146.85 -32.80ZM155.98 -48.07L156.82 -47.78L148.52 -32.16L147.70 -32.50ZM156.82 -47.78L157.62 -47.47L149.29 -31.79L148.52 -32.16ZM157.62 -47.47L158.37 -47.13L150.00 -31.40L149.29 -31.79ZM158.37 -47.13L159.05 -46.76L150.66 -30.98L150.00 -31.40ZM159.05 -46.76L159.67 -46.36L151.25 -30.53L150.66 -30.98ZM159.67 -46.36L160.23 -45.95L151.77 -30.05L151.25 -30.53ZM160.23 -45.95L160.72 -45.49L152.24 -29.54L151.77 -30.05ZM160.72 -45.49L161.19 -44.98L152.67 -28.97L152.24 -29.54ZM161.19 -44.98L161.62 -44.43L153.07 -28.35L152.67 -28.97ZM161.62 -44.43L162.03 -43.83L153.44 -27.68L153.07 -28.35ZM162.03 -43.83L162.40 -43.19L153.77 -26.96L153.44 -27.68ZM162.40 -43.19L162.74 -42.52L154.07 -26.20L153.77 -26.96ZM162.74 -42.52L163.06 -41.80L154.34 -25.41L154.07 -26.20ZM163.06 -41.80L163.34 -41.06L154.58 -24.57L154.34 -25.41ZM163.34 -41.06L163.60 -40.28L154.79 -23.71L154.58 -24.57ZM163.60 -40.28L163.84 -39.47L154.98 -22.82L154.79 -23.71ZM163.84 -39.47L164.04 -38.64L155.14 -21.90L154.98 -22.82ZM164.04 -38.64L164.22 -37.79L155.28 -20.96L155.14 -21.90ZM164.22 -37.79L164.38 -36.92L155.39 -20.00L155.28 -20.96ZM164.38 -36.92L164.51 -36.03L155.47 -19.03L155.39 -20.00ZM164.51 -36.03L164.62 -35.13L155.54 -18.04L155.47 -19.03ZM164.62 -35.13L164.71 -34.21L155.58 -17.05L155.54 -18.04ZM164.71 -34.21L164.78 -33.29L155.61 -16.05L155.58 -17.05ZM164.78 -33.29L164.82 -32.36L155.61 -15.04L155.61 -16.05ZM164.82 -32.36L164.85 -31.43L155.60 -14.04L155.61 -15.04ZM164.85 -31.43L164.85 -30.50L155.57 -13.04L155.60 -14.04ZM164.85 -30.50L164.84 -29.57L155.53 -12.06L155.57 -13.04ZM164.84 -29.57L164.81 -28.65L155.47 -11.08L155.53 -12.06ZM164.81 -28.65L164.76 -27.73L155.39 -10.12L155.47 -11.08ZM164.76 -27.73L164.69 -26.83L155.31 -9.17L155.39 -10.12ZM164.69 -26.83L164.60 -25.92L155.20 -8.22L155.31 -9.17ZM164.60 -25.92L164.48 -24.99L155.05 -7.26L155.20 -8.22ZM164.48 -24.99L164.32 -24.03L154.88 -6.27L155.05 -7.26ZM164.32 -24.03L164.14 -23.06L154.68 -5.27L154.88 -6.27ZM164.14 -23.06L163.92 -22.07L154.45 -4.25L154.68 -5.27ZM163.92 -22.07L163.68 -21.06L154.19 -3.22L154.45 -4.25ZM163.68 -21.06L163.42 -20.05L153.91 -2.18L154.19 -3.22ZM163.42 -20.05L163.13 -19.02L153.61 -1.13L153.91 -2.18ZM163.13 -19.02L162.81 -17.98L153.29 -0.08L153.61 -1.13ZM162.81 -17.98L162.48 -16.94L152.96 0.98L153.29 -0.08ZM162.48 -16.94L162.13 -15.89L152.60 2.04L152.96 0.98ZM162.13 -15.89L161.77 -14.84L152.23 3.09L152.60 2.04ZM161.77 -14.84L161.39 -13.79L151.85 4.14L152.23 3.09ZM161.39 -13.79L160.99 -12.75L151.46 5.19L151.85 4.14ZM160.99 -12.75L160.59 -11.70L151.05 6.23L151.46 5.19ZM160.59 -11.70L160.17 -10.66L150.64 7.26L151.05 6.23ZM160.17 -10.66L159.75 -9.63L150.23 8.27L150.64 7.26ZM159.75 -9.63L159.32 -8.62L149.81 9.27L150.23 8.27ZM159.32 -8.62L158.88 -7.61L149.39 10.25L149.81 9.27ZM158.88 -7.61L158.44 -6.62L148.96 11.22L149.39 10.25ZM158.44 -6.62L158.01 -5.64L148.54 12.16L148.96 11.22ZM158.01 -5.64L157.57 -4.68L148.12 13.08L148.54 12.16ZM157.57 -4.68L157.13 -3.74L147.71 13.97L148.12 13.08ZM157.13 -3.74L156.69 -2.83L147.31 14.83L147.71 13.97ZM156.69 -2.83L156.26 -1.93L146.90 15.67L147.31 14.83ZM156.26 -1.93L155.82 -1.04L146.49 16.50L146.90 15.67ZM155.82 -1.04L155.37 -0.16L146.07 17.32L146.49 16.50ZM155.37 -0.16L154.91 0.71L145.65 18.13L146.07 17.32ZM145.65 18.13L145.22 18.92L154.44 1.57L154.91 0.71ZM145.22 18.92L144.78 19.71L153.97 2.42L154.44 1.57ZM144.78 19.71L144.34 20.48L153.49 3.26L153.97 2.42ZM144.34 20.48L143.89 21.23L153.00 4.10L153.49 3.26ZM143.89 21.23L143.43 21.98L152.50 4.93L153.00 4.10ZM143.43 21.98L142.98 22.71L152.00 5.75L152.50 4.93ZM142.98 22.71L142.51 23.43L151.48 6.56L152.00 5.75ZM142.51 23.43L142.04 24.14L150.96 7.36L151.48 6.56ZM142.04 24.14L141.56 24.83L150.43 8.16L150.96 7.36ZM141.56 24.83L141.08 25.51L149.89 8.95L150.43 8.16ZM141.08 25.51L140.60 26.17L149.34 9.73L149.89 8.95ZM140.60 26.17L140.11 26.83L148.78 10.51L149.34 9.73ZM140.11 26.83L139.61 27.46L148.22 11.28L148.78 10.51ZM139.61 27.46L139.11 28.08L147.64 12.04L148.22 11.28ZM139.11 28.08L138.60 28.69L147.06 12.80L147.64 12.04ZM138.60 28.69L138.09 29.29L146.46 13.55L147.06 12.80ZM138.09 29.29L137.58 29.86L145.86 14.29L146.46 13.55ZM137.58 29.86L137.06 30.43L145.25 15.03L145.86 14.29ZM137.06 30.43L136.54 30.97L144.62 15.77L145.25 15.03ZM136.54 30.97L136.01 31.51L143.99 16.49L144.62 15.77ZM136.01 31.51L135.47 32.02L143.34 17.22L143.99 16.49ZM135.47 32.02L134.92 32.52L142.67 17.95L143.34 17.22ZM134.92 32.52L134.35 33.01L141.97 18.68L142.67 17.95ZM134.35 33.01L133.78 33.48L141.26 19.40L141.97 18.68ZM133.78 33.48L133.19 33.93L140.53 20.13L141.26 19.40ZM133.19 33.93L132.59 34.37L139.78 20.85L140.53 20.13ZM132.59 34.37L131.99 34.80L139.02 21.56L139.78 20.85ZM131.99 34.80L131.38 35.21L138.25 22.27L139.02 21.56ZM131.38 35.21L130.76 35.61L137.48 22.98L138.25 22.27ZM130.76 35.61L130.14 35.99L136.69 23.67L137.48 22.98ZM130.14 35.99L129.52 36.36L135.90 24.36L136.69 23.67ZM129.52 36.36L128.90 36.71L135.10 25.04L135.90 24.36ZM128.90 36.71L128.27 37.06L134.31 25.70L135.10 25.04ZM128.27 37.06L127.65 37.38L133.52 26.36L134.31 25.70ZM127.65 37.38L127.04 37.70L132.73 27.00L133.52 26.36ZM127.04 37.70L126.43 38.00L131.94 27.63L132.73 27.00ZM126.43 38.00L125.82 38.29L131.17 28.24L131.94 27.63ZM125.82 38.29L125.23 38.57L130.40 28.84L131.17 28.24ZM125.23 38.57L124.64 38.83L129.64 29.42L130.40 28.84ZM124.64 38.83L124.06 39.08L128.90 29.98L129.64 29.42ZM124.06 39.08L123.50 39.32L128.18 30.52L128.90 29.98ZM123.50 39.32L122.94 39.55L127.47 31.05L128.18 30.52ZM122.94 39.55L122.41 39.77L126.78 31.55L127.47 31.05ZM122.41 39.77L121.89 39.97L126.11 32.03L126.78 31.55ZM121.89 39.97L121.37 40.16L125.45 32.49L126.11 32.03ZM121.37 40.16L120.85 40.33L124.79 32.93L125.45 32.49ZM120.85 40.33L120.33 40.47L124.12 33.35L124.79 32.93ZM120.33 40.47L119.81 40.59L123.45 33.76L124.12 33.35ZM119.81 40.59L119.29 40.70L122.77 34.15L123.45 33.76ZM119.29 40.70L118.77 40.79L122.10 34.52L122.77 34.15ZM118.77 40.79L118.26 40.86L121.44 34.88L122.10 34.52ZM118.26 40.86L117.74 40.92L120.77 35.23L121.44 34.88ZM117.74 40.92L117.24 40.97L120.12 35.55L120.77 35.23ZM117.24 40.97L116.74 41.00L119.47 35.87L120.12 35.55ZM116.74 41.00L116.26 41.03L118.84 36.17L119.47 35.87ZM116.26 41.03L115.78 41.05L118.22 36.45L118.84 36.17ZM115.78 41.05L115.31 41.05L117.62 36.73L118.22 36.45ZM115.31 41.05L114.86 41.06L117.03 36.99L117.62 36.73ZM114.86 41.06L114.43 41.06L116.46 37.23L117.03 36.99ZM114.43 41.06L114.01 41.05L115.92 37.47L116.46 37.23ZM114.01 41.05L113.61 41.04L115.39 37.69L115.92 37.47ZM113.61 41.04L113.23 41.04L114.90 37.90L115.39 37.69ZM113.23 41.04L112.87 41.03L114.43 38.10L114.90 37.90ZM112.87 41.03L112.53 41.03L113.99 38.29L114.43 38.10ZM112.53 41.03L112.22 41.03L113.58 38.47L113.99 38.29ZM112.22 41.03L111.93 41.03L113.20 38.63L113.58 38.47ZM111.93 41.03L111.67 41.04L112.87 38.79L113.20 38.63ZM111.67 41.04L111.44 41.06L112.56 38.94L112.87 38.79Z"/><path d="M232 -83C234.28 -66.28 234.28 -66.28 251 -64C234.28 -61.72 234.28 -61.72 232 -45C229.72 -61.72 229.72 -61.72 213 -64C229.72 -66.28 229.72 -66.28 232 -83Z"/><path d="M-138 15 m-6 0 l6 -6 l6 6 l-6 6 z"/></symbol><symbol id="nora-mark" viewBox="-72 -72 144 144"><path transform="rotate(0)" d="M-24.24 24.46L-24.41 24.76L-23.83 23.68L-23.76 23.54ZM-24.41 24.76L-24.60 25.11L-23.93 23.83L-23.83 23.68ZM-24.60 25.11L-24.83 25.49L-24.04 24.00L-23.93 23.83ZM-24.83 25.49L-25.09 25.91L-24.16 24.17L-24.04 24.00ZM-25.09 25.91L-25.37 26.36L-24.30 24.36L-24.16 24.17ZM-25.37 26.36L-25.67 26.84L-24.46 24.56L-24.30 24.36ZM-25.67 26.84L-25.99 27.36L-24.62 24.77L-24.46 24.56ZM-25.99 27.36L-26.33 27.89L-24.78 24.99L-24.62 24.77ZM-26.33 27.89L-26.67 28.46L-24.96 25.23L-24.78 24.99ZM-26.67 28.46L-27.03 29.04L-25.14 25.47L-24.96 25.23ZM-27.03 29.04L-27.39 29.64L-25.31 25.73L-25.14 25.47ZM-27.39 29.64L-27.76 30.26L-25.49 25.99L-25.31 25.73ZM-27.76 30.26L-28.12 30.89L-25.67 26.27L-25.49 25.99ZM-28.12 30.89L-28.48 31.53L-25.84 26.56L-25.67 26.27ZM-28.48 31.53L-28.83 32.18L-26.00 26.86L-25.84 26.56ZM-26.00 26.86L-26.16 27.16L-29.17 32.84L-28.83 32.18ZM-26.16 27.16L-26.30 27.48L-29.50 33.50L-29.17 32.84ZM-26.30 27.48L-26.44 27.81L-29.81 34.16L-29.50 33.50ZM-26.44 27.81L-26.56 28.15L-30.10 34.82L-29.81 34.16ZM-26.56 28.15L-26.66 28.50L-30.37 35.48L-30.10 34.82ZM-26.66 28.50L-26.74 28.85L-30.61 36.13L-30.37 35.48ZM-26.74 28.85L-26.81 29.22L-30.82 36.77L-30.61 36.13ZM-26.81 29.22L-26.85 29.60L-31.00 37.40L-30.82 36.77ZM-26.85 29.60L-26.86 29.98L-31.14 38.02L-31.00 37.40ZM-26.86 29.98L-26.87 30.38L-31.25 38.63L-31.14 38.02ZM-26.87 30.38L-26.86 30.80L-31.36 39.26L-31.25 38.63ZM-26.86 30.80L-26.86 31.24L-31.46 39.90L-31.36 39.26ZM-26.86 31.24L-26.84 31.69L-31.55 40.56L-31.46 39.90ZM-26.84 31.69L-26.82 32.16L-31.64 41.22L-31.55 40.56ZM-26.82 32.16L-26.79 32.65L-31.71 41.88L-31.64 41.22ZM-26.79 32.65L-26.76 33.15L-31.76 42.56L-31.71 41.88ZM-26.76 33.15L-26.71 33.65L-31.81 43.24L-31.76 42.56ZM-26.71 33.65L-26.65 34.17L-31.84 43.92L-31.81 43.24ZM-26.65 34.17L-26.59 34.70L-31.85 44.60L-31.84 43.92ZM-26.59 34.70L-26.51 35.23L-31.85 45.29L-31.85 44.60ZM-26.51 35.23L-26.41 35.77L-31.84 45.98L-31.85 45.29ZM-26.41 35.77L-26.31 36.32L-31.80 46.66L-31.84 45.98ZM-26.31 36.32L-26.18 36.87L-31.75 47.34L-31.80 46.66ZM-26.18 36.87L-26.05 37.42L-31.68 48.02L-31.75 47.34ZM-26.05 37.42L-25.89 37.97L-31.59 48.69L-31.68 48.02ZM-25.89 37.97L-25.72 38.52L-31.48 49.36L-31.59 48.69ZM-25.72 38.52L-25.53 39.07L-31.35 50.02L-31.48 49.36ZM-25.53 39.07L-25.32 39.62L-31.19 50.67L-31.35 50.02ZM-25.32 39.62L-25.09 40.16L-31.01 51.31L-31.19 50.67ZM-25.09 40.16L-24.84 40.70L-30.81 51.94L-31.01 51.31ZM-24.84 40.70L-24.56 41.23L-30.58 52.55L-30.81 51.94ZM-24.56 41.23L-24.27 41.75L-30.33 53.15L-30.58 52.55ZM-24.27 41.75L-23.95 42.26L-30.05 53.74L-30.33 53.15ZM-23.95 42.26L-23.61 42.78L-29.75 54.32L-30.05 53.74ZM-23.61 42.78L-23.27 43.31L-29.43 54.91L-29.75 54.32ZM-23.27 43.31L-22.91 43.86L-29.10 55.50L-29.43 54.91ZM-22.91 43.86L-22.54 44.42L-28.75 56.09L-29.10 55.50ZM-22.54 44.42L-22.16 44.99L-28.38 56.69L-28.75 56.09ZM-22.16 44.99L-21.76 45.56L-27.99 57.28L-28.38 56.69ZM-21.76 45.56L-21.35 46.14L-27.58 57.87L-27.99 57.28ZM-21.35 46.14L-20.92 46.73L-27.16 58.46L-27.58 57.87ZM-20.92 46.73L-20.47 47.31L-26.71 59.04L-27.16 58.46ZM-20.47 47.31L-20.01 47.89L-26.24 59.61L-26.71 59.04ZM-20.01 47.89L-19.52 48.46L-25.75 60.17L-26.24 59.61ZM-19.52 48.46L-19.02 49.03L-25.23 60.72L-25.75 60.17ZM-19.02 49.03L-18.49 49.58L-24.70 61.26L-25.23 60.72ZM-18.49 49.58L-17.94 50.13L-24.13 61.78L-24.70 61.26ZM-17.94 50.13L-17.37 50.65L-23.55 62.28L-24.13 61.78ZM-17.37 50.65L-16.77 51.16L-22.94 62.77L-23.55 62.28ZM-16.77 51.16L-16.14 51.65L-22.30 63.23L-22.94 62.77ZM-16.14 51.65L-15.49 52.11L-21.64 63.67L-22.30 63.23ZM-15.49 52.11L-14.81 52.55L-20.94 64.09L-21.64 63.67ZM-14.81 52.55L-14.10 52.96L-20.22 64.48L-20.94 64.09ZM-14.10 52.96L-13.36 53.34L-19.48 64.84L-20.22 64.48ZM-13.36 53.34L-12.59 53.68L-18.70 65.17L-19.48 64.84ZM-12.59 53.68L-11.79 53.99L-17.89 65.47L-18.70 65.17ZM-11.79 53.99L-10.95 54.26L-17.05 65.74L-17.89 65.47ZM-10.95 54.26L-10.06 54.50L-16.16 65.98L-17.05 65.74ZM-10.06 54.50L-9.09 54.72L-15.20 66.20L-16.16 65.98ZM-9.09 54.72L-8.06 54.92L-14.17 66.40L-15.20 66.20ZM-8.06 54.92L-6.98 55.09L-13.08 66.57L-14.17 66.40ZM-6.98 55.09L-5.84 55.25L-11.94 66.73L-13.08 66.57ZM-5.84 55.25L-4.65 55.39L-10.75 66.86L-11.94 66.73ZM-4.65 55.39L-3.43 55.50L-9.53 66.98L-10.75 66.86ZM-3.43 55.50L-2.17 55.59L-8.27 67.07L-9.53 66.98ZM-2.17 55.59L-0.89 55.67L-6.99 67.15L-8.27 67.07ZM-0.89 55.67L0.41 55.72L-5.69 67.20L-6.99 67.15ZM0.41 55.72L1.73 55.75L-4.37 67.23L-5.69 67.20ZM1.73 55.75L3.05 55.76L-3.05 67.24L-4.37 67.23ZM3.05 55.76L4.37 55.75L-1.73 67.23L-3.05 67.24ZM4.37 55.75L5.69 55.72L-0.41 67.20L-1.73 67.23ZM5.69 55.72L6.99 55.67L0.89 67.15L-0.41 67.20ZM6.99 55.67L8.27 55.59L2.17 67.07L0.89 67.15ZM8.27 55.59L9.53 55.50L3.43 66.98L2.17 67.07ZM9.53 55.50L10.75 55.39L4.65 66.86L3.43 66.98ZM10.75 55.39L11.94 55.25L5.84 66.73L4.65 66.86ZM11.94 55.25L13.08 55.09L6.98 66.57L5.84 66.73ZM13.08 55.09L14.17 54.92L8.06 66.40L6.98 66.57ZM14.17 54.92L15.20 54.72L9.09 66.20L8.06 66.40ZM15.20 54.72L16.16 54.50L10.06 65.98L9.09 66.20ZM16.16 54.50L17.05 54.26L10.95 65.74L10.06 65.98ZM17.05 54.26L17.89 53.99L11.79 65.47L10.95 65.74ZM17.89 53.99L18.70 53.68L12.59 65.17L11.79 65.47ZM18.70 53.68L19.48 53.34L13.36 64.84L12.59 65.17ZM19.48 53.34L20.22 52.96L14.10 64.48L13.36 64.84ZM20.22 52.96L20.94 52.55L14.81 64.09L14.10 64.48ZM20.94 52.55L21.64 52.11L15.49 63.67L14.81 64.09ZM21.64 52.11L22.30 51.65L16.14 63.23L15.49 63.67ZM22.30 51.65L22.94 51.16L16.77 62.77L16.14 63.23ZM22.94 51.16L23.55 50.65L17.37 62.28L16.77 62.77ZM23.55 50.65L24.13 50.13L17.94 61.78L17.37 62.28ZM24.13 50.13L24.70 49.58L18.49 61.26L17.94 61.78ZM24.70 49.58L25.23 49.03L19.02 60.72L18.49 61.26ZM25.23 49.03L25.75 48.46L19.52 60.17L19.02 60.72ZM25.75 48.46L26.24 47.89L20.01 59.61L19.52 60.17ZM26.24 47.89L26.71 47.31L20.47 59.04L20.01 59.61ZM26.71 47.31L27.16 46.73L20.92 58.46L20.47 59.04ZM27.16 46.73L27.58 46.14L21.35 57.87L20.92 58.46ZM27.58 46.14L27.99 45.56L21.76 57.28L21.35 57.87ZM27.99 45.56L28.38 44.99L22.16 56.69L21.76 57.28ZM28.38 44.99L28.75 44.42L22.54 56.09L22.16 56.69ZM28.75 44.42L29.10 43.86L22.91 55.50L22.54 56.09ZM29.10 43.86L29.43 43.31L23.27 54.91L22.91 55.50ZM29.43 43.31L29.75 42.78L23.61 54.32L23.27 54.91ZM29.75 42.78L30.05 42.26L23.95 53.74L23.61 54.32ZM30.05 42.26L30.33 41.75L24.27 53.15L23.95 53.74ZM24.27 53.15L24.56 52.55L30.58 41.23L30.33 41.75ZM24.56 52.55L24.84 51.94L30.81 40.70L30.58 41.23ZM24.84 51.94L25.09 51.31L31.01 40.16L30.81 40.70ZM25.09 51.31L25.32 50.67L31.19 39.62L31.01 40.16ZM25.32 50.67L25.53 50.02L31.35 39.07L31.19 39.62ZM25.53 50.02L25.72 49.36L31.48 38.52L31.35 39.07ZM25.72 49.36L25.89 48.69L31.59 37.97L31.48 38.52ZM25.89 48.69L26.05 48.02L31.68 37.42L31.59 37.97ZM26.05 48.02L26.18 47.34L31.75 36.87L31.68 37.42ZM26.18 47.34L26.31 46.66L31.80 36.32L31.75 36.87ZM26.31 46.66L26.41 45.98L31.84 35.77L31.80 36.32ZM26.41 45.98L26.51 45.29L31.85 35.23L31.84 35.77ZM26.51 45.29L26.59 44.60L31.85 34.70L31.85 35.23ZM26.59 44.60L26.65 43.92L31.84 34.17L31.85 34.70ZM26.65 43.92L26.71 43.24L31.81 33.65L31.84 34.17ZM26.71 43.24L26.76 42.56L31.76 33.15L31.81 33.65ZM26.76 42.56L26.79 41.88L31.71 32.65L31.76 33.15ZM26.79 41.88L26.82 41.22L31.64 32.16L31.71 32.65ZM26.82 41.22L26.84 40.56L31.55 31.69L31.64 32.16ZM26.84 40.56L26.86 39.90L31.46 31.24L31.55 31.69ZM26.86 39.90L26.86 39.26L31.36 30.80L31.46 31.24ZM26.86 39.26L26.87 38.63L31.25 30.38L31.36 30.80ZM26.87 38.63L26.86 38.02L31.14 29.98L31.25 30.38ZM26.86 38.02L26.85 37.40L31.00 29.60L31.14 29.98ZM26.85 37.40L26.81 36.77L30.82 29.22L31.00 29.60ZM26.81 36.77L26.74 36.13L30.61 28.85L30.82 29.22ZM26.74 36.13L26.66 35.48L30.37 28.50L30.61 28.85ZM26.66 35.48L26.56 34.82L30.10 28.15L30.37 28.50ZM26.56 34.82L26.44 34.16L29.81 27.81L30.10 28.15ZM26.44 34.16L26.30 33.50L29.50 27.48L29.81 27.81ZM26.30 33.50L26.16 32.84L29.17 27.16L29.50 27.48ZM26.16 32.84L26.00 32.18L28.83 26.86L29.17 27.16ZM26.00 32.18L25.84 31.53L28.48 26.56L28.83 26.86ZM25.84 31.53L25.67 30.89L28.12 26.27L28.48 26.56ZM25.67 30.89L25.49 30.26L27.76 25.99L28.12 26.27ZM25.49 30.26L25.31 29.64L27.39 25.73L27.76 25.99ZM25.31 29.64L25.14 29.04L27.03 25.47L27.39 25.73ZM25.14 29.04L24.96 28.46L26.67 25.23L27.03 25.47ZM24.96 28.46L24.78 27.89L26.33 24.99L26.67 25.23ZM24.78 27.89L24.62 27.36L25.99 24.77L26.33 24.99ZM24.62 27.36L24.46 26.84L25.67 24.56L25.99 24.77ZM24.46 26.84L24.30 26.36L25.37 24.36L25.67 24.56ZM24.30 26.36L24.16 25.91L25.09 24.17L25.37 24.36ZM24.16 25.91L24.04 25.49L24.83 24.00L25.09 24.17ZM24.04 25.49L23.93 25.11L24.60 23.83L24.83 24.00ZM23.93 25.11L23.83 24.76L24.41 23.68L24.60 23.83ZM23.83 24.76L23.76 24.46L24.24 23.54L24.41 23.68Z"/><path transform="rotate(0)" d="M0 31C0.84 37.16 0.84 37.16 7 38C0.84 38.84 0.84 38.84 0 45C-0.84 38.84 -0.84 38.84 -7 38C-0.84 37.16 -0.84 37.16 0 31Z"/><path transform="rotate(90)" d="M-24.24 24.46L-24.41 24.76L-23.83 23.68L-23.76 23.54ZM-24.41 24.76L-24.60 25.11L-23.93 23.83L-23.83 23.68ZM-24.60 25.11L-24.83 25.49L-24.04 24.00L-23.93 23.83ZM-24.83 25.49L-25.09 25.91L-24.16 24.17L-24.04 24.00ZM-25.09 25.91L-25.37 26.36L-24.30 24.36L-24.16 24.17ZM-25.37 26.36L-25.67 26.84L-24.46 24.56L-24.30 24.36ZM-25.67 26.84L-25.99 27.36L-24.62 24.77L-24.46 24.56ZM-25.99 27.36L-26.33 27.89L-24.78 24.99L-24.62 24.77ZM-26.33 27.89L-26.67 28.46L-24.96 25.23L-24.78 24.99ZM-26.67 28.46L-27.03 29.04L-25.14 25.47L-24.96 25.23ZM-27.03 29.04L-27.39 29.64L-25.31 25.73L-25.14 25.47ZM-27.39 29.64L-27.76 30.26L-25.49 25.99L-25.31 25.73ZM-27.76 30.26L-28.12 30.89L-25.67 26.27L-25.49 25.99ZM-28.12 30.89L-28.48 31.53L-25.84 26.56L-25.67 26.27ZM-28.48 31.53L-28.83 32.18L-26.00 26.86L-25.84 26.56ZM-26.00 26.86L-26.16 27.16L-29.17 32.84L-28.83 32.18ZM-26.16 27.16L-26.30 27.48L-29.50 33.50L-29.17 32.84ZM-26.30 27.48L-26.44 27.81L-29.81 34.16L-29.50 33.50ZM-26.44 27.81L-26.56 28.15L-30.10 34.82L-29.81 34.16ZM-26.56 28.15L-26.66 28.50L-30.37 35.48L-30.10 34.82ZM-26.66 28.50L-26.74 28.85L-30.61 36.13L-30.37 35.48ZM-26.74 28.85L-26.81 29.22L-30.82 36.77L-30.61 36.13ZM-26.81 29.22L-26.85 29.60L-31.00 37.40L-30.82 36.77ZM-26.85 29.60L-26.86 29.98L-31.14 38.02L-31.00 37.40ZM-26.86 29.98L-26.87 30.38L-31.25 38.63L-31.14 38.02ZM-26.87 30.38L-26.86 30.80L-31.36 39.26L-31.25 38.63ZM-26.86 30.80L-26.86 31.24L-31.46 39.90L-31.36 39.26ZM-26.86 31.24L-26.84 31.69L-31.55 40.56L-31.46 39.90ZM-26.84 31.69L-26.82 32.16L-31.64 41.22L-31.55 40.56ZM-26.82 32.16L-26.79 32.65L-31.71 41.88L-31.64 41.22ZM-26.79 32.65L-26.76 33.15L-31.76 42.56L-31.71 41.88ZM-26.76 33.15L-26.71 33.65L-31.81 43.24L-31.76 42.56ZM-26.71 33.65L-26.65 34.17L-31.84 43.92L-31.81 43.24ZM-26.65 34.17L-26.59 34.70L-31.85 44.60L-31.84 43.92ZM-26.59 34.70L-26.51 35.23L-31.85 45.29L-31.85 44.60ZM-26.51 35.23L-26.41 35.77L-31.84 45.98L-31.85 45.29ZM-26.41 35.77L-26.31 36.32L-31.80 46.66L-31.84 45.98ZM-26.31 36.32L-26.18 36.87L-31.75 47.34L-31.80 46.66ZM-26.18 36.87L-26.05 37.42L-31.68 48.02L-31.75 47.34ZM-26.05 37.42L-25.89 37.97L-31.59 48.69L-31.68 48.02ZM-25.89 37.97L-25.72 38.52L-31.48 49.36L-31.59 48.69ZM-25.72 38.52L-25.53 39.07L-31.35 50.02L-31.48 49.36ZM-25.53 39.07L-25.32 39.62L-31.19 50.67L-31.35 50.02ZM-25.32 39.62L-25.09 40.16L-31.01 51.31L-31.19 50.67ZM-25.09 40.16L-24.84 40.70L-30.81 51.94L-31.01 51.31ZM-24.84 40.70L-24.56 41.23L-30.58 52.55L-30.81 51.94ZM-24.56 41.23L-24.27 41.75L-30.33 53.15L-30.58 52.55ZM-24.27 41.75L-23.95 42.26L-30.05 53.74L-30.33 53.15ZM-23.95 42.26L-23.61 42.78L-29.75 54.32L-30.05 53.74ZM-23.61 42.78L-23.27 43.31L-29.43 54.91L-29.75 54.32ZM-23.27 43.31L-22.91 43.86L-29.10 55.50L-29.43 54.91ZM-22.91 43.86L-22.54 44.42L-28.75 56.09L-29.10 55.50ZM-22.54 44.42L-22.16 44.99L-28.38 56.69L-28.75 56.09ZM-22.16 44.99L-21.76 45.56L-27.99 57.28L-28.38 56.69ZM-21.76 45.56L-21.35 46.14L-27.58 57.87L-27.99 57.28ZM-21.35 46.14L-20.92 46.73L-27.16 58.46L-27.58 57.87ZM-20.92 46.73L-20.47 47.31L-26.71 59.04L-27.16 58.46ZM-20.47 47.31L-20.01 47.89L-26.24 59.61L-26.71 59.04ZM-20.01 47.89L-19.52 48.46L-25.75 60.17L-26.24 59.61ZM-19.52 48.46L-19.02 49.03L-25.23 60.72L-25.75 60.17ZM-19.02 49.03L-18.49 49.58L-24.70 61.26L-25.23 60.72ZM-18.49 49.58L-17.94 50.13L-24.13 61.78L-24.70 61.26ZM-17.94 50.13L-17.37 50.65L-23.55 62.28L-24.13 61.78ZM-17.37 50.65L-16.77 51.16L-22.94 62.77L-23.55 62.28ZM-16.77 51.16L-16.14 51.65L-22.30 63.23L-22.94 62.77ZM-16.14 51.65L-15.49 52.11L-21.64 63.67L-22.30 63.23ZM-15.49 52.11L-14.81 52.55L-20.94 64.09L-21.64 63.67ZM-14.81 52.55L-14.10 52.96L-20.22 64.48L-20.94 64.09ZM-14.10 52.96L-13.36 53.34L-19.48 64.84L-20.22 64.48ZM-13.36 53.34L-12.59 53.68L-18.70 65.17L-19.48 64.84ZM-12.59 53.68L-11.79 53.99L-17.89 65.47L-18.70 65.17ZM-11.79 53.99L-10.95 54.26L-17.05 65.74L-17.89 65.47ZM-10.95 54.26L-10.06 54.50L-16.16 65.98L-17.05 65.74ZM-10.06 54.50L-9.09 54.72L-15.20 66.20L-16.16 65.98ZM-9.09 54.72L-8.06 54.92L-14.17 66.40L-15.20 66.20ZM-8.06 54.92L-6.98 55.09L-13.08 66.57L-14.17 66.40ZM-6.98 55.09L-5.84 55.25L-11.94 66.73L-13.08 66.57ZM-5.84 55.25L-4.65 55.39L-10.75 66.86L-11.94 66.73ZM-4.65 55.39L-3.43 55.50L-9.53 66.98L-10.75 66.86ZM-3.43 55.50L-2.17 55.59L-8.27 67.07L-9.53 66.98ZM-2.17 55.59L-0.89 55.67L-6.99 67.15L-8.27 67.07ZM-0.89 55.67L0.41 55.72L-5.69 67.20L-6.99 67.15ZM0.41 55.72L1.73 55.75L-4.37 67.23L-5.69 67.20ZM1.73 55.75L3.05 55.76L-3.05 67.24L-4.37 67.23ZM3.05 55.76L4.37 55.75L-1.73 67.23L-3.05 67.24ZM4.37 55.75L5.69 55.72L-0.41 67.20L-1.73 67.23ZM5.69 55.72L6.99 55.67L0.89 67.15L-0.41 67.20ZM6.99 55.67L8.27 55.59L2.17 67.07L0.89 67.15ZM8.27 55.59L9.53 55.50L3.43 66.98L2.17 67.07ZM9.53 55.50L10.75 55.39L4.65 66.86L3.43 66.98ZM10.75 55.39L11.94 55.25L5.84 66.73L4.65 66.86ZM11.94 55.25L13.08 55.09L6.98 66.57L5.84 66.73ZM13.08 55.09L14.17 54.92L8.06 66.40L6.98 66.57ZM14.17 54.92L15.20 54.72L9.09 66.20L8.06 66.40ZM15.20 54.72L16.16 54.50L10.06 65.98L9.09 66.20ZM16.16 54.50L17.05 54.26L10.95 65.74L10.06 65.98ZM17.05 54.26L17.89 53.99L11.79 65.47L10.95 65.74ZM17.89 53.99L18.70 53.68L12.59 65.17L11.79 65.47ZM18.70 53.68L19.48 53.34L13.36 64.84L12.59 65.17ZM19.48 53.34L20.22 52.96L14.10 64.48L13.36 64.84ZM20.22 52.96L20.94 52.55L14.81 64.09L14.10 64.48ZM20.94 52.55L21.64 52.11L15.49 63.67L14.81 64.09ZM21.64 52.11L22.30 51.65L16.14 63.23L15.49 63.67ZM22.30 51.65L22.94 51.16L16.77 62.77L16.14 63.23ZM22.94 51.16L23.55 50.65L17.37 62.28L16.77 62.77ZM23.55 50.65L24.13 50.13L17.94 61.78L17.37 62.28ZM24.13 50.13L24.70 49.58L18.49 61.26L17.94 61.78ZM24.70 49.58L25.23 49.03L19.02 60.72L18.49 61.26ZM25.23 49.03L25.75 48.46L19.52 60.17L19.02 60.72ZM25.75 48.46L26.24 47.89L20.01 59.61L19.52 60.17ZM26.24 47.89L26.71 47.31L20.47 59.04L20.01 59.61ZM26.71 47.31L27.16 46.73L20.92 58.46L20.47 59.04ZM27.16 46.73L27.58 46.14L21.35 57.87L20.92 58.46ZM27.58 46.14L27.99 45.56L21.76 57.28L21.35 57.87ZM27.99 45.56L28.38 44.99L22.16 56.69L21.76 57.28ZM28.38 44.99L28.75 44.42L22.54 56.09L22.16 56.69ZM28.75 44.42L29.10 43.86L22.91 55.50L22.54 56.09ZM29.10 43.86L29.43 43.31L23.27 54.91L22.91 55.50ZM29.43 43.31L29.75 42.78L23.61 54.32L23.27 54.91ZM29.75 42.78L30.05 42.26L23.95 53.74L23.61 54.32ZM30.05 42.26L30.33 41.75L24.27 53.15L23.95 53.74ZM24.27 53.15L24.56 52.55L30.58 41.23L30.33 41.75ZM24.56 52.55L24.84 51.94L30.81 40.70L30.58 41.23ZM24.84 51.94L25.09 51.31L31.01 40.16L30.81 40.70ZM25.09 51.31L25.32 50.67L31.19 39.62L31.01 40.16ZM25.32 50.67L25.53 50.02L31.35 39.07L31.19 39.62ZM25.53 50.02L25.72 49.36L31.48 38.52L31.35 39.07ZM25.72 49.36L25.89 48.69L31.59 37.97L31.48 38.52ZM25.89 48.69L26.05 48.02L31.68 37.42L31.59 37.97ZM26.05 48.02L26.18 47.34L31.75 36.87L31.68 37.42ZM26.18 47.34L26.31 46.66L31.80 36.32L31.75 36.87ZM26.31 46.66L26.41 45.98L31.84 35.77L31.80 36.32ZM26.41 45.98L26.51 45.29L31.85 35.23L31.84 35.77ZM26.51 45.29L26.59 44.60L31.85 34.70L31.85 35.23ZM26.59 44.60L26.65 43.92L31.84 34.17L31.85 34.70ZM26.65 43.92L26.71 43.24L31.81 33.65L31.84 34.17ZM26.71 43.24L26.76 42.56L31.76 33.15L31.81 33.65ZM26.76 42.56L26.79 41.88L31.71 32.65L31.76 33.15ZM26.79 41.88L26.82 41.22L31.64 32.16L31.71 32.65ZM26.82 41.22L26.84 40.56L31.55 31.69L31.64 32.16ZM26.84 40.56L26.86 39.90L31.46 31.24L31.55 31.69ZM26.86 39.90L26.86 39.26L31.36 30.80L31.46 31.24ZM26.86 39.26L26.87 38.63L31.25 30.38L31.36 30.80ZM26.87 38.63L26.86 38.02L31.14 29.98L31.25 30.38ZM26.86 38.02L26.85 37.40L31.00 29.60L31.14 29.98ZM26.85 37.40L26.81 36.77L30.82 29.22L31.00 29.60ZM26.81 36.77L26.74 36.13L30.61 28.85L30.82 29.22ZM26.74 36.13L26.66 35.48L30.37 28.50L30.61 28.85ZM26.66 35.48L26.56 34.82L30.10 28.15L30.37 28.50ZM26.56 34.82L26.44 34.16L29.81 27.81L30.10 28.15ZM26.44 34.16L26.30 33.50L29.50 27.48L29.81 27.81ZM26.30 33.50L26.16 32.84L29.17 27.16L29.50 27.48ZM26.16 32.84L26.00 32.18L28.83 26.86L29.17 27.16ZM26.00 32.18L25.84 31.53L28.48 26.56L28.83 26.86ZM25.84 31.53L25.67 30.89L28.12 26.27L28.48 26.56ZM25.67 30.89L25.49 30.26L27.76 25.99L28.12 26.27ZM25.49 30.26L25.31 29.64L27.39 25.73L27.76 25.99ZM25.31 29.64L25.14 29.04L27.03 25.47L27.39 25.73ZM25.14 29.04L24.96 28.46L26.67 25.23L27.03 25.47ZM24.96 28.46L24.78 27.89L26.33 24.99L26.67 25.23ZM24.78 27.89L24.62 27.36L25.99 24.77L26.33 24.99ZM24.62 27.36L24.46 26.84L25.67 24.56L25.99 24.77ZM24.46 26.84L24.30 26.36L25.37 24.36L25.67 24.56ZM24.30 26.36L24.16 25.91L25.09 24.17L25.37 24.36ZM24.16 25.91L24.04 25.49L24.83 24.00L25.09 24.17ZM24.04 25.49L23.93 25.11L24.60 23.83L24.83 24.00ZM23.93 25.11L23.83 24.76L24.41 23.68L24.60 23.83ZM23.83 24.76L23.76 24.46L24.24 23.54L24.41 23.68Z"/><path transform="rotate(90)" d="M0 31C0.84 37.16 0.84 37.16 7 38C0.84 38.84 0.84 38.84 0 45C-0.84 38.84 -0.84 38.84 -7 38C-0.84 37.16 -0.84 37.16 0 31Z"/><path transform="rotate(180)" d="M-24.24 24.46L-24.41 24.76L-23.83 23.68L-23.76 23.54ZM-24.41 24.76L-24.60 25.11L-23.93 23.83L-23.83 23.68ZM-24.60 25.11L-24.83 25.49L-24.04 24.00L-23.93 23.83ZM-24.83 25.49L-25.09 25.91L-24.16 24.17L-24.04 24.00ZM-25.09 25.91L-25.37 26.36L-24.30 24.36L-24.16 24.17ZM-25.37 26.36L-25.67 26.84L-24.46 24.56L-24.30 24.36ZM-25.67 26.84L-25.99 27.36L-24.62 24.77L-24.46 24.56ZM-25.99 27.36L-26.33 27.89L-24.78 24.99L-24.62 24.77ZM-26.33 27.89L-26.67 28.46L-24.96 25.23L-24.78 24.99ZM-26.67 28.46L-27.03 29.04L-25.14 25.47L-24.96 25.23ZM-27.03 29.04L-27.39 29.64L-25.31 25.73L-25.14 25.47ZM-27.39 29.64L-27.76 30.26L-25.49 25.99L-25.31 25.73ZM-27.76 30.26L-28.12 30.89L-25.67 26.27L-25.49 25.99ZM-28.12 30.89L-28.48 31.53L-25.84 26.56L-25.67 26.27ZM-28.48 31.53L-28.83 32.18L-26.00 26.86L-25.84 26.56ZM-26.00 26.86L-26.16 27.16L-29.17 32.84L-28.83 32.18ZM-26.16 27.16L-26.30 27.48L-29.50 33.50L-29.17 32.84ZM-26.30 27.48L-26.44 27.81L-29.81 34.16L-29.50 33.50ZM-26.44 27.81L-26.56 28.15L-30.10 34.82L-29.81 34.16ZM-26.56 28.15L-26.66 28.50L-30.37 35.48L-30.10 34.82ZM-26.66 28.50L-26.74 28.85L-30.61 36.13L-30.37 35.48ZM-26.74 28.85L-26.81 29.22L-30.82 36.77L-30.61 36.13ZM-26.81 29.22L-26.85 29.60L-31.00 37.40L-30.82 36.77ZM-26.85 29.60L-26.86 29.98L-31.14 38.02L-31.00 37.40ZM-26.86 29.98L-26.87 30.38L-31.25 38.63L-31.14 38.02ZM-26.87 30.38L-26.86 30.80L-31.36 39.26L-31.25 38.63ZM-26.86 30.80L-26.86 31.24L-31.46 39.90L-31.36 39.26ZM-26.86 31.24L-26.84 31.69L-31.55 40.56L-31.46 39.90ZM-26.84 31.69L-26.82 32.16L-31.64 41.22L-31.55 40.56ZM-26.82 32.16L-26.79 32.65L-31.71 41.88L-31.64 41.22ZM-26.79 32.65L-26.76 33.15L-31.76 42.56L-31.71 41.88ZM-26.76 33.15L-26.71 33.65L-31.81 43.24L-31.76 42.56ZM-26.71 33.65L-26.65 34.17L-31.84 43.92L-31.81 43.24ZM-26.65 34.17L-26.59 34.70L-31.85 44.60L-31.84 43.92ZM-26.59 34.70L-26.51 35.23L-31.85 45.29L-31.85 44.60ZM-26.51 35.23L-26.41 35.77L-31.84 45.98L-31.85 45.29ZM-26.41 35.77L-26.31 36.32L-31.80 46.66L-31.84 45.98ZM-26.31 36.32L-26.18 36.87L-31.75 47.34L-31.80 46.66ZM-26.18 36.87L-26.05 37.42L-31.68 48.02L-31.75 47.34ZM-26.05 37.42L-25.89 37.97L-31.59 48.69L-31.68 48.02ZM-25.89 37.97L-25.72 38.52L-31.48 49.36L-31.59 48.69ZM-25.72 38.52L-25.53 39.07L-31.35 50.02L-31.48 49.36ZM-25.53 39.07L-25.32 39.62L-31.19 50.67L-31.35 50.02ZM-25.32 39.62L-25.09 40.16L-31.01 51.31L-31.19 50.67ZM-25.09 40.16L-24.84 40.70L-30.81 51.94L-31.01 51.31ZM-24.84 40.70L-24.56 41.23L-30.58 52.55L-30.81 51.94ZM-24.56 41.23L-24.27 41.75L-30.33 53.15L-30.58 52.55ZM-24.27 41.75L-23.95 42.26L-30.05 53.74L-30.33 53.15ZM-23.95 42.26L-23.61 42.78L-29.75 54.32L-30.05 53.74ZM-23.61 42.78L-23.27 43.31L-29.43 54.91L-29.75 54.32ZM-23.27 43.31L-22.91 43.86L-29.10 55.50L-29.43 54.91ZM-22.91 43.86L-22.54 44.42L-28.75 56.09L-29.10 55.50ZM-22.54 44.42L-22.16 44.99L-28.38 56.69L-28.75 56.09ZM-22.16 44.99L-21.76 45.56L-27.99 57.28L-28.38 56.69ZM-21.76 45.56L-21.35 46.14L-27.58 57.87L-27.99 57.28ZM-21.35 46.14L-20.92 46.73L-27.16 58.46L-27.58 57.87ZM-20.92 46.73L-20.47 47.31L-26.71 59.04L-27.16 58.46ZM-20.47 47.31L-20.01 47.89L-26.24 59.61L-26.71 59.04ZM-20.01 47.89L-19.52 48.46L-25.75 60.17L-26.24 59.61ZM-19.52 48.46L-19.02 49.03L-25.23 60.72L-25.75 60.17ZM-19.02 49.03L-18.49 49.58L-24.70 61.26L-25.23 60.72ZM-18.49 49.58L-17.94 50.13L-24.13 61.78L-24.70 61.26ZM-17.94 50.13L-17.37 50.65L-23.55 62.28L-24.13 61.78ZM-17.37 50.65L-16.77 51.16L-22.94 62.77L-23.55 62.28ZM-16.77 51.16L-16.14 51.65L-22.30 63.23L-22.94 62.77ZM-16.14 51.65L-15.49 52.11L-21.64 63.67L-22.30 63.23ZM-15.49 52.11L-14.81 52.55L-20.94 64.09L-21.64 63.67ZM-14.81 52.55L-14.10 52.96L-20.22 64.48L-20.94 64.09ZM-14.10 52.96L-13.36 53.34L-19.48 64.84L-20.22 64.48ZM-13.36 53.34L-12.59 53.68L-18.70 65.17L-19.48 64.84ZM-12.59 53.68L-11.79 53.99L-17.89 65.47L-18.70 65.17ZM-11.79 53.99L-10.95 54.26L-17.05 65.74L-17.89 65.47ZM-10.95 54.26L-10.06 54.50L-16.16 65.98L-17.05 65.74ZM-10.06 54.50L-9.09 54.72L-15.20 66.20L-16.16 65.98ZM-9.09 54.72L-8.06 54.92L-14.17 66.40L-15.20 66.20ZM-8.06 54.92L-6.98 55.09L-13.08 66.57L-14.17 66.40ZM-6.98 55.09L-5.84 55.25L-11.94 66.73L-13.08 66.57ZM-5.84 55.25L-4.65 55.39L-10.75 66.86L-11.94 66.73ZM-4.65 55.39L-3.43 55.50L-9.53 66.98L-10.75 66.86ZM-3.43 55.50L-2.17 55.59L-8.27 67.07L-9.53 66.98ZM-2.17 55.59L-0.89 55.67L-6.99 67.15L-8.27 67.07ZM-0.89 55.67L0.41 55.72L-5.69 67.20L-6.99 67.15ZM0.41 55.72L1.73 55.75L-4.37 67.23L-5.69 67.20ZM1.73 55.75L3.05 55.76L-3.05 67.24L-4.37 67.23ZM3.05 55.76L4.37 55.75L-1.73 67.23L-3.05 67.24ZM4.37 55.75L5.69 55.72L-0.41 67.20L-1.73 67.23ZM5.69 55.72L6.99 55.67L0.89 67.15L-0.41 67.20ZM6.99 55.67L8.27 55.59L2.17 67.07L0.89 67.15ZM8.27 55.59L9.53 55.50L3.43 66.98L2.17 67.07ZM9.53 55.50L10.75 55.39L4.65 66.86L3.43 66.98ZM10.75 55.39L11.94 55.25L5.84 66.73L4.65 66.86ZM11.94 55.25L13.08 55.09L6.98 66.57L5.84 66.73ZM13.08 55.09L14.17 54.92L8.06 66.40L6.98 66.57ZM14.17 54.92L15.20 54.72L9.09 66.20L8.06 66.40ZM15.20 54.72L16.16 54.50L10.06 65.98L9.09 66.20ZM16.16 54.50L17.05 54.26L10.95 65.74L10.06 65.98ZM17.05 54.26L17.89 53.99L11.79 65.47L10.95 65.74ZM17.89 53.99L18.70 53.68L12.59 65.17L11.79 65.47ZM18.70 53.68L19.48 53.34L13.36 64.84L12.59 65.17ZM19.48 53.34L20.22 52.96L14.10 64.48L13.36 64.84ZM20.22 52.96L20.94 52.55L14.81 64.09L14.10 64.48ZM20.94 52.55L21.64 52.11L15.49 63.67L14.81 64.09ZM21.64 52.11L22.30 51.65L16.14 63.23L15.49 63.67ZM22.30 51.65L22.94 51.16L16.77 62.77L16.14 63.23ZM22.94 51.16L23.55 50.65L17.37 62.28L16.77 62.77ZM23.55 50.65L24.13 50.13L17.94 61.78L17.37 62.28ZM24.13 50.13L24.70 49.58L18.49 61.26L17.94 61.78ZM24.70 49.58L25.23 49.03L19.02 60.72L18.49 61.26ZM25.23 49.03L25.75 48.46L19.52 60.17L19.02 60.72ZM25.75 48.46L26.24 47.89L20.01 59.61L19.52 60.17ZM26.24 47.89L26.71 47.31L20.47 59.04L20.01 59.61ZM26.71 47.31L27.16 46.73L20.92 58.46L20.47 59.04ZM27.16 46.73L27.58 46.14L21.35 57.87L20.92 58.46ZM27.58 46.14L27.99 45.56L21.76 57.28L21.35 57.87ZM27.99 45.56L28.38 44.99L22.16 56.69L21.76 57.28ZM28.38 44.99L28.75 44.42L22.54 56.09L22.16 56.69ZM28.75 44.42L29.10 43.86L22.91 55.50L22.54 56.09ZM29.10 43.86L29.43 43.31L23.27 54.91L22.91 55.50ZM29.43 43.31L29.75 42.78L23.61 54.32L23.27 54.91ZM29.75 42.78L30.05 42.26L23.95 53.74L23.61 54.32ZM30.05 42.26L30.33 41.75L24.27 53.15L23.95 53.74ZM24.27 53.15L24.56 52.55L30.58 41.23L30.33 41.75ZM24.56 52.55L24.84 51.94L30.81 40.70L30.58 41.23ZM24.84 51.94L25.09 51.31L31.01 40.16L30.81 40.70ZM25.09 51.31L25.32 50.67L31.19 39.62L31.01 40.16ZM25.32 50.67L25.53 50.02L31.35 39.07L31.19 39.62ZM25.53 50.02L25.72 49.36L31.48 38.52L31.35 39.07ZM25.72 49.36L25.89 48.69L31.59 37.97L31.48 38.52ZM25.89 48.69L26.05 48.02L31.68 37.42L31.59 37.97ZM26.05 48.02L26.18 47.34L31.75 36.87L31.68 37.42ZM26.18 47.34L26.31 46.66L31.80 36.32L31.75 36.87ZM26.31 46.66L26.41 45.98L31.84 35.77L31.80 36.32ZM26.41 45.98L26.51 45.29L31.85 35.23L31.84 35.77ZM26.51 45.29L26.59 44.60L31.85 34.70L31.85 35.23ZM26.59 44.60L26.65 43.92L31.84 34.17L31.85 34.70ZM26.65 43.92L26.71 43.24L31.81 33.65L31.84 34.17ZM26.71 43.24L26.76 42.56L31.76 33.15L31.81 33.65ZM26.76 42.56L26.79 41.88L31.71 32.65L31.76 33.15ZM26.79 41.88L26.82 41.22L31.64 32.16L31.71 32.65ZM26.82 41.22L26.84 40.56L31.55 31.69L31.64 32.16ZM26.84 40.56L26.86 39.90L31.46 31.24L31.55 31.69ZM26.86 39.90L26.86 39.26L31.36 30.80L31.46 31.24ZM26.86 39.26L26.87 38.63L31.25 30.38L31.36 30.80ZM26.87 38.63L26.86 38.02L31.14 29.98L31.25 30.38ZM26.86 38.02L26.85 37.40L31.00 29.60L31.14 29.98ZM26.85 37.40L26.81 36.77L30.82 29.22L31.00 29.60ZM26.81 36.77L26.74 36.13L30.61 28.85L30.82 29.22ZM26.74 36.13L26.66 35.48L30.37 28.50L30.61 28.85ZM26.66 35.48L26.56 34.82L30.10 28.15L30.37 28.50ZM26.56 34.82L26.44 34.16L29.81 27.81L30.10 28.15ZM26.44 34.16L26.30 33.50L29.50 27.48L29.81 27.81ZM26.30 33.50L26.16 32.84L29.17 27.16L29.50 27.48ZM26.16 32.84L26.00 32.18L28.83 26.86L29.17 27.16ZM26.00 32.18L25.84 31.53L28.48 26.56L28.83 26.86ZM25.84 31.53L25.67 30.89L28.12 26.27L28.48 26.56ZM25.67 30.89L25.49 30.26L27.76 25.99L28.12 26.27ZM25.49 30.26L25.31 29.64L27.39 25.73L27.76 25.99ZM25.31 29.64L25.14 29.04L27.03 25.47L27.39 25.73ZM25.14 29.04L24.96 28.46L26.67 25.23L27.03 25.47ZM24.96 28.46L24.78 27.89L26.33 24.99L26.67 25.23ZM24.78 27.89L24.62 27.36L25.99 24.77L26.33 24.99ZM24.62 27.36L24.46 26.84L25.67 24.56L25.99 24.77ZM24.46 26.84L24.30 26.36L25.37 24.36L25.67 24.56ZM24.30 26.36L24.16 25.91L25.09 24.17L25.37 24.36ZM24.16 25.91L24.04 25.49L24.83 24.00L25.09 24.17ZM24.04 25.49L23.93 25.11L24.60 23.83L24.83 24.00ZM23.93 25.11L23.83 24.76L24.41 23.68L24.60 23.83ZM23.83 24.76L23.76 24.46L24.24 23.54L24.41 23.68Z"/><path transform="rotate(180)" d="M0 31C0.84 37.16 0.84 37.16 7 38C0.84 38.84 0.84 38.84 0 45C-0.84 38.84 -0.84 38.84 -7 38C-0.84 37.16 -0.84 37.16 0 31Z"/><path transform="rotate(270)" d="M-24.24 24.46L-24.41 24.76L-23.83 23.68L-23.76 23.54ZM-24.41 24.76L-24.60 25.11L-23.93 23.83L-23.83 23.68ZM-24.60 25.11L-24.83 25.49L-24.04 24.00L-23.93 23.83ZM-24.83 25.49L-25.09 25.91L-24.16 24.17L-24.04 24.00ZM-25.09 25.91L-25.37 26.36L-24.30 24.36L-24.16 24.17ZM-25.37 26.36L-25.67 26.84L-24.46 24.56L-24.30 24.36ZM-25.67 26.84L-25.99 27.36L-24.62 24.77L-24.46 24.56ZM-25.99 27.36L-26.33 27.89L-24.78 24.99L-24.62 24.77ZM-26.33 27.89L-26.67 28.46L-24.96 25.23L-24.78 24.99ZM-26.67 28.46L-27.03 29.04L-25.14 25.47L-24.96 25.23ZM-27.03 29.04L-27.39 29.64L-25.31 25.73L-25.14 25.47ZM-27.39 29.64L-27.76 30.26L-25.49 25.99L-25.31 25.73ZM-27.76 30.26L-28.12 30.89L-25.67 26.27L-25.49 25.99ZM-28.12 30.89L-28.48 31.53L-25.84 26.56L-25.67 26.27ZM-28.48 31.53L-28.83 32.18L-26.00 26.86L-25.84 26.56ZM-26.00 26.86L-26.16 27.16L-29.17 32.84L-28.83 32.18ZM-26.16 27.16L-26.30 27.48L-29.50 33.50L-29.17 32.84ZM-26.30 27.48L-26.44 27.81L-29.81 34.16L-29.50 33.50ZM-26.44 27.81L-26.56 28.15L-30.10 34.82L-29.81 34.16ZM-26.56 28.15L-26.66 28.50L-30.37 35.48L-30.10 34.82ZM-26.66 28.50L-26.74 28.85L-30.61 36.13L-30.37 35.48ZM-26.74 28.85L-26.81 29.22L-30.82 36.77L-30.61 36.13ZM-26.81 29.22L-26.85 29.60L-31.00 37.40L-30.82 36.77ZM-26.85 29.60L-26.86 29.98L-31.14 38.02L-31.00 37.40ZM-26.86 29.98L-26.87 30.38L-31.25 38.63L-31.14 38.02ZM-26.87 30.38L-26.86 30.80L-31.36 39.26L-31.25 38.63ZM-26.86 30.80L-26.86 31.24L-31.46 39.90L-31.36 39.26ZM-26.86 31.24L-26.84 31.69L-31.55 40.56L-31.46 39.90ZM-26.84 31.69L-26.82 32.16L-31.64 41.22L-31.55 40.56ZM-26.82 32.16L-26.79 32.65L-31.71 41.88L-31.64 41.22ZM-26.79 32.65L-26.76 33.15L-31.76 42.56L-31.71 41.88ZM-26.76 33.15L-26.71 33.65L-31.81 43.24L-31.76 42.56ZM-26.71 33.65L-26.65 34.17L-31.84 43.92L-31.81 43.24ZM-26.65 34.17L-26.59 34.70L-31.85 44.60L-31.84 43.92ZM-26.59 34.70L-26.51 35.23L-31.85 45.29L-31.85 44.60ZM-26.51 35.23L-26.41 35.77L-31.84 45.98L-31.85 45.29ZM-26.41 35.77L-26.31 36.32L-31.80 46.66L-31.84 45.98ZM-26.31 36.32L-26.18 36.87L-31.75 47.34L-31.80 46.66ZM-26.18 36.87L-26.05 37.42L-31.68 48.02L-31.75 47.34ZM-26.05 37.42L-25.89 37.97L-31.59 48.69L-31.68 48.02ZM-25.89 37.97L-25.72 38.52L-31.48 49.36L-31.59 48.69ZM-25.72 38.52L-25.53 39.07L-31.35 50.02L-31.48 49.36ZM-25.53 39.07L-25.32 39.62L-31.19 50.67L-31.35 50.02ZM-25.32 39.62L-25.09 40.16L-31.01 51.31L-31.19 50.67ZM-25.09 40.16L-24.84 40.70L-30.81 51.94L-31.01 51.31ZM-24.84 40.70L-24.56 41.23L-30.58 52.55L-30.81 51.94ZM-24.56 41.23L-24.27 41.75L-30.33 53.15L-30.58 52.55ZM-24.27 41.75L-23.95 42.26L-30.05 53.74L-30.33 53.15ZM-23.95 42.26L-23.61 42.78L-29.75 54.32L-30.05 53.74ZM-23.61 42.78L-23.27 43.31L-29.43 54.91L-29.75 54.32ZM-23.27 43.31L-22.91 43.86L-29.10 55.50L-29.43 54.91ZM-22.91 43.86L-22.54 44.42L-28.75 56.09L-29.10 55.50ZM-22.54 44.42L-22.16 44.99L-28.38 56.69L-28.75 56.09ZM-22.16 44.99L-21.76 45.56L-27.99 57.28L-28.38 56.69ZM-21.76 45.56L-21.35 46.14L-27.58 57.87L-27.99 57.28ZM-21.35 46.14L-20.92 46.73L-27.16 58.46L-27.58 57.87ZM-20.92 46.73L-20.47 47.31L-26.71 59.04L-27.16 58.46ZM-20.47 47.31L-20.01 47.89L-26.24 59.61L-26.71 59.04ZM-20.01 47.89L-19.52 48.46L-25.75 60.17L-26.24 59.61ZM-19.52 48.46L-19.02 49.03L-25.23 60.72L-25.75 60.17ZM-19.02 49.03L-18.49 49.58L-24.70 61.26L-25.23 60.72ZM-18.49 49.58L-17.94 50.13L-24.13 61.78L-24.70 61.26ZM-17.94 50.13L-17.37 50.65L-23.55 62.28L-24.13 61.78ZM-17.37 50.65L-16.77 51.16L-22.94 62.77L-23.55 62.28ZM-16.77 51.16L-16.14 51.65L-22.30 63.23L-22.94 62.77ZM-16.14 51.65L-15.49 52.11L-21.64 63.67L-22.30 63.23ZM-15.49 52.11L-14.81 52.55L-20.94 64.09L-21.64 63.67ZM-14.81 52.55L-14.10 52.96L-20.22 64.48L-20.94 64.09ZM-14.10 52.96L-13.36 53.34L-19.48 64.84L-20.22 64.48ZM-13.36 53.34L-12.59 53.68L-18.70 65.17L-19.48 64.84ZM-12.59 53.68L-11.79 53.99L-17.89 65.47L-18.70 65.17ZM-11.79 53.99L-10.95 54.26L-17.05 65.74L-17.89 65.47ZM-10.95 54.26L-10.06 54.50L-16.16 65.98L-17.05 65.74ZM-10.06 54.50L-9.09 54.72L-15.20 66.20L-16.16 65.98ZM-9.09 54.72L-8.06 54.92L-14.17 66.40L-15.20 66.20ZM-8.06 54.92L-6.98 55.09L-13.08 66.57L-14.17 66.40ZM-6.98 55.09L-5.84 55.25L-11.94 66.73L-13.08 66.57ZM-5.84 55.25L-4.65 55.39L-10.75 66.86L-11.94 66.73ZM-4.65 55.39L-3.43 55.50L-9.53 66.98L-10.75 66.86ZM-3.43 55.50L-2.17 55.59L-8.27 67.07L-9.53 66.98ZM-2.17 55.59L-0.89 55.67L-6.99 67.15L-8.27 67.07ZM-0.89 55.67L0.41 55.72L-5.69 67.20L-6.99 67.15ZM0.41 55.72L1.73 55.75L-4.37 67.23L-5.69 67.20ZM1.73 55.75L3.05 55.76L-3.05 67.24L-4.37 67.23ZM3.05 55.76L4.37 55.75L-1.73 67.23L-3.05 67.24ZM4.37 55.75L5.69 55.72L-0.41 67.20L-1.73 67.23ZM5.69 55.72L6.99 55.67L0.89 67.15L-0.41 67.20ZM6.99 55.67L8.27 55.59L2.17 67.07L0.89 67.15ZM8.27 55.59L9.53 55.50L3.43 66.98L2.17 67.07ZM9.53 55.50L10.75 55.39L4.65 66.86L3.43 66.98ZM10.75 55.39L11.94 55.25L5.84 66.73L4.65 66.86ZM11.94 55.25L13.08 55.09L6.98 66.57L5.84 66.73ZM13.08 55.09L14.17 54.92L8.06 66.40L6.98 66.57ZM14.17 54.92L15.20 54.72L9.09 66.20L8.06 66.40ZM15.20 54.72L16.16 54.50L10.06 65.98L9.09 66.20ZM16.16 54.50L17.05 54.26L10.95 65.74L10.06 65.98ZM17.05 54.26L17.89 53.99L11.79 65.47L10.95 65.74ZM17.89 53.99L18.70 53.68L12.59 65.17L11.79 65.47ZM18.70 53.68L19.48 53.34L13.36 64.84L12.59 65.17ZM19.48 53.34L20.22 52.96L14.10 64.48L13.36 64.84ZM20.22 52.96L20.94 52.55L14.81 64.09L14.10 64.48ZM20.94 52.55L21.64 52.11L15.49 63.67L14.81 64.09ZM21.64 52.11L22.30 51.65L16.14 63.23L15.49 63.67ZM22.30 51.65L22.94 51.16L16.77 62.77L16.14 63.23ZM22.94 51.16L23.55 50.65L17.37 62.28L16.77 62.77ZM23.55 50.65L24.13 50.13L17.94 61.78L17.37 62.28ZM24.13 50.13L24.70 49.58L18.49 61.26L17.94 61.78ZM24.70 49.58L25.23 49.03L19.02 60.72L18.49 61.26ZM25.23 49.03L25.75 48.46L19.52 60.17L19.02 60.72ZM25.75 48.46L26.24 47.89L20.01 59.61L19.52 60.17ZM26.24 47.89L26.71 47.31L20.47 59.04L20.01 59.61ZM26.71 47.31L27.16 46.73L20.92 58.46L20.47 59.04ZM27.16 46.73L27.58 46.14L21.35 57.87L20.92 58.46ZM27.58 46.14L27.99 45.56L21.76 57.28L21.35 57.87ZM27.99 45.56L28.38 44.99L22.16 56.69L21.76 57.28ZM28.38 44.99L28.75 44.42L22.54 56.09L22.16 56.69ZM28.75 44.42L29.10 43.86L22.91 55.50L22.54 56.09ZM29.10 43.86L29.43 43.31L23.27 54.91L22.91 55.50ZM29.43 43.31L29.75 42.78L23.61 54.32L23.27 54.91ZM29.75 42.78L30.05 42.26L23.95 53.74L23.61 54.32ZM30.05 42.26L30.33 41.75L24.27 53.15L23.95 53.74ZM24.27 53.15L24.56 52.55L30.58 41.23L30.33 41.75ZM24.56 52.55L24.84 51.94L30.81 40.70L30.58 41.23ZM24.84 51.94L25.09 51.31L31.01 40.16L30.81 40.70ZM25.09 51.31L25.32 50.67L31.19 39.62L31.01 40.16ZM25.32 50.67L25.53 50.02L31.35 39.07L31.19 39.62ZM25.53 50.02L25.72 49.36L31.48 38.52L31.35 39.07ZM25.72 49.36L25.89 48.69L31.59 37.97L31.48 38.52ZM25.89 48.69L26.05 48.02L31.68 37.42L31.59 37.97ZM26.05 48.02L26.18 47.34L31.75 36.87L31.68 37.42ZM26.18 47.34L26.31 46.66L31.80 36.32L31.75 36.87ZM26.31 46.66L26.41 45.98L31.84 35.77L31.80 36.32ZM26.41 45.98L26.51 45.29L31.85 35.23L31.84 35.77ZM26.51 45.29L26.59 44.60L31.85 34.70L31.85 35.23ZM26.59 44.60L26.65 43.92L31.84 34.17L31.85 34.70ZM26.65 43.92L26.71 43.24L31.81 33.65L31.84 34.17ZM26.71 43.24L26.76 42.56L31.76 33.15L31.81 33.65ZM26.76 42.56L26.79 41.88L31.71 32.65L31.76 33.15ZM26.79 41.88L26.82 41.22L31.64 32.16L31.71 32.65ZM26.82 41.22L26.84 40.56L31.55 31.69L31.64 32.16ZM26.84 40.56L26.86 39.90L31.46 31.24L31.55 31.69ZM26.86 39.90L26.86 39.26L31.36 30.80L31.46 31.24ZM26.86 39.26L26.87 38.63L31.25 30.38L31.36 30.80ZM26.87 38.63L26.86 38.02L31.14 29.98L31.25 30.38ZM26.86 38.02L26.85 37.40L31.00 29.60L31.14 29.98ZM26.85 37.40L26.81 36.77L30.82 29.22L31.00 29.60ZM26.81 36.77L26.74 36.13L30.61 28.85L30.82 29.22ZM26.74 36.13L26.66 35.48L30.37 28.50L30.61 28.85ZM26.66 35.48L26.56 34.82L30.10 28.15L30.37 28.50ZM26.56 34.82L26.44 34.16L29.81 27.81L30.10 28.15ZM26.44 34.16L26.30 33.50L29.50 27.48L29.81 27.81ZM26.30 33.50L26.16 32.84L29.17 27.16L29.50 27.48ZM26.16 32.84L26.00 32.18L28.83 26.86L29.17 27.16ZM26.00 32.18L25.84 31.53L28.48 26.56L28.83 26.86ZM25.84 31.53L25.67 30.89L28.12 26.27L28.48 26.56ZM25.67 30.89L25.49 30.26L27.76 25.99L28.12 26.27ZM25.49 30.26L25.31 29.64L27.39 25.73L27.76 25.99ZM25.31 29.64L25.14 29.04L27.03 25.47L27.39 25.73ZM25.14 29.04L24.96 28.46L26.67 25.23L27.03 25.47ZM24.96 28.46L24.78 27.89L26.33 24.99L26.67 25.23ZM24.78 27.89L24.62 27.36L25.99 24.77L26.33 24.99ZM24.62 27.36L24.46 26.84L25.67 24.56L25.99 24.77ZM24.46 26.84L24.30 26.36L25.37 24.36L25.67 24.56ZM24.30 26.36L24.16 25.91L25.09 24.17L25.37 24.36ZM24.16 25.91L24.04 25.49L24.83 24.00L25.09 24.17ZM24.04 25.49L23.93 25.11L24.60 23.83L24.83 24.00ZM23.93 25.11L23.83 24.76L24.41 23.68L24.60 23.83ZM23.83 24.76L23.76 24.46L24.24 23.54L24.41 23.68Z"/><path transform="rotate(270)" d="M0 31C0.84 37.16 0.84 37.16 7 38C0.84 38.84 0.84 38.84 0 45C-0.84 38.84 -0.84 38.84 -7 38C-0.84 37.16 -0.84 37.16 0 31Z"/><path d="M0 -15C1.7999999999999998 -1.7999999999999998 1.7999999999999998 -1.7999999999999998 15 0C1.7999999999999998 1.7999999999999998 1.7999999999999998 1.7999999999999998 0 15C-1.7999999999999998 1.7999999999999998 -1.7999999999999998 1.7999999999999998 -15 0C-1.7999999999999998 -1.7999999999999998 -1.7999999999999998 -1.7999999999999998 0 -15Z"/></symbol><symbol id="spark" viewBox="-20 -20 40 40"><path d="M0 -19C2.28 -2.28 2.28 -2.28 19 0C2.28 2.28 2.28 2.28 0 19C-2.28 2.28 -2.28 2.28 -19 0C-2.28 -2.28 -2.28 -2.28 0 -19Z"/></symbol>
+    <symbol id="seal-sym" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="99" fill="#4B2A4E"/>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#EEEAE5" stroke-opacity=".35" stroke-width=".8"/>
+      <path id="sealp" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" fill="none"/>
+      <text font-family="Gilda Display, Georgia, serif" font-size="12.5" letter-spacing="4.6" fill="#EEEAE5"><textPath href="#sealp">NORA ACCESSORIES ✦ نورا اكسسواريز ✦ EST. 2026 ✦</textPath></text>
+      <use href="#nora-mark" x="58" y="58" width="84" height="84" fill="#EEEAE5" stroke="#EEEAE5"/>
     </symbol>
-    <symbol id="charm" viewBox="0 0 120 200">
-      <g fill="none" stroke="url(#g-foil)" stroke-width="2.2" stroke-linecap="round">
-        <circle cx="60" cy="14" r="8"/>
-        <path d="M60 22v20"/>
-        <path d="M60 42c-22 0-34 18-34 40 0 30 34 58 34 58s34-28 34-58c0-22-12-40-34-40z"/>
-        <path d="M60 62c-10 8-14 18-14 28M60 62c10 8 14 18 14 28M60 62v58"/>
-        <circle cx="60" cy="160" r="7"/>
-        <path d="M60 167v14"/>
-        <circle cx="60" cy="187" r="4" fill="url(#g-foil)"/>
-      </g>
-    </symbol>
+    <pattern id="pat" width="120" height="120" patternUnits="userSpaceOnUse">
+      <use href="#nora-mark" x="8" y="8" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5"/>
+      <use href="#nora-mark" x="68" y="68" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5"/>
+      <use href="#spark" x="84" y="24" width="12" height="12" fill="#B89A64"/>
+      <use href="#spark" x="24" y="84" width="12" height="12" fill="#B89A64"/>
+    </pattern>
+    <pattern id="pat-tone" width="150" height="150" patternUnits="userSpaceOnUse">
+      <use href="#nora-mark" x="10" y="10" width="55" height="55" fill="#EEEAE5" stroke="#EEEAE5"/>
+      <use href="#nora-mark" x="85" y="85" width="55" height="55" fill="#EEEAE5" stroke="#EEEAE5"/>
+    </pattern>
   </defs>
 </svg>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="kicker">BRAND IDENTITY · 2026</div>
-    <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
-    <p class="tag">تفاصيل صغيرة… تُشبهك</p>
-    <p class="meta">دليل الهوية البصرية لمتجر نورا اكسسواريز</p>
-  </div>
-  <svg class="ribbon-svg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
-    <path id="rib" d="M-20,150 C200,40 380,210 620,120 S1000,40 1220,140" fill="none" stroke="#343B26" stroke-width="44"/>
-    <path d="M-20,150 C200,40 380,210 620,120 S1000,40 1220,140" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="44" stroke-dasharray="1 3"/>
-    <text font-family="Italiana, Georgia, serif" font-size="17" letter-spacing="6" fill="#B89A64" dy="6"><textPath href="#rib">NORA ✦ Accessories ✦ نورا ✦ NORA ✦ Accessories ✦ نورا ✦ NORA ✦ Accessories ✦ نورا ✦ NORA ✦ Accessories ✦ نورا ✦ NORA ✦</textPath></text>
-  </svg>
-</header>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><svg viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg><span class="latin">Nora Accessories</span></div>
+    <span class="ed">دليل الهوية البصرية · الإصدار الثاني · 2026</span>
+  </header>
 
-<main>
-<!-- Essence -->
-<section>
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>01 ESSENCE</b> جوهر العلامة</div>
-      <h2 class="sec-title">قطعة واحدة تكمّل الإطلالة</h2>
-    </div>
-    <div class="essence">
-      <div class="story">
-        <p class="big">نورا اكسسواريز متجر لقطع الزينة اليومية والمناسبات: أقراط، قلائد، أساور، خواتم وإكسسوارات الشعر، مختارة بعناية ومغلّفة كأنها هدية.</p>
-        <p class="lede">الهوية مأخوذة من عالم علب الحلوى الفاخرة: بنفسجي باذنجاني عميق بملمس نقش بارز، شريط زيتوني يحمل الاسم، وختم ذهبي يُغلق العلبة. الهدف أن تشعر العميلة عند فتح الطلب أنها تفتح هدية، حتى لو اشترتها لنفسها.</p>
-        <p class="lede"><strong style="color:var(--aubergine)">الجمهور:</strong> نساء بين 18 و40 عاماً يبحثن عن قطع أنيقة بسعر معقول، يتسوّقن عبر إنستغرام وتيك توك، ويهتممن بتجربة التغليف بقدر اهتمامهن بالقطعة.</p>
-      </div>
-      <div class="traits">
-        <div class="trait"><span class="en">ELEGANT</span><h3>أنيقة</h3><p>هدوء في التصميم، ذهب بقدر، ولا ازدحام.</p></div>
-        <div class="trait"><span class="en">WARM</span><h3>دافئة</h3><p>تتحدث مع العميلة كصديقة ذات ذوق.</p></div>
-        <div class="trait"><span class="en">GIFTED</span><h3>مُهداة</h3><p>كل طلب يصل بشريط وختم وبطاقة شكر.</p></div>
-        <div class="trait"><span class="en">DETAILED</span><h3>دقيقة</h3><p>العناية بالتفاصيل هي ما يميز القطعة والتغليف.</p></div>
+  <!-- ================= MOODBOARD ================= -->
+  <section class="board" aria-label="لوحة الهوية">
+    <div class="tile t-logo">
+      <div class="bigwm"><svg viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg></div>
+      <div class="lockup">
+        <svg class="ar gold" viewBox="0 0 412 146" role="img" aria-label="نورا"><use href="#nora-ar"/></svg>
+        <div class="row"><span>EST</span><i></i><span class="lat latin">Nora</span><i></i><span>2026</span></div>
+        <div class="row" style="letter-spacing:.6em;font-size:9px">ACCESSORIES</div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="tile t-mark">
+      <svg class="bigwm" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="opacity:.06;inset:0;width:100%;height:100%"><rect width="400" height="400" fill="url(#pat-tone)"/></svg>
+      <svg class="m gold" viewBox="0 0 144 144" role="img" aria-label="رمز نورا"><use href="#nora-mark"/></svg>
+    </div>
 
-<!-- Logo -->
-<section style="background:var(--paper)">
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>02 LOGO</b> الشعار</div>
-      <h2 class="sec-title">نظام الشعار</h2>
-      <p class="lede">الشعار الرئيسي كلمة NORA بخط عالي التباين مع توقيع Accessories بخط يد متداخل أسفلها، على طريقة شعار الصورة المرجعية. يرافقه شعار عربي بخط الرقعة وختم دائري للاستخدامات الصغيرة.</p>
-    </div>
-    <div class="logo-grid">
-      <div class="tile t-main">
-        <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
-        <span class="cap">الشعار الرئيسي · طباعة ذهبية على البنفسجي</span>
+    <div class="seal" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin"><use href="#seal-sym"/></g></svg></div>
+
+    <div class="tile t-poster">
+      <div class="phead">
+        <svg class="gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        <span class="no">N° 01 · PEARL</span>
       </div>
-      <div class="tile t-seal">
-        <svg class="seal" viewBox="0 0 200 200" role="img" aria-label="ختم نورا"><use href="#seal"/></svg>
-        <span class="cap">الختم · لاصق العلب والأيقونة</span>
+      <div class="stage">
+        <div class="word">RADIANT</div>
+        <div class="word2">تألّقي بهدوء</div>
+        <svg class="neck" viewBox="0 0 400 460" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+          <path d="M70 -10 C96 150 160 250 200 268 C240 250 304 150 330 -10" fill="none" stroke="url(#foil)" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.1 6.2"/>
+          <path d="M70 -10 C96 150 160 250 200 268 C240 250 304 150 330 -10" fill="none" stroke="#E2CC9A" stroke-opacity=".35" stroke-width=".8"/>
+          <use href="#spark" x="186" y="262" width="28" height="28" fill="url(#foil)"/>
+          <line x1="200" y1="288" x2="200" y2="300" stroke="url(#foil)" stroke-width="2"/>
+          <circle cx="200" cy="322" r="22" fill="url(#pearl)"/>
+          <ellipse cx="193" cy="313" rx="6" ry="4" fill="#fff" opacity=".7"/>
+        </svg>
       </div>
-      <div class="tile t-ar">
-        <div class="logo-ar"><span class="wm">نورا</span><span class="sub">اكسسواريز</span></div>
-        <span class="cap">الشعار العربي</span>
-      </div>
-      <div class="tile t-cream">
-        <div class="logo"><span class="wm">NORA</span><span class="sc" style="color:var(--gold)">Accessories</span></div>
-        <span class="cap">على الكريمي</span>
-      </div>
-      <div class="tile t-olive">
-        <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
-        <span class="cap">على الزيتوني</span>
+      <div class="pfoot">
+        <p>اكتشفي مجموعة <b>«لؤلؤة نورا»</b>: سلاسل ناعمة وقطع لؤلؤ تكمّل إطلالتك اليومية.</p>
+        <div class="handle"><span>@nora.accessories</span><i></i></div>
       </div>
     </div>
 
-    <div class="rules">
-      <div class="rule">
-        <h3>المساحة الآمنة</h3>
-        <p>اترك حول الشعار مسافة تساوي ارتفاع حرف O على الأقل من كل الجهات.</p>
-        <div class="clear"><div class="logo"><span class="wm">NORA</span><span class="sc" style="color:var(--gold)">Accessories</span></div></div>
-      </div>
-      <div class="rule">
-        <h3>أصغر مقاس</h3>
-        <p>الشعار الكامل: عرض 30 مم في الطباعة و120 بكسل على الشاشة. أصغر من ذلك استخدم الختم (12 مم / 48 بكسل).</p>
-      </div>
-      <div class="rule">
-        <h3>الطباعة</h3>
-        <p>على العلب والأكياس: ختم ذهبي ساخن (Hot foil) للشعار، ونقش بارز بلا لون (Blind emboss) للزخرفة الخلفية.</p>
+    <div class="tile t-flat">
+      <svg class="scene" viewBox="0 0 700 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="satin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A2140"/><stop offset=".5" stop-color="#5E3864"/><stop offset="1" stop-color="#3A2140"/></linearGradient>
+          <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="-10" dy="16" stdDeviation="12" flood-color="#2E1A31" flood-opacity=".35"/></filter>
+        </defs>
+        <path id="rb" d="M-30 60 C120 10 180 150 300 120 S520 -20 730 80" fill="none" stroke="url(#satin)" stroke-width="34" filter="url(#sh)"/>
+        <text font-family="Gilda Display, Georgia, serif" font-size="11" letter-spacing="4" fill="#E2CC9A" dy="4"><textPath href="#rb">NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦</textPath></text>
+        <g transform="translate(270 130) rotate(-8)" filter="url(#sh)">
+          <rect x="0" y="0" width="160" height="150" rx="6" fill="#343B26"/>
+          <rect x="0" y="0" width="160" height="150" rx="6" fill="url(#pat-tone)" opacity=".06"/>
+          <rect x="0" y="150" width="160" height="12" rx="3" fill="#262C1B"/>
+          <use href="#nora-ar" x="30" y="45" width="100" height="36" fill="url(#foil)" stroke="url(#foil)"/>
+          <text x="80" y="104" text-anchor="middle" font-family="Gilda Display, Georgia, serif" font-size="8" letter-spacing="4" fill="#E2CC9A">ACCESSORIES</text>
+        </g>
+        <path id="rb2" d="M380 320 C440 250 520 300 600 230 S700 200 740 170" fill="none" stroke="url(#satin)" stroke-width="30" filter="url(#sh)"/>
+        <text font-family="Gilda Display, Georgia, serif" font-size="10" letter-spacing="4" fill="#E2CC9A" dy="3.5"><textPath href="#rb2">NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦</textPath></text>
+        <g fill="none" stroke="url(#foil)" stroke-width="3">
+          <circle cx="120" cy="200" r="16"/><circle cx="168" cy="236" r="12"/>
+        </g>
+        <use href="#spark" x="111" y="176" width="18" height="18" fill="#F5F0EA"/>
+        <circle cx="540" cy="120" r="7" fill="url(#pearl)"/><circle cx="566" cy="128" r="7" fill="url(#pearl)"/>
+        <path d="M540 113v-8M566 121v-8" stroke="url(#foil)" stroke-width="2"/>
+        <path d="M470 270 C520 210 600 210 650 250" fill="none" stroke="url(#foil)" stroke-width="2.2" stroke-dasharray=".1 4.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="tile t-pal" id="chips">
+      <div class="chip" style="background:#4B2A4E;color:#EEEAE5"><button type="button" id="chip-aub" data-hex="#4B2A4E" aria-label="نسخ #4B2A4E"></button>#4B2A4E</div>
+      <div class="chip" style="background:#343B26;color:#EEEAE5"><button type="button" id="chip-oli" data-hex="#343B26" aria-label="نسخ #343B26"></button>#343B26</div>
+      <div class="chip" style="background:linear-gradient(120deg,#9C7F4C,#E9D6A6 40%,#B89A64 60%,#D6BE88);color:#2E1A31"><button type="button" id="chip-gold" data-hex="#B89A64" aria-label="نسخ #B89A64"></button>#B89A64</div>
+      <div class="chip" style="background:#EEEAE5;color:#4B2A4E"><button type="button" id="chip-cream" data-hex="#EEEAE5" aria-label="نسخ #EEEAE5"></button>#EEEAE5</div>
+    </div>
+
+    <div class="tile t-pattern">
+      <svg class="pat" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="380" fill="url(#pat)"/></svg>
+      <div class="hangtag">
+        <span class="hole"></span>
+        <svg class="m" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+        <svg class="ar" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        <small>ACCESSORIES</small>
       </div>
     </div>
 
-    <div class="donts">
-      <div class="dont"><div class="demo"><div class="logo" style="transform:scaleX(1.5);color:var(--aubergine)"><span class="wm">NORA</span></div></div><p>لا تمطّ الشعار أو تضغطه.</p></div>
-      <div class="dont"><div class="demo" style="background:#E25A8F"><div class="logo" style="color:#fff"><span class="wm">NORA</span></div></div><p>لا تضعه على ألوان خارج اللوحة.</p></div>
-      <div class="dont"><div class="demo"><div class="logo" style="color:var(--aubergine);transform:rotate(-14deg)"><span class="wm">NORA</span></div></div><p>لا تُدِر الشعار.</p></div>
-      <div class="dont"><div class="demo"><div class="logo" style="color:var(--aubergine);text-shadow:3px 3px 0 #9fd"><span class="wm">NORA</span></div></div><p>لا تضف ظلالاً أو تأثيرات.</p></div>
+    <div class="tile t-door">
+      <div class="panel" style="inset:6% 54% 52% 8%"></div>
+      <div class="panel" style="inset:6% 8% 52% 54%"></div>
+      <div class="panel" style="inset:54% 54% -10% 8%"></div>
+      <div class="panel" style="inset:54% 8% -10% 54%"></div>
+      <div class="light"></div>
+      <div class="knob"></div>
+      <div class="bag">
+        <svg class="handles" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true"><path d="M18 70 L50 0 L82 70" fill="none" stroke="#4B2A4E" stroke-width="3.2" stroke-linejoin="round"/></svg>
+        <div class="body"><div class="in">
+          <svg class="m" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <svg class="ar" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        </div></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- Colors -->
-<section class="band deep">
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>03 COLOUR</b> الألوان</div>
-      <h2 class="sec-title">لوحة الألوان</h2>
-      <p class="lede">ستة ألوان مأخوذة مباشرة من الصورة المرجعية: العلبة، الشريط، الطباعة الذهبية، الخلفية، والشوكولاتة. اضغطي على «نسخ» لنسخ رمز اللون.</p>
+<main class="wrap">
+  <!-- concept -->
+  <section class="sec">
+    <div class="sh"><span class="k">01 — CONCEPT</span><div>
+      <h2>النقطة نور</h2>
+      <p>اسم «نورا» مشتق من النور. لذلك رسمنا الشعار يدوياً بقلم عريض، وجعلنا نقطة النون شرارة ضوء بأربعة أطراف، تشبه لمعة الحجر الكريم. ومن أربع نونات متقابلة وُلد الرمز: زهرة رباعية تحتضن الضوء في وسطها، كما تحتضن الحاضنة الفص في الخاتم.</p>
+    </div></div>
+    <div class="concept">
+      <div class="step">
+        <span class="n">I</span>
+        <div class="fig"><svg viewBox="0 0 200 160" aria-hidden="true">
+          <line class="guide" x1="0" y1="110" x2="200" y2="110"/><line class="guide" x1="0" y1="60" x2="200" y2="60"/>
+          <text x="100" y="110" text-anchor="middle" class="big-ar">ن</text>
+        </svg></div>
+        <h3>حرف النون</h3><p>نقطة البداية: الحرف الأول من الاسم، بشكله الدائري المفتوح كالإناء.</p>
+      </div>
+      <div class="step">
+        <span class="n">II</span>
+        <div class="fig"><svg viewBox="-60 -60 120 120" aria-hidden="true">
+          <circle class="guide" r="50"/><line class="guide" x1="-60" y1="0" x2="60" y2="0"/><line class="guide" x1="0" y1="-60" x2="0" y2="60"/>
+          <use href="#spark" x="-26" y="-26" width="52" height="52" fill="url(#foil)"/>
+        </svg></div>
+        <h3>النقطة شرارة</h3><p>تحولت النقطة إلى نجمة بأربعة أطراف: نور ولمعة ألماس في رمز واحد.</p>
+      </div>
+      <div class="step">
+        <span class="n">III</span>
+        <div class="fig" style="background:var(--aubergine)"><svg viewBox="-80 -80 160 160" aria-hidden="true">
+          <circle class="guide" r="62" style="stroke:#E2CC9A"/><rect class="guide" x="-62" y="-62" width="124" height="124" transform="rotate(45)" style="stroke:#E2CC9A"/>
+          <use href="#nora-mark" x="-60" y="-60" width="120" height="120" fill="#EEEAE5" stroke="#EEEAE5"/>
+        </svg></div>
+        <h3>أربع نونات</h3><p>أربع نونات تتلاقى أطرافها في دائرة واحدة، فتصنع زهرة رباعية مستوحاة من الزخرفة الإسلامية.</p>
+      </div>
     </div>
-    <div class="swatches" id="swatches"></div>
+  </section>
 
-    <div class="ratio">
-      <h3>نسب الاستخدام في أي تصميم</h3>
-      <div class="ratio-bar" aria-label="نسب الألوان">
-        <span style="flex:50;background:var(--aubergine);color:var(--cream)">50%</span>
-        <span style="flex:25;background:var(--cream);color:var(--aubergine)">25%</span>
-        <span style="flex:12;background:var(--olive);color:var(--cream)">12%</span>
-        <span style="flex:8;background:var(--foil);color:var(--plum)">8%</span>
-        <span style="flex:5;background:var(--cocoa);color:var(--cream)">5%</span>
-      </div>
-    </div>
-
-    <div class="combos">
-      <div class="combo" style="background:var(--aubergine);color:var(--gold-hi)"><strong>نورا</strong><span>ذهبي على بنفسجي · الأساسي</span></div>
-      <div class="combo" style="background:var(--olive);color:var(--gold-hi)"><strong>نورا</strong><span>ذهبي على زيتوني · الشريط والختم</span></div>
-      <div class="combo" style="background:var(--cream);color:var(--aubergine)"><strong>نورا</strong><span>بنفسجي على كريمي · النصوص</span></div>
-      <div class="combo" style="background:var(--cocoa);color:var(--cream)"><strong>نورا</strong><span>كريمي على كاكاو · خلفيات المنتجات</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- Type -->
-<section>
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>04 TYPE</b> الخطوط</div>
-      <h2 class="sec-title">الخطوط</h2>
-      <p class="lede">أربعة خطوط مجانية من Google Fonts: خطان لاتينيان للشعار والعناوين الإنجليزية، وخطان عربيان للعناوين والنصوص.</p>
-    </div>
-    <div class="type-grid">
-      <div class="spec s-display">
-        <div class="role"><b>Italiana</b><span>الشعار والعناوين الإنجليزية</span></div>
-        <div class="sample">NORA</div>
-        <div class="glyphs" dir="ltr">ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789</div>
-      </div>
-      <div class="spec s-script">
-        <div class="role"><b>Pinyon Script</b><span>التوقيع واللمسات</span></div>
-        <div class="sample">Accessories</div>
-        <div class="glyphs" dir="ltr">Thank you · With love · New collection</div>
-      </div>
-      <div class="spec s-ruqaa">
-        <div class="role"><b>Aref Ruqaa</b><span>العناوين العربية</span></div>
-        <div class="sample">لمسة تكمّل أناقتك</div>
-        <div class="glyphs">أ ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن هـ و ي</div>
-      </div>
-      <div class="spec s-plex">
-        <div class="role"><b>IBM Plex Sans Arabic</b><span>النصوص والأسعار والواجهات</span></div>
-        <div class="sample">أقراط ذهبية مطلية بعيار 18، مقاومة للتغيّر ومناسبة للاستخدام اليومي.</div>
-        <div class="glyphs">خفيف 300 · عادي 400 · متوسط 500 · ٠١٢٣٤٥٦٧٨٩</div>
-      </div>
-    </div>
-    <div class="scale">
-      <table>
-        <thead><tr><th>المستوى</th><th>مثال</th><th class="m">Font / Size / Line</th></tr></thead>
-        <tbody>
-          <tr><td>عنوان رئيسي</td><td style="font-family:var(--f-ar-display);font-size:40px;color:var(--aubergine);line-height:1.3">مجموعة الخريف</td><td class="m">Aref Ruqaa 700 · 40 / 52</td></tr>
-          <tr><td>عنوان فرعي</td><td style="font-family:var(--f-ar-display);font-size:26px;color:var(--aubergine)">قلائد الطبقات</td><td class="m">Aref Ruqaa 400 · 26 / 36</td></tr>
-          <tr><td>نص</td><td style="font-size:16px">سلسلة رفيعة بطول 45 سم مع قفل قابل للتعديل.</td><td class="m">Plex Arabic 400 · 16 / 28</td></tr>
-          <tr><td>تسمية</td><td style="font-family:var(--f-display);letter-spacing:.24em;font-size:12px;color:var(--gold);direction:ltr;text-align:right">NEW ARRIVAL</td><td class="m">Italiana · 12 · +24%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Elements -->
-<section style="background:var(--paper)">
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>05 ELEMENTS</b> العناصر البصرية</div>
-      <h2 class="sec-title">النقش والشريط والتعويذة</h2>
-    </div>
-    <div class="el-grid">
-      <div class="el">
-        <div class="stage st-pattern"></div>
-        <div class="txt"><h3>نقش الزهرة الرباعية</h3><p>يُطبع نقشاً بارزاً بلا لون على أغطية العلب والأكياس، وبشفافية 8–10% في التصاميم الرقمية.</p></div>
-      </div>
-      <div class="el">
-        <div class="stage st-ribbon">
-          <svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <path id="rib2" d="M-20,60 C80,10 120,200 200,150 S300,40 330,90" fill="none" stroke="#343B26" stroke-width="34"/>
-            <text font-family="Italiana, Georgia, serif" font-size="13" letter-spacing="4" fill="#B89A64" dy="5"><textPath href="#rib2">NORA ✦ Accessories ✦ NORA ✦ Accessories ✦</textPath></text>
-          </svg>
+  <!-- logo system -->
+  <section class="sec">
+    <div class="sh"><span class="k">02 — LOGO</span><div>
+      <h2>نظام الشعار</h2>
+      <p>خمس صيغ تغطي كل الاستخدامات، من لافتة المتجر إلى أيقونة الحساب. الشعار العربي مرسوم يدوياً وليس خطاً جاهزاً، فلا يُعاد كتابته بأي خط.</p>
+    </div></div>
+    <div class="lg">
+      <div class="c c1">
+        <div class="horiz">
+          <svg class="m fill-cur" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <span class="bar"></span>
+          <div class="t"><span class="l">NORA</span><span class="s">ACCESSORIES</span></div>
+          <span class="bar"></span>
+          <svg class="ar fill-cur" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
         </div>
-        <div class="txt"><h3>شريط الساتان</h3><p>زيتوني بعرض 25 مم، مطبوع بالذهبي. يلف كل علبة.</p></div>
+        <span class="cap">الشعار الأفقي ثنائي اللغة · للافتة والموقع</span>
       </div>
-      <div class="el">
-        <div class="stage st-charm"><svg viewBox="0 0 120 200" style="width:90px;height:150px" aria-hidden="true"><use href="#charm"/></svg></div>
-        <div class="txt"><h3>رمز القلادة</h3><p>رسم خطي ذهبي يحل محل الأرنب في المرجع: للبطاقات وصفحات التواصل.</p></div>
+      <div class="c c2">
+        <div class="lockup" style="padding:0">
+          <svg class="ar gold" style="width:200px" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+          <div class="row"><span>EST</span><i></i><span class="lat latin" style="font-size:18px">Nora</span><i></i><span>2026</span></div>
+        </div>
+        <span class="cap">الشعار الرئيسي</span>
+      </div>
+      <div class="c c3">
+        <svg class="gold" style="width:110px;height:110px" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+        <span class="cap">الرمز</span>
+      </div>
+      <div class="c c4">
+        <svg class="fill-cur" style="width:220px;aspect-ratio:412/146" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        <span class="cap">الشعار العربي منفرداً</span>
+      </div>
+      <div class="c c5">
+        <svg style="width:150px;height:150px" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal-sym"/></svg>
+        <span class="cap">الختم الدائري</span>
       </div>
     </div>
-  </div>
-</section>
+    <div class="specs">
+      <div><h3>المساحة الآمنة</h3><p>مسافة حول الشعار تساوي عرض شرارة النون، من كل الجهات.</p></div>
+      <div><h3>أصغر مقاس</h3><p>الشعار العربي: 25 مم طباعةً و100 بكسل رقمياً. الرمز: 8 مم و24 بكسل.</p></div>
+      <div><h3>الطباعة الفاخرة</h3><p>ختم ذهبي ساخن للشعار، ونقش الرمز بارزاً بلا لون على أغطية العلب.</p></div>
+    </div>
+  </section>
 
-<!-- Applications -->
-<section>
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>06 APPLICATIONS</b> التطبيقات</div>
-      <h2 class="sec-title">الهوية على أرض الواقع</h2>
-      <p class="lede">تصورات أولية للتغليف والمطبوعات والمحتوى الرقمي. المقاسات المذكورة مقترحة ويمكن تعديلها مع المطبعة.</p>
+  <!-- colour -->
+  <section class="sec">
+    <div class="sh"><span class="k">03 — COLOUR</span><div>
+      <h2>الألوان</h2>
+      <p>اللوحة نفسها من الصورة المرجعية: الباذنجاني لون العلامة، الزيتوني للشريط والختم، والذهبي للمسة الضوء فقط. عرض كل عمود يعكس نسبة استخدام اللون. اضغطي «نسخ» لنسخ الرمز.</p>
+    </div></div>
+    <div class="cols" id="cols">
+      <div class="col" style="background:#4B2A4E;color:#EEEAE5"><div><div class="nm">باذنجاني</div><div class="en">AUBERGINE</div></div><p class="use">اللون الأساسي للعلب والأكياس والمنشورات.</p><dl><dt>HEX</dt><dd>#4B2A4E</dd><dt>RGB</dt><dd>75 42 78</dd><dt>CMYK</dt><dd>4 46 0 69</dd></dl><button class="cp" type="button" id="cp-aub" data-hex="#4B2A4E">نسخ</button></div>
+      <div class="col" style="background:#343B26;color:#EEEAE5"><div><div class="nm">زيتوني</div><div class="en">RIBBON OLIVE</div></div><p class="use">الشريط والختم وبطاقة الشكر.</p><dl><dt>HEX</dt><dd>#343B26</dd><dt>RGB</dt><dd>52 59 38</dd><dt>CMYK</dt><dd>12 0 36 77</dd></dl><button class="cp" type="button" id="cp-oli" data-hex="#343B26">نسخ</button></div>
+      <div class="col" style="background:#EEEAE5;color:#4B2A4E;box-shadow:inset 0 0 0 1px #DDD5CE"><div><div class="nm">كريمي</div><div class="en">SILK CREAM</div></div><p class="use">الخلفيات والورق والبطاقات.</p><dl><dt>HEX</dt><dd>#EEEAE5</dd><dt>RGB</dt><dd>238 234 229</dd><dt>CMYK</dt><dd>0 2 4 7</dd></dl><button class="cp" type="button" id="cp-cream" data-hex="#EEEAE5">نسخ</button></div>
+      <div class="col" style="background:linear-gradient(160deg,#9C7F4C,#E9D6A6 35%,#B89A64 60%,#D6BE88);color:#2E1A31"><div><div class="nm">ذهبي</div><div class="en">FOIL GOLD</div></div><dl><dt>HEX</dt><dd>#B89A64</dd><dt>CMYK</dt><dd>0 16 46 28</dd></dl><button class="cp" type="button" id="cp-gold" data-hex="#B89A64">نسخ</button></div>
+      <div class="col" style="background:#8B6F66;color:#EEEAE5"><div><div class="nm">كاكاو</div><div class="en">COCOA</div></div><dl><dt>HEX</dt><dd>#8B6F66</dd><dt>CMYK</dt><dd>0 20 27 45</dd></dl><button class="cp" type="button" id="cp-coc" data-hex="#8B6F66">نسخ</button></div>
     </div>
+  </section>
+
+  <!-- type -->
+  <section class="sec">
+    <div class="sh"><span class="k">04 — TYPE</span><div>
+      <h2>الخطوط</h2>
+      <p>خط عربي عالي التباين للعناوين بروح الخط الذي أرسلتِه، وخط لاتيني كلاسيكي، وخط نصوص هادئ.</p>
+    </div></div>
+    <div class="ty">
+      <div class="tcard zun">
+        <div class="role"><b>زنبرك · Zunburk</b><span>العناوين العربية</span></div>
+        <div class="s">بريقٌ يُشبهكِ</div>
+        <p>خط زنبرك هو الخط العربي الأساسي للعناوين في المنشورات والمطبوعات: نسخي عالي التباين بنهايات حادة، يتناغم مع الشعار المرسوم بالقلم العريض.</p>
+        <div class="note">العرض هنا بخط «أميري» كبديل للويب، لأن زنبرك غير متوفر على Google Fonts. حمّلي زنبرك واستخدميه في Canva وPhotoshop وIllustrator.</div>
+      </div>
+      <div class="tcard">
+        <div class="role"><b>Gilda Display</b><span>الاسم اللاتيني والتسميات</span></div>
+        <div class="s latin" style="font-size:clamp(34px,4.4vw,52px);letter-spacing:.3em">NORA</div>
+        <div class="s" style="font-family:var(--f-latin);font-size:15px;direction:ltr;text-align:left;color:var(--muted)">NEW COLLECTION · PEARL · EST. 2026</div>
+      </div>
+      <div class="tcard">
+        <div class="role"><b>Italiana</b><span>الكلمات الكبيرة في البوسترات</span></div>
+        <div class="s" style="font-family:var(--f-poster);font-size:clamp(44px,5.6vw,68px);direction:ltr;text-align:left">Radiant</div>
+      </div>
+      <div class="tcard" style="grid-column:1/-1">
+        <div class="role"><b>IBM Plex Sans Arabic</b><span>النصوص والأسعار ووصف المنتجات</span></div>
+        <div class="s" style="font-family:var(--f-ar);font-weight:300;font-size:21px;line-height:1.8">قلادة بسلسلة ناعمة مطلية بالذهب عيار 18 وحبة لؤلؤ طبيعي، بطول 45 سم وقفل قابل للتعديل. ١٢٩ ر.س</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- applications -->
+  <section class="sec">
+    <div class="sh"><span class="k">05 — APPLICATIONS</span><div>
+      <h2>التطبيقات</h2>
+      <p>كيف تبدو نورا في يد العميلة: البطاقة، الصندوق، الستوري، وبطاقة الشكر التي تُقرأ أولاً عند فتح الطلب.</p>
+    </div></div>
     <div class="apps">
-      <div class="app a-box">
-        <div class="stage">
-          <div class="box">
-            <div class="base"></div>
-            <div class="lid">
-              <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
-              <div class="band-r"></div>
-            </div>
-            <svg class="sticker" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+      <div class="app a1">
+        <div class="cards">
+          <div class="bc f"><svg class="ar gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg></div>
+          <div class="bc b">
+            <svg class="m" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+            <div><div class="nm">نورا اكسسواريز</div>
+            <ul><li dir="ltr" style="text-align:right">@nora.accessories</li><li>واتساب: رقم المتجر</li><li>رابط المتجر الإلكتروني</li></ul></div>
+            <span class="edge"></span>
           </div>
         </div>
-        <div class="label"><h3>علبة القلائد والأساور</h3><span>220 × 85 × 35 mm</span></div>
+        <span class="lb">بطاقة العمل · 90 × 50 مم</span>
       </div>
-      <div class="app a-ring">
-        <div class="stage">
-          <div class="ring"><div class="bot"></div><div class="top"><svg class="sealmini" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg></div></div>
+      <div class="app a2">
+        <div class="story">
+          <svg class="m gold" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <h4>وصلت مجموعة<br>«لؤلؤة نورا»</h4>
+          <p>قطع محدودة · شحن لكل المدن</p>
+          <span class="cta">تسوّقي الآن</span>
         </div>
-        <div class="label"><h3>علبة الخواتم</h3><span>70 × 70 mm</span></div>
+        <span class="lb">ستوري إنستغرام · 1080 × 1920</span>
       </div>
-      <div class="app a-bag">
-        <div class="stage">
-          <div class="bag">
-            <svg class="handle" viewBox="0 0 120 80" aria-hidden="true"><path d="M25 80 C25 10 95 10 95 80" fill="none" stroke="#343B26" stroke-width="5" stroke-linecap="round"/></svg>
-            <div class="body"><div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div></div>
-          </div>
-        </div>
-        <div class="label"><h3>كيس التسوق</h3><span>240 × 290 mm</span></div>
+      <div class="app a3">
+        <div class="boxsq"><div class="lid"><span class="rib1"></span><span class="rib2"></span><svg class="sl" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal-sym"/></svg></div></div>
+        <span class="lb">علبة الهدية · 90 × 90 مم</span>
       </div>
-      <div class="app a-card">
-        <div class="stage">
-          <div class="cards">
-            <div class="bc front"><div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div></div>
-            <div class="bc back">
-              <div><div class="n">نورا اكسسواريز</div><div class="r">قطع زينة مختارة بعناية</div></div>
-              <ul>
-                <li><i></i><span dir="ltr">@nora.accessories</span></li>
-                <li><i></i>واتساب: رقم المتجر</li>
-                <li><i></i>رابط المتجر الإلكتروني</li>
-              </ul>
-              <div class="edge"></div>
-            </div>
-          </div>
+      <div class="app a4">
+        <div class="thanks">
+          <svg class="ar gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+          <h4>شكراً لأنكِ اخترتِنا</h4>
+          <p>غلّفنا قطعتك بعناية،<br>ونتمنى أن تلمع معك في أجمل أيامك.</p>
         </div>
-        <div class="label"><h3>بطاقة العمل</h3><span>90 × 50 mm</span></div>
+        <span class="lb">بطاقة الشكر · A6</span>
       </div>
-      <div class="app a-tag">
-        <div class="stage">
-          <div class="hang">
-            <div class="string"></div>
-            <div class="hole"></div>
-            <div class="logo"><span class="wm">NORA</span><span class="sc" style="color:var(--gold)">Accessories</span></div>
-            <div class="ear"><span></span><span></span></div>
-            <div class="price">قرط «لؤلؤة» · 89 ر.س</div>
-          </div>
+      <div class="app a5">
+        <div class="thanks lightv">
+          <svg class="fill-cur" style="width:56px;height:56px" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <h4>العناية بقطعتك</h4>
+          <p>احفظيها في علبتها بعيداً عن الماء والعطر،<br>وامسحيها بقطعة قماش ناعمة.</p>
         </div>
-        <div class="label"><h3>بطاقة الأقراط</h3><span>50 × 85 mm</span></div>
-      </div>
-      <div class="app a-thanks">
-        <div class="stage">
-          <div class="ty">
-            <svg viewBox="0 0 120 200" style="width:34px;height:56px" aria-hidden="true"><use href="#charm"/></svg>
-            <div class="script">Thank you</div>
-            <div class="ar">شكراً لأنك اخترتِنا</div>
-            <p>نتمنى أن تكون هذه القطعة<br>جزءاً من أجمل لحظاتك.</p>
-          </div>
-        </div>
-        <div class="label"><h3>بطاقة الشكر</h3><span>A6</span></div>
-      </div>
-      <div class="app a-insta">
-        <div class="stage">
-          <div class="ig">
-            <div class="arc"><svg viewBox="0 0 120 200" aria-hidden="true"><use href="#charm"/></svg></div>
-            <div class="k">NEW COLLECTION</div>
-            <h4>مجموعة الخريف<br>وصلت</h4>
-            <div class="cta"><span>اطلبيها الآن</span><span dir="ltr">@nora.accessories</span></div>
-          </div>
-        </div>
-        <div class="label"><h3>منشور إنستغرام</h3><span>1080 × 1080</span></div>
+        <span class="lb">بطاقة العناية · A7</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Voice -->
-<section class="band">
-  <div class="wrap">
-    <div class="head">
-      <div class="eyebrow"><b>07 VOICE</b> نبرة الصوت</div>
-      <h2 class="sec-title">كيف تتكلم نورا</h2>
-    </div>
+  <!-- voice -->
+  <section class="sec">
+    <div class="sh"><span class="k">06 — VOICE</span><div>
+      <h2>صوت نورا</h2>
+      <p>نتحدث مع العميلة بصيغة المؤنث، بدفء صديقة ذات ذوق. نذكر الخامة والسعر بوضوح، ونكتفي برمز ✦ واحد بدل الرموز التعبيرية.</p>
+    </div></div>
     <div class="voice">
-      <div class="v"><h3>قريبة</h3><p>نخاطب العميلة بصيغة المؤنث وبلغة دافئة وبسيطة، كما تتكلم صديقة ذات ذوق.</p></div>
-      <div class="v"><h3>واضحة</h3><p>نذكر الخامة والمقاس والسعر دائماً. الأناقة لا تعني الغموض.</p></div>
-      <div class="v"><h3>هادئة</h3><p>بدون مبالغة أو كثرة رموز تعبيرية. رمز ✦ واحد يكفي.</p></div>
+      <div class="q"><span class="lab">نقول</span><blockquote>قلادة بطبقتين، تناسب صباحك في العمل وسهرتك مع صديقاتك.</blockquote></div>
+      <div class="q no"><span class="lab">لا نقول</span><blockquote>🔥🔥 عرض ناااار لا يفوتك!!! الحقي قبل ما يخلص 😍</blockquote></div>
+      <div class="q"><span class="lab">رسالة الشحن</span><blockquote>طلبك في الطريق، ملفوف بشريطنا ومختوم باسمك.</blockquote></div>
+      <div class="q"><span class="lab">النبذة (Bio)</span><blockquote>نورا اكسسواريز ✦ قطع تلمع بهدوء، تصلك كهدية.</blockquote></div>
     </div>
-    <div class="lines">
-      <div class="line"><span class="lab">نقول</span><q>قلادة بطبقتين من الفضة المطلية بالذهب، تناسب إطلالتك اليومية وسهرتك معاً.</q></div>
-      <div class="line no"><span class="lab">لا نقول</span><q>🔥🔥 عرض ناااار لا يفوتك!!! الحقي قبل ما يخلص 😍😍</q></div>
-      <div class="line"><span class="lab">رسالة الشحن</span><q>طلبك في الطريق إليك، ملفوف بشريطنا الأخضر ومختوم باسمك.</q></div>
-      <div class="line"><span class="lab">الوصف المختصر (Bio)</span><q>نورا اكسسواريز ✦ قطع زينة مختارة بعناية، تصلك كهدية.</q></div>
-    </div>
-  </div>
-</section>
+  </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="logo"><span class="wm foil">NORA</span><span class="sc foil">Accessories</span></div>
-    <span>دليل الهوية البصرية · الإصدار الأول · أكتوبر 2026</span>
+    <svg class="gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+    <span>نورا اكسسواريز · دليل الهوية البصرية 2026</span>
   </div>
 </footer>
-
 <div class="toast" id="toast" hidden></div>
 
 <script>
-const colors=[
-  {ar:"باذنجاني",en:"NORA AUBERGINE",hex:"#4B2A4E",rgb:"75 42 78",cmyk:"4 46 0 69",use:"اللون الأساسي: العلب، الأكياس، خلفيات المنشورات."},
-  {ar:"برقوقي داكن",en:"DEEP PLUM",hex:"#2E1A31",rgb:"46 26 49",cmyk:"6 47 0 81",use:"قاعدة العلب، النصوص الداكنة، التذييل."},
-  {ar:"زيتوني",en:"RIBBON OLIVE",hex:"#343B26",rgb:"52 59 38",cmyk:"12 0 36 77",use:"الشريط والختم وبطاقة الشكر."},
-  {ar:"ذهبي",en:"FOIL GOLD",hex:"#B89A64",rgb:"184 154 100",cmyk:"0 16 46 28",use:"الشعار والتفاصيل فقط. يُطبع ختماً ذهبياً.",foil:true},
-  {ar:"كريمي",en:"SILK CREAM",hex:"#EEEAE5",rgb:"238 234 229",cmyk:"0 2 4 7",use:"الخلفيات، البطاقات، ورق التغليف الداخلي."},
-  {ar:"كاكاو",en:"COCOA",hex:"#8B6F66",rgb:"139 111 102",cmyk:"0 20 27 45",use:"خلفيات تصوير المنتجات والإسفنج الداخلي للعلب."}
-];
-const wrap=document.getElementById("swatches");
-colors.forEach(c=>{
-  const el=document.createElement("div");el.className="sw";
-  el.innerHTML=`<div class="chip${c.foil?" foiled":""}" style="background-color:${c.hex}"></div>
-  <div class="info"><span class="name">${c.ar}</span><span class="en">${c.en}</span>
-  <dl><dt>HEX</dt><dd>${c.hex}</dd><dt>RGB</dt><dd>${c.rgb}</dd><dt>CMYK</dt><dd>${c.cmyk}</dd></dl>
-  <p class="use">${c.use}</p>
-  <button class="copy" type="button" id="copy-${c.hex.slice(1)}" data-hex="${c.hex}">نسخ ${c.hex}</button></div>`;
-  wrap.appendChild(el);
-});
 const toast=document.getElementById("toast");let tt;
-function show(msg){toast.textContent=msg;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,1600)}
-wrap.addEventListener("click",e=>{
-  const b=e.target.closest(".copy");if(!b)return;
+function show(m){toast.textContent=m;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,1600)}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-hex]");if(!b)return;
   const hex=b.dataset.hex;
-  navigator.clipboard.writeText(hex).then(()=>show("تم نسخ "+hex)).catch(()=>{
-    const r=document.createRange();r.selectNodeContents(b);const s=getSelection();s.removeAllRanges();s.addRange(r);show("حدّدي الرمز وانسخيه");
-  });
+  navigator.clipboard.writeText(hex).then(()=>show("تم نسخ "+hex)).catch(()=>show("رمز اللون: "+hex));
 });
 </script>

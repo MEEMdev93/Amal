@@ -1,0 +1,608 @@
+<title>Nora Accessories Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Italiana&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a moodboard of rounded tiles on cream paper (the identity at a glance), followed by a quieter brand book; the hand-drawn Arabic logotype is the one loud element */
+:root{
+  --aubergine:#4B2A4E;
+  --plum:#2E1A31;
+  --olive:#343B26;
+  --olive-deep:#262C1B;
+  --gold:#B89A64;
+  --gold-hi:#E2CC9A;
+  --cream:#EEEAE5;
+  --paper:#F7F4F0;
+  --cocoa:#8B6F66;
+  --ink:#24182A;
+  --muted:#76687A;
+  --line:#DDD5CE;
+  --f-latin:"Gilda Display","Didot","Bodoni 72",Georgia,serif;
+  --f-poster:"Italiana","Didot",Georgia,serif;
+  --f-ar-head:"Amiri","Traditional Arabic",serif;
+  --f-ar:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  --r:28px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-ar);font-size:16px;line-height:1.8;direction:rtl;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:var(--plum)}
+h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+svg.ico{display:block}
+.latin{font-family:var(--f-latin);direction:ltr;letter-spacing:.32em;text-transform:uppercase}
+.gold{fill:url(#foil);stroke:url(#foil)}
+use{stroke-width:.4;stroke-linejoin:round}
+
+/* top bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding-block:22px;gap:16px}
+.topbar .brand{display:flex;align-items:center;gap:12px;color:var(--aubergine)}
+.topbar .brand svg{width:30px;height:30px;fill:var(--aubergine);stroke:var(--aubergine)}
+.topbar .brand span{font-size:11px}
+.topbar .ed{font-size:12px;color:var(--muted)}
+
+/* ================= MOODBOARD ================= */
+.board{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;position:relative;padding-bottom:40px}
+.tile{border-radius:var(--r);overflow:hidden;position:relative;min-width:0}
+.t-logo{grid-column:span 7;background:var(--aubergine);min-height:380px;display:grid;place-items:center;color:var(--cream)}
+.t-mark{grid-column:span 5;background:var(--olive);min-height:380px;display:grid;place-items:center}
+.bigwm{position:absolute;inset:-20%;opacity:.05;pointer-events:none}
+.bigwm svg{width:100%;height:100%;fill:var(--cream);stroke:var(--cream)}
+
+.lockup{display:grid;justify-items:center;gap:6px;position:relative;z-index:1;padding:40px 20px}
+.lockup .ar{width:min(400px,72vw);height:auto;aspect-ratio:412/146}
+.lockup .row{display:flex;align-items:center;gap:14px;font-size:10px;color:var(--gold-hi);direction:ltr;letter-spacing:.3em;font-family:var(--f-latin)}
+.lockup .row i{width:34px;height:1px;background:currentColor;opacity:.6}
+.lockup .lat{font-size:clamp(20px,2.4vw,26px);color:var(--cream)}
+.t-mark .m{width:min(190px,48%);aspect-ratio:1;position:relative;z-index:1}
+
+/* poster */
+.t-poster{grid-column:span 5;grid-row:span 2;min-height:640px;background:radial-gradient(120% 80% at 70% 30%,#6A3E6E 0%,#4B2A4E 45%,#2E1A31 100%);color:var(--cream);display:flex;flex-direction:column}
+.t-poster .phead{display:flex;justify-content:space-between;align-items:flex-start;padding:26px 28px 0}
+.t-poster .phead svg{width:96px;aspect-ratio:412/146}
+.t-poster .phead .no{font-family:var(--f-latin);font-size:10px;letter-spacing:.3em;color:var(--gold-hi);direction:ltr}
+.t-poster .stage{position:relative;flex:1;min-height:420px}
+.t-poster .word{position:absolute;top:18%;left:0;right:0;text-align:center;font-family:var(--f-poster);font-size:clamp(64px,8.6vw,112px);line-height:1;color:#F1DEC0;letter-spacing:.02em;direction:ltr}
+.t-poster .word2{position:absolute;top:calc(18% + clamp(64px,8.6vw,112px));right:8%;font-family:var(--f-ar-head);font-weight:700;font-size:clamp(26px,3vw,36px);color:var(--cream)}
+.t-poster .neck{position:absolute;inset:0;width:100%;height:100%}
+.t-poster .pfoot{padding:0 28px 26px;display:grid;gap:18px}
+.t-poster .pfoot p{font-size:14px;max-width:24ch;color:rgba(238,234,229,.85);line-height:1.7}
+.t-poster .pfoot p b{color:#F1DEC0;font-weight:500}
+.t-poster .handle{display:flex;align-items:center;gap:12px;font-size:12px;direction:ltr;color:var(--cream)}
+.t-poster .handle i{flex:1;height:1px;background:rgba(238,234,229,.45)}
+
+/* flatlay */
+.t-flat{grid-column:span 7;background:#E9E2DA;min-height:300px}
+.t-flat svg.scene{position:absolute;inset:0;width:100%;height:100%}
+
+/* palette */
+.t-pal{grid-column:span 7;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:transparent;overflow:visible}
+.chip{border-radius:22px;min-height:136px;padding:16px;display:flex;align-items:flex-end;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;letter-spacing:.04em;direction:ltr;box-shadow:0 0 0 1px rgba(36,24,42,.08);position:relative}
+.chip button{all:unset;cursor:pointer;position:absolute;inset:0;border-radius:inherit}
+.chip button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* pattern + tag */
+.t-pattern{grid-column:span 6;min-height:380px;background:var(--olive)}
+.t-pattern svg.pat{position:absolute;inset:0;width:100%;height:100%}
+.hangtag{position:absolute;left:50%;top:50%;width:150px;height:300px;transform:translate(-50%,-50%) rotate(-24deg);background:var(--paper);border-radius:4px;box-shadow:0 30px 40px -18px rgba(0,0,0,.55);display:flex;flex-direction:column;align-items:center;padding:30px 14px 22px;gap:14px;clip-path:polygon(0 8%,8% 0,92% 0,100% 8%,100% 92%,92% 100%,8% 100%,0 92%)}
+.hangtag .hole{width:9px;height:9px;border-radius:50%;background:var(--olive);opacity:.9}
+.hangtag .m{width:44px;aspect-ratio:1;fill:var(--aubergine);stroke:var(--aubergine)}
+.hangtag .ar{width:100px;aspect-ratio:412/146;fill:var(--aubergine);stroke:var(--aubergine);margin-top:auto}
+.hangtag small{font-family:var(--f-latin);font-size:7px;letter-spacing:.4em;color:var(--cocoa);direction:ltr}
+
+/* bag on door */
+.t-door{grid-column:span 6;min-height:380px;background:linear-gradient(100deg,#1F2416 0%,#343B26 45%,#2A301F 100%)}
+.t-door .panel{position:absolute;border:2px solid rgba(255,255,255,.05);box-shadow:inset 0 0 0 10px rgba(0,0,0,.08),inset 0 0 0 12px rgba(255,255,255,.04);border-radius:3px}
+.t-door .light{position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,240,210,.0) 40%,rgba(255,240,210,.12) 52%,rgba(255,240,210,0) 64%)}
+.t-door .knob{position:absolute;top:14%;left:50%;width:22px;height:22px;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle at 35% 35%,#E8DCC4,#9A8C74 60%,#4C4434)}
+.bag{position:absolute;top:calc(14% + 10px);left:50%;transform:translateX(-50%);width:min(160px,44%);display:flex;flex-direction:column;align-items:center}
+.bag svg.handles{width:58%;height:70px;overflow:visible}
+.bag .body{width:100%;aspect-ratio:.86;background:linear-gradient(90deg,#E5DED6,#F3EEE8 40%,#E2DAD1);border-radius:2px;display:grid;place-items:center;box-shadow:-20px 30px 40px -18px rgba(0,0,0,.6);position:relative}
+.bag .body::before{content:"";position:absolute;inset:0 0 auto;height:10px;background:rgba(0,0,0,.05)}
+.bag .body .in{display:grid;justify-items:center;gap:8px}
+.bag .body .m{width:30px;aspect-ratio:1;fill:var(--olive);stroke:var(--olive)}
+.bag .body .ar{width:110px;aspect-ratio:412/146;fill:var(--olive);stroke:var(--olive)}
+
+/* seal floating between tiles */
+.seal{position:absolute;width:138px;height:138px;z-index:5;left:calc(41.66% - 69px + 9px);top:calc(380px - 69px + 11px);filter:drop-shadow(0 14px 18px rgba(46,26,49,.35))}
+.seal svg{width:100%;height:100%}
+
+/* ================= BOOK ================= */
+.sec{padding-block:96px;border-top:1px solid var(--line)}
+.sh{display:grid;grid-template-columns:200px 1fr;gap:32px;margin-bottom:48px}
+.sh .k{font-family:var(--f-latin);direction:ltr;text-align:right;font-size:11px;letter-spacing:.32em;color:var(--gold);padding-top:14px}
+.sh h2{font-family:var(--f-ar-head);font-weight:700;font-size:clamp(34px,4.6vw,54px);line-height:1.35;color:var(--aubergine)}
+.sh p{max-width:62ch;color:var(--muted);margin-top:12px}
+
+/* concept */
+.concept{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:var(--paper);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.step .fig{aspect-ratio:1.25;border-radius:18px;background:var(--cream);display:grid;place-items:center;position:relative;overflow:hidden}
+.step .fig svg{width:72%;height:72%;overflow:visible}
+.step h3{font-family:var(--f-ar-head);font-weight:700;font-size:24px;color:var(--aubergine)}
+.step p{font-size:14px;color:var(--muted)}
+.step .n{font-family:var(--f-latin);direction:ltr;font-size:11px;letter-spacing:.3em;color:var(--gold)}
+.guide{fill:none;stroke:#B89A64;stroke-width:.6;stroke-dasharray:3 3}
+.big-ar{font-family:var(--f-ar-head);font-size:120px;fill:var(--aubergine)}
+
+/* logo system */
+.lg{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.lg .c{border-radius:var(--r);min-height:260px;display:grid;place-items:center;position:relative;padding:34px 20px;min-width:0}
+.lg .c .cap{position:absolute;bottom:16px;inset-inline-start:20px;font-size:12px;opacity:.7}
+.lg .c1{grid-column:span 4;background:var(--paper);color:var(--aubergine)}
+.lg .c2{grid-column:span 2;background:var(--aubergine);color:var(--cream)}
+.lg .c3{grid-column:span 2;background:var(--olive);color:var(--cream)}
+.lg .c4{grid-column:span 2;background:var(--paper);color:var(--olive)}
+.lg .c5{grid-column:span 2;background:var(--cocoa);color:var(--cream)}
+.horiz{display:flex;align-items:center;gap:22px;direction:ltr}
+.horiz .m{width:64px;aspect-ratio:1}
+.horiz .bar{width:1px;height:64px;background:currentColor;opacity:.3}
+.horiz .t{display:grid;gap:2px}
+.horiz .t .l{font-family:var(--f-latin);font-size:26px;letter-spacing:.34em}
+.horiz .t .s{font-family:var(--f-latin);font-size:9px;letter-spacing:.5em;opacity:.7}
+.horiz .ar{width:150px;aspect-ratio:412/146}
+.fill-cur{fill:currentColor;stroke:currentColor}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+.specs div{border-top:1px solid var(--gold);padding-top:14px}
+.specs h3{font-size:15px;font-weight:600;color:var(--aubergine)}
+.specs p{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* colour */
+.cols{display:grid;grid-template-columns:2.2fr 1.4fr 1.4fr 1fr 1fr;gap:14px;min-height:340px}
+.col{border-radius:var(--r);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-width:0;position:relative}
+.col .nm{font-family:var(--f-ar-head);font-weight:700;font-size:26px;line-height:1.3}
+.col .en{font-family:var(--f-latin);font-size:10px;letter-spacing:.3em;direction:ltr;text-align:right;opacity:.8}
+.col dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0 10px;font-size:12px;direction:ltr;font-variant-numeric:tabular-nums;font-family:ui-monospace,"SF Mono",Menlo,monospace}
+.col dt{opacity:.65}
+.col dd{margin:0}
+.col .cp{all:unset;cursor:pointer;font-size:12px;border:1px solid currentColor;border-radius:999px;padding:3px 12px;align-self:flex-start;opacity:.85}
+.col .cp:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.col .use{font-size:13px;opacity:.85;line-height:1.6}
+
+/* type */
+.ty{display:grid;grid-template-columns:1.2fr 1fr;gap:22px}
+.tcard{background:var(--paper);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.tcard .role{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:10px}
+.tcard .role b{color:var(--aubergine);font-weight:600}
+.tcard .s{color:var(--aubergine);line-height:1.3;overflow-wrap:anywhere}
+.tcard.zun{grid-row:span 2;background:var(--plum);color:var(--cream)}
+.tcard.zun .role{border-color:rgba(238,234,229,.15);color:rgba(238,234,229,.6)}
+.tcard.zun .role b{color:var(--gold-hi)}
+.tcard.zun .s{color:var(--cream);font-family:var(--f-ar-head);font-weight:700;font-size:clamp(52px,7vw,92px);line-height:1.35}
+.tcard.zun p{font-size:14px;color:rgba(238,234,229,.75);max-width:48ch}
+.tcard.zun .note{margin-top:auto;font-size:13px;border:1px solid rgba(226,204,154,.35);border-radius:16px;padding:14px 16px;color:var(--gold-hi)}
+
+/* applications */
+.apps{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.app{border-radius:var(--r);overflow:hidden;position:relative;min-height:340px;display:grid;place-items:center;padding:30px 20px;min-width:0}
+.app .lb{position:absolute;bottom:16px;inset-inline-start:20px;font-size:12px;opacity:.75}
+.a1{grid-column:span 7;background:#E3DBD2}
+.a2{grid-column:span 5;background:var(--aubergine);color:var(--cream)}
+.a3{grid-column:span 4;background:#E3DBD2}
+.a4{grid-column:span 4;background:var(--olive);color:var(--cream)}
+.a5{grid-column:span 4;background:#E3DBD2}
+.cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;align-items:center}
+.bc{width:250px;max-width:100%;aspect-ratio:1.75;border-radius:8px;box-shadow:0 20px 30px -18px rgba(46,26,49,.5);position:relative;overflow:hidden}
+.bc.f{background:var(--aubergine);display:grid;place-items:center;transform:rotate(-4deg)}
+.bc.f .ar{width:150px;aspect-ratio:412/146}
+.bc.b{background:var(--paper);color:var(--aubergine);padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(3deg)}
+.bc.b .m{width:26px;aspect-ratio:1;fill:var(--aubergine);stroke:var(--aubergine)}
+.bc.b .nm{font-family:var(--f-ar-head);font-weight:700;font-size:18px}
+.bc.b ul{list-style:none;margin:0;padding:0;font-size:10px;line-height:1.9;color:var(--ink)}
+.bc.b .edge{position:absolute;inset:auto 0 0 0;height:5px;background:var(--olive)}
+.story{width:190px;max-width:100%;aspect-ratio:9/16;border-radius:16px;background:var(--plum);color:var(--cream);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;box-shadow:0 24px 34px -18px rgba(0,0,0,.6)}
+.story .m{width:70px;aspect-ratio:1}
+.story h4{font-family:var(--f-ar-head);font-weight:700;font-size:26px;line-height:1.4}
+.story p{font-size:11px;color:rgba(238,234,229,.7)}
+.story .cta{margin-top:10px;font-size:11px;border:1px solid var(--gold);color:var(--gold-hi);border-radius:999px;padding:4px 14px}
+.boxsq{width:190px;max-width:100%;aspect-ratio:1;position:relative}
+.boxsq .lid{position:absolute;inset:0;border-radius:6px;background:var(--olive);box-shadow:0 30px 36px -18px rgba(38,44,27,.7);display:grid;place-items:center}
+.boxsq .rib1{position:absolute;top:0;bottom:0;left:calc(50% - 11px);width:22px;background:linear-gradient(90deg,#3A2140,#5A3460 50%,#3A2140)}
+.boxsq .rib2{position:absolute;left:0;right:0;top:calc(50% - 11px);height:22px;background:linear-gradient(#3A2140,#5A3460 50%,#3A2140)}
+.boxsq .sl{position:relative;width:70px;height:70px;z-index:2}
+.thanks{width:200px;max-width:100%;aspect-ratio:.72;background:var(--olive);color:var(--cream);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:22px;text-align:center}
+.thanks .ar{width:110px;aspect-ratio:412/146}
+.thanks h4{font-family:var(--f-ar-head);font-weight:700;font-size:20px;color:var(--gold-hi)}
+.thanks p{font-size:11px;line-height:1.9;color:rgba(238,234,229,.8)}
+.thanks.lightv{background:var(--paper);color:var(--aubergine);box-shadow:0 24px 34px -18px rgba(46,26,49,.45)}
+.thanks.lightv h4{color:var(--aubergine)}
+.thanks.lightv p{color:var(--muted)}
+
+/* voice */
+.voice{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.q{background:var(--paper);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:10px}
+.q .lab{font-size:12px;color:var(--gold)}
+.q blockquote{margin:0;font-family:var(--f-ar-head);font-size:24px;line-height:1.7;color:var(--aubergine)}
+.q.no{background:transparent;border:1px dashed var(--line)}
+.q.no .lab{color:#A2453F}
+.q.no blockquote{font-family:var(--f-ar);font-size:16px;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(162,69,63,.5)}
+
+footer{background:var(--plum);color:rgba(238,234,229,.6);font-size:13px;margin-top:40px}
+footer .wrap{padding-block:46px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer svg{width:120px;aspect-ratio:412/146}
+.toast{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--plum);color:var(--cream);padding:8px 18px;border-radius:999px;font-size:13px;border:1px solid var(--gold);z-index:30}
+
+@media (max-width:980px){
+  .board{grid-template-columns:repeat(2,1fr);gap:16px}
+  .t-logo,.t-mark,.t-flat,.t-pal,.t-pattern,.t-door{grid-column:span 2}
+  .t-poster{grid-column:span 2;grid-row:auto}
+  .t-mark{min-height:300px}
+  .seal{display:none}
+  .sh{grid-template-columns:1fr;gap:6px}
+  .sh .k{text-align:right;padding-top:0}
+  .concept{grid-template-columns:1fr}
+  .lg{grid-template-columns:repeat(2,1fr)}
+  .lg .c1{grid-column:span 2}
+  .lg .c2,.lg .c3,.lg .c4,.lg .c5{grid-column:span 1}
+  .specs{grid-template-columns:1fr}
+  .cols{grid-template-columns:repeat(2,1fr)}
+  .cols .col:first-child{grid-column:span 2;min-height:220px}
+  .ty{grid-template-columns:1fr}
+  .tcard.zun{grid-row:auto}
+  .apps{grid-template-columns:repeat(2,1fr)}
+  .a1,.a2{grid-column:span 2}
+  .a3,.a4,.a5{grid-column:span 1}
+  .voice{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  :root{--r:22px}
+  .t-pal{grid-template-columns:repeat(2,1fr)}
+  .lg,.apps{grid-template-columns:1fr}
+  .lg .c1,.lg .c2,.lg .c3,.lg .c4,.lg .c5,.a1,.a2,.a3,.a4,.a5{grid-column:span 1}
+  .horiz{flex-wrap:wrap;justify-content:center}
+  .cols{grid-template-columns:1fr}
+  .cols .col:first-child{grid-column:span 1}
+  .sec{padding-block:72px}
+  .t-poster{min-height:600px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .spin{animation:spin 60s linear infinite;transform-origin:center;transform-box:fill-box}
+  @keyframes spin{to{transform:rotate(360deg)}}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9C7F4C"/><stop offset=".28" stop-color="#E9D6A6"/><stop offset=".5" stop-color="#B89A64"/><stop offset=".68" stop-color="#F2E2B8"/><stop offset="1" stop-color="#A88A55"/>
+    </linearGradient>
+    <radialGradient id="pearl" cx=".36" cy=".32" r=".75">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#EDE6E0"/><stop offset=".8" stop-color="#BFB2AE"/><stop offset="1" stop-color="#8C7C7E"/>
+    </radialGradient>
+    {{SYMBOLS}}
+    <symbol id="seal-sym" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="99" fill="#4B2A4E"/>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#EEEAE5" stroke-opacity=".35" stroke-width=".8"/>
+      <path id="sealp" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" fill="none"/>
+      <text font-family="Gilda Display, Georgia, serif" font-size="12.5" letter-spacing="4.6" fill="#EEEAE5"><textPath href="#sealp">NORA ACCESSORIES ✦ نورا اكسسواريز ✦ EST. 2026 ✦</textPath></text>
+      <use href="#nora-mark" x="58" y="58" width="84" height="84" fill="#EEEAE5" stroke="#EEEAE5"/>
+    </symbol>
+    <pattern id="pat" width="120" height="120" patternUnits="userSpaceOnUse">
+      <use href="#nora-mark" x="8" y="8" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5"/>
+      <use href="#nora-mark" x="68" y="68" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5"/>
+      <use href="#spark" x="84" y="24" width="12" height="12" fill="#B89A64"/>
+      <use href="#spark" x="24" y="84" width="12" height="12" fill="#B89A64"/>
+    </pattern>
+    <pattern id="pat-tone" width="150" height="150" patternUnits="userSpaceOnUse">
+      <use href="#nora-mark" x="10" y="10" width="55" height="55" fill="#EEEAE5" stroke="#EEEAE5"/>
+      <use href="#nora-mark" x="85" y="85" width="55" height="55" fill="#EEEAE5" stroke="#EEEAE5"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><svg viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg><span class="latin">Nora Accessories</span></div>
+    <span class="ed">دليل الهوية البصرية · الإصدار الثاني · 2026</span>
+  </header>
+
+  <!-- ================= MOODBOARD ================= -->
+  <section class="board" aria-label="لوحة الهوية">
+    <div class="tile t-logo">
+      <div class="bigwm"><svg viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg></div>
+      <div class="lockup">
+        <svg class="ar gold" viewBox="0 0 412 146" role="img" aria-label="نورا"><use href="#nora-ar"/></svg>
+        <div class="row"><span>EST</span><i></i><span class="lat latin">Nora</span><i></i><span>2026</span></div>
+        <div class="row" style="letter-spacing:.6em;font-size:9px">ACCESSORIES</div>
+      </div>
+    </div>
+    <div class="tile t-mark">
+      <svg class="bigwm" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="opacity:.06;inset:0;width:100%;height:100%"><rect width="400" height="400" fill="url(#pat-tone)"/></svg>
+      <svg class="m gold" viewBox="0 0 144 144" role="img" aria-label="رمز نورا"><use href="#nora-mark"/></svg>
+    </div>
+
+    <div class="seal" aria-hidden="true"><svg viewBox="0 0 200 200"><g class="spin"><use href="#seal-sym"/></g></svg></div>
+
+    <div class="tile t-poster">
+      <div class="phead">
+        <svg class="gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        <span class="no">N° 01 · PEARL</span>
+      </div>
+      <div class="stage">
+        <div class="word">RADIANT</div>
+        <div class="word2">تألّقي بهدوء</div>
+        <svg class="neck" viewBox="0 0 400 460" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+          <path d="M70 -10 C96 150 160 250 200 268 C240 250 304 150 330 -10" fill="none" stroke="url(#foil)" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.1 6.2"/>
+          <path d="M70 -10 C96 150 160 250 200 268 C240 250 304 150 330 -10" fill="none" stroke="#E2CC9A" stroke-opacity=".35" stroke-width=".8"/>
+          <use href="#spark" x="186" y="262" width="28" height="28" fill="url(#foil)"/>
+          <line x1="200" y1="288" x2="200" y2="300" stroke="url(#foil)" stroke-width="2"/>
+          <circle cx="200" cy="322" r="22" fill="url(#pearl)"/>
+          <ellipse cx="193" cy="313" rx="6" ry="4" fill="#fff" opacity=".7"/>
+        </svg>
+      </div>
+      <div class="pfoot">
+        <p>اكتشفي مجموعة <b>«لؤلؤة نورا»</b>: سلاسل ناعمة وقطع لؤلؤ تكمّل إطلالتك اليومية.</p>
+        <div class="handle"><span>@nora.accessories</span><i></i></div>
+      </div>
+    </div>
+
+    <div class="tile t-flat">
+      <svg class="scene" viewBox="0 0 700 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="satin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A2140"/><stop offset=".5" stop-color="#5E3864"/><stop offset="1" stop-color="#3A2140"/></linearGradient>
+          <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="-10" dy="16" stdDeviation="12" flood-color="#2E1A31" flood-opacity=".35"/></filter>
+        </defs>
+        <path id="rb" d="M-30 60 C120 10 180 150 300 120 S520 -20 730 80" fill="none" stroke="url(#satin)" stroke-width="34" filter="url(#sh)"/>
+        <text font-family="Gilda Display, Georgia, serif" font-size="11" letter-spacing="4" fill="#E2CC9A" dy="4"><textPath href="#rb">NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦</textPath></text>
+        <g transform="translate(270 130) rotate(-8)" filter="url(#sh)">
+          <rect x="0" y="0" width="160" height="150" rx="6" fill="#343B26"/>
+          <rect x="0" y="0" width="160" height="150" rx="6" fill="url(#pat-tone)" opacity=".06"/>
+          <rect x="0" y="150" width="160" height="12" rx="3" fill="#262C1B"/>
+          <use href="#nora-ar" x="30" y="45" width="100" height="36" fill="url(#foil)" stroke="url(#foil)"/>
+          <text x="80" y="104" text-anchor="middle" font-family="Gilda Display, Georgia, serif" font-size="8" letter-spacing="4" fill="#E2CC9A">ACCESSORIES</text>
+        </g>
+        <path id="rb2" d="M380 320 C440 250 520 300 600 230 S700 200 740 170" fill="none" stroke="url(#satin)" stroke-width="30" filter="url(#sh)"/>
+        <text font-family="Gilda Display, Georgia, serif" font-size="10" letter-spacing="4" fill="#E2CC9A" dy="3.5"><textPath href="#rb2">NORA ✦ نورا ✦ NORA ✦ نورا ✦ NORA ✦ نورا ✦</textPath></text>
+        <g fill="none" stroke="url(#foil)" stroke-width="3">
+          <circle cx="120" cy="200" r="16"/><circle cx="168" cy="236" r="12"/>
+        </g>
+        <use href="#spark" x="111" y="176" width="18" height="18" fill="#F5F0EA"/>
+        <circle cx="540" cy="120" r="7" fill="url(#pearl)"/><circle cx="566" cy="128" r="7" fill="url(#pearl)"/>
+        <path d="M540 113v-8M566 121v-8" stroke="url(#foil)" stroke-width="2"/>
+        <path d="M470 270 C520 210 600 210 650 250" fill="none" stroke="url(#foil)" stroke-width="2.2" stroke-dasharray=".1 4.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="tile t-pal" id="chips">
+      <div class="chip" style="background:#4B2A4E;color:#EEEAE5"><button type="button" id="chip-aub" data-hex="#4B2A4E" aria-label="نسخ #4B2A4E"></button>#4B2A4E</div>
+      <div class="chip" style="background:#343B26;color:#EEEAE5"><button type="button" id="chip-oli" data-hex="#343B26" aria-label="نسخ #343B26"></button>#343B26</div>
+      <div class="chip" style="background:linear-gradient(120deg,#9C7F4C,#E9D6A6 40%,#B89A64 60%,#D6BE88);color:#2E1A31"><button type="button" id="chip-gold" data-hex="#B89A64" aria-label="نسخ #B89A64"></button>#B89A64</div>
+      <div class="chip" style="background:#EEEAE5;color:#4B2A4E"><button type="button" id="chip-cream" data-hex="#EEEAE5" aria-label="نسخ #EEEAE5"></button>#EEEAE5</div>
+    </div>
+
+    <div class="tile t-pattern">
+      <svg class="pat" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="600" height="380" fill="url(#pat)"/></svg>
+      <div class="hangtag">
+        <span class="hole"></span>
+        <svg class="m" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+        <svg class="ar" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        <small>ACCESSORIES</small>
+      </div>
+    </div>
+
+    <div class="tile t-door">
+      <div class="panel" style="inset:6% 54% 52% 8%"></div>
+      <div class="panel" style="inset:6% 8% 52% 54%"></div>
+      <div class="panel" style="inset:54% 54% -10% 8%"></div>
+      <div class="panel" style="inset:54% 8% -10% 54%"></div>
+      <div class="light"></div>
+      <div class="knob"></div>
+      <div class="bag">
+        <svg class="handles" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true"><path d="M18 70 L50 0 L82 70" fill="none" stroke="#4B2A4E" stroke-width="3.2" stroke-linejoin="round"/></svg>
+        <div class="body"><div class="in">
+          <svg class="m" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <svg class="ar" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        </div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<main class="wrap">
+  <!-- concept -->
+  <section class="sec">
+    <div class="sh"><span class="k">01 — CONCEPT</span><div>
+      <h2>النقطة نور</h2>
+      <p>اسم «نورا» مشتق من النور. لذلك رسمنا الشعار يدوياً بقلم عريض، وجعلنا نقطة النون شرارة ضوء بأربعة أطراف، تشبه لمعة الحجر الكريم. ومن أربع نونات متقابلة وُلد الرمز: زهرة رباعية تحتضن الضوء في وسطها، كما تحتضن الحاضنة الفص في الخاتم.</p>
+    </div></div>
+    <div class="concept">
+      <div class="step">
+        <span class="n">I</span>
+        <div class="fig"><svg viewBox="0 0 200 160" aria-hidden="true">
+          <line class="guide" x1="0" y1="110" x2="200" y2="110"/><line class="guide" x1="0" y1="60" x2="200" y2="60"/>
+          <text x="100" y="110" text-anchor="middle" class="big-ar">ن</text>
+        </svg></div>
+        <h3>حرف النون</h3><p>نقطة البداية: الحرف الأول من الاسم، بشكله الدائري المفتوح كالإناء.</p>
+      </div>
+      <div class="step">
+        <span class="n">II</span>
+        <div class="fig"><svg viewBox="-60 -60 120 120" aria-hidden="true">
+          <circle class="guide" r="50"/><line class="guide" x1="-60" y1="0" x2="60" y2="0"/><line class="guide" x1="0" y1="-60" x2="0" y2="60"/>
+          <use href="#spark" x="-26" y="-26" width="52" height="52" fill="url(#foil)"/>
+        </svg></div>
+        <h3>النقطة شرارة</h3><p>تحولت النقطة إلى نجمة بأربعة أطراف: نور ولمعة ألماس في رمز واحد.</p>
+      </div>
+      <div class="step">
+        <span class="n">III</span>
+        <div class="fig" style="background:var(--aubergine)"><svg viewBox="-80 -80 160 160" aria-hidden="true">
+          <circle class="guide" r="62" style="stroke:#E2CC9A"/><rect class="guide" x="-62" y="-62" width="124" height="124" transform="rotate(45)" style="stroke:#E2CC9A"/>
+          <use href="#nora-mark" x="-60" y="-60" width="120" height="120" fill="#EEEAE5" stroke="#EEEAE5"/>
+        </svg></div>
+        <h3>أربع نونات</h3><p>أربع نونات تتلاقى أطرافها في دائرة واحدة، فتصنع زهرة رباعية مستوحاة من الزخرفة الإسلامية.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- logo system -->
+  <section class="sec">
+    <div class="sh"><span class="k">02 — LOGO</span><div>
+      <h2>نظام الشعار</h2>
+      <p>خمس صيغ تغطي كل الاستخدامات، من لافتة المتجر إلى أيقونة الحساب. الشعار العربي مرسوم يدوياً وليس خطاً جاهزاً، فلا يُعاد كتابته بأي خط.</p>
+    </div></div>
+    <div class="lg">
+      <div class="c c1">
+        <div class="horiz">
+          <svg class="m fill-cur" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <span class="bar"></span>
+          <div class="t"><span class="l">NORA</span><span class="s">ACCESSORIES</span></div>
+          <span class="bar"></span>
+          <svg class="ar fill-cur" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        </div>
+        <span class="cap">الشعار الأفقي ثنائي اللغة · للافتة والموقع</span>
+      </div>
+      <div class="c c2">
+        <div class="lockup" style="padding:0">
+          <svg class="ar gold" style="width:200px" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+          <div class="row"><span>EST</span><i></i><span class="lat latin" style="font-size:18px">Nora</span><i></i><span>2026</span></div>
+        </div>
+        <span class="cap">الشعار الرئيسي</span>
+      </div>
+      <div class="c c3">
+        <svg class="gold" style="width:110px;height:110px" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+        <span class="cap">الرمز</span>
+      </div>
+      <div class="c c4">
+        <svg class="fill-cur" style="width:220px;aspect-ratio:412/146" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+        <span class="cap">الشعار العربي منفرداً</span>
+      </div>
+      <div class="c c5">
+        <svg style="width:150px;height:150px" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal-sym"/></svg>
+        <span class="cap">الختم الدائري</span>
+      </div>
+    </div>
+    <div class="specs">
+      <div><h3>المساحة الآمنة</h3><p>مسافة حول الشعار تساوي عرض شرارة النون، من كل الجهات.</p></div>
+      <div><h3>أصغر مقاس</h3><p>الشعار العربي: 25 مم طباعةً و100 بكسل رقمياً. الرمز: 8 مم و24 بكسل.</p></div>
+      <div><h3>الطباعة الفاخرة</h3><p>ختم ذهبي ساخن للشعار، ونقش الرمز بارزاً بلا لون على أغطية العلب.</p></div>
+    </div>
+  </section>
+
+  <!-- colour -->
+  <section class="sec">
+    <div class="sh"><span class="k">03 — COLOUR</span><div>
+      <h2>الألوان</h2>
+      <p>اللوحة نفسها من الصورة المرجعية: الباذنجاني لون العلامة، الزيتوني للشريط والختم، والذهبي للمسة الضوء فقط. عرض كل عمود يعكس نسبة استخدام اللون. اضغطي «نسخ» لنسخ الرمز.</p>
+    </div></div>
+    <div class="cols" id="cols">
+      <div class="col" style="background:#4B2A4E;color:#EEEAE5"><div><div class="nm">باذنجاني</div><div class="en">AUBERGINE</div></div><p class="use">اللون الأساسي للعلب والأكياس والمنشورات.</p><dl><dt>HEX</dt><dd>#4B2A4E</dd><dt>RGB</dt><dd>75 42 78</dd><dt>CMYK</dt><dd>4 46 0 69</dd></dl><button class="cp" type="button" id="cp-aub" data-hex="#4B2A4E">نسخ</button></div>
+      <div class="col" style="background:#343B26;color:#EEEAE5"><div><div class="nm">زيتوني</div><div class="en">RIBBON OLIVE</div></div><p class="use">الشريط والختم وبطاقة الشكر.</p><dl><dt>HEX</dt><dd>#343B26</dd><dt>RGB</dt><dd>52 59 38</dd><dt>CMYK</dt><dd>12 0 36 77</dd></dl><button class="cp" type="button" id="cp-oli" data-hex="#343B26">نسخ</button></div>
+      <div class="col" style="background:#EEEAE5;color:#4B2A4E;box-shadow:inset 0 0 0 1px #DDD5CE"><div><div class="nm">كريمي</div><div class="en">SILK CREAM</div></div><p class="use">الخلفيات والورق والبطاقات.</p><dl><dt>HEX</dt><dd>#EEEAE5</dd><dt>RGB</dt><dd>238 234 229</dd><dt>CMYK</dt><dd>0 2 4 7</dd></dl><button class="cp" type="button" id="cp-cream" data-hex="#EEEAE5">نسخ</button></div>
+      <div class="col" style="background:linear-gradient(160deg,#9C7F4C,#E9D6A6 35%,#B89A64 60%,#D6BE88);color:#2E1A31"><div><div class="nm">ذهبي</div><div class="en">FOIL GOLD</div></div><dl><dt>HEX</dt><dd>#B89A64</dd><dt>CMYK</dt><dd>0 16 46 28</dd></dl><button class="cp" type="button" id="cp-gold" data-hex="#B89A64">نسخ</button></div>
+      <div class="col" style="background:#8B6F66;color:#EEEAE5"><div><div class="nm">كاكاو</div><div class="en">COCOA</div></div><dl><dt>HEX</dt><dd>#8B6F66</dd><dt>CMYK</dt><dd>0 20 27 45</dd></dl><button class="cp" type="button" id="cp-coc" data-hex="#8B6F66">نسخ</button></div>
+    </div>
+  </section>
+
+  <!-- type -->
+  <section class="sec">
+    <div class="sh"><span class="k">04 — TYPE</span><div>
+      <h2>الخطوط</h2>
+      <p>خط عربي عالي التباين للعناوين بروح الخط الذي أرسلتِه، وخط لاتيني كلاسيكي، وخط نصوص هادئ.</p>
+    </div></div>
+    <div class="ty">
+      <div class="tcard zun">
+        <div class="role"><b>زنبرك · Zunburk</b><span>العناوين العربية</span></div>
+        <div class="s">بريقٌ يُشبهكِ</div>
+        <p>خط زنبرك هو الخط العربي الأساسي للعناوين في المنشورات والمطبوعات: نسخي عالي التباين بنهايات حادة، يتناغم مع الشعار المرسوم بالقلم العريض.</p>
+        <div class="note">العرض هنا بخط «أميري» كبديل للويب، لأن زنبرك غير متوفر على Google Fonts. حمّلي زنبرك واستخدميه في Canva وPhotoshop وIllustrator.</div>
+      </div>
+      <div class="tcard">
+        <div class="role"><b>Gilda Display</b><span>الاسم اللاتيني والتسميات</span></div>
+        <div class="s latin" style="font-size:clamp(34px,4.4vw,52px);letter-spacing:.3em">NORA</div>
+        <div class="s" style="font-family:var(--f-latin);font-size:15px;direction:ltr;text-align:left;color:var(--muted)">NEW COLLECTION · PEARL · EST. 2026</div>
+      </div>
+      <div class="tcard">
+        <div class="role"><b>Italiana</b><span>الكلمات الكبيرة في البوسترات</span></div>
+        <div class="s" style="font-family:var(--f-poster);font-size:clamp(44px,5.6vw,68px);direction:ltr;text-align:left">Radiant</div>
+      </div>
+      <div class="tcard" style="grid-column:1/-1">
+        <div class="role"><b>IBM Plex Sans Arabic</b><span>النصوص والأسعار ووصف المنتجات</span></div>
+        <div class="s" style="font-family:var(--f-ar);font-weight:300;font-size:21px;line-height:1.8">قلادة بسلسلة ناعمة مطلية بالذهب عيار 18 وحبة لؤلؤ طبيعي، بطول 45 سم وقفل قابل للتعديل. ١٢٩ ر.س</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- applications -->
+  <section class="sec">
+    <div class="sh"><span class="k">05 — APPLICATIONS</span><div>
+      <h2>التطبيقات</h2>
+      <p>كيف تبدو نورا في يد العميلة: البطاقة، الصندوق، الستوري، وبطاقة الشكر التي تُقرأ أولاً عند فتح الطلب.</p>
+    </div></div>
+    <div class="apps">
+      <div class="app a1">
+        <div class="cards">
+          <div class="bc f"><svg class="ar gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg></div>
+          <div class="bc b">
+            <svg class="m" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+            <div><div class="nm">نورا اكسسواريز</div>
+            <ul><li dir="ltr" style="text-align:right">@nora.accessories</li><li>واتساب: رقم المتجر</li><li>رابط المتجر الإلكتروني</li></ul></div>
+            <span class="edge"></span>
+          </div>
+        </div>
+        <span class="lb">بطاقة العمل · 90 × 50 مم</span>
+      </div>
+      <div class="app a2">
+        <div class="story">
+          <svg class="m gold" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <h4>وصلت مجموعة<br>«لؤلؤة نورا»</h4>
+          <p>قطع محدودة · شحن لكل المدن</p>
+          <span class="cta">تسوّقي الآن</span>
+        </div>
+        <span class="lb">ستوري إنستغرام · 1080 × 1920</span>
+      </div>
+      <div class="app a3">
+        <div class="boxsq"><div class="lid"><span class="rib1"></span><span class="rib2"></span><svg class="sl" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal-sym"/></svg></div></div>
+        <span class="lb">علبة الهدية · 90 × 90 مم</span>
+      </div>
+      <div class="app a4">
+        <div class="thanks">
+          <svg class="ar gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+          <h4>شكراً لأنكِ اخترتِنا</h4>
+          <p>غلّفنا قطعتك بعناية،<br>ونتمنى أن تلمع معك في أجمل أيامك.</p>
+        </div>
+        <span class="lb">بطاقة الشكر · A6</span>
+      </div>
+      <div class="app a5">
+        <div class="thanks lightv">
+          <svg class="fill-cur" style="width:56px;height:56px" viewBox="0 0 144 144" aria-hidden="true"><use href="#nora-mark"/></svg>
+          <h4>العناية بقطعتك</h4>
+          <p>احفظيها في علبتها بعيداً عن الماء والعطر،<br>وامسحيها بقطعة قماش ناعمة.</p>
+        </div>
+        <span class="lb">بطاقة العناية · A7</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- voice -->
+  <section class="sec">
+    <div class="sh"><span class="k">06 — VOICE</span><div>
+      <h2>صوت نورا</h2>
+      <p>نتحدث مع العميلة بصيغة المؤنث، بدفء صديقة ذات ذوق. نذكر الخامة والسعر بوضوح، ونكتفي برمز ✦ واحد بدل الرموز التعبيرية.</p>
+    </div></div>
+    <div class="voice">
+      <div class="q"><span class="lab">نقول</span><blockquote>قلادة بطبقتين، تناسب صباحك في العمل وسهرتك مع صديقاتك.</blockquote></div>
+      <div class="q no"><span class="lab">لا نقول</span><blockquote>🔥🔥 عرض ناااار لا يفوتك!!! الحقي قبل ما يخلص 😍</blockquote></div>
+      <div class="q"><span class="lab">رسالة الشحن</span><blockquote>طلبك في الطريق، ملفوف بشريطنا ومختوم باسمك.</blockquote></div>
+      <div class="q"><span class="lab">النبذة (Bio)</span><blockquote>نورا اكسسواريز ✦ قطع تلمع بهدوء، تصلك كهدية.</blockquote></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg class="gold" viewBox="0 0 412 146" aria-hidden="true"><use href="#nora-ar"/></svg>
+    <span>نورا اكسسواريز · دليل الهوية البصرية 2026</span>
+  </div>
+</footer>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const toast=document.getElementById("toast");let tt;
+function show(m){toast.textContent=m;toast.hidden=false;clearTimeout(tt);tt=setTimeout(()=>toast.hidden=true,1600)}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-hex]");if(!b)return;
+  const hex=b.dataset.hex;
+  navigator.clipboard.writeText(hex).then(()=>show("تم نسخ "+hex)).catch(()=>show("رمز اللون: "+hex));
+});
+</script>

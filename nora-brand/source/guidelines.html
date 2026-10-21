@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Noura Brand Guidelines</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Allura&family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400&display=swap">
+<style>
+/* Layout: 4:5 cinematic pages on a deep plum velvet ground; cream logo, gold reserved for light */
+:root{
+  --plum:#1F1222;
+  --plum-2:#2E1A31;
+  --aubergine:#4B2A4E;
+  --olive:#343B26;
+  --gold:#B89A64;
+  --gold-hi:#E2CC9A;
+  --cream:#EEEAE5;
+  --cocoa:#8B6F66;
+  --dim:rgba(238,234,229,.62);
+  --caps:"Cinzel","Trajan Pro",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --script:"Allura","Pinyon Script",cursive;
+  --ar:"Amiri","Traditional Arabic",serif;
+  --ar-sans:"IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@page{size:1080px 1350px;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000}
+body{font-family:var(--ar-sans);color:var(--cream);-webkit-font-smoothing:antialiased}
+.page{width:1080px;height:1350px;position:relative;overflow:hidden;page-break-after:always;break-after:page;
+  background:var(--noise),radial-gradient(120% 90% at 50% 40%,#2B182F 0%,#1F1222 55%,#140B16 100%)}
+.page:last-child{page-break-after:auto}
+.fold::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(97deg,transparent 18%,rgba(255,255,255,.035) 22%,transparent 27%,transparent 58%,rgba(255,255,255,.03) 63%,transparent 69%),
+  linear-gradient(84deg,transparent 35%,rgba(0,0,0,.25) 42%,transparent 50%);pointer-events:none}
+.rays::before{content:"";position:absolute;left:50%;bottom:-30%;width:220%;height:160%;transform:translateX(-50%);
+  background:repeating-conic-gradient(from 0deg at 50% 100%,rgba(184,154,100,.0) 0deg,rgba(184,154,100,.07) 1.2deg,rgba(184,154,100,0) 2.6deg,rgba(75,42,78,.0) 3.4deg);
+  filter:blur(6px);opacity:.9;pointer-events:none}
+.rays::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:radial-gradient(70% 90% at 50% 100%,rgba(75,42,78,.65),transparent 70%);pointer-events:none}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+
+/* chrome */
+.corner{position:absolute;top:58px;right:auto;left:auto}
+.mini{position:absolute;top:62px;right:96px;width:150px;aspect-ratio:572/271;fill:var(--cream);opacity:.92;z-index:3}
+.title{position:absolute;top:190px;left:120px;font-family:var(--script);font-size:78px;line-height:1;letter-spacing:.06em;color:var(--cream);direction:ltr;z-index:3}
+.title-ar{position:absolute;top:208px;right:120px;font-family:var(--ar);font-weight:700;font-size:30px;color:var(--gold-hi);z-index:3}
+.foot{position:absolute;left:112px;right:100px;bottom:92px;display:grid;grid-template-columns:1fr auto auto;gap:110px;font-family:var(--caps);font-size:17px;letter-spacing:.32em;line-height:1.7;color:var(--cream);direction:ltr;z-index:3}
+.foot span{display:block;white-space:nowrap}
+.pno{position:absolute;bottom:92px;right:100px}
+.lbl{font-family:var(--script);font-size:40px;letter-spacing:.12em;direction:ltr;color:var(--cream);line-height:1}
+.caps{font-family:var(--caps);letter-spacing:.3em;direction:ltr}
+.content{position:absolute;inset:330px 112px 230px 112px;z-index:2}
+svg.logo{fill:var(--cream)}
+.goldfill{fill:url(#foil)}
+
+/* 1 cover */
+.cover-logo{position:absolute;left:50%;top:50%;width:560px;aspect-ratio:572/271;transform:translate(-50%,-58%);fill:var(--cream);filter:drop-shadow(0 0 30px rgba(238,234,229,.12))}
+.cover-sub{position:absolute;left:0;right:0;top:calc(50% + 150px);text-align:center;font-family:var(--caps);font-size:15px;letter-spacing:.7em;color:var(--dim);direction:ltr}
+
+/* 2 story */
+.story .lg{position:absolute;left:50%;top:300px;width:520px;aspect-ratio:572/271;transform:translateX(-50%);fill:var(--cream);filter:blur(.3px) drop-shadow(0 0 24px rgba(238,234,229,.18))}
+.story .ar-p{position:absolute;top:640px;left:200px;right:200px;font-family:var(--ar);font-size:30px;line-height:2.05;text-align:justify;text-align-last:right}
+.story .en-p{position:absolute;top:940px;left:200px;right:200px;font-family:var(--serif);font-size:24px;line-height:1.65;letter-spacing:.03em;direction:ltr;color:rgba(238,234,229,.86)}
+
+/* 3 logo */
+.bigplate{position:absolute;left:112px;right:112px;top:330px;height:560px;border-radius:6px;background:var(--noise),radial-gradient(80% 90% at 50% 45%,#5A3460,#4B2A4E 60%,#3B2040);display:grid;place-items:center;box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.bigplate svg{width:560px;aspect-ratio:572/271;fill:var(--cream)}
+.cols2{position:absolute;left:112px;right:112px;top:940px;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.cols2 p{font-family:var(--ar);font-size:22px;line-height:1.9;color:var(--dim)}
+.cols2 p.en{font-family:var(--serif);font-size:20px;direction:ltr;line-height:1.6;letter-spacing:.02em}
+.cols2 b{color:var(--gold-hi);font-weight:700}
+
+/* 4 construction */
+.grid-plate{position:absolute;left:112px;right:112px;top:330px;height:620px;border:1px solid rgba(238,234,229,.12);border-radius:6px;background-image:linear-gradient(rgba(238,234,229,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(238,234,229,.05) 1px,transparent 1px);background-size:40px 40px;display:grid;place-items:center}
+.notes{position:absolute;left:112px;right:112px;top:990px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.notes div{border-top:1px solid var(--gold);padding-top:16px}
+.notes h4{margin:0 0 6px;font-family:var(--ar);font-weight:700;font-size:24px;color:var(--cream)}
+.notes p{margin:0;font-size:16px;line-height:1.8;color:var(--dim)}
+.notes .caps{font-size:11px;color:var(--gold);display:block;margin-bottom:6px;text-align:right}
+
+/* 5/6 tiles */
+.tiles{position:absolute;left:112px;right:112px;top:330px;bottom:230px;display:grid;gap:22px}
+.tile{border-radius:6px;position:relative;display:grid;place-items:center;overflow:hidden;background-image:var(--noise)}
+.tile .cap{position:absolute;bottom:18px;right:22px;font-size:14px;opacity:.75}
+.tile .capl{position:absolute;bottom:18px;left:22px;font-family:var(--caps);font-size:11px;letter-spacing:.3em;opacity:.7;direction:ltr}
+
+/* 7 colours */
+.pantones{position:absolute;left:112px;right:112px;top:330px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pt{background:#F4F1EC;border-radius:4px;overflow:hidden;box-shadow:0 30px 50px -24px rgba(0,0,0,.9);color:#2A1D2C;display:flex;flex-direction:column}
+.pt .sw{height:190px;position:relative}
+.pt .sw .nm{position:absolute;bottom:16px;right:18px;font-family:var(--ar);font-weight:700;font-size:30px}
+.pt .lab{padding:16px 18px 18px;direction:ltr;font-family:Helvetica,Arial,sans-serif}
+.pt .lab b{display:block;font-size:17px;font-weight:700;letter-spacing:.02em}
+.pt .lab i{display:block;font-style:normal;font-size:12px;color:#6E5F6F;margin-bottom:10px;letter-spacing:.08em}
+.pt dl{margin:0;display:grid;grid-template-columns:52px 1fr;gap:2px 8px;font-size:13px;font-variant-numeric:tabular-nums}
+.pt dt{color:#8A7C8C}
+.pt dd{margin:0;font-weight:600}
+.ratio{position:absolute;left:112px;right:112px;top:1060px;display:flex;height:44px;border-radius:3px;overflow:hidden;direction:ltr}
+.ratio span{display:grid;place-items:center;font-family:var(--caps);font-size:12px;letter-spacing:.2em}
+.ratio-l{position:absolute;left:112px;right:112px;top:1020px;display:flex;justify-content:space-between;font-size:15px;color:var(--dim)}
+
+/* 8 type */
+.tyrow{position:absolute;left:112px;right:112px;display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:center;border-top:1px solid rgba(238,234,229,.14);padding-top:26px}
+.tyrow .meta{display:grid;gap:6px}
+.tyrow .meta b{font-family:var(--caps);font-weight:500;font-size:18px;letter-spacing:.18em;direction:ltr;text-align:right;color:var(--gold-hi)}
+.tyrow .meta span{font-size:15px;color:var(--dim)}
+.tyrow .meta small{font-size:12px;color:rgba(238,234,229,.45);direction:ltr;text-align:right}
+.tyrow .s{line-height:1.25;overflow:hidden;white-space:nowrap}
+
+/* 9 mood */
+.mood{position:absolute;inset:0;z-index:2}
+.mood img{position:absolute;border-radius:2px;object-fit:cover;box-shadow:0 30px 50px -20px rgba(0,0,0,.9);clip-path:inset(3px round 14px)}
+.mood .lbl{position:absolute;z-index:4}
+.chipbox{position:absolute;display:flex;box-shadow:0 30px 50px -20px rgba(0,0,0,.9)}
+.chipbox div{width:150px;height:230px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-family:Helvetica,Arial,sans-serif;font-size:11px;line-height:1.4;direction:ltr}
+.chipbox div b{font-size:14px}
+.glyph{position:absolute;width:130px;height:130px;background:#0D070E;display:grid;place-items:center;font-family:var(--ar);font-weight:700;color:var(--cream);box-shadow:0 30px 50px -20px rgba(0,0,0,.9)}
+
+/* 10 pattern */
+.patplate{position:absolute;left:112px;right:112px;top:330px;height:560px;border-radius:6px;overflow:hidden;background:var(--olive)}
+.patplate svg{width:100%;height:100%}
+
+/* 13 misuse */
+.donts{position:absolute;left:112px;right:112px;top:330px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.dn{border-radius:6px;background:rgba(238,234,229,.05);border:1px solid rgba(238,234,229,.1);overflow:hidden}
+.dn .st{height:220px;display:grid;place-items:center;position:relative}
+.dn .st::after{content:"";position:absolute;inset:0;background:linear-gradient(to top left,transparent calc(50% - 1px),rgba(208,110,100,.85) calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 1px))}
+.dn p{margin:0;padding:14px 18px;font-size:16px;color:var(--dim)}
+
+/* closing */
+.thanks-ar{position:absolute;left:0;right:0;top:calc(50% + 150px);text-align:center;font-family:var(--ar);font-size:34px;color:var(--gold-hi)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9C7F4C"/><stop offset=".28" stop-color="#E9D6A6"/><stop offset=".5" stop-color="#B89A64"/><stop offset=".68" stop-color="#F2E2B8"/><stop offset="1" stop-color="#A88A55"/>
+    </linearGradient>
+    <radialGradient id="pearl" cx=".36" cy=".32" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#EDE6E0"/><stop offset=".8" stop-color="#BFB2AE"/><stop offset="1" stop-color="#8C7C7E"/></radialGradient>
+    <linearGradient id="cyl" x1="0" x2="1"><stop offset="0" stop-color="#2E1A31"/><stop offset=".35" stop-color="#55315A"/><stop offset=".6" stop-color="#4B2A4E"/><stop offset="1" stop-color="#26142A"/></linearGradient>
+    <linearGradient id="cream-g" x1="0" x2="1"><stop offset="0" stop-color="#DCD5CC"/><stop offset=".4" stop-color="#F3EEE8"/><stop offset="1" stop-color="#D6CEC4"/></linearGradient>
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="-8" dy="22" stdDeviation="16" flood-color="#000" flood-opacity=".7"/></filter>
+    {{SYMBOLS}}
+    <pattern id="pat" width="120" height="120" patternUnits="userSpaceOnUse">
+      <use href="#nora-mark" x="8" y="8" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5" stroke-width=".4"/>
+      <use href="#nora-mark" x="68" y="68" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5" stroke-width=".4"/>
+      <use href="#spark" x="84" y="24" width="12" height="12" fill="#B89A64"/>
+      <use href="#spark" x="24" y="84" width="12" height="12" fill="#B89A64"/>
+    </pattern>
+    <pattern id="pat-plum" width="120" height="120" patternUnits="userSpaceOnUse">
+      <use href="#nora-mark" x="8" y="8" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5" stroke-width=".4"/>
+      <use href="#nora-mark" x="68" y="68" width="44" height="44" fill="#EEEAE5" stroke="#EEEAE5" stroke-width=".4"/>
+    </pattern>
+  </defs>
+</svg>
+
+<!-- footer markup reused via JS -->
+<template id="foot"><div class="foot"><div><span>NOURA</span><span>IDENTITY·BRAND</span></div><div><span>2026</span><span>OCTOBER</span></div><div><span>BRAND·GUIDELINES</span><span>VOL·01</span></div></div></template>
+
+<!-- 1 COVER -->
+<section class="page fold">
+  <div class="glow" style="width:700px;height:500px;left:190px;top:380px;background:rgba(75,42,78,.55)"></div>
+  <svg class="cover-logo" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="cover-sub">ACCESSORIES</div>
+</section>
+
+<!-- 2 STORY -->
+<section class="page story rays">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <svg class="lg" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <p class="ar-p">تستمـد نـورا اكسسـواريز روحهـا مـن النـور، مـن لمعـةٍ هادئـة علـى سطـح قطعـةٍ صغيـرة تكتمـل بهـا الإطـلالة دون أن ترفـع صوتهـا. قطـعٌ مختـارة بعنايـة، تُغلَّـف كهديـة، وتصـل إلـى صاحبتهـا كرسالـة حـب. نـورا جمـالٌ نـاعم، دافـئ، ومضـيء مـن الداخـل.</p>
+  <p class="en-p">Noura Accessories draws its soul from light: the quiet gleam on a small piece that completes a look without raising its voice. Carefully chosen pieces, wrapped like gifts, arriving like a love letter. Noura is a beauty that is soft, warm, and glowing from within.</p>
+</section>
+
+<!-- 3 PRIMARY LOGO -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Logo</div><div class="title-ar">الشعار الرئيسي</div>
+  <div class="bigplate"><svg viewBox="0 0 572 271"><use href="#noura-full"/></svg></div>
+  <div class="cols2">
+    <p>الشعار مكتوب بقلم عريض بخط حر: ذيلا <b>الواو والراء</b> ينسابان كورقتين، ونقطة النون معيّنة تشبه فص الحجر الكريم. يرافقه الاسم اللاتيني <b>NOURA</b> بخط رفيع يوازن ثقل الحروف العربية.</p>
+    <p class="en">A free-hand broad-nib logotype. The tails of the <b>waw</b> and <b>raa</b> flow like two leaves, the dot of the noon is cut like a gemstone, and the fine Latin <b>NOURA</b> balances the weight of the Arabic letters.</p>
+  </div>
+</section>
+
+<!-- 4 CONSTRUCTION -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Clear Space</div><div class="title-ar">المساحة الآمنة</div>
+  <div class="grid-plate">
+    <svg viewBox="-120 -110 812 491" style="width:780px;height:auto;overflow:visible">
+      <rect x="-80" y="-74" width="732" height="419" fill="none" stroke="#B89A64" stroke-width="1.2" stroke-dasharray="6 6"/>
+      <rect x="0" y="0" width="572" height="271" fill="none" stroke="rgba(238,234,229,.35)" stroke-width="1"/>
+      <use href="#noura-full" x="0" y="0" width="572" height="271" fill="#EEEAE5"/>
+      <g fill="none" stroke="#B89A64" stroke-width="1"><path d="M-80 120h80M572 120h80M286 -74v74M286 271v74"/></g>
+      <g fill="#E2CC9A" font-family="Cinzel, Georgia, serif" font-size="18" text-anchor="middle"><text x="-40" y="110">X</text><text x="612" y="110">X</text><text x="300" y="-32">X</text><text x="300" y="314">X</text></g>
+      <text x="286" y="372" text-anchor="middle" fill="rgba(238,234,229,.55)" font-family="Cinzel, Georgia, serif" font-size="13" letter-spacing="3">X = HEIGHT OF “N” IN NOURA</text>
+    </svg>
+  </div>
+  <div class="notes">
+    <div><span class="caps">CLEAR SPACE</span><h4>المساحة الآمنة</h4><p>اتركي حول الشعار مسافة تساوي ارتفاع حرف N في NOURA من كل الجهات.</p></div>
+    <div><span class="caps">MINIMUM SIZE</span><h4>أصغر مقاس</h4><p>الشعار الكامل: 25 مم طباعة و120 بكسل رقمياً. الرمز: 8 مم و24 بكسل.</p></div>
+    <div><span class="caps">PRINT FINISH</span><h4>الطباعة</h4><p>ختم ذهبي ساخن للشعار، ونقش بارز بلا لون للرمز على أغطية العلب.</p></div>
+  </div>
+</section>
+
+<!-- 5 LOGO VERSIONS -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Logo Versions</div><div class="title-ar">صيغ الشعار</div>
+  <div class="tiles" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr">
+    <div class="tile" style="background-color:#EEEAE5;color:#4B2A4E">
+      <svg viewBox="0 0 572 271" style="width:330px;fill:#4B2A4E"><use href="#noura-full"/></svg>
+      <span class="cap">الشعار الكامل</span><span class="capl">PRIMARY</span></div>
+    <div class="tile" style="background-color:#4B2A4E;color:#EEEAE5">
+      <svg viewBox="4 4 564 236" style="width:300px" class="goldfill"><use href="#nora-ar"/></svg>
+      <span class="cap">الكلمة العربية</span><span class="capl">ARABIC WORDMARK</span></div>
+    <div class="tile" style="background-color:#343B26;color:#EEEAE5">
+      <svg viewBox="0 0 144 144" style="width:190px" class="goldfill"><use href="#nora-mark"/></svg>
+      <span class="cap">الرمز · أربع نونات</span><span class="capl">MONOGRAM</span></div>
+    <div class="tile" style="background-color:#2E1A31;color:#EEEAE5">
+      <svg viewBox="0 0 200 200" style="width:230px">
+        <circle cx="100" cy="100" r="99" fill="#4B2A4E"/><circle cx="100" cy="100" r="90" fill="none" stroke="#E2CC9A" stroke-opacity=".5" stroke-width=".8"/>
+        <path id="sp" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" fill="none"/>
+        <text font-family="Cinzel, Georgia, serif" font-size="11.5" letter-spacing="4.4" fill="#E2CC9A"><textPath href="#sp">NOURA ACCESSORIES ✦ نورا اكسسواريز ✦ EST. 2026 ✦</textPath></text>
+        <use href="#nora-mark" x="60" y="60" width="80" height="80" fill="#EEEAE5" stroke="#EEEAE5" stroke-width=".4"/>
+      </svg>
+      <span class="cap">الختم الدائري</span><span class="capl">SEAL</span></div>
+  </div>
+</section>
+
+<!-- 6 MONOGRAM CONCEPT -->
+<section class="page rays">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">The Mark</div><div class="title-ar">فكرة الرمز</div>
+  <svg viewBox="0 0 856 520" style="position:absolute;left:112px;top:340px;width:856px;z-index:2">
+    <g fill="none" stroke="#B89A64" stroke-width=".8" stroke-dasharray="4 5" opacity=".7">
+      <circle cx="140" cy="230" r="110"/><circle cx="428" cy="230" r="110"/><circle cx="716" cy="230" r="110"/>
+      <path d="M260 230h48M548 230h48" stroke-dasharray="0" />
+    </g>
+    <text x="140" y="290" text-anchor="middle" font-family="Amiri, serif" font-size="190" fill="#EEEAE5">ن</text>
+    <use href="#spark" x="383" y="185" width="90" height="90" fill="url(#foil)"/>
+    <use href="#nora-mark" x="626" y="140" width="180" height="180" fill="#EEEAE5" stroke="#EEEAE5" stroke-width=".4"/>
+    <g font-family="Cinzel, Georgia, serif" font-size="13" letter-spacing="4" fill="#E2CC9A" text-anchor="middle"><text x="140" y="390">THE NOON</text><text x="428" y="390">THE SPARK</text><text x="716" y="390">THE MARK</text></g>
+    <g font-family="Amiri, serif" font-size="26" fill="#EEEAE5" text-anchor="middle"><text x="140" y="430">حرف النون</text><text x="428" y="430">شرارة الضوء</text><text x="716" y="430">أربع نونات</text></g>
+  </svg>
+  <div class="cols2" style="top:900px">
+    <p>من الحرف الأول للاسم وُلد الرمز: أربع نونات متقابلة تتلاقى أطرافها في دائرة واحدة، فتصنع زهرة رباعية من روح الزخرفة الإسلامية، وفي قلبها شرارة ضوء تشبه لمعة الألماس، كما تحتضن الحاضنة الفص في الخاتم.</p>
+    <p class="en">Four noons meet in a single circle to form a quatrefoil rooted in Islamic ornament. At its heart sits a spark of light, held the way a setting holds a stone.</p>
+  </div>
+</section>
+
+<!-- 7 COLOURS -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Colors</div><div class="title-ar">ألوان الهوية</div>
+  <div class="pantones">
+    <div class="pt"><div class="sw" style="background:#4B2A4E;color:#EEEAE5"><span class="nm">باذنجاني</span></div><div class="lab"><b>NOURA AUBERGINE</b><i>PRIMARY</i><dl><dt>HEX</dt><dd>#4B2A4E</dd><dt>RGB</dt><dd>75 · 42 · 78</dd><dt>CMYK</dt><dd>4 · 46 · 0 · 69</dd></dl></div></div>
+    <div class="pt"><div class="sw" style="background:#343B26;color:#EEEAE5"><span class="nm">زيتوني</span></div><div class="lab"><b>RIBBON OLIVE</b><i>SECONDARY</i><dl><dt>HEX</dt><dd>#343B26</dd><dt>RGB</dt><dd>52 · 59 · 38</dd><dt>CMYK</dt><dd>12 · 0 · 36 · 77</dd></dl></div></div>
+    <div class="pt"><div class="sw" style="background:linear-gradient(125deg,#9C7F4C,#E9D6A6 38%,#B89A64 58%,#D6BE88);color:#2E1A31"><span class="nm">ذهبي</span></div><div class="lab"><b>FOIL GOLD</b><i>ACCENT · HOT FOIL</i><dl><dt>HEX</dt><dd>#B89A64</dd><dt>RGB</dt><dd>184 · 154 · 100</dd><dt>CMYK</dt><dd>0 · 16 · 46 · 28</dd></dl></div></div>
+    <div class="pt"><div class="sw" style="background:#EEEAE5;color:#4B2A4E;box-shadow:inset 0 -1px 0 #DDD5CE"><span class="nm">كريمي</span></div><div class="lab"><b>SILK CREAM</b><i>BACKGROUND</i><dl><dt>HEX</dt><dd>#EEEAE5</dd><dt>RGB</dt><dd>238 · 234 · 229</dd><dt>CMYK</dt><dd>0 · 2 · 4 · 7</dd></dl></div></div>
+    <div class="pt"><div class="sw" style="background:#8B6F66;color:#EEEAE5"><span class="nm">كاكاو</span></div><div class="lab"><b>COCOA</b><i>PHOTOGRAPHY</i><dl><dt>HEX</dt><dd>#8B6F66</dd><dt>RGB</dt><dd>139 · 111 · 102</dd><dt>CMYK</dt><dd>0 · 20 · 27 · 45</dd></dl></div></div>
+    <div class="pt"><div class="sw" style="background:#2E1A31;color:#EEEAE5"><span class="nm">برقوقي داكن</span></div><div class="lab"><b>DEEP PLUM</b><i>TEXT · DARK GROUND</i><dl><dt>HEX</dt><dd>#2E1A31</dd><dt>RGB</dt><dd>46 · 26 · 49</dd><dt>CMYK</dt><dd>6 · 47 · 0 · 81</dd></dl></div></div>
+  </div>
+  <div class="ratio-l"><span>نسب الاستخدام في أي تصميم</span><span class="caps" style="font-size:12px;color:var(--gold)">COLOUR RATIO</span></div>
+  <div class="ratio">
+    <span style="flex:45;background:#4B2A4E;color:#EEEAE5">45%</span>
+    <span style="flex:25;background:#EEEAE5;color:#4B2A4E">25%</span>
+    <span style="flex:12;background:#343B26;color:#EEEAE5">12%</span>
+    <span style="flex:8;background:linear-gradient(120deg,#9C7F4C,#E9D6A6,#B89A64);color:#2E1A31">8%</span>
+    <span style="flex:5;background:#8B6F66;color:#EEEAE5">5%</span>
+    <span style="flex:5;background:#2E1A31;color:#EEEAE5;box-shadow:inset 0 0 0 1px rgba(238,234,229,.2)">5%</span>
+  </div>
+</section>
+
+<!-- 8 TYPE -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Typography</div><div class="title-ar">الخطوط</div>
+  <div class="tyrow" style="top:340px"><div class="meta"><b>ZUNBURK</b><span>العناوين العربية</span><small>AMIRI · WEB FALLBACK</small></div><div class="s" style="font-family:var(--ar);font-weight:700;font-size:92px">بريقٌ يُشبهكِ</div></div>
+  <div class="tyrow" style="top:530px"><div class="meta"><b>CINZEL</b><span>الأسماء والتسميات اللاتينية</span><small>GOOGLE FONTS</small></div><div class="s caps" style="font-size:64px;text-align:left">NOURA</div></div>
+  <div class="tyrow" style="top:700px"><div class="meta"><b>ALLURA</b><span>العناوين المكتوبة باليد</span><small>GOOGLE FONTS</small></div><div class="s" style="font-family:var(--script);font-size:82px;direction:ltr;text-align:left;letter-spacing:.03em">New Collection</div></div>
+  <div class="tyrow" style="top:890px"><div class="meta"><b>CORMORANT</b><span>النصوص الإنجليزية</span><small>GOOGLE FONTS</small></div><div class="s" style="font-family:var(--serif);font-size:30px;direction:ltr;text-align:left;white-space:normal;line-height:1.5;color:rgba(238,234,229,.85)">Pieces that glow quietly, wrapped like a gift.</div></div>
+  <div class="tyrow" style="top:1030px"><div class="meta"><b>IBM PLEX ARABIC</b><span>النصوص والأسعار</span><small>GOOGLE FONTS</small></div><div class="s" style="font-family:var(--ar-sans);font-weight:300;font-size:24px;white-space:normal;line-height:1.7;color:rgba(238,234,229,.85)">قلادة مطلية بالذهب عيار 18 مع حبة لؤلؤ، بطول 45 سم. ١٢٩ ر.س</div></div>
+</section>
+
+<!-- 9 MOOD BOARD -->
+<section class="page" style="background:var(--noise),radial-gradient(90% 70% at 60% 55%,#2A1A2D,#120A14 75%)">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Mood Board</div><div class="title-ar">لوحة المزاج</div>
+  <div class="mood">
+    <span class="lbl" style="left:190px;top:400px">inspired</span>
+    <img src="m/04-packaging-flatlay.png" style="left:150px;top:450px;width:420px;height:300px">
+    <span class="lbl" style="left:640px;top:400px">Photography Style</span>
+    <img src="m/03-poster-radiant.png" style="left:600px;top:450px;width:330px;height:455px">
+    <img src="m/06-pattern-hangtag.png" style="left:150px;top:780px;width:260px;height:170px">
+    <div class="glyph" style="left:440px;top:790px;font-size:84px">ن</div>
+    <div class="glyph" style="left:440px;top:935px;width:130px;height:130px"><svg viewBox="4 4 564 236" style="width:110px;fill:#EEEAE5"><use href="#nora-ar"/></svg></div>
+    <span class="lbl" style="left:380px;top:1080px">typography</span>
+    <span class="lbl" style="left:150px;top:975px">colors</span>
+    <div class="chipbox" style="left:150px;top:1020px">
+      <div style="background:#4B2A4E;color:#EEEAE5;width:110px;height:120px"><b>NOURA</b>#4B2A4E</div>
+      <div style="background:#343B26;color:#EEEAE5;width:110px;height:120px"><b>OLIVE</b>#343B26</div>
+    </div>
+    <img src="m/07-shopping-bag.png" style="left:600px;top:930px;width:330px;height:200px">
+    <svg viewBox="0 0 120 200" style="position:absolute;left:560px;top:860px;width:56px;z-index:5;overflow:visible"><path d="M10 0 C20 70 50 110 60 118 C70 110 100 70 110 0" fill="none" stroke="url(#foil)" stroke-width="3" stroke-dasharray=".1 6" stroke-linecap="round"/><use href="#spark" x="50" y="112" width="20" height="20" fill="url(#foil)"/><circle cx="60" cy="146" r="12" fill="url(#pearl)"/></svg>
+  </div>
+</section>
+
+<!-- 10 PATTERN -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Pattern</div><div class="title-ar">النقش</div>
+  <div class="patplate"><svg viewBox="0 0 856 560" preserveAspectRatio="xMidYMid slice"><rect width="856" height="560" fill="url(#pat)"/></svg></div>
+  <div class="tiles" style="top:920px;bottom:230px;grid-template-columns:repeat(3,1fr)">
+    <div class="tile" style="background-color:#4B2A4E"><svg viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;opacity:.12"><rect width="300" height="200" fill="url(#pat-plum)"/></svg><span class="capl" style="color:#EEEAE5">BLIND EMBOSS</span><span class="cap" style="color:#EEEAE5">نقش بارز على العلب</span></div>
+    <div class="tile" style="background-color:#EEEAE5"><svg viewBox="0 0 300 200" style="width:70%"><path d="M-20 120 C60 40 120 180 200 110 S300 60 330 90" fill="none" stroke="#4B2A4E" stroke-width="30"/><path id="rb" d="M-20 120 C60 40 120 180 200 110 S300 60 330 90" fill="none"/><text font-family="Cinzel, serif" font-size="9" letter-spacing="3" fill="#E2CC9A" dy="3"><textPath href="#rb">NOURA ✦ نورا ✦ NOURA ✦ نورا ✦ NOURA ✦ نورا ✦</textPath></text></svg><span class="capl" style="color:#4B2A4E">SATIN RIBBON</span><span class="cap" style="color:#4B2A4E">الشريط</span></div>
+    <div class="tile" style="background-color:#343B26"><svg viewBox="-20 -20 40 40" style="width:80px" class="goldfill"><use href="#spark" x="-20" y="-20" width="40" height="40"/></svg><span class="capl" style="color:#EEEAE5">THE SPARK</span><span class="cap" style="color:#EEEAE5">الشرارة</span></div>
+  </div>
+</section>
+
+<!-- 11 PACKAGING -->
+<section class="page" style="background:var(--noise),radial-gradient(90% 70% at 50% 60%,#2B182F,#160C18 80%)">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Packaging</div><div class="title-ar">التغليف</div>
+  <svg viewBox="0 0 1080 900" style="position:absolute;left:0;top:340px;width:1080px;height:900px;z-index:2">
+    <!-- shopping bag -->
+    <g transform="translate(330 70)" filter="url(#drop)">
+      <rect x="40" y="0" width="70" height="90" fill="#EEEAE5" transform="rotate(-8 75 45)"/>
+      <rect x="95" y="10" width="70" height="80" fill="#C9BFB4" transform="rotate(6 130 50)"/>
+      <path d="M75 120 C75 40 120 30 125 40 M215 120 C215 40 170 30 165 40" fill="none" stroke="#343B26" stroke-width="16" stroke-linecap="round"/>
+      <rect x="0" y="100" width="290" height="250" fill="url(#cream-g)"/>
+      <use href="#noura-full" x="85" y="200" width="120" height="57" fill="#4B2A4E"/>
+    </g>
+    <!-- envelope -->
+    <g transform="translate(680 120)" filter="url(#drop)">
+      <rect width="250" height="170" rx="4" fill="#343B26"/>
+      <path d="M0 40 L125 110 L250 40" fill="none" stroke="#262C1B" stroke-width="2"/>
+      <path d="M0 0 H250 V40 L125 110 L0 40Z" fill="#3B432C"/>
+      <circle cx="125" cy="112" r="9" fill="#262C1B"/><path d="M125 112 l-14 50 M125 112 l8 52" stroke="#262C1B" stroke-width="1.6"/>
+      <use href="#noura-full" x="88" y="52" width="74" height="35" fill="#EEEAE5"/>
+    </g>
+    <!-- bracelet -->
+    <path d="M985 120 C990 250 980 330 975 400" fill="none" stroke="url(#foil)" stroke-width="7" stroke-dasharray=".1 11" stroke-linecap="round"/>
+    <!-- ring -->
+    <g transform="translate(250 400)"><ellipse cx="0" cy="18" rx="30" ry="20" fill="none" stroke="url(#foil)" stroke-width="5"/><use href="#spark" x="-14" y="-14" width="28" height="28" fill="#F5F0EA"/></g>
+    <!-- earrings -->
+    <g transform="translate(720 380)"><path d="M0 0v14M50 0v14" stroke="url(#foil)" stroke-width="3"/><circle cx="0" cy="34" r="16" fill="url(#pearl)"/><circle cx="50" cy="34" r="16" fill="url(#pearl)"/><use href="#spark" x="-9" y="-12" width="18" height="18" fill="url(#foil)"/><use href="#spark" x="41" y="-12" width="18" height="18" fill="url(#foil)"/></g>
+    <!-- round boxes -->
+    <g filter="url(#drop)">
+      <g transform="translate(200 480)">
+        <rect x="0" y="40" width="220" height="110" fill="url(#cyl)"/><ellipse cx="110" cy="150" rx="110" ry="36" fill="#26142A"/><ellipse cx="110" cy="40" rx="110" ry="36" fill="#55315A"/>
+        <g transform="translate(110 40) scale(1 .33)"><use href="#noura-full" x="-60" y="-28" width="120" height="57" fill="#EEEAE5"/></g>
+      </g>
+      <g transform="translate(470 560)">
+        <rect x="0" y="30" width="150" height="90" fill="url(#cyl)"/><ellipse cx="75" cy="120" rx="75" ry="25" fill="#26142A"/><ellipse cx="75" cy="30" rx="75" ry="25" fill="#55315A"/>
+        <g transform="translate(75 30) scale(1 .33)"><use href="#noura-full" x="-42" y="-20" width="84" height="40" fill="#EEEAE5"/></g>
+      </g>
+      <g transform="translate(150 650)">
+        <rect x="0" y="40" width="250" height="50" fill="url(#cyl)"/><ellipse cx="125" cy="90" rx="125" ry="40" fill="#26142A"/><ellipse cx="125" cy="40" rx="125" ry="40" fill="#3B2040"/><ellipse cx="125" cy="40" rx="112" ry="34" fill="#EEEAE5"/>
+        <path d="M45 30 C90 70 160 70 205 30" fill="none" stroke="url(#foil)" stroke-width="2" stroke-dasharray=".1 4" stroke-linecap="round"/><use href="#spark" x="117" y="54" width="16" height="16" fill="url(#foil)"/>
+      </g>
+      <g transform="translate(400 720)">
+        <rect x="0" y="30" width="150" height="34" fill="url(#cyl)"/><ellipse cx="75" cy="64" rx="75" ry="24" fill="#26142A"/><ellipse cx="75" cy="30" rx="75" ry="24" fill="#3B2040"/><ellipse cx="75" cy="30" rx="66" ry="20" fill="#EEEAE5"/>
+        <circle cx="75" cy="34" r="7" fill="url(#pearl)"/><path d="M40 22 C60 40 90 40 110 22" fill="none" stroke="url(#foil)" stroke-width="1.6" stroke-dasharray=".1 3.4" stroke-linecap="round"/>
+      </g>
+    </g>
+    <!-- drawer box -->
+    <g transform="translate(660 470)" filter="url(#drop)">
+      <path d="M40 0 L260 0 L280 150 L20 150Z" fill="#E4DDD4"/>
+      <use href="#noura-full" x="100" y="40" width="100" height="47" fill="#4B2A4E" transform="skewX(0)"/>
+      <rect x="0" y="150" width="300" height="190" fill="url(#cream-g)"/>
+      <rect x="20" y="160" width="260" height="110" fill="#D9D1C7"/>
+      <path d="M40 170 C80 150 120 190 150 165 S230 150 260 175 L260 260 L40 260Z" fill="#4B2A4E"/>
+      <path d="M60 180 C100 168 120 196 150 178 S220 168 245 186" fill="none" stroke="#5E3864" stroke-width="6"/>
+      <rect x="135" y="330" width="30" height="30" fill="#E4DDD4"/>
+    </g>
+    <!-- tennis bracelet -->
+    <path d="M440 860 C520 820 620 820 690 850" fill="none" stroke="url(#foil)" stroke-width="9" stroke-dasharray=".1 13" stroke-linecap="round"/>
+  </svg>
+</section>
+
+<!-- 12 STATIONERY & SOCIAL -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Stationery</div><div class="title-ar">المطبوعات والسوشيال</div>
+  <svg viewBox="0 0 856 760" style="position:absolute;left:112px;top:330px;width:856px;z-index:2">
+    <!-- business cards -->
+    <g transform="translate(20 30) rotate(-6)" filter="url(#drop)"><rect width="300" height="171" rx="6" fill="#4B2A4E"/><use href="#noura-full" x="90" y="50" width="120" height="57" fill="url(#foil)"/></g>
+    <g transform="translate(60 230) rotate(4)" filter="url(#drop)">
+      <rect width="300" height="171" rx="6" fill="#F4F1EC"/><rect y="164" width="300" height="7" fill="#343B26"/>
+      <use href="#nora-mark" x="248" y="18" width="34" height="34" fill="#4B2A4E" stroke="#4B2A4E" stroke-width=".4"/>
+      <text x="280" y="92" text-anchor="end" font-family="Amiri, serif" font-weight="700" font-size="22" fill="#4B2A4E">نورا اكسسواريز</text>
+      <g font-family="IBM Plex Sans Arabic, sans-serif" font-size="11" fill="#2A1D2C" text-anchor="end"><text x="280" y="118">@noura.accessories</text><text x="280" y="136">واتساب: رقم المتجر</text><text x="280" y="154">رابط المتجر الإلكتروني</text></g>
+    </g>
+    <!-- thank you card -->
+    <g transform="translate(70 470)" filter="url(#drop)"><rect width="200" height="270" rx="4" fill="#343B26"/><use href="#nora-ar" x="55" y="40" width="90" height="38" fill="url(#foil)"/>
+      <text x="100" y="140" text-anchor="middle" font-family="Allura, cursive" font-size="40" fill="#EEEAE5">Thank you</text>
+      <text x="100" y="180" text-anchor="middle" font-family="Amiri, serif" font-weight="700" font-size="20" fill="#E2CC9A">شكراً لأنكِ اخترتِنا</text>
+      <text x="100" y="215" text-anchor="middle" font-family="IBM Plex Sans Arabic, sans-serif" font-size="11" fill="rgba(238,234,229,.75)">نتمنى أن تلمع قطعتك معك</text></g>
+    <!-- hang tag -->
+    <g transform="translate(300 480) rotate(-8)" filter="url(#drop)"><path d="M10 0 H110 L120 10 V250 L110 260 H10 L0 250 V10Z" fill="#F4F1EC"/><circle cx="60" cy="22" r="5" fill="#160C18"/>
+      <use href="#nora-mark" x="40" y="50" width="40" height="40" fill="#4B2A4E" stroke="#4B2A4E" stroke-width=".4"/><circle cx="40" cy="130" r="4" fill="#160C18"/><circle cx="80" cy="130" r="4" fill="#160C18"/>
+      <circle cx="40" cy="152" r="10" fill="url(#pearl)"/><circle cx="80" cy="152" r="10" fill="url(#pearl)"/>
+      <use href="#noura-full" x="25" y="200" width="70" height="33" fill="#4B2A4E"/></g>
+    <!-- instagram post -->
+    <g transform="translate(470 20)" filter="url(#drop)"><rect width="360" height="360" rx="6" fill="#4B2A4E"/><rect width="360" height="360" rx="6" fill="url(#pat-plum)" opacity=".06"/>
+      <text x="180" y="150" text-anchor="middle" font-family="Cinzel, serif" font-size="46" letter-spacing="6" fill="#F1DEC0">RADIANT</text>
+      <path d="M110 40 C130 140 160 190 180 196 C200 190 230 140 250 40" fill="none" stroke="url(#foil)" stroke-width="2.4" stroke-dasharray=".1 5" stroke-linecap="round"/>
+      <use href="#spark" x="170" y="190" width="20" height="20" fill="url(#foil)"/><circle cx="180" cy="226" r="14" fill="url(#pearl)"/>
+      <text x="180" y="290" text-anchor="middle" font-family="Amiri, serif" font-weight="700" font-size="26" fill="#EEEAE5">مجموعة لؤلؤة نورا</text>
+      <use href="#noura-full" x="290" y="20" width="56" height="27" fill="#EEEAE5"/>
+      <text x="20" y="340" font-family="IBM Plex Sans Arabic, sans-serif" font-size="11" fill="rgba(238,234,229,.75)">@noura.accessories</text></g>
+    <!-- story -->
+    <g transform="translate(560 420)" filter="url(#drop)"><rect width="190" height="338" rx="16" fill="#2E1A31"/>
+      <use href="#nora-mark" x="65" y="70" width="60" height="60" fill="url(#foil)"/>
+      <text x="95" y="175" text-anchor="middle" font-family="Amiri, serif" font-weight="700" font-size="22" fill="#EEEAE5">وصلت مجموعة</text>
+      <text x="95" y="205" text-anchor="middle" font-family="Amiri, serif" font-weight="700" font-size="22" fill="#EEEAE5">«لؤلؤة نورا»</text>
+      <rect x="45" y="240" width="100" height="28" rx="14" fill="none" stroke="#B89A64"/><text x="95" y="259" text-anchor="middle" font-family="IBM Plex Sans Arabic, sans-serif" font-size="11" fill="#E2CC9A">تسوّقي الآن</text></g>
+  </svg>
+</section>
+
+<!-- 13 MISUSE -->
+<section class="page fold">
+  <svg class="mini" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="title">Misuse</div><div class="title-ar">استخدامات خاطئة</div>
+  <div class="donts">
+    <div class="dn"><div class="st"><svg viewBox="0 0 572 271" style="width:220px;fill:#EEEAE5;transform:scaleX(1.45)"><use href="#noura-full"/></svg></div><p>لا تمطّي الشعار أو تضغطيه.</p></div>
+    <div class="dn"><div class="st" style="background:#1E6E8C"><svg viewBox="0 0 572 271" style="width:220px;fill:#F2C94C"><use href="#noura-full"/></svg></div><p>لا تستخدمي ألواناً خارج الهوية.</p></div>
+    <div class="dn"><div class="st"><svg viewBox="0 0 572 271" style="width:220px;fill:#EEEAE5;transform:rotate(-16deg)"><use href="#noura-full"/></svg></div><p>لا تُديري الشعار.</p></div>
+    <div class="dn"><div class="st"><svg viewBox="0 0 572 271" style="width:220px;fill:#EEEAE5;filter:drop-shadow(6px 6px 0 #9fd)"><use href="#noura-full"/></svg></div><p>لا تضيفي ظلالاً أو تأثيرات.</p></div>
+    <div class="dn"><div class="st"><div style="font-family:var(--ar);font-weight:700;font-size:64px;color:#EEEAE5;line-height:1">نورا <span style="font-family:var(--caps);font-size:28px">NOURA</span></div></div><p>لا تُعيدي كتابة الشعار بأي خط.</p></div>
+    <div class="dn"><div class="st" style="background:url(m/04-packaging-flatlay.png) center/cover"><svg viewBox="0 0 572 271" style="width:220px;fill:#EEEAE5"><use href="#noura-full"/></svg></div><p>لا تضعيه على صورة مزدحمة بلا تباين.</p></div>
+  </div>
+</section>
+
+<!-- 14 CLOSING -->
+<section class="page rays">
+  <svg class="cover-logo" viewBox="0 0 572 271"><use href="#noura-full"/></svg>
+  <div class="thanks-ar">شكراً لكِ</div>
+  <div class="cover-sub" style="top:calc(50% + 225px)">THANK YOU</div>
+</section>
+
+<script>
+const t=document.getElementById('foot');
+document.querySelectorAll('.page').forEach(p=>p.appendChild(t.content.cloneNode(true)));
+</script>
+</body>
+</html>

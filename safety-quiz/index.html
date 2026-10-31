@@ -280,7 +280,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
         <div class="rule"><b>٣٠ ث</b><span>لكل سؤال قبل انتهاء الوقت</span></div>
       </div>
       <form id="joinForm" novalidate>
-        <label for="roomInput">رمز الفصل (يظهر على شاشة المعلمة)</label>
+        <label for="roomInput">رمز الفصل (يظهر على شاشة المدربة)</label>
         <input type="text" id="roomInput" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="مثال: 4821" style="margin-bottom:16px">
         <label for="nameInput">اكتبي اسمك كما سيظهر على الشاشة</label>
         <input type="text" id="nameInput" maxlength="40" autocomplete="name" placeholder="مثال: نورة عبدالله">
@@ -292,7 +292,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     <div class="card wait" id="waitCard" hidden>
       <svg class="cone" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 8h12l14 46H12z" fill="#F2A900"/><path d="M22.5 22h19l2.6 9h-24.2zM18.7 36h26.6l2.6 9H16.1z" fill="#fff"/><rect x="6" y="52" width="52" height="6" rx="3" fill="#0B2545"/></svg>
       <h2 id="waitTitle">أهلًا بك</h2>
-      <p id="waitText">انتظري حتى تبدأ المعلمة المسابقة. ستظهر الأسئلة تلقائيًا.</p>
+      <p id="waitText">انتظري حتى تبدأ المدربة المسابقة. ستظهر الأسئلة تلقائيًا.</p>
     </div>
 
     <div class="card" id="quizCard" hidden>
@@ -324,8 +324,8 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
 <script>
 (() => {
   "use strict";
-  // تعمل الصفحة بدون قاعدة بيانات: جهاز المعلمة هو "الخادم"، والطالبات يتصلن به مباشرة برمز الفصل.
-  // المعلمة: افتحي الرابط مع #teacher في آخره. الطالبات: الرابط العادي أو رمز QR.
+  // تعمل الصفحة بدون قاعدة بيانات: جهاز المدربة هو "الخادم"، والطالبات يتصلن به مباشرة برمز الفصل.
+  // المدربة: افتحي الرابط مع #teacher في آخره. الطالبات: الرابط العادي أو رمز QR.
   const PREFIX = "tvtc-bdaea-safety-"; // بادئة فريدة لرموز الفصول
 
   // ---------- questions (from the lesson slides) ----------
@@ -404,8 +404,8 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     if (!sPeer || sPeer.destroyed) {
       sPeer = new Peer(undefined, { debug: 0 });
       sPeer.on("error", (e) => {
-        if (e && e.type === "peer-unavailable") showConn("لم يُعثر على الفصل. تأكدي من رمز الفصل وأن شاشة المعلمة مفتوحة. جارٍ إعادة المحاولة…");
-        else showConn("انقطع الاتصال بشاشة المعلمة. جارٍ إعادة المحاولة…");
+        if (e && e.type === "peer-unavailable") showConn("لم يُعثر على الفصل. تأكدي من رمز الفصل وأن شاشة المدربة مفتوحة. جارٍ إعادة المحاولة…");
+        else showConn("انقطع الاتصال بشاشة المدربة. جارٍ إعادة المحاولة…");
         scheduleRetry();
       });
       sPeer.on("disconnected", () => { try { sPeer.reconnect(); } catch {} });
@@ -423,7 +423,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
       if (msg.t === "state") { gotState = true; applyGame(msg); }
       if (msg.t === "rank") showRank(clampInt(msg.pos, 0, 999), clampInt(msg.total, 0, 999));
     });
-    sConn.on("close", () => { showConn("انقطع الاتصال بشاشة المعلمة. جارٍ إعادة المحاولة…"); scheduleRetry(); });
+    sConn.on("close", () => { showConn("انقطع الاتصال بشاشة المدربة. جارٍ إعادة المحاولة…"); scheduleRetry(); });
     sConn.on("error", () => scheduleRetry());
   }
   function scheduleRetry() { clearTimeout(retryTimer); retryTimer = setTimeout(connectStudent, 3000); }
@@ -440,7 +440,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     if (game.status === "running") { if ($("quizCard").hidden) showQuestion(); return; }
     stopTimer();
     $("waitTitle").textContent = `أهلًا ${me.name}`;
-    $("waitText").textContent = !gotState ? "جارٍ الاتصال بشاشة المعلمة…" : game.status === "ended" ? "انتهت هذه الجولة. انتظري جولة جديدة من المعلمة." : "اسمك ظاهر الآن على شاشة المعلمة. انتظري حتى تبدأ المسابقة وستظهر الأسئلة تلقائيًا.";
+    $("waitText").textContent = !gotState ? "جارٍ الاتصال بشاشة المدربة…" : game.status === "ended" ? "انتهت هذه الجولة. انتظري جولة جديدة من المدربة." : "اسمك ظاهر الآن على شاشة المدربة. انتظري حتى تبدأ المسابقة وستظهر الأسئلة تلقائيًا.";
     show("waitCard");
   }
   function showQuestion() {
@@ -523,7 +523,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     e.preventDefault();
     const code = toLatinDigits($("roomInput").value);
     const name = cleanName($("nameInput").value);
-    if (code.length < 4) { $("joinErr").textContent = "اكتبي رمز الفصل الظاهر على شاشة المعلمة."; $("roomInput").focus(); return; }
+    if (code.length < 4) { $("joinErr").textContent = "اكتبي رمز الفصل الظاهر على شاشة المدربة."; $("roomInput").focus(); return; }
     if (name.length < 2) { $("joinErr").textContent = "اكتبي اسمك (حرفان على الأقل) ليظهر على الشاشة."; $("nameInput").focus(); return; }
     $("joinErr").textContent = "";
     room = code;
@@ -694,7 +694,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     $("boardPane").hidden = !board;
     preview = !board;
     $("studentView").hidden = board;
-    if (preview) { me = blankProgress("المعلمة"); showQuestion(); }
+    if (preview) { me = blankProgress("المدربة"); showQuestion(); }
     else { stopTimer(); clearTimeout(advanceTimer); }
   }
   $("tabBoard").addEventListener("click", () => setTab(true));

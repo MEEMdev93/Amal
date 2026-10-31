@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تحدي سلامة الموقع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;600;700&display=swap">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+html {{ padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }}
+body {{ margin: 0; }}
+[hidden] {{ display: none !important; }}
+/* Layout: one navy site-gate header, then either the student's single question card or the teacher's live board (podium on hazard tape + lane-style progress rows). */
+:root {
+  --bg: #EEF2F7;
+  --surface: #FFFFFF;
+  --surface-2: #F6F8FB;
+  --ink: #0E1B2E;
+  --muted: #5A6678;
+  --line: #DCE3EC;
+  --navy: #0B2545;
+  --navy-ink: #FFFFFF;
+  --amber: #F2A900;
+  --amber-ink: #1B1400;
+  --teal: #0F8A82;
+  --teal-soft: #DDF3F1;
+  --red: #C23B3B;
+  --red-soft: #FBE4E4;
+  --gold: #E9B000;
+  --silver: #A3AFBF;
+  --bronze: #C27A3C;
+  --lane: #2E3B4E;
+  --display: "Readex Pro", "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #07111E; --surface: #0F1F35; --surface-2: #142843; --ink: #E8EEF6; --muted: #98A6BA;
+    --line: #213752; --navy: #0B2545; --navy-ink: #FFFFFF; --teal: #2BBFB3; --teal-soft: #0F3A3C;
+    --red: #EE6B6B; --red-soft: #3D1A1F; --lane: #0A1626; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #07111E; --surface: #0F1F35; --surface-2: #142843; --ink: #E8EEF6; --muted: #98A6BA;
+  --line: #213752; --navy: #0B2545; --navy-ink: #FFFFFF; --teal: #2BBFB3; --teal-soft: #0F3A3C;
+  --red: #EE6B6B; --red-soft: #3D1A1F; --lane: #0A1626; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.25; margin: 0; text-wrap: balance; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* header */
+.gate { background: var(--navy); color: var(--navy-ink); }
+.gate .wrap { display: flex; align-items: center; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.sign { width: 46px; height: 46px; flex: none; display: grid; place-items: center; }
+.sign svg { width: 46px; height: 46px; }
+.gate h1 { font-size: clamp(20px, 3vw, 28px); }
+.gate p { margin: 0; color: #B9C7DA; font-size: 14px; }
+.gate .grow { flex: 1; min-width: 0; }
+.chip { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 6px 14px; font-weight: 600; font-size: 14px; background: rgba(255,255,255,.1); color: var(--navy-ink); white-space: nowrap; }
+.chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--silver); display: block; }
+.chip[data-s="running"] i { background: #3DDC97; box-shadow: 0 0 0 4px rgba(61,220,151,.25); }
+.chip[data-s="ended"] i { background: var(--amber); }
+
+main { padding-block: 28px 48px; }
+.note { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 18px; color: var(--muted); font-size: 14px; }
+.note.warn { border-color: var(--amber); }
+
+/* student */
+.card { background: var(--surface); border-radius: 20px; box-shadow: 0 10px 30px rgba(11,37,69,.08); padding: clamp(20px, 4vw, 36px); max-width: 720px; margin: 0 auto; }
+.join h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 6px; }
+.join p { color: var(--muted); margin: 0 0 22px; }
+.rules { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 24px; }
+.rule { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; }
+.rule b { display: block; font-family: var(--display); font-size: 22px; color: var(--teal); font-variant-numeric: tabular-nums; }
+.rule span { font-size: 13px; color: var(--muted); }
+label { display: block; font-weight: 600; margin-bottom: 8px; }
+input[type=text] { width: 100%; font: inherit; font-size: 18px; padding: 14px 16px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface-2); color: var(--ink); }
+input[type=text]:focus { border-color: var(--teal); outline: none; }
+.btn { border: 0; border-radius: 12px; padding: 14px 22px; font-weight: 700; font-size: 17px; background: var(--amber); color: var(--amber-ink); transition: transform .12s ease, filter .12s; }
+.btn:hover { filter: brightness(1.05); }
+.btn:active { transform: translateY(1px); }
+.btn.block { width: 100%; margin-top: 16px; }
+.btn.ghost { background: transparent; color: inherit; border: 2px solid currentColor; }
+.btn.teal { background: var(--teal); color: #fff; }
+.btn.red { background: var(--red); color: #fff; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.err { color: var(--red); font-size: 14px; min-height: 1.4em; margin-top: 6px; }
+
+.wait { text-align: center; }
+.wait h2 { font-size: 28px; margin: 14px 0 6px; }
+.wait p { color: var(--muted); margin: 0; }
+.cone { width: 84px; height: 84px; margin: 0 auto; animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+.qhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+.qnum { font-family: var(--display); font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tag { font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); }
+.tag.v { background: rgba(242,169,0,.18); color: #9A6B00; }
+:root[data-theme="dark"] .tag.v { color: var(--amber); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tag.v { color: var(--amber); } }
+.timer { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin-bottom: 20px; }
+.timer i { display: block; height: 100%; width: 100%; background: var(--teal); border-radius: 99px; transform-origin: right; }
+.timer.low i { background: var(--red); }
+.qtext { font-size: clamp(20px, 3.2vw, 26px); margin-bottom: 20px; }
+.opts { display: grid; gap: 12px; }
+.opt { display: flex; align-items: center; gap: 14px; text-align: right; width: 100%; padding: 14px 16px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); font-size: 17px; transition: border-color .15s, background .15s, transform .12s; }
+.opt:hover:not([disabled]) { border-color: var(--teal); transform: translateX(-3px); }
+.opt .k { flex: none; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-2); font-family: var(--display); font-weight: 700; }
+.opt .t { min-width: 0; }
+.opt.ok { border-color: var(--teal); background: var(--teal-soft); }
+.opt.ok .k { background: var(--teal); color: #fff; }
+.opt.bad { border-color: var(--red); background: var(--red-soft); }
+.opt.bad .k { background: var(--red); color: #fff; }
+.opt[disabled] { cursor: default; }
+.feedback { min-height: 44px; margin-top: 16px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-family: var(--display); font-size: 18px; }
+.feedback.ok { color: var(--teal); }
+.feedback.bad { color: var(--red); }
+.pts { font-variant-numeric: tabular-nums; background: var(--amber); color: var(--amber-ink); border-radius: 999px; padding: 2px 12px; font-size: 15px; animation: pop .4s ease; }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.12); } }
+.mystrip { display: flex; gap: 18px; justify-content: space-between; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 18px; padding-top: 14px; font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+.mystrip b { color: var(--ink); }
+
+.done { text-align: center; }
+.done .big { font-family: var(--display); font-size: 64px; font-weight: 700; color: var(--teal); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.done .stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin: 22px 0 6px; }
+.done .stats div { background: var(--surface-2); border-radius: 12px; padding: 12px; }
+.done .stats b { display: block; font-family: var(--display); font-size: 24px; font-variant-numeric: tabular-nums; }
+.done .stats span { font-size: 13px; color: var(--muted); }
+.rankline { font-size: 18px; margin-top: 14px; }
+
+/* host board */
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 20px; }
+.controls .sp { flex: 1; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 22px; }
+.kpi { background: var(--surface); border-radius: var(--r); padding: 14px 18px; }
+.kpi b { font-family: var(--display); font-size: 30px; display: block; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.kpi span { color: var(--muted); font-size: 14px; }
+
+.podium-wrap { background: var(--navy); color: var(--navy-ink); border-radius: 22px; padding: 22px clamp(14px, 3vw, 28px) 0; margin-bottom: 22px; overflow: hidden; }
+.podium-wrap h2 { font-size: 22px; margin-bottom: 4px; }
+.podium-wrap > p { margin: 0 0 14px; color: #B9C7DA; font-size: 14px; }
+.podium { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); align-items: end; gap: clamp(8px, 2vw, 18px); }
+.step { text-align: center; min-width: 0; }
+.step .who { font-family: var(--display); font-weight: 700; font-size: clamp(15px, 2.2vw, 22px); overflow-wrap: anywhere; padding: 0 4px; }
+.step .sc { color: #C9D5E4; font-size: 14px; font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+.medal { width: 54px; height: 54px; border-radius: 50%; margin: 0 auto 8px; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 24px; color: #1B1400; box-shadow: inset 0 -4px 0 rgba(0,0,0,.18); }
+.block-step { border-radius: 12px 12px 0 0; display: grid; place-items: center; font-family: var(--display); font-size: clamp(34px, 6vw, 56px); font-weight: 700; color: rgba(255,255,255,.9); }
+.s1 .medal { background: var(--gold); } .s1 .block-step { height: 150px; background: #1D4E7A; }
+.s2 .medal { background: var(--silver); } .s2 .block-step { height: 110px; background: #173F66; }
+.s3 .medal { background: var(--bronze); } .s3 .block-step { height: 80px; background: #133556; }
+.step.empty .who { color: #6F84A0; font-weight: 500; }
+.tape { height: 18px; margin: 0 calc(-1 * clamp(14px, 3vw, 28px)); background: repeating-linear-gradient(-45deg, var(--amber) 0 18px, #111 18px 36px); }
+.step.enter { animation: rise .6s cubic-bezier(.2,.8,.2,1); }
+@keyframes rise { from { transform: translateY(24px); opacity: .2; } }
+
+.board { background: var(--surface); border-radius: var(--r); overflow: hidden; }
+.board-head, .row { display: grid; grid-template-columns: 52px minmax(0,1.3fr) minmax(0,2fr) 70px 80px 74px; gap: 12px; align-items: center; padding: 10px 18px; }
+.board-head { font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); font-weight: 600; }
+.row { border-bottom: 1px solid var(--line); transition: background .3s; }
+.row:last-child { border-bottom: 0; }
+.row.flash { background: var(--teal-soft); }
+.rank { font-family: var(--display); font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; text-align: center; }
+.name { font-weight: 600; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.name span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--silver); }
+.dot.on { background: #2DBF7F; }
+.lane { position: relative; height: 22px; border-radius: 6px; background: var(--lane); overflow: hidden; }
+.lane::before { content: ""; position: absolute; inset: 50% 6px auto; height: 2px; transform: translateY(-50%); background: repeating-linear-gradient(to left, rgba(255,255,255,.55) 0 10px, transparent 10px 20px); }
+.lane i { position: absolute; top: 0; bottom: 0; right: 0; background: var(--amber); border-radius: 6px; transition: width .6s cubic-bezier(.2,.8,.2,1); }
+.lane i.fin { background: var(--teal); }
+.lane em { position: absolute; inset: 0; display: grid; place-items: center; font-style: normal; font-size: 12px; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); font-variant-numeric: tabular-nums; }
+.num { font-variant-numeric: tabular-nums; text-align: center; }
+.num b { font-family: var(--display); }
+.empty-board { padding: 34px 18px; text-align: center; color: var(--muted); }
+.hint { margin-top: 18px; }
+.tabs { display: inline-flex; background: var(--surface); border-radius: 12px; padding: 4px; gap: 4px; }
+.tabs button { border: 0; background: transparent; color: var(--muted); padding: 8px 14px; border-radius: 9px; font-weight: 600; }
+.tabs button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+
+@media (max-width: 760px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .board-head { display: none; }
+  .row { grid-template-columns: 36px minmax(0,1fr) 64px; grid-template-areas: "r n s" "l l l"; row-gap: 6px; }
+  .row .rank { grid-area: r; } .row .name { grid-area: n; } .row .lane { grid-area: l; } .row .score { grid-area: s; }
+  .row .acc, .row .tm { display: none; }
+  .rules, .done .stats { grid-template-columns: minmax(0,1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+.login { max-width: 460px; }
+.copyrow { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.copyrow code { flex: 1; min-width: 0; overflow-wrap: anywhere; direction: ltr; text-align: left; background: var(--surface-2); padding: 10px 12px; border-radius: 10px; font-size: 14px; }
+.setup { background: var(--surface); border: 2px dashed var(--amber); border-radius: var(--r); padding: 18px 20px; margin-bottom: 20px; }
+.setup h3 { margin-bottom: 6px; }
+.setup ol { margin: 8px 0 0; padding-inline-start: 22px; }
+</style>
+</head>
+<body>
+<div dir="rtl" lang="ar">
+<header class="gate">
+  <div class="wrap">
+    <div class="sign" aria-hidden="true">
+      <svg viewBox="0 0 48 48"><path d="M24 4 L45 41 H3 Z" fill="#F2A900" stroke="#0B2545" stroke-width="2" stroke-linejoin="round"/><rect x="21.5" y="17" width="5" height="13" rx="2" fill="#0B2545"/><circle cx="24" cy="35" r="2.8" fill="#0B2545"/></svg>
+    </div>
+    <div class="grow">
+      <h1>تحدي سلامة الموقع</h1>
+      <p>سلامة المركبات وسلامة الأشخاص · الكلية التقنية للبنات بالبدائع</p>
+    </div>
+    <span class="chip" id="statusChip" data-s="lobby"><i></i><span id="statusText">بانتظار البدء</span></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="setup" id="setupNote" hidden>
+    <h3>الصفحة غير مربوطة بقاعدة البيانات بعد</h3>
+    <p style="margin:0;color:var(--muted)">بدون الربط لن تظهر أسماء الطالبات وتقدمهن على شاشتك. افتحي الملف بمحرر نصوص وضعي إعدادات Firebase في الجزء المكتوب عليه «الإعدادات» أعلى الكود، ثم ارفعيه من جديد.</p>
+  </div>
+
+  <div class="card login" id="loginCard" hidden>
+    <h2 style="font-size:26px;margin-bottom:6px">دخول المعلمة</h2>
+    <p style="color:var(--muted);margin:0 0 18px">أدخلي رمز المعلمة لفتح لوحة المتابعة.</p>
+    <form id="loginForm" novalidate>
+      <label for="codeInput">رمز المعلمة</label>
+      <input type="text" id="codeInput" inputmode="numeric" autocomplete="off">
+      <div class="err" id="loginErr" role="alert"></div>
+      <button class="btn block" type="submit">فتح اللوحة</button>
+    </form>
+  </div>
+
+  <!-- host -->
+  <section id="hostView" hidden>
+    <div class="controls">
+      <div class="tabs" role="group" aria-label="العرض">
+        <button type="button" id="tabBoard" aria-pressed="true">لوحة المتابعة</button>
+        <button type="button" id="tabPreview" aria-pressed="false">معاينة الأسئلة</button>
+      </div>
+      <span class="sp"></span>
+      <button type="button" class="btn teal" id="btnStart">ابدئي المسابقة</button>
+      <button type="button" class="btn red" id="btnEnd">إنهاء المسابقة</button>
+      <button type="button" class="btn ghost" id="btnNew">جولة جديدة</button>
+    </div>
+    <div id="boardPane">
+      <div class="note" style="margin-bottom:18px">
+        <b style="color:var(--ink)">رابط الطالبات</b>
+        <div class="copyrow"><code id="studentLink"></code><button type="button" class="btn teal" id="copyLink">نسخ الرابط</button></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><b id="kJoined">0</b><span>طالبة مشاركة</span></div>
+        <div class="kpi"><b id="kOnline">0</b><span>متصلة الآن</span></div>
+        <div class="kpi"><b id="kDone">0</b><span>أنهت الأسئلة</span></div>
+        <div class="kpi"><b id="kAcc">—</b><span>متوسط الإجابات الصحيحة</span></div>
+      </div>
+      <div class="podium-wrap">
+        <h2>المراكز الثلاثة الأولى</h2>
+        <p>الترتيب حسب النقاط: ١٠٠ نقطة لكل إجابة صحيحة + حتى ٥٠ نقطة للسرعة، وعند التعادل تتقدم الأسرع.</p>
+        <div class="podium" id="podium"></div>
+        <div class="tape" aria-hidden="true"></div>
+      </div>
+      <div class="board" id="board">
+        <div class="board-head"><span style="text-align:center">#</span><span>الطالبة</span><span>التقدم</span><span class="num">صحيحة</span><span class="num">النقاط</span><span class="num">الوقت</span></div>
+        <div id="rows"><div class="empty-board">لم تنضم أي طالبة بعد. شاركي رابط هذه الصفحة مع الطالبات، وستظهر أسماؤهن هنا فور كتابتها.</div></div>
+      </div>
+      <p class="note hint" id="hostNote">تظهر الطالبات هنا فور كتابة أسمائهن. اضغطي «ابدئي المسابقة» لتظهر الأسئلة لهن جميعًا في نفس اللحظة.</p>
+    </div>
+    <div id="previewPane" hidden></div>
+  </section>
+
+  <!-- student -->
+  <section id="studentView">
+    <div class="card join" id="joinCard">
+      <h2>جاهزة للتحدي؟</h2>
+      <p>١٥ سؤالًا من درس سلامة المركبات وسلامة الأشخاص. الإجابة الصحيحة والسريعة تمنحك نقاطًا أكثر.</p>
+      <div class="rules">
+        <div class="rule"><b>١٠٠</b><span>نقطة لكل إجابة صحيحة</span></div>
+        <div class="rule"><b>+٥٠</b><span>نقطة إضافية كلما أسرعتِ</span></div>
+        <div class="rule"><b>٣٠ ث</b><span>لكل سؤال قبل انتهاء الوقت</span></div>
+      </div>
+      <form id="joinForm" novalidate>
+        <label for="nameInput">اكتبي اسمك كما سيظهر على الشاشة</label>
+        <input type="text" id="nameInput" maxlength="40" autocomplete="name" placeholder="مثال: نورة عبدالله">
+        <div class="err" id="joinErr" role="alert"></div>
+        <button class="btn block" type="submit">دخول المسابقة</button>
+      </form>
+    </div>
+
+    <div class="card wait" id="waitCard" hidden>
+      <svg class="cone" viewBox="0 0 64 64" aria-hidden="true"><path d="M26 8h12l14 46H12z" fill="#F2A900"/><path d="M22.5 22h19l2.6 9h-24.2zM18.7 36h26.6l2.6 9H16.1z" fill="#fff"/><rect x="6" y="52" width="52" height="6" rx="3" fill="#0B2545"/></svg>
+      <h2 id="waitTitle">أهلًا بك</h2>
+      <p id="waitText">انتظري حتى تبدأ المعلمة المسابقة. ستظهر الأسئلة تلقائيًا.</p>
+    </div>
+
+    <div class="card" id="quizCard" hidden>
+      <div class="qhead"><span class="qnum" id="qNum"></span><span class="tag" id="qTag"></span></div>
+      <div class="timer" id="timer"><i id="timerBar"></i></div>
+      <h2 class="qtext" id="qText"></h2>
+      <div class="opts" id="opts"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="mystrip"><span>النقاط: <b id="myScore">0</b></span><span>صحيحة: <b id="myCorrect">0</b></span><span id="myTime">الوقت: <b>0</b> ث</span></div>
+    </div>
+
+    <div class="card done" id="doneCard" hidden>
+      <p style="margin:0;color:var(--muted)" id="doneHello">أحسنتِ!</p>
+      <div class="big" id="doneScore">0</div>
+      <div style="color:var(--muted)">نقطة</div>
+      <div class="stats">
+        <div><b id="dCorrect">0</b><span>إجابات صحيحة</span></div>
+        <div><b id="dTime">0</b><span>ثانية إجمالًا</span></div>
+        <div><b id="dRank">—</b><span>ترتيبك الآن</span></div>
+      </div>
+      <p class="rankline" id="doneLine">تابعي الشاشة لمعرفة الفائزات الثلاث.</p>
+    </div>
+
+    <p class="note warn" id="connNote" hidden style="margin-top:16px"></p>
+  </section>
+</div>
+
+
+<script>
+(() => {
+  "use strict";
+  // =====================================================================
+  // الإعدادات — ضعي هنا إعدادات مشروع Firebase (Realtime Database)
+  // =====================================================================
+  const FIREBASE_CONFIG = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",   // مثال: https://my-quiz-default-rtdb.firebaseio.com
+    projectId: "",
+    appId: "",
+  };
+  const TEACHER_CODE = "2468"; // غيّريه قبل النشر. تفتح المعلمة اللوحة من الرابط مع #teacher في آخره
+  const ROOT = "safetyQuiz";   // اسم المجلد داخل قاعدة البيانات
+
+  // ---------- questions (from the lesson slides) ----------
+  const Q = [
+    { c: "v", q: "ما الهدف العام من سلامة المركبات في مواقع العمل؟", o: ["زيادة سرعة نقل المواد داخل الموقع", "تحقيق بيئة عمل آمنة تقل فيها مخاطر الحوادث الناجمة عن حركة المركبات والمعدات", "تقليل عدد العاملين في الموقع", "توفير مواقف إضافية للمركبات"], a: 1 },
+    { c: "v", q: "أيٌّ مما يلي يُعدّ من مخاطر حركة المركبات؟", o: ["ارتداء الملابس العاكسة", "الصيانة الدورية للمركبات", "التقاطعات بين المركبات والمشاة", "وجود لافتات تحذيرية"], a: 2 },
+    { c: "v", q: "كيف تُفصل مسارات المشاة عن مسارات المركبات؟", o: ["باستخدام حواجز أو إشارات أرضية واضحة", "بزيادة سرعة المركبات", "بتقليل الإضاءة في الموقع", "بالاعتماد على انتباه السائق فقط"], a: 0 },
+    { c: "v", q: "متى تجب صيانة المركبات؟", o: ["عند حدوث عطل فقط", "حسب رغبة السائق", "مرة واحدة عند الشراء", "بانتظام وفق جداول معتمدة"], a: 3 },
+    { c: "v", q: "أيٌّ من الآتي من وسائل الأمان التي تُركَّب على المركبات؟", o: ["المرايا والكاميرات والإنذارات الصوتية وأجهزة كشف الاصطدام", "الزينة والملصقات", "مكبرات صوت للموسيقى", "ستائر للنوافذ"], a: 0 },
+    { c: "v", q: "لماذا نعزّز ثقافة الإبلاغ عن المخاطر دون خوف من العقوبة؟", o: ["لإخفاء الحوادث عن الإدارة", "ليبلّغ الجميع عن المخاطر والحوادث بحرية", "لتقليل التدريب", "لزيادة العقوبات"], a: 1 },
+    { c: "v", q: "أين تُستخدم المطبات أو أجهزة مراقبة السرعة؟", o: ["في مكاتب الإدارة", "داخل المستودعات المغلقة فقط", "عند المداخل والمخارج", "في مواقف الزوار فقط"], a: 2 },
+    { c: "v", q: "ماذا تعني دورة PDCA للتحسين المستمر؟", o: ["التخطيط – التنفيذ – التحقق – التحسين", "الإبلاغ – العقوبة – الإيقاف – الإغلاق", "الشراء – التخزين – التوزيع – البيع", "التدريب – الاختبار – التخرج – التوظيف"], a: 0 },
+    { c: "p", q: "مَن الأفراد الذين تشملهم سلامة الأشخاص؟", o: ["السائقون فقط", "المشرفون فقط", "الزوار فقط", "المشاة والسائقون والعمال والزوار"], a: 3 },
+    { c: "p", q: "أيٌّ مما يلي من المخاطر على الأشخاص؟", o: ["تعب السائقين أو ضعف الانتباه", "الالتزام بالمسارات المحددة", "ارتداء الخوذة", "التوقف عند نقاط العبور"], a: 0 },
+    { c: "p", q: "حسب IOSH، ما خط الدفاع الأول؟", o: ["الكاميرات", "السلوك الآمن", "الحواجز الخرسانية", "العقوبات"], a: 1 },
+    { c: "p", q: "متى تكون الملابس العاكسة للرؤية العالية ضرورية خصوصًا؟", o: ["في المكاتب المغلقة", "أثناء الاجتماعات", "في الليل أو في المناطق المزدحمة", "في أيام العطل"], a: 2 },
+    { c: "p", q: "ما الممنوع أثناء الحركة في المناطق النشطة بالمركبات؟", o: ["المشي في المسارات المحددة", "ارتداء الأحذية الواقية", "النظر في الاتجاهين", "استخدام الهاتف أو سماعات الأذن"], a: 3 },
+    { c: "p", q: "لماذا تُجدوَل فترات راحة كافية للسائقين؟", o: ["لتجنب التعب", "لتقليل ساعات العمل الإضافية فقط", "لزيادة عدد المركبات", "لتوفير الوقود"], a: 0 },
+    { c: "p", q: "ماذا يجب أن يتلقى الزوار قبل دخول الموقع؟", o: ["بطاقة خصم", "توجيهًا أوليًا عن السلامة", "مفاتيح المركبات", "لا شيء"], a: 1 },
+  ];
+  const TOTAL = Q.length, QTIME = 30000, BONUS = 50, BONUS_WINDOW = 20000, KEYS = ["أ", "ب", "ج", "د"];
+  const ar = (n) => Number(n).toLocaleString("ar-SA");
+
+  // ---------- helpers ----------
+  const $ = (id) => document.getElementById(id);
+  const h = (tag, attrs, ...kids) => {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (k === "class") el.className = v; else if (k === "text") el.textContent = v; else if (v != null) el.setAttribute(k, v);
+    }
+    for (const kid of kids) if (kid != null) el.append(kid);
+    return el;
+  };
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  };
+  const clampInt = (v, lo, hi) => { v = Math.round(Number(v)); return Number.isFinite(v) ? Math.min(hi, Math.max(lo, v)) : lo; };
+  const cleanName = (s) => String(s || "").replace(/[\u0000-\u001f​-‏‪-‮⁦-⁩]/g, "").replace(/\s+/g, " ").trim().slice(0, 40);
+
+  // ---------- database ----------
+  let fdb = null;
+  const configured = !!(FIREBASE_CONFIG.databaseURL && FIREBASE_CONFIG.apiKey && window.firebase);
+  if (configured) {
+    try { firebase.initializeApp(FIREBASE_CONFIG); fdb = firebase.database(); } catch (e) { fdb = null; }
+  }
+  const ref = (p) => fdb.ref(`${ROOT}/${p}`);
+
+  // ---------- state ----------
+  let game = { status: "lobby", round: 1, startedAt: null };
+  let isHost = false;
+  let pid = store.get("quiz-pid");
+  if (!pid) { pid = "s" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); store.set("quiz-pid", pid); }
+  let players = {}; // host: pid -> record for current round
+  let online = {};  // host: pid -> true
+
+  function setStatusChip() {
+    $("statusChip").dataset.s = game.status;
+    $("statusText").textContent = game.status === "running" ? `المسابقة جارية · الجولة ${ar(game.round)}` : game.status === "ended" ? "انتهت المسابقة" : `بانتظار البدء · الجولة ${ar(game.round)}`;
+  }
+
+  // =====================================================================
+  // STUDENT
+  // =====================================================================
+  let me = null, preview = false, qStart = 0, rafId = 0, locked = false, advanceTimer = 0, onlineRef = null;
+  const progKey = () => `quiz-prog-r${game.round}`;
+  const blankProgress = (name) => ({ name, round: game.round, idx: 0, answers: [], score: 0, correct: 0, totalMs: 0, done: false });
+  const saveMe = () => { if (!preview && me) store.set(progKey(), me); };
+  const show = (id) => { for (const c of ["joinCard", "waitCard", "quizCard", "doneCard"]) $(c).hidden = c !== id; };
+
+  function report() {
+    if (preview || !fdb || !me) return;
+    ref(`players/r${me.round}/${pid}`).set({
+      name: me.name, answered: me.answers.length, correct: me.correct, score: me.score,
+      totalMs: me.totalMs, done: me.done, at: firebase.database.ServerValue.TIMESTAMP,
+    }).catch(() => showConn("تعذّر إرسال تقدمك. تأكدي من الاتصال بالإنترنت."));
+    if (onlineRef) onlineRef.remove().catch(() => {});
+    onlineRef = ref(`online/r${me.round}/${pid}`);
+    onlineRef.onDisconnect().remove();
+    onlineRef.set(true).catch(() => {});
+  }
+
+  function studentRoute() {
+    if (isHost) return;
+    if (!me) { show("joinCard"); return; }
+    if (me.round !== game.round) {
+      const saved = store.get(progKey());
+      me = saved && saved.name === me.name && saved.round === game.round ? saved : blankProgress(me.name);
+      saveMe(); report();
+    }
+    if (me.done || (game.status === "ended" && me.answers.length > 0)) { finish(); return; }
+    if (game.status === "running") {
+      if (!$("quizCard").hidden) return;
+      showQuestion();
+      return;
+    }
+    stopTimer();
+    $("waitTitle").textContent = `أهلًا ${me.name}`;
+    $("waitText").textContent = game.status === "ended" ? "انتهت هذه الجولة. انتظري جولة جديدة من المعلمة." : "اسمك ظاهر الآن على شاشة المعلمة. انتظري حتى تبدأ المسابقة وستظهر الأسئلة تلقائيًا.";
+    show("waitCard");
+  }
+
+  function showQuestion() {
+    if (me.idx >= TOTAL) { finish(); return; }
+    const item = Q[me.idx];
+    locked = false;
+    $("qNum").textContent = `السؤال ${ar(me.idx + 1)} من ${ar(TOTAL)}`;
+    const tag = $("qTag");
+    tag.textContent = item.c === "v" ? "سلامة المركبات" : "سلامة الأشخاص";
+    tag.className = "tag" + (item.c === "v" ? " v" : "");
+    $("qText").textContent = item.q;
+    const box = $("opts"); box.replaceChildren();
+    item.o.forEach((t, i) => {
+      const b = h("button", { type: "button", class: "opt" }, h("span", { class: "k", text: KEYS[i] }), h("span", { class: "t", text: t }));
+      b.addEventListener("click", () => answer(i));
+      box.append(b);
+    });
+    $("feedback").replaceChildren(); $("feedback").className = "feedback";
+    updateStrip();
+    show("quizCard");
+    qStart = performance.now();
+    tick();
+  }
+  function stopTimer() { cancelAnimationFrame(rafId); rafId = 0; }
+  function tick() {
+    stopTimer();
+    const loop = () => {
+      const el = performance.now() - qStart;
+      const left = Math.max(0, 1 - el / QTIME);
+      $("timerBar").style.transform = `scaleX(${left})`;
+      $("timer").classList.toggle("low", left < 0.25);
+      if (el >= QTIME) { answer(-1); return; }
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+  }
+  function answer(i) {
+    if (locked) return;
+    locked = true; stopTimer();
+    const item = Q[me.idx];
+    const ms = Math.min(QTIME, Math.round(performance.now() - qStart));
+    const ok = i === item.a;
+    const pts = ok ? 100 + Math.round(BONUS * Math.max(0, 1 - ms / BONUS_WINDOW)) : 0;
+    me.answers.push({ i, ok, ms });
+    me.totalMs += ms; me.score += pts; if (ok) me.correct += 1; me.idx += 1;
+    if (me.idx >= TOTAL) me.done = true;
+    saveMe(); report();
+    [...$("opts").children].forEach((b, k) => { b.disabled = true; if (k === item.a) b.classList.add("ok"); else if (k === i) b.classList.add("bad"); });
+    const fb = $("feedback");
+    fb.className = "feedback " + (ok ? "ok" : "bad");
+    fb.replaceChildren(
+      document.createTextNode(ok ? "إجابة صحيحة" : i === -1 ? "انتهى الوقت · الإجابة الصحيحة مظللة" : "إجابة غير صحيحة · الإجابة الصحيحة مظللة"),
+      ok ? h("span", { class: "pts", text: "+" + ar(pts) }) : null,
+    );
+    updateStrip();
+    clearTimeout(advanceTimer);
+    advanceTimer = setTimeout(() => {
+      locked = false;
+      if (me.done || (game.status === "ended" && !preview)) finish(); else showQuestion();
+    }, ok ? 1300 : 2200);
+  }
+  function updateStrip() {
+    $("myScore").textContent = ar(me.score);
+    $("myCorrect").textContent = `${ar(me.correct)} / ${ar(TOTAL)}`;
+    $("myTime").replaceChildren("الوقت: ", h("b", { text: ar(Math.round(me.totalMs / 1000)) }), " ث");
+  }
+  function finish() {
+    stopTimer(); clearTimeout(advanceTimer);
+    if (!me.done && !preview) { me.done = true; saveMe(); report(); }
+    $("doneHello").textContent = me.answers.length >= TOTAL ? `أحسنتِ يا ${me.name}!` : `انتهى الوقت يا ${me.name}`;
+    $("doneScore").textContent = ar(me.score);
+    $("dCorrect").textContent = `${ar(me.correct)} / ${ar(TOTAL)}`;
+    $("dTime").textContent = ar(Math.round(me.totalMs / 1000));
+    show("doneCard");
+    watchMyRank();
+  }
+  let rankUnsub = null;
+  function watchMyRank() {
+    if (preview || !fdb || rankUnsub) { if (preview) $("dRank").textContent = "—"; return; }
+    const r = ref(`players/r${me.round}`);
+    const cb = (snap) => {
+      const list = Object.entries(snap.val() || {}).map(([k, v]) => sanitize(k, v));
+      list.sort(cmp);
+      const pos = list.findIndex((x) => x.pid === pid) + 1;
+      $("dRank").textContent = pos ? `${ar(pos)} / ${ar(list.length)}` : "—";
+      $("doneLine").textContent = pos && pos <= 3 ? "أنتِ ضمن المراكز الثلاثة الأولى حاليًا! تابعي الشاشة للنتيجة النهائية." : "تابعي الشاشة لمعرفة الفائزات الثلاث.";
+    };
+    r.on("value", cb);
+    rankUnsub = () => r.off("value", cb);
+  }
+
+  $("joinForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = cleanName($("nameInput").value);
+    if (name.length < 2) { $("joinErr").textContent = "اكتبي اسمك (حرفان على الأقل) ليظهر على الشاشة."; $("nameInput").focus(); return; }
+    $("joinErr").textContent = "";
+    me = blankProgress(name);
+    store.set("quiz-name", name);
+    saveMe(); report(); studentRoute();
+  });
+
+  // =====================================================================
+  // HOST
+  // =====================================================================
+  const cmp = (a, b) => (b.score - a.score) || (a.totalMs - b.totalMs) || (b.answered - a.answered) || String(a.name).localeCompare(String(b.name), "ar");
+  function sanitize(k, p) {
+    p = p || {};
+    return {
+      pid: k, name: cleanName(p.name) || "طالبة", answered: clampInt(p.answered, 0, TOTAL), correct: clampInt(p.correct, 0, TOTAL),
+      score: clampInt(p.score, 0, TOTAL * (100 + BONUS)), totalMs: clampInt(p.totalMs, 0, TOTAL * QTIME), done: !!p.done,
+    };
+  }
+
+  let lastOrder = "";
+  function renderBoard() {
+    if (!isHost) return;
+    const list = Object.entries(players).map(([k, v]) => ({ ...sanitize(k, v), online: !!online[k] })).sort(cmp);
+    $("kJoined").textContent = ar(list.length);
+    $("kOnline").textContent = ar(list.filter((r) => r.online).length);
+    $("kDone").textContent = ar(list.filter((r) => r.done || r.answered >= TOTAL).length);
+    const answered = list.reduce((s, r) => s + r.answered, 0), correct = list.reduce((s, r) => s + r.correct, 0);
+    $("kAcc").textContent = answered ? ar(Math.round((correct / answered) * 100)) + "٪" : "—";
+
+    const top = list.filter((r) => r.answered > 0).slice(0, 3);
+    const ids = top.map((r) => r.pid).join("|"), changed = ids !== lastOrder; lastOrder = ids;
+    $("podium").replaceChildren(...[1, 0, 2].map((pos) => {
+      const r = top[pos];
+      return h("div", { class: `step s${pos + 1}` + (r ? "" : " empty") + (r && changed ? " enter" : "") },
+        h("div", { class: "medal", text: ar(pos + 1) }),
+        h("div", { class: "who", text: r ? r.name : "—" }),
+        h("div", { class: "sc", text: r ? `${ar(r.score)} نقطة · ${ar(r.correct)} صحيحة · ${ar(Math.round(r.totalMs / 1000))} ث` : "بانتظار الإجابات" }),
+        h("div", { class: "block-step", text: ar(pos + 1) }));
+    }));
+
+    const rows = $("rows");
+    if (!list.length) {
+      rows.replaceChildren(h("div", { class: "empty-board", text: game.status === "lobby" ? "لم تنضم أي طالبة بعد. أرسلي رابط الطالبات، وستظهر أسماؤهن هنا فور كتابتها." : "لا توجد مشاركات في هذه الجولة بعد." }));
+      return;
+    }
+    rows.replaceChildren(...list.map((r, i) => {
+      const pct = Math.round((r.answered / TOTAL) * 100), fin = r.answered >= TOTAL || r.done;
+      const bar = h("i", { class: fin ? "fin" : "" }); bar.style.width = Math.max(pct, r.answered ? 4 : 0) + "%";
+      return h("div", { class: "row" },
+        h("div", { class: "rank", text: ar(i + 1) }),
+        h("div", { class: "name" }, h("i", { class: "dot" + (r.online ? " on" : ""), title: r.online ? "متصلة" : "غير متصلة" }), h("span", { text: r.name })),
+        h("div", { class: "lane", role: "img", "aria-label": `أجابت ${r.answered} من ${TOTAL}` }, bar, h("em", { text: fin ? "أنهت" : `${ar(r.answered)} / ${ar(TOTAL)}` })),
+        h("div", { class: "num acc" }, h("b", { text: ar(r.correct) })),
+        h("div", { class: "num score" }, h("b", { text: ar(r.score) })),
+        h("div", { class: "num tm", text: ar(Math.round(r.totalMs / 1000)) + " ث" }));
+    }));
+  }
+
+  function setGame(next) {
+    const g = { ...game, ...next };
+    if (!fdb) { game = g; setStatusChip(); renderButtons(); return; }
+    ref("state").set({ status: g.status, round: g.round, startedAt: g.startedAt || null })
+      .catch(() => { $("hostNote").textContent = "تعذّر حفظ حالة المسابقة. تحققي من الاتصال وقواعد قاعدة البيانات ثم حاولي مرة أخرى."; });
+  }
+  function renderButtons() {
+    $("btnStart").disabled = game.status === "running" || !fdb;
+    $("btnStart").textContent = game.status === "ended" ? "استئناف المسابقة" : "ابدئي المسابقة";
+    $("btnEnd").disabled = game.status !== "running" || !fdb;
+    $("btnNew").disabled = !fdb;
+  }
+  let confirmNew = 0;
+  $("btnStart").addEventListener("click", () => setGame({ status: "running", startedAt: game.startedAt || Date.now() }));
+  $("btnEnd").addEventListener("click", () => setGame({ status: "ended" }));
+  $("btnNew").addEventListener("click", () => {
+    const b = $("btnNew");
+    if (Date.now() - confirmNew > 4000) { confirmNew = Date.now(); b.textContent = "اضغطي مرة أخرى للتأكيد"; setTimeout(() => { b.textContent = "جولة جديدة"; }, 4000); return; }
+    confirmNew = 0; b.textContent = "جولة جديدة";
+    setGame({ status: "lobby", round: game.round + 1, startedAt: null });
+  });
+
+  function setTab(board) {
+    $("tabBoard").setAttribute("aria-pressed", String(board));
+    $("tabPreview").setAttribute("aria-pressed", String(!board));
+    $("boardPane").hidden = !board;
+    preview = !board;
+    $("studentView").hidden = board;
+    if (preview) { me = blankProgress("المعلمة"); showQuestion(); }
+    else { stopTimer(); clearTimeout(advanceTimer); }
+  }
+  $("tabBoard").addEventListener("click", () => setTab(true));
+  $("tabPreview").addEventListener("click", () => setTab(false));
+
+  const studentUrl = location.href.split("#")[0];
+  $("studentLink").textContent = studentUrl;
+  $("copyLink").addEventListener("click", async () => {
+    const b = $("copyLink");
+    try { await navigator.clipboard.writeText(studentUrl); b.textContent = "تم النسخ"; }
+    catch { const r = document.createRange(); r.selectNodeContents($("studentLink")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "انسخيه يدويًا"; }
+    setTimeout(() => { b.textContent = "نسخ الرابط"; }, 2000);
+  });
+
+  let unsubPlayers = null;
+  function watchRound() {
+    if (!fdb) return;
+    if (unsubPlayers) unsubPlayers();
+    players = {}; online = {};
+    const pr = ref(`players/r${game.round}`), or = ref(`online/r${game.round}`);
+    const pcb = (s) => { players = s.val() || {}; renderBoard(); };
+    const ocb = (s) => { online = s.val() || {}; renderBoard(); };
+    pr.on("value", pcb); or.on("value", ocb);
+    unsubPlayers = () => { pr.off("value", pcb); or.off("value", ocb); };
+  }
+
+  function enterHost() {
+    isHost = true;
+    $("loginCard").hidden = true;
+    $("studentView").hidden = true;
+    $("hostView").hidden = false;
+    $("setupNote").hidden = !!fdb;
+    renderButtons(); watchRound(); renderBoard();
+  }
+  $("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if ($("codeInput").value.trim() === TEACHER_CODE) { try { sessionStorage.setItem("quiz-teacher", "1"); } catch {} enterHost(); }
+    else $("loginErr").textContent = "الرمز غير صحيح.";
+  });
+
+  // =====================================================================
+  // boot
+  // =====================================================================
+  function showConn(t) { const n = $("connNote"); n.textContent = t; n.hidden = false; }
+  function hideConn() { $("connNote").hidden = true; }
+
+  function applyGame(v) {
+    const prevRound = game.round, prevStatus = game.status;
+    game = { status: ["lobby", "running", "ended"].includes(v.status) ? v.status : "lobby", round: clampInt(v.round, 1, 1e6), startedAt: v.startedAt || null };
+    setStatusChip();
+    if (isHost) { renderButtons(); if (game.round !== prevRound) watchRound(); renderBoard(); return; }
+    if (game.round !== prevRound || game.status !== prevStatus) studentRoute();
+  }
+
+  const savedName = store.get("quiz-name");
+  if (savedName) $("nameInput").value = savedName;
+  setStatusChip();
+
+  const wantsTeacher = location.hash === "#teacher";
+  let teacherOk = false; try { teacherOk = sessionStorage.getItem("quiz-teacher") === "1"; } catch {}
+  if (wantsTeacher && teacherOk) enterHost();
+  else if (wantsTeacher) { $("studentView").hidden = true; $("loginCard").hidden = false; }
+
+  if (!fdb) {
+    if (!wantsTeacher) showConn("المسابقة غير متصلة حاليًا، لذلك لن تظهر نتيجتك على شاشة المعلمة. أكملي الإجابة وأري المعلمة نتيجتك.");
+    const saved = store.get(progKey()); if (saved && saved.name && !wantsTeacher) me = saved;
+    // without a database, let students practise right away
+    if (!wantsTeacher) { game.status = "running"; setStatusChip(); studentRoute(); }
+    return;
+  }
+
+  const timer = setTimeout(() => showConn("جارٍ الاتصال بالمسابقة… إذا تأخر ذلك فتأكدي من اتصال الإنترنت."), 8000);
+  let first = true;
+  ref("state").on("value", (s) => {
+    clearTimeout(timer); hideConn();
+    const v = s.val() || { status: "lobby", round: 1 };
+    if (first && !isHost) {
+      first = false;
+      game.round = clampInt(v.round, 1, 1e6);
+      const saved = store.get(progKey());
+      if (saved && saved.name) { me = saved; report(); }
+      applyGame(v); studentRoute(); return;
+    }
+    first = false;
+    applyGame(v);
+  }, () => { clearTimeout(timer); showConn("تعذّر قراءة حالة المسابقة. تأكدي من إعدادات قاعدة البيانات."); });
+  window.addEventListener("hashchange", () => location.reload());
+})();
+</script>
+</body>
+</html>

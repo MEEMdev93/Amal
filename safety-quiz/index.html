@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;600;700&display=swap">
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
 html {{ padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }}
 body {{ margin: 0; }}
@@ -199,9 +199,15 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
 .login { max-width: 460px; }
 .copyrow { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
 .copyrow code { flex: 1; min-width: 0; overflow-wrap: anywhere; direction: ltr; text-align: left; background: var(--surface-2); padding: 10px 12px; border-radius: 10px; font-size: 14px; }
-.setup { background: var(--surface); border: 2px dashed var(--amber); border-radius: var(--r); padding: 18px 20px; margin-bottom: 20px; }
-.setup h3 { margin-bottom: 6px; }
-.setup ol { margin: 8px 0 0; padding-inline-start: 22px; }
+.joinbox { display: flex; gap: 22px; align-items: center; background: var(--surface); border-radius: var(--r); padding: 18px 20px; margin-bottom: 20px; flex-wrap: wrap; }
+.qr { width: 150px; height: 150px; flex: none; background: #fff; border-radius: 12px; padding: 8px; display: grid; place-items: center; }
+.qr img, .qr svg { width: 100%; height: 100%; image-rendering: pixelated; }
+.jb-text { flex: 1; min-width: 0; }
+.jb-label { color: var(--muted); font-size: 14px; font-weight: 600; }
+.roomcode { font-family: var(--display); font-weight: 700; font-size: clamp(44px, 7vw, 68px); letter-spacing: .12em; line-height: 1.1; color: var(--ink); direction: ltr; text-align: right; font-variant-numeric: tabular-nums; }
+.conn-line { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); margin: 4px 0 6px; }
+.cdot { width: 9px; height: 9px; border-radius: 50%; background: var(--silver); flex: none; }
+.cdot.on { background: #2DBF7F; } .cdot.bad { background: var(--red); }
 </style>
 </head>
 <body>
@@ -220,22 +226,6 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
 </header>
 
 <main class="wrap">
-  <div class="setup" id="setupNote" hidden>
-    <h3>الصفحة غير مربوطة بقاعدة البيانات بعد</h3>
-    <p style="margin:0;color:var(--muted)">بدون الربط لن تظهر أسماء الطالبات وتقدمهن على شاشتك. افتحي الملف بمحرر نصوص وضعي إعدادات Firebase في الجزء المكتوب عليه «الإعدادات» أعلى الكود، ثم ارفعيه من جديد.</p>
-  </div>
-
-  <div class="card login" id="loginCard" hidden>
-    <h2 style="font-size:26px;margin-bottom:6px">دخول المعلمة</h2>
-    <p style="color:var(--muted);margin:0 0 18px">أدخلي رمز المعلمة لفتح لوحة المتابعة.</p>
-    <form id="loginForm" novalidate>
-      <label for="codeInput">رمز المعلمة</label>
-      <input type="text" id="codeInput" inputmode="numeric" autocomplete="off">
-      <div class="err" id="loginErr" role="alert"></div>
-      <button class="btn block" type="submit">فتح اللوحة</button>
-    </form>
-  </div>
-
   <!-- host -->
   <section id="hostView" hidden>
     <div class="controls">
@@ -249,9 +239,14 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
       <button type="button" class="btn ghost" id="btnNew">جولة جديدة</button>
     </div>
     <div id="boardPane">
-      <div class="note" style="margin-bottom:18px">
-        <b style="color:var(--ink)">رابط الطالبات</b>
-        <div class="copyrow"><code id="studentLink"></code><button type="button" class="btn teal" id="copyLink">نسخ الرابط</button></div>
+      <div class="joinbox">
+        <div class="qr" id="qr" aria-label="رمز QR لرابط الطالبات"></div>
+        <div class="jb-text">
+          <span class="jb-label">رمز الفصل</span>
+          <div class="roomcode" id="roomCode">----</div>
+          <div class="conn-line"><i class="cdot" id="hostDot"></i><span id="hostConn">جارٍ تجهيز الفصل…</span></div>
+          <div class="copyrow"><code id="studentLink"></code><button type="button" class="btn teal" id="copyLink">نسخ الرابط</button></div>
+        </div>
       </div>
       <div class="kpis">
         <div class="kpi"><b id="kJoined">0</b><span>طالبة مشاركة</span></div>
@@ -269,7 +264,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
         <div class="board-head"><span style="text-align:center">#</span><span>الطالبة</span><span>التقدم</span><span class="num">صحيحة</span><span class="num">النقاط</span><span class="num">الوقت</span></div>
         <div id="rows"><div class="empty-board">لم تنضم أي طالبة بعد. شاركي رابط هذه الصفحة مع الطالبات، وستظهر أسماؤهن هنا فور كتابتها.</div></div>
       </div>
-      <p class="note hint" id="hostNote">تظهر الطالبات هنا فور كتابة أسمائهن. اضغطي «ابدئي المسابقة» لتظهر الأسئلة لهن جميعًا في نفس اللحظة.</p>
+      <p class="note hint" id="hostNote">أبقي هذه الصفحة مفتوحة طوال المسابقة؛ فهي التي تستقبل إجابات الطالبات وتحفظ النتائج على هذا الجهاز. اضغطي «ابدئي المسابقة» لتظهر الأسئلة لهن جميعًا في نفس اللحظة.</p>
     </div>
     <div id="previewPane" hidden></div>
   </section>
@@ -285,6 +280,8 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
         <div class="rule"><b>٣٠ ث</b><span>لكل سؤال قبل انتهاء الوقت</span></div>
       </div>
       <form id="joinForm" novalidate>
+        <label for="roomInput">رمز الفصل (يظهر على شاشة المعلمة)</label>
+        <input type="text" id="roomInput" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="مثال: 4821" style="margin-bottom:16px">
         <label for="nameInput">اكتبي اسمك كما سيظهر على الشاشة</label>
         <input type="text" id="nameInput" maxlength="40" autocomplete="name" placeholder="مثال: نورة عبدالله">
         <div class="err" id="joinErr" role="alert"></div>
@@ -327,18 +324,9 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
 <script>
 (() => {
   "use strict";
-  // =====================================================================
-  // الإعدادات — ضعي هنا إعدادات مشروع Firebase (Realtime Database)
-  // =====================================================================
-  const FIREBASE_CONFIG = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",   // مثال: https://my-quiz-default-rtdb.firebaseio.com
-    projectId: "",
-    appId: "",
-  };
-  const TEACHER_CODE = "2468"; // غيّريه قبل النشر. تفتح المعلمة اللوحة من الرابط مع #teacher في آخره
-  const ROOT = "safetyQuiz";   // اسم المجلد داخل قاعدة البيانات
+  // تعمل الصفحة بدون قاعدة بيانات: جهاز المعلمة هو "الخادم"، والطالبات يتصلن به مباشرة برمز الفصل.
+  // المعلمة: افتحي الرابط مع #teacher في آخره. الطالبات: الرابط العادي أو رمز QR.
+  const PREFIX = "tvtc-bdaea-safety-"; // بادئة فريدة لرموز الفصول
 
   // ---------- questions (from the lesson slides) ----------
   const Q = [
@@ -377,48 +365,68 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
   };
   const clampInt = (v, lo, hi) => { v = Math.round(Number(v)); return Number.isFinite(v) ? Math.min(hi, Math.max(lo, v)) : lo; };
   const cleanName = (s) => String(s || "").replace(/[\u0000-\u001f​-‏‪-‮⁦-⁩]/g, "").replace(/\s+/g, " ").trim().slice(0, 40);
-
-  // ---------- database ----------
-  let fdb = null;
-  const configured = !!(FIREBASE_CONFIG.databaseURL && FIREBASE_CONFIG.apiKey && window.firebase);
-  if (configured) {
-    try { firebase.initializeApp(FIREBASE_CONFIG); fdb = firebase.database(); } catch (e) { fdb = null; }
-  }
-  const ref = (p) => fdb.ref(`${ROOT}/${p}`);
+  const toLatinDigits = (s) => String(s || "").replace(/[٠-٩]/g, (d) => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d)).replace(/\D/g, "");
+  const hasPeer = typeof window.Peer === "function";
 
   // ---------- state ----------
-  let game = { status: "lobby", round: 1, startedAt: null };
+  let game = { status: "lobby", round: 1 };
   let isHost = false;
   let pid = store.get("quiz-pid");
   if (!pid) { pid = "s" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); store.set("quiz-pid", pid); }
-  let players = {}; // host: pid -> record for current round
-  let online = {};  // host: pid -> true
 
   function setStatusChip() {
     $("statusChip").dataset.s = game.status;
     $("statusText").textContent = game.status === "running" ? `المسابقة جارية · الجولة ${ar(game.round)}` : game.status === "ended" ? "انتهت المسابقة" : `بانتظار البدء · الجولة ${ar(game.round)}`;
   }
+  function showConn(t) { const n = $("connNote"); n.textContent = t; n.hidden = false; }
+  function hideConn() { $("connNote").hidden = true; }
 
   // =====================================================================
   // STUDENT
   // =====================================================================
-  let me = null, preview = false, qStart = 0, rafId = 0, locked = false, advanceTimer = 0, onlineRef = null;
-  const progKey = () => `quiz-prog-r${game.round}`;
+  let me = null, preview = false, qStart = 0, rafId = 0, locked = false, advanceTimer = 0;
+  let sPeer = null, sConn = null, room = "", retryTimer = 0, gotState = false;
+  const progKey = () => `quiz-prog-${room}-r${game.round}`;
   const blankProgress = (name) => ({ name, round: game.round, idx: 0, answers: [], score: 0, correct: 0, totalMs: 0, done: false });
   const saveMe = () => { if (!preview && me) store.set(progKey(), me); };
   const show = (id) => { for (const c of ["joinCard", "waitCard", "quizCard", "doneCard"]) $(c).hidden = c !== id; };
 
   function report() {
-    if (preview || !fdb || !me) return;
-    ref(`players/r${me.round}/${pid}`).set({
-      name: me.name, answered: me.answers.length, correct: me.correct, score: me.score,
-      totalMs: me.totalMs, done: me.done, at: firebase.database.ServerValue.TIMESTAMP,
-    }).catch(() => showConn("تعذّر إرسال تقدمك. تأكدي من الاتصال بالإنترنت."));
-    if (onlineRef) onlineRef.remove().catch(() => {});
-    onlineRef = ref(`online/r${me.round}/${pid}`);
-    onlineRef.onDisconnect().remove();
-    onlineRef.set(true).catch(() => {});
+    if (preview || !me || !sConn || !sConn.open) return;
+    try {
+      sConn.send({ t: "progress", pid, name: me.name, round: me.round, answered: me.answers.length, correct: me.correct, score: me.score, totalMs: me.totalMs, done: me.done });
+    } catch {}
   }
+
+  function connectStudent() {
+    clearTimeout(retryTimer);
+    if (!hasPeer) { showConn("تعذّر تحميل أداة الاتصال. تأكدي من الإنترنت ثم أعيدي تحميل الصفحة."); return; }
+    if (!sPeer || sPeer.destroyed) {
+      sPeer = new Peer(undefined, { debug: 0 });
+      sPeer.on("error", (e) => {
+        if (e && e.type === "peer-unavailable") showConn("لم يُعثر على الفصل. تأكدي من رمز الفصل وأن شاشة المعلمة مفتوحة. جارٍ إعادة المحاولة…");
+        else showConn("انقطع الاتصال بشاشة المعلمة. جارٍ إعادة المحاولة…");
+        scheduleRetry();
+      });
+      sPeer.on("disconnected", () => { try { sPeer.reconnect(); } catch {} });
+      sPeer.on("open", openConn);
+      return;
+    }
+    if (sPeer.open) openConn();
+  }
+  function openConn() {
+    if (sConn) { try { sConn.close(); } catch {} }
+    sConn = sPeer.connect(PREFIX + room, { reliable: true, metadata: { pid } });
+    sConn.on("open", () => { hideConn(); report(); if (!me) return; });
+    sConn.on("data", (msg) => {
+      if (!msg || typeof msg !== "object") return;
+      if (msg.t === "state") { gotState = true; applyGame(msg); }
+      if (msg.t === "rank") showRank(clampInt(msg.pos, 0, 999), clampInt(msg.total, 0, 999));
+    });
+    sConn.on("close", () => { showConn("انقطع الاتصال بشاشة المعلمة. جارٍ إعادة المحاولة…"); scheduleRetry(); });
+    sConn.on("error", () => scheduleRetry());
+  }
+  function scheduleRetry() { clearTimeout(retryTimer); retryTimer = setTimeout(connectStudent, 3000); }
 
   function studentRoute() {
     if (isHost) return;
@@ -429,17 +437,12 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
       saveMe(); report();
     }
     if (me.done || (game.status === "ended" && me.answers.length > 0)) { finish(); return; }
-    if (game.status === "running") {
-      if (!$("quizCard").hidden) return;
-      showQuestion();
-      return;
-    }
+    if (game.status === "running") { if ($("quizCard").hidden) showQuestion(); return; }
     stopTimer();
     $("waitTitle").textContent = `أهلًا ${me.name}`;
-    $("waitText").textContent = game.status === "ended" ? "انتهت هذه الجولة. انتظري جولة جديدة من المعلمة." : "اسمك ظاهر الآن على شاشة المعلمة. انتظري حتى تبدأ المسابقة وستظهر الأسئلة تلقائيًا.";
+    $("waitText").textContent = !gotState ? "جارٍ الاتصال بشاشة المعلمة…" : game.status === "ended" ? "انتهت هذه الجولة. انتظري جولة جديدة من المعلمة." : "اسمك ظاهر الآن على شاشة المعلمة. انتظري حتى تبدأ المسابقة وستظهر الأسئلة تلقائيًا.";
     show("waitCard");
   }
-
   function showQuestion() {
     if (me.idx >= TOTAL) { finish(); return; }
     const item = Q[me.idx];
@@ -456,17 +459,14 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
       box.append(b);
     });
     $("feedback").replaceChildren(); $("feedback").className = "feedback";
-    updateStrip();
-    show("quizCard");
-    qStart = performance.now();
-    tick();
+    updateStrip(); show("quizCard");
+    qStart = performance.now(); tick();
   }
   function stopTimer() { cancelAnimationFrame(rafId); rafId = 0; }
   function tick() {
     stopTimer();
     const loop = () => {
-      const el = performance.now() - qStart;
-      const left = Math.max(0, 1 - el / QTIME);
+      const el = performance.now() - qStart, left = Math.max(0, 1 - el / QTIME);
       $("timerBar").style.transform = `scaleX(${left})`;
       $("timer").classList.toggle("low", left < 0.25);
       if (el >= QTIME) { answer(-1); return; }
@@ -490,8 +490,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     fb.className = "feedback " + (ok ? "ok" : "bad");
     fb.replaceChildren(
       document.createTextNode(ok ? "إجابة صحيحة" : i === -1 ? "انتهى الوقت · الإجابة الصحيحة مظللة" : "إجابة غير صحيحة · الإجابة الصحيحة مظللة"),
-      ok ? h("span", { class: "pts", text: "+" + ar(pts) }) : null,
-    );
+      ok ? h("span", { class: "pts", text: "+" + ar(pts) }) : null);
     updateStrip();
     clearTimeout(advanceTimer);
     advanceTimer = setTimeout(() => {
@@ -511,50 +510,127 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
     $("doneScore").textContent = ar(me.score);
     $("dCorrect").textContent = `${ar(me.correct)} / ${ar(TOTAL)}`;
     $("dTime").textContent = ar(Math.round(me.totalMs / 1000));
+    if (preview) $("dRank").textContent = "—";
     show("doneCard");
-    watchMyRank();
   }
-  let rankUnsub = null;
-  function watchMyRank() {
-    if (preview || !fdb || rankUnsub) { if (preview) $("dRank").textContent = "—"; return; }
-    const r = ref(`players/r${me.round}`);
-    const cb = (snap) => {
-      const list = Object.entries(snap.val() || {}).map(([k, v]) => sanitize(k, v));
-      list.sort(cmp);
-      const pos = list.findIndex((x) => x.pid === pid) + 1;
-      $("dRank").textContent = pos ? `${ar(pos)} / ${ar(list.length)}` : "—";
-      $("doneLine").textContent = pos && pos <= 3 ? "أنتِ ضمن المراكز الثلاثة الأولى حاليًا! تابعي الشاشة للنتيجة النهائية." : "تابعي الشاشة لمعرفة الفائزات الثلاث.";
-    };
-    r.on("value", cb);
-    rankUnsub = () => r.off("value", cb);
+  function showRank(pos, total) {
+    if (preview || !pos) return;
+    $("dRank").textContent = `${ar(pos)} / ${ar(total)}`;
+    $("doneLine").textContent = pos <= 3 ? "أنتِ ضمن المراكز الثلاثة الأولى حاليًا! تابعي الشاشة للنتيجة النهائية." : "تابعي الشاشة لمعرفة الفائزات الثلاث.";
   }
 
   $("joinForm").addEventListener("submit", (e) => {
     e.preventDefault();
+    const code = toLatinDigits($("roomInput").value);
     const name = cleanName($("nameInput").value);
+    if (code.length < 4) { $("joinErr").textContent = "اكتبي رمز الفصل الظاهر على شاشة المعلمة."; $("roomInput").focus(); return; }
     if (name.length < 2) { $("joinErr").textContent = "اكتبي اسمك (حرفان على الأقل) ليظهر على الشاشة."; $("nameInput").focus(); return; }
     $("joinErr").textContent = "";
+    room = code;
+    store.set("quiz-room", code); store.set("quiz-name", name);
     me = blankProgress(name);
-    store.set("quiz-name", name);
-    saveMe(); report(); studentRoute();
+    const saved = store.get(progKey());
+    if (saved && saved.name === name) me = saved;
+    saveMe();
+    studentRoute();
+    connectStudent();
   });
 
   // =====================================================================
-  // HOST
+  // HOST (teacher's browser keeps everything)
   // =====================================================================
+  let hPeer = null, hostRoom = "", players = {}; // pid -> record (current round)
+  const conns = new Map(); // conn -> pid
   const cmp = (a, b) => (b.score - a.score) || (a.totalMs - b.totalMs) || (b.answered - a.answered) || String(a.name).localeCompare(String(b.name), "ar");
-  function sanitize(k, p) {
-    p = p || {};
+  const hostKey = () => `quiz-host-${hostRoom}-r${game.round}`;
+
+  function sanitize(p) {
     return {
-      pid: k, name: cleanName(p.name) || "طالبة", answered: clampInt(p.answered, 0, TOTAL), correct: clampInt(p.correct, 0, TOTAL),
+      name: cleanName(p.name) || "طالبة", round: clampInt(p.round, 1, 1e6), answered: clampInt(p.answered, 0, TOTAL), correct: clampInt(p.correct, 0, TOTAL),
       score: clampInt(p.score, 0, TOTAL * (100 + BONUS)), totalMs: clampInt(p.totalMs, 0, TOTAL * QTIME), done: !!p.done,
     };
+  }
+  const onlineSet = () => new Set([...conns.entries()].filter(([c]) => c.open).map(([, p]) => p));
+  function sorted() { const on = onlineSet(); return Object.entries(players).map(([k, v]) => ({ pid: k, ...v, online: on.has(k) })).sort(cmp); }
+
+  function broadcast(msg) { for (const c of conns.keys()) if (c.open) { try { c.send(msg); } catch {} } }
+  let rankTimer = 0;
+  function sendRanks() {
+    clearTimeout(rankTimer);
+    rankTimer = setTimeout(() => {
+      const list = sorted(), total = list.length;
+      const pos = new Map(list.map((r, i) => [r.pid, i + 1]));
+      for (const [c, p] of conns) if (c.open && pos.has(p)) { try { c.send({ t: "rank", pos: pos.get(p), total }); } catch {} }
+    }, 300);
+  }
+
+  function startHost() {
+    isHost = true;
+    $("studentView").hidden = true;
+    $("hostView").hidden = false;
+    hostRoom = store.get("quiz-host-room") || String(Math.floor(1000 + Math.random() * 9000));
+    store.set("quiz-host-room", hostRoom);
+    const g = store.get(`quiz-host-${hostRoom}-game`);
+    if (g) game = { status: g.status === "running" || g.status === "ended" ? g.status : "lobby", round: clampInt(g.round, 1, 1e6) };
+    players = store.get(hostKey()) || {};
+    const url = location.href.split("#")[0].split("?")[0] + "?room=" + hostRoom;
+    $("roomCode").textContent = hostRoom;
+    $("studentLink").textContent = url;
+    drawQR(url);
+    setStatusChip(); renderButtons(); renderBoard();
+    openHostPeer(0);
+  }
+  function hostConn(text, cls) { $("hostConn").textContent = text; $("hostDot").className = "cdot" + (cls ? " " + cls : ""); }
+  function openHostPeer(attempt) {
+    if (!hasPeer) { hostConn("تعذّر تحميل أداة الاتصال. تأكدي من الإنترنت ثم أعيدي تحميل الصفحة.", "bad"); return; }
+    hPeer = new Peer(PREFIX + hostRoom, { debug: 0 });
+    hPeer.on("open", () => hostConn("الفصل جاهز لاستقبال الطالبات", "on"));
+    hPeer.on("error", (e) => {
+      if (e && e.type === "unavailable-id") {
+        // the previous session of this page may still hold the code for a few seconds after a reload
+        hostConn("جارٍ استعادة الفصل…");
+        try { hPeer.destroy(); } catch {}
+        if (attempt < 10) setTimeout(() => openHostPeer(attempt + 1), 3000);
+        else hostConn("رمز الفصل مستخدم في نافذة أخرى. أغلقي النوافذ الأخرى لهذه الصفحة ثم أعيدي التحميل.", "bad");
+        return;
+      }
+      if (e && (e.type === "network" || e.type === "server-error" || e.type === "socket-error" || e.type === "socket-closed")) {
+        hostConn("انقطع الاتصال بالإنترنت. جارٍ إعادة المحاولة…", "bad");
+      }
+    });
+    hPeer.on("disconnected", () => { hostConn("انقطع الاتصال. جارٍ إعادة المحاولة…", "bad"); setTimeout(() => { try { hPeer.reconnect(); } catch {} }, 2000); });
+    hPeer.on("connection", (c) => {
+      const p0 = c.metadata && typeof c.metadata.pid === "string" ? c.metadata.pid.slice(0, 60) : "";
+      conns.set(c, p0);
+      c.on("open", () => { try { c.send({ t: "state", status: game.status, round: game.round }); } catch {} renderBoard(); });
+      c.on("data", (msg) => {
+        if (!msg || msg.t !== "progress" || typeof msg.pid !== "string") return;
+        const key = msg.pid.slice(0, 60);
+        conns.set(c, key);
+        const r = sanitize(msg);
+        if (r.round !== game.round) { try { c.send({ t: "state", status: game.status, round: game.round }); } catch {} return; }
+        players[key] = r;
+        store.set(hostKey(), players);
+        renderBoard(); sendRanks();
+      });
+      c.on("close", () => { conns.delete(c); renderBoard(); });
+      c.on("error", () => { conns.delete(c); renderBoard(); });
+    });
+  }
+
+  function drawQR(text) {
+    const box = $("qr");
+    if (typeof window.qrcode !== "function") { box.hidden = true; return; }
+    try {
+      const qr = window.qrcode(0, "M"); qr.addData(text); qr.make();
+      box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+    } catch { box.hidden = true; }
   }
 
   let lastOrder = "";
   function renderBoard() {
     if (!isHost) return;
-    const list = Object.entries(players).map(([k, v]) => ({ ...sanitize(k, v), online: !!online[k] })).sort(cmp);
+    const list = sorted();
     $("kJoined").textContent = ar(list.length);
     $("kOnline").textContent = ar(list.filter((r) => r.online).length);
     $("kDone").textContent = ar(list.filter((r) => r.done || r.answered >= TOTAL).length);
@@ -574,7 +650,7 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
 
     const rows = $("rows");
     if (!list.length) {
-      rows.replaceChildren(h("div", { class: "empty-board", text: game.status === "lobby" ? "لم تنضم أي طالبة بعد. أرسلي رابط الطالبات، وستظهر أسماؤهن هنا فور كتابتها." : "لا توجد مشاركات في هذه الجولة بعد." }));
+      rows.replaceChildren(h("div", { class: "empty-board", text: game.status === "lobby" ? "لم تنضم أي طالبة بعد. اعرضي رمز الفصل أو رمز QR، وستظهر الأسماء هنا فور دخولهن." : "لا توجد مشاركات في هذه الجولة بعد." }));
       return;
     }
     rows.replaceChildren(...list.map((r, i) => {
@@ -591,27 +667,27 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
   }
 
   function setGame(next) {
-    const g = { ...game, ...next };
-    if (!fdb) { game = g; setStatusChip(); renderButtons(); return; }
-    ref("state").set({ status: g.status, round: g.round, startedAt: g.startedAt || null })
-      .catch(() => { $("hostNote").textContent = "تعذّر حفظ حالة المسابقة. تحققي من الاتصال وقواعد قاعدة البيانات ثم حاولي مرة أخرى."; });
+    const prevRound = game.round;
+    game = { ...game, ...next };
+    store.set(`quiz-host-${hostRoom}-game`, game);
+    if (game.round !== prevRound) players = store.get(hostKey()) || {};
+    setStatusChip(); renderButtons(); renderBoard();
+    broadcast({ t: "state", status: game.status, round: game.round });
   }
   function renderButtons() {
-    $("btnStart").disabled = game.status === "running" || !fdb;
+    $("btnStart").disabled = game.status === "running";
     $("btnStart").textContent = game.status === "ended" ? "استئناف المسابقة" : "ابدئي المسابقة";
-    $("btnEnd").disabled = game.status !== "running" || !fdb;
-    $("btnNew").disabled = !fdb;
+    $("btnEnd").disabled = game.status !== "running";
   }
   let confirmNew = 0;
-  $("btnStart").addEventListener("click", () => setGame({ status: "running", startedAt: game.startedAt || Date.now() }));
+  $("btnStart").addEventListener("click", () => setGame({ status: "running" }));
   $("btnEnd").addEventListener("click", () => setGame({ status: "ended" }));
   $("btnNew").addEventListener("click", () => {
     const b = $("btnNew");
     if (Date.now() - confirmNew > 4000) { confirmNew = Date.now(); b.textContent = "اضغطي مرة أخرى للتأكيد"; setTimeout(() => { b.textContent = "جولة جديدة"; }, 4000); return; }
     confirmNew = 0; b.textContent = "جولة جديدة";
-    setGame({ status: "lobby", round: game.round + 1, startedAt: null });
+    setGame({ status: "lobby", round: game.round + 1 });
   });
-
   function setTab(board) {
     $("tabBoard").setAttribute("aria-pressed", String(board));
     $("tabPreview").setAttribute("aria-pressed", String(!board));
@@ -623,88 +699,39 @@ input[type=text]:focus { border-color: var(--teal); outline: none; }
   }
   $("tabBoard").addEventListener("click", () => setTab(true));
   $("tabPreview").addEventListener("click", () => setTab(false));
-
-  const studentUrl = location.href.split("#")[0];
-  $("studentLink").textContent = studentUrl;
   $("copyLink").addEventListener("click", async () => {
-    const b = $("copyLink");
-    try { await navigator.clipboard.writeText(studentUrl); b.textContent = "تم النسخ"; }
+    const b = $("copyLink"), text = $("studentLink").textContent;
+    try { await navigator.clipboard.writeText(text); b.textContent = "تم النسخ"; }
     catch { const r = document.createRange(); r.selectNodeContents($("studentLink")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "انسخيه يدويًا"; }
     setTimeout(() => { b.textContent = "نسخ الرابط"; }, 2000);
-  });
-
-  let unsubPlayers = null;
-  function watchRound() {
-    if (!fdb) return;
-    if (unsubPlayers) unsubPlayers();
-    players = {}; online = {};
-    const pr = ref(`players/r${game.round}`), or = ref(`online/r${game.round}`);
-    const pcb = (s) => { players = s.val() || {}; renderBoard(); };
-    const ocb = (s) => { online = s.val() || {}; renderBoard(); };
-    pr.on("value", pcb); or.on("value", ocb);
-    unsubPlayers = () => { pr.off("value", pcb); or.off("value", ocb); };
-  }
-
-  function enterHost() {
-    isHost = true;
-    $("loginCard").hidden = true;
-    $("studentView").hidden = true;
-    $("hostView").hidden = false;
-    $("setupNote").hidden = !!fdb;
-    renderButtons(); watchRound(); renderBoard();
-  }
-  $("loginForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    if ($("codeInput").value.trim() === TEACHER_CODE) { try { sessionStorage.setItem("quiz-teacher", "1"); } catch {} enterHost(); }
-    else $("loginErr").textContent = "الرمز غير صحيح.";
   });
 
   // =====================================================================
   // boot
   // =====================================================================
-  function showConn(t) { const n = $("connNote"); n.textContent = t; n.hidden = false; }
-  function hideConn() { $("connNote").hidden = true; }
-
   function applyGame(v) {
     const prevRound = game.round, prevStatus = game.status;
-    game = { status: ["lobby", "running", "ended"].includes(v.status) ? v.status : "lobby", round: clampInt(v.round, 1, 1e6), startedAt: v.startedAt || null };
+    game = { status: ["lobby", "running", "ended"].includes(v.status) ? v.status : "lobby", round: clampInt(v.round, 1, 1e6) };
     setStatusChip();
-    if (isHost) { renderButtons(); if (game.round !== prevRound) watchRound(); renderBoard(); return; }
-    if (game.round !== prevRound || game.status !== prevStatus) studentRoute();
+    if (game.round !== prevRound || game.status !== prevStatus || !$("waitCard").hidden) studentRoute();
   }
 
-  const savedName = store.get("quiz-name");
-  if (savedName) $("nameInput").value = savedName;
   setStatusChip();
-
-  const wantsTeacher = location.hash === "#teacher";
-  let teacherOk = false; try { teacherOk = sessionStorage.getItem("quiz-teacher") === "1"; } catch {}
-  if (wantsTeacher && teacherOk) enterHost();
-  else if (wantsTeacher) { $("studentView").hidden = true; $("loginCard").hidden = false; }
-
-  if (!fdb) {
-    if (!wantsTeacher) showConn("المسابقة غير متصلة حاليًا، لذلك لن تظهر نتيجتك على شاشة المعلمة. أكملي الإجابة وأري المعلمة نتيجتك.");
-    const saved = store.get(progKey()); if (saved && saved.name && !wantsTeacher) me = saved;
-    // without a database, let students practise right away
-    if (!wantsTeacher) { game.status = "running"; setStatusChip(); studentRoute(); }
-    return;
+  if (location.hash === "#teacher") { startHost(); }
+  else {
+    const qsRoom = toLatinDigits(new URLSearchParams(location.search).get("room"));
+    const savedRoom = store.get("quiz-room");
+    $("roomInput").value = qsRoom || savedRoom || "";
+    const savedName = store.get("quiz-name");
+    if (savedName) $("nameInput").value = savedName;
+    // returning student on the same room: rejoin automatically
+    if (savedName && savedRoom && (!qsRoom || qsRoom === savedRoom)) {
+      room = savedRoom;
+      const s = store.get(progKey());
+      me = s && s.name === savedName ? s : blankProgress(savedName);
+      studentRoute(); connectStudent();
+    } else show("joinCard");
   }
-
-  const timer = setTimeout(() => showConn("جارٍ الاتصال بالمسابقة… إذا تأخر ذلك فتأكدي من اتصال الإنترنت."), 8000);
-  let first = true;
-  ref("state").on("value", (s) => {
-    clearTimeout(timer); hideConn();
-    const v = s.val() || { status: "lobby", round: 1 };
-    if (first && !isHost) {
-      first = false;
-      game.round = clampInt(v.round, 1, 1e6);
-      const saved = store.get(progKey());
-      if (saved && saved.name) { me = saved; report(); }
-      applyGame(v); studentRoute(); return;
-    }
-    first = false;
-    applyGame(v);
-  }, () => { clearTimeout(timer); showConn("تعذّر قراءة حالة المسابقة. تأكدي من إعدادات قاعدة البيانات."); });
   window.addEventListener("hashchange", () => location.reload());
 })();
 </script>

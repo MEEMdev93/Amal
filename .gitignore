@@ -12,3 +12,6 @@ __pycache__/
 
 # Keep .gitkeep files (they ensure dirs exist in zip)
 !.gitkeep
+
+# Zoom halaqa queue runtime data
+zoom-halaqa-queue/data.json

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دور التسميع</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Readex+Pro:wght@500;700&display=swap">
+<style>
+:root{
+  --bg:#f3f6f5;--surface:#fff;--fg:#14211e;--muted:#5d6e6a;--line:#d8e2df;
+  --accent:#0f6b5c;--accent-soft:#dcefea;--on-accent:#fff;--warn:#9a5b00;--warn-soft:#fbefd9;--off:#a33;
+  --font-display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans Arabic",system-ui,Tahoma,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f1715;--surface:#17221f;--fg:#e4eeeb;--muted:#93a6a1;--line:#2a3a36;
+  --accent:#4fbfa8;--accent-soft:#1d3a33;--on-accent:#06201a;--warn:#f0b35a;--warn-soft:#3a2c14;--off:#f08a8a;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;padding:24px 16px 48px}
+main{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2{font-family:var(--font-display);margin:0}
+h1{font-size:1.6rem}
+h2{font-size:1.05rem}
+.sub{color:var(--muted);margin:4px 0 0;font-size:.95rem}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--off)}
+.live.on .dot{background:var(--accent)}
+button{font:inherit;font-weight:500;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 14px;cursor:pointer;min-height:40px}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+button.small{padding:4px 10px;min-height:34px;font-size:.88rem}
+button.ghost{background:transparent}
+button:disabled{opacity:.5;cursor:default}
+input{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;flex:1;min-width:0}
+.add{display:flex;gap:8px}
+.now{background:var(--accent-soft);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.now .label{font-size:.8rem;color:var(--accent);font-weight:600}
+.now .name{font-family:var(--font-display);font-size:1.9rem;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
+.now .meta,.now .empty{color:var(--muted);font-size:.9rem}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px}
+ol{list-style:none;margin:0;padding:0}
+li{display:grid;grid-template-columns:2.2rem 1fr auto;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+li:last-child{border-bottom:0}
+.num{font-family:var(--font-display);font-weight:700;color:var(--accent);text-align:center;font-variant-numeric:tabular-nums}
+.who{min-width:0}
+.who b{font-weight:600;display:block;overflow-wrap:anywhere}
+.who span{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;font-size:.75rem;padding:0 8px;border-radius:999px;margin-inline-start:6px;font-weight:500}
+.tag.later{background:var(--warn-soft);color:var(--warn)}
+.tag.out{background:transparent;border:1px solid var(--off);color:var(--off)}
+li.absent .who b{color:var(--muted)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.done .num{color:var(--muted)}
+.empty-list{display:block;color:var(--muted);font-size:.92rem;padding:8px 0}
+footer{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.toast{font-size:.9rem;color:var(--accent)}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:var(--warn)}
+@media (max-width:460px){li{grid-template-columns:2rem 1fr}.acts{grid-column:2;justify-content:flex-start}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>دور التسميع</h1>
+    <p class="sub">الطالبات ينضفن تلقائياً بترتيب دخولهن الزوم.</p>
+    <span class="live" id="live"><span class="dot"></span><span id="liveText">جارٍ الاتصال…</span></span>
+  </header>
+
+  <section class="now" aria-live="polite">
+    <div class="label">تسمّع الآن</div>
+    <div id="now"></div>
+    <div class="row-btns">
+      <button class="primary" id="next">التالية ←</button>
+      <button class="ghost" id="later">تأجيل للآخر</button>
+    </div>
+  </section>
+
+  <form class="add" id="addForm">
+    <input id="nameInput" placeholder="إضافة طالبة يدوياً (اختياري)" autocomplete="off" aria-label="اسم الطالبة">
+    <button type="submit">إضافة</button>
+  </form>
+
+  <section>
+    <h2>الدور <span id="qCount" class="sub"></span></h2>
+    <ol id="queue"></ol>
+  </section>
+
+  <section class="done">
+    <h2>سمّعت <span id="dCount" class="sub"></span></h2>
+    <ol id="doneList"></ol>
+  </section>
+
+  <footer>
+    <button id="copy">نسخ كشف الحضور</button>
+    <span id="resetArea"></span>
+    <span class="toast" id="toast" role="status"></span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var S={students:[],current:null};
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(t){return new Date(t).toLocaleTimeString('ar-SA-u-nu-latn',{hour:'numeric',minute:'2-digit',second:'2-digit'})};
+  var find=function(id){return S.students.find(function(s){return s.id===id})};
+
+  function api(action,id,name){
+    return fetch('api/action',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:action,id:id,name:name})})
+      .then(function(r){if(!r.ok) throw 0;}).catch(function(){toast('ما وصل الطلب، تأكدي من الاتصال');});
+  }
+  function toast(m){$('toast').textContent=m;setTimeout(function(){$('toast').textContent=''},2500);}
+
+  function btn(label,fn,cls){var b=document.createElement('button');b.type='button';b.className='small '+(cls||'');b.textContent=label;b.onclick=fn;return b;}
+  function row(s,actions){
+    var li=document.createElement('li'); if(!s.present) li.className='absent';
+    var n=document.createElement('div');n.className='num';n.textContent=s.n;
+    var w=document.createElement('div');w.className='who';
+    var b=document.createElement('b');b.textContent=s.name;
+    if(s.later){var t=document.createElement('span');t.className='tag later';t.textContent='مؤجلة';b.appendChild(t);}
+    if(!s.present&&s.status!=='done'){var o=document.createElement('span');o.className='tag out';o.textContent='خرجت';b.appendChild(o);}
+    var m=document.createElement('span');
+    m.textContent='دخلت '+fmt(s.joinedAt)+(s.rejoins?' · رجعت '+s.rejoins+' مرة':'')+(s.doneAt?' · سمّعت '+fmt(s.doneAt):'');
+    w.append(b,m);li.append(n,w);
+    if(actions){var a=document.createElement('div');a.className='acts';actions.forEach(function(x){a.appendChild(x)});li.appendChild(a);}
+    return li;
+  }
+  function emptyRow(text){var li=document.createElement('li');li.className='empty-list';li.textContent=text;return li;}
+
+  function render(){
+    var c=S.current!=null&&find(S.current), now=$('now'); now.textContent='';
+    if(c){
+      var nm=document.createElement('div');nm.className='name';nm.textContent=c.name;
+      var mt=document.createElement('div');mt.className='meta';mt.textContent='رقم '+c.n+' · دخلت '+fmt(c.joinedAt)+(c.present?'':' · خرجت من الاجتماع');
+      now.append(nm,mt);
+    }else{
+      var e=document.createElement('div');e.className='empty';
+      e.textContent=S.students.length?'ما فيه أحد في الانتظار حالياً.':'بانتظار دخول أول طالبة للزوم…';
+      now.appendChild(e);
+    }
+    var w=S.students.filter(function(s){return s.status==='waiting'});
+    $('next').disabled=!c; $('later').disabled=!c||!w.length;
+    var q=$('queue');q.textContent='';
+    w.forEach(function(s){q.appendChild(row(s,[
+      btn('تسمّع الآن',function(){api('now',s.id)}),
+      btn('للآخر',function(){api('later',s.id)},'ghost'),
+      btn('حذف',function(){api('remove',s.id)},'ghost')
+    ]))});
+    if(!w.length) q.appendChild(emptyRow('لا توجد طالبات في الانتظار.'));
+    $('qCount').textContent=w.length?'('+w.length+')':'';
+    var done=S.students.filter(function(s){return s.status==='done'}).sort(function(a,b){return a.doneAt-b.doneAt});
+    var d=$('doneList');d.textContent='';
+    done.forEach(function(s){d.appendChild(row(s))});
+    if(!done.length) d.appendChild(emptyRow('لم تسمّع أحد بعد.'));
+    $('dCount').textContent=done.length?'('+done.length+')':'';
+  }
+
+  function connect(){
+    var es=new EventSource('events');
+    es.onopen=function(){$('live').className='live on';$('liveText').textContent='متصل بالزوم';};
+    es.onmessage=function(e){S=JSON.parse(e.data);render();};
+    es.onerror=function(){$('live').className='live';$('liveText').textContent='انقطع الاتصال، جارٍ إعادة المحاولة…';};
+  }
+
+  $('next').onclick=function(){api('next')};
+  $('later').onclick=function(){api('later')};
+  $('addForm').addEventListener('submit',function(e){e.preventDefault();var v=$('nameInput').value.trim();if(v)api('add',null,v);$('nameInput').value='';});
+
+  $('copy').onclick=function(){
+    var lines=['كشف حلقة التحفيظ — '+new Date().toLocaleDateString('ar-SA-u-nu-latn'),''];
+    S.students.slice().sort(function(a,b){return a.n-b.n}).forEach(function(s){
+      lines.push(s.n+'. '+s.name+' — دخلت '+fmt(s.joinedAt)+(s.status==='done'?' ✓ سمّعت':' — لم تسمّع'));
+    });
+    lines.push('','الحضور: '+S.students.length+' · سمّعت: '+S.students.filter(function(s){return s.status==='done'}).length);
+    var text=lines.join('\n');
+    if(navigator.clipboard) navigator.clipboard.writeText(text).then(function(){toast('تم النسخ، الصقيه في الواتساب')},function(){toast('ما قدرت أنسخ')});
+  };
+
+  function resetUI(){
+    var area=$('resetArea');area.textContent='';
+    area.appendChild(btn('حلقة جديدة',function(){
+      area.textContent='';
+      var w=document.createElement('span');w.className='confirm';w.textContent='مسح كل الأسماء؟ ';
+      w.append(btn('نعم، امسحي',function(){api('reset');resetUI();}),btn('إلغاء',resetUI,'ghost'));
+      area.appendChild(w);
+    },'ghost'));
+  }
+  resetUI(); render(); connect();
+})();
+</script>
+</body>
+</html>
